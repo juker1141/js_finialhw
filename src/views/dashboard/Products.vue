@@ -27,15 +27,28 @@ export default {
   data() {
     return {
       products: { imageUrl: [] },
+      isLoading: false,
     };
   },
   props: ['token'],
+  methods: {
+    getProducts() {
+      this.$bus.$emit('loadingChange', true);
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/products`;
+      this.$http
+        .get(url)
+        .then((res) => {
+          console.log(res);
+          this.products = res.data.data;
+          this.$bus.$emit('loadingChange', false);
+        })
+        .catch(() => {
+          this.$bus.$emit('loadingChange', false);
+        });
+    },
+  },
   created() {
-    const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/products`;
-    this.$http.get(url).then((res) => {
-      console.log(res);
-      this.products = res.data.data;
-    });
+    this.getProducts();
   },
 };
 </script>

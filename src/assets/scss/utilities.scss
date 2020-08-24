@@ -1,12 +1,43 @@
-.ml_20{
-  margin-left: 20%;
+.ml_25 {
+  margin-left: 25%;
+  @include media-breakpoint-up(md) {
+    margin-left: 30%;
+  }
+  @include media-breakpoint-up(xl) {
+    margin-left: 25%;
+  }
 }
-.listStyle_none{
+.h_100vh {
+  height: 100vh;
+}
+.listStyle_none {
   list-style: none !important;
 }
-.fz_24{
-  font-size: 24px;
+.fz_20 {
+  font-size: 20px;
 }
-.fontOrbitron{
-  font-family: 'Orbitron', sans-serif;
+.fz_30 {
+  font-size: 30px !important;
+}
+.fz_30_xl {
+  @include media-breakpoint-up(xl) {
+    font-size: 30px !important;
+  }
+}
+.fz_50_xl {
+  @include media-breakpoint-up(xl) {
+    font-size: 50px;
+  }
+}
+.fontOrbitron {
+  font-family: "Orbitron", sans-serif;
+}
+.fontNotoSans {
+  font-family: "Noto Sans TC", sans-serif !important;
+}
+.zIndex_100 {
+  z-index: 10000;
+}
+.textDecoration_none {
+  text-decoration: none !important;
 }

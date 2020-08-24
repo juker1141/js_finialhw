@@ -1,8 +1,29 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div class="fontNotoSans" id="app">
+    <Loading v-if="isLoading"></Loading>
+    <router-view />
   </div>
 </template>
+
+<script>
+import Loading from './components/Loading.vue';
+
+export default {
+  components: {
+    Loading,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  created() {
+    this.$bus.$on('loadingChange', (state) => {
+      this.isLoading = state;
+    });
+  },
+};
+</script>
 
 <style lang="scss">
 @import './assets/scss/all.scss';

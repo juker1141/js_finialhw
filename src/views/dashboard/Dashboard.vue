@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex">
     <NavbarAdmin />
-    <router-view class="ml_20 w-100 p-3" :token="token" v-if="checkSuccess" />
+    <router-view class="ml_25 w-100 p-3" :token="token" v-if="checkSuccess" />
   </div>
 </template>
 

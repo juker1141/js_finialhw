@@ -7,6 +7,7 @@ import router from './router';
 Vue.config.productionTip = false;
 
 Vue.use(VueAxios, axios);
+Vue.prototype.$bus = new Vue();
 
 new Vue({
   router,

@@ -1,7 +1,16 @@
-.navbar_admin{
-  width: 20%;
+.navbar_admin {
+  width: 25%;
   padding: 0;
   position: fixed;
-  top: 0;
+  top: 0 !important;
   bottom: 0;
+  @include media-breakpoint-up(md) {
+    width: 30%;
+  }
+  @include media-breakpoint-up(xl) {
+    width: 25%;
+  }
+}
+.navbarList_hover :hover {
+  border-left: 8px solid #2a8356;
 }
