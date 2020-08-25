@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 Vue.prototype.$bus = new Vue();
 window.$ = $;
-
+/* global $ */
 new Vue({
   router,
   render: (h) => h(App),

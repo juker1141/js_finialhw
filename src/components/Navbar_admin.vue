@@ -113,9 +113,10 @@
         </ul>
       </div>
     </nav>
-    <div class="navbar_showBtn" @mousemove="navberHover()">
-      <div class="bg-adminSecondary d-flex align-items-center
-      justify-content-center d-lg-none">
+    <div class="navbar_showBtn bg-adminSecondary d-flex align-items-center
+      justify-content-center d-lg-none" @click="navberHover()">
+      <div class="d-flex align-items-center
+      justify-content-center">
         <span class="material-icons text-black">
           chevron_right
         </span>
@@ -131,9 +132,7 @@ export default {
 
   methods: {
     navberHover() {
-      $('.navbar_showBtn').hover(() => {
-        $('.navbar_showBtn').toggleClass(move);;
-      });
+      $('.navbar_adminPosition').toggleClass('move');
     },
   },
 };

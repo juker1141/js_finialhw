@@ -1,3 +1,6 @@
+body {
+  overflow-y: scroll;
+}
 .h_100vh {
   height: 100vh;
 }
@@ -7,6 +10,9 @@
 .fz_20 {
   font-size: 20px;
 }
+.fz_24 {
+  font-size: 24px;
+}
 .fz_30 {
   font-size: 30px !important;
 }
@@ -15,10 +21,22 @@
     font-size: 30px !important;
   }
 }
+.fz_40 {
+  font-size: 40px;
+}
+.fz_50 {
+  font-size: 45px;
+}
 .fz_50_xl {
   @include media-breakpoint-up(xl) {
     font-size: 50px !important;
   }
+}
+.fz_65 {
+  font-size: 65px;
+}
+.fz_75 {
+  font-size: 75px;
 }
 .fontOrbitron {
   font-family: "Orbitron", sans-serif;
@@ -26,9 +44,21 @@
 .fontNotoSans {
   font-family: "Noto Sans TC", sans-serif !important;
 }
+.fontLobster {
+  font-family: "Lobster", cursive;
+}
 .zIndex_100 {
   z-index: 10000;
 }
 .textDecoration_none {
   text-decoration: none !important;
+}
+.w_280px {
+  width: 280px;
+}
+.w_50px {
+  width: 50px;
+}
+.mb_11-6 {
+  margin-bottom: 11.6px;
 }
