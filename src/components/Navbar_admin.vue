@@ -132,7 +132,7 @@ export default {
 
   methods: {
     navberHover() {
-      $('.navbar_adminPosition').toggleClass('move');
+      $('.navbar_adminPosition').toggleClass('move123');
     },
   },
 };
