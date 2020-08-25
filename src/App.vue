@@ -6,7 +6,6 @@
 </template>
 
 <script>
-/* global $ */
 
 import Loading from './components/Loading.vue';
 
@@ -29,6 +28,7 @@ export default {
 
 <style lang="scss">
 @import './assets/scss/all.scss';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

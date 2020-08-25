@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import $ from 'jquery';
 import App from './App.vue';
 import router from './router';
-import $ from 'jquery';
 
 Vue.config.productionTip = false;
 
