@@ -62,3 +62,14 @@ body {
 .mb_11-6 {
   margin-bottom: 11.6px;
 }
+.time_ml_auto {
+  @media (min-width: 1300px) {
+    margin-left: 84px !important;
+  }
+  @media (min-width: 1450px) {
+    margin-left: 96px !important;
+  }
+  @media (min-width: 1600px) {
+    margin-left: 156px !important;
+  }
+}

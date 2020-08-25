@@ -23,7 +23,7 @@
           >
             <router-link
               class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
-              to="/admin"
+              to="/admin/home"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
               pl-lg-4 pl-0 border-0 fz_30">home</span>
@@ -49,7 +49,7 @@
           >
             <router-link
               class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
-              to="/admin/coupons"
+              to="/admin/orderlist"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
               pl-lg-4 pl-0 border-0 fz_30">receipt_long</span>
@@ -77,7 +77,7 @@
           >
             <router-link
               class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
-              to="/admin/coupons"
+              to="/admin/picturelibrary"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
               pl-lg-4 pl-0 border-0 fz_30">photo_library</span>
@@ -90,7 +90,7 @@
           >
             <router-link
               class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
-              to="/admin/coupons"
+              to="/admin/simulateorder"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
               pl-lg-4 pl-0 border-0 fz_30">book_online</span>
@@ -99,7 +99,7 @@
           </li>
           <li
             class="pb-2 text-left font-weight-bold navbarList_hover d-flex
-            justify-content-center justify-content-lg-start"
+            justify-content-center justify-content-lg-start" @click="signout()"
           >
             <router-link
               class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
@@ -133,6 +133,10 @@ export default {
   methods: {
     navberHover() {
       $('.navbar_adminPosition').toggleClass('move123');
+    },
+    signout() {
+      // 將cookie清空即為登出
+      document.cookie = 'testToken=; expires=; path=/';
     },
   },
 };

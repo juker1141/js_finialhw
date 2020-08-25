@@ -60,7 +60,7 @@ export default {
           // 將token與到期日寫入cookie;
           document.cookie = `testToken=${token}; 
           expires=${new Date(expired * 1000)}; path=/`;
-          this.$router.push('/admin');
+          this.$router.push('/admin/home');
         })
         .catch((error) => {
           console.log(error);
