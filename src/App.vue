@@ -6,6 +6,8 @@
 </template>
 
 <script>
+/* global $ */
+
 import Loading from './components/Loading.vue';
 
 export default {

@@ -1,6 +1,7 @@
 <template>
   <div class="d-flex">
     <NavbarAdmin />
+    {{ text }}
     <router-view class="ml_25 w-100 p-3" :token="token" v-if="checkSuccess" />
   </div>
 </template>
@@ -13,6 +14,7 @@ export default {
     return {
       token: '',
       checkSuccess: false,
+      text: '',
     };
   },
   components: {
@@ -43,6 +45,8 @@ export default {
   },
   created() {
     this.checkLogin();
+    const Today=new Date();
+　  this.text = document.write("今天日期是 " + Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日");
   },
 };
 </script>

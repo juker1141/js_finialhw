@@ -1,16 +1,39 @@
-.navbar_admin {
-  width: 25%;
+.navbar_adminPosition {
   padding: 0;
   position: fixed;
   top: 0 !important;
   bottom: 0;
+  width: 25%;
+  left: -25%;
   @include media-breakpoint-up(md) {
-    width: 30%;
+    width: 20%;
+    left: -20%;
   }
-  @include media-breakpoint-up(xl) {
+  @include media-breakpoint-up(lg) {
     width: 25%;
+    left: 0;
   }
 }
 .navbarList_hover :hover {
   border-left: 8px solid #2a8356;
+}
+.main_admin {
+  margin-left: 25%;
+  @include media-breakpoint-up(md) {
+    margin-left: 30%;
+  }
+  @include media-breakpoint-up(xl) {
+    margin-left: 25%;
+  }
+}
+.navbar_showBtn{
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  right: -24px;
+  
+}
+.navbar_showBtn .move{
+  left: 0 !important;
 }
