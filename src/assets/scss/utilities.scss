@@ -59,6 +59,18 @@ body {
 .w_50px {
   width: 50px;
 }
+.table_w_5 {
+  width: 5%;
+}
+.table_w_10 {
+  width: 10%;
+}
+.table_w_15 {
+  width: 15%;
+}
+.table_w_20 {
+  width: 20%;
+}
 .mb_11-6 {
   margin-bottom: 11.6px;
 }
@@ -72,4 +84,7 @@ body {
   @media (min-width: 1600px) {
     margin-left: 156px !important;
   }
+}
+.pt_6 {
+  padding-top: 6px;
 }

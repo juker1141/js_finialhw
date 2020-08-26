@@ -10,6 +10,7 @@
 import Loading from './components/Loading.vue';
 
 export default {
+  /* eslint-disable */
   components: {
     Loading,
   },
