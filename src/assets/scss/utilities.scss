@@ -7,6 +7,14 @@ body {
 .listStyle_none {
   list-style: none !important;
 }
+.fz_12 {
+  font-size: 12px;
+}
+.fz_md_16 {
+  @include media-breakpoint-up(md) {
+    font-size: 16px;
+  }
+}
 .fz_20 {
   font-size: 20px;
 }
@@ -53,11 +61,14 @@ body {
 .textDecoration_none {
   text-decoration: none !important;
 }
-.w_280px {
-  width: 280px;
+.w_320px {
+  width: 320px;
 }
 .w_50px {
   width: 50px;
+}
+.w_max_80 {
+  max-width: 80% !important;
 }
 .table_w_5 {
   width: 5%;
@@ -71,18 +82,28 @@ body {
 .table_w_20 {
   width: 20%;
 }
-.mb_11-6 {
-  margin-bottom: 11.6px;
+.table_w_md_10 {
+  @include media-breakpoint-up(md) {
+    width: 10%;
+  }
+}
+.table_w_md_20 {
+  @include media-breakpoint-up(md) {
+    width: 20%;
+  }
+}
+.mb_13 {
+  margin-bottom: 13px;
 }
 .time_ml_auto {
-  @media (min-width: 1300px) {
-    margin-left: 64px !important;
-  }
   @media (min-width: 1450px) {
-    margin-left: 96px !important;
+    margin-left: 0 !important;
   }
-  @media (min-width: 1600px) {
-    margin-left: 156px !important;
+  @media (min-width: 1550px) {
+    margin-left: 48px !important;
+  }
+  @media (min-width: 1650px) {
+    margin-left: 106px !important;
   }
 }
 .pt_6 {

@@ -1,50 +1,102 @@
-/* eslint-disable vue/valid-v-else */
 <template>
-  <div>
-    <h2>This is an admin Products Page</h2>
+  <div class="p-3">
+    <div class="d-flex align-items-center justify-content-between
+    mb-5 pt-lg-5 px-5 px-md-6">
+      <h3 class="d-flex align-items-center">
+        <span class="material-icons fz_30 mr-3">list_alt</span>
+        產品列表
+      </h3>
+      <button class="btn d-flex align-items-center" type="button"
+      @click="openModal('new')">
+        <span class="material-icons mr-2">
+        add
+        </span>
+        新增商品
+      </button>
+    </div>
     <table class="table mt-2 rounded">
       <thead class="alert-success">
         <tr>
-          <th class="text-center border-0 table_w_20">產品名稱</th>
-          <th class="text-center border-0 table_w_5">分類</th>
-          <th class="text-center border-0 table_w_10">原價</th>
-          <th class="text-center border-0 table_w_10">售價</th>
-          <th class="text-center border-0 table_w_5">是否上架</th>
-          <th class="text-center border-0 table_w_10">編輯</th>
+          <th class="text-center border-0 table_w_5 table_w_md_10">產品名稱</th>
+          <th class="text-center border-0 table_w_5 d-none d-md-table-cell">分類</th>
+          <th class="text-center border-0 table_w_5 table_w_md_10">原價</th>
+          <th class="text-center border-0 table_w_5 table_w_md_10">售價</th>
+          <th class="text-center border-0 table_w_10"><span class="fz_12 fz_md_16">是否上架</span></th>
+          <th class="text-center border-0 table_w_5 table_w_md_10"></th>
         </tr>
       </thead>
       <tbody>
         <tr :key="item.id" v-for="item in products">
-          <td class="text-center p-3">{{ item.title }}</td>
-          <th class="text-center p-3" scope="row">{{ item.category }}</th>
+          <td class="text-center p-3" scope="row">{{ item.title }}</td>
+          <th class="text-center p-3 d-none d-md-table-cell">{{ item.category }}</th>
           <td class="text-center p-3">{{ item.origin_price }}</td>
           <td class="text-center p-3">{{ item.price }}</td>
           <td class="text-center p-3">
-            <span v-if="item.enabled">未上架</span>
-            <span v-else>已上架</span>
+            <span v-if="item.enabled" class="text-success d-flex
+            align-items-center justify-content-center">
+              已上架<span class="material-icons ml-2">check</span>
+            </span>
+            <span v-else
+            class="text-danger d-flex align-items-center justify-content-center">
+              未上架<span class="material-icons ml-2">cloud_off</span></span>
+          </td>
+          <td class="text-center p-3">
+            <div class="d-flex justify-content-center">
+              <button class="btn
+              d-flex align-items-center p-0 mr-2 mr-md-3"
+              type="button" @click="openModal('edit', item)">
+                <span class="material-icons">
+                edit
+                </span>
+              </button>
+              <button class="btn
+              d-flex align-items-center p-0" type="button" @click="openModal('delete', item)">
+                <span class="material-icons">
+                delete
+                </span>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+    <div class="modal fade" id="productModal" tabindex="-1"
+    role="dialog" aria-labelledby="updateModal"
+      aria-hidden="true">
+      <TempProductModal @update="getProducts(pagination.current_page)"
+      :temp-product="tempProduct" :is-new="isNew"/>
+    </div>
+    <div class="modal fade" id="delProductModal" tabindex="-1"
+    role="dialog" aria-labelledby="delProductModal"
+      aria-hidden="true">
+      <DelProductModal @update="getProducts(pagination.current_page)"
+      :temp-product="tempProduct"/>
+    </div>
     <Pagination :pages="pagination" @update-pages="getProducts"/>
   </div>
 </template>
 
 <script>
-import Pagination from '../../components/Pagination.vue';
+/* global $ */
+import TempProductModal from '../../components/TempProductModal.vue';
+import DelProductModal from '../../components/DelProductModal.vue';
 
 export default {
   data() {
     return {
       products: { imageUrl: [] },
+      tempProduct: {
+        imageUrl: [],
+      },
       isLoading: false,
-      Pagination: {},
+      isNew: true,
+      pagination: {},
     };
   },
   components: {
-    Pagination,
+    TempProductModal,
+    DelProductModal,
   },
-  props: ['token'],
   methods: {
     getProducts(num = 1) {
       this.$bus.$emit('loadingChange', true);
@@ -60,6 +112,33 @@ export default {
         .catch(() => {
           this.$bus.$emit('loadingChange', false);
         });
+    },
+    openModal(isNew, item) {
+      switch (isNew) {
+        case 'new':
+          this.isNew = true;
+          this.tempProduct = {
+            imageUrl: [],
+          };
+          $('#productModal').modal('show');
+          break;
+        case 'edit': {
+          this.isNew = false;
+          const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`;
+          this.$http.get(url)
+            .then((res) => {
+              console.log(res);
+              this.tempProduct = res.data.data;
+              $('#productModal').modal('show');
+            });
+          break; }
+        case 'delete':
+          $('#delProductModal').modal('show');
+          this.tempProduct = { ...item };
+          break;
+        default:
+          break;
+      }
     },
   },
   created() {

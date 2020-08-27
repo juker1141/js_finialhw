@@ -1,24 +1,25 @@
 <template>
-  <div>
-    <h3 class="text-left text-black d-flex align-items-center mb-6 pt-lg-5 px-5 px-md-6">
+  <div class="p-3">
+    <h3 class="text-left text-black d-flex
+    align-items-center mt-3 mt-lg-0 mb-5 pt-lg-5 px-5 px-md-6">
       <span class="material-icons fz_30 mr-3">receipt_long</span>
       訂單列表
     </h3>
     <table class="table mt-2 rounded" width="400">
       <thead class="alert-success">
         <tr>
-          <th class="text-center border-0 table_w_5"></th>
+          <th class="text-center border-0 table_w_5 d-none d-md-table-cell"></th>
           <th class="text-center border-0 table_w_10">下單時間</th>
           <th class="text-center border-0 table_w_15">購買款項</th>
-          <th class="text-center border-0 table_w_10">單價</th>
+          <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">單價</th>
           <th class="text-center border-0 table_w_10">應付金額</th>
-          <th class="text-center border-0 table_w_10">付款方式</th>
+          <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">付款方式</th>
           <th class="text-center border-0 table_w_10">是否付款</th>
         </tr>
       </thead>
       <tbody>
         <tr :key="item.id" v-for="item in orderList">
-          <th class="text-center p-3 h-100">
+          <th class="text-center p-3 h-100 d-none d-md-table-cell">
             <button class="btn" type="button">
               <i class="fas fa-mouse-pointer fz_20 text-black"></i>
             </button>
@@ -35,11 +36,11 @@
             <ul class="listStyle_none m-0 pl-0 pt_6">
               <li class="mb-1" v-for="( i, index ) in item.products" :key="index">
                 <div class="d-flex justify-content-between">{{ i.product.title }}
-                <span>{{ i.quantity }}{{ i.product.unit }}</span></div>
+                <span class="d-none d-xl-block">{{ i.quantity }} {{ i.product.unit }}</span></div>
               </li>
             </ul>
           </td>
-          <td class="text-center p-3">
+          <td class="text-center p-3 d-none d-xl-block">
             <ul class="listStyle_none m-0 pl-0 pt_6">
               <li class="mb-1" v-for="(i, index) in item.products" :key="index">
                 {{ i.product.price }}
@@ -47,9 +48,9 @@
             </ul>
           </td>
           <td class="text-center p-3">
-            <div class="pt_6">共 {{ item.amount }} 元</div>
+            <div class="pt_6">{{ item.amount }} 元</div>
           </td>
-          <td class="text-center p-3">
+          <td class="text-center p-3 d-none d-xl-block">
             <div class="pt_6">{{ item.payment }}</div>
           </td>
           <td class="text-center p-3">
@@ -64,16 +65,17 @@
                 >
                 <label
                   class="custom-control-label"
-                  :for="item.id"
-                >
-                  <strong
-                    v-if="item.paid"
-                    class="text-success"
-                  >已付款</strong>
-                  <span
-                    v-else
-                    class="text-muted"
-                  >尚未付款</span>
+                  :for="item.id">
+                  <div class="d-none d-md-block">
+                    <strong
+                      v-if="item.paid"
+                      class="text-success"
+                      >已付款</strong>
+                    <span
+                      v-else
+                      class="text-muted"
+                      >尚未付款</span>
+                  </div>
                 </label>
               </div>
             </div>
@@ -87,7 +89,6 @@
 
 <script>
 /* global $ */
-import Pagination from '../../components/Pagination.vue';
 
 export default {
   data() {
@@ -96,9 +97,6 @@ export default {
       order: {},
       pagination: {},
     };
-  },
-  components: {
-    Pagination,
   },
   filters: {
     toDate(timestamp) {

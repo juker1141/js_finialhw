@@ -132,7 +132,7 @@ export default {
 
   methods: {
     navberHover() {
-      $('.navbar_adminPosition').toggleClass('move123');
+      $('.navbar_adminPosition').toggleClass('move');
     },
     signout() {
       // 將cookie清空即為登出
