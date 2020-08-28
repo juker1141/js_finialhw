@@ -60,9 +60,9 @@
                   :id="item.id"
                   v-model="item.paid"
                   type="checkbox"
-                  class="custom-control-input"
+                  class="custom-control-input bg-adminPrimary"
                   @change="setOrderPaid(item)"
-                >
+                ><br>
                 <label
                   class="custom-control-label"
                   :for="item.id">
