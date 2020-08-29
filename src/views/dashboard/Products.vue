@@ -29,8 +29,8 @@
         <tr :key="item.id" v-for="item in products">
           <td class="text-center p-3" scope="row">{{ item.title }}</td>
           <th class="text-center p-3 d-none d-md-table-cell">{{ item.category }}</th>
-          <td class="text-center p-3">{{ item.origin_price }}</td>
-          <td class="text-center p-3">{{ item.price }}</td>
+          <td class="text-center p-3">{{ item.origin_price | toCurrency | DollarSign }}</td>
+          <td class="text-center p-3">{{ item.price | toCurrency | DollarSign }}</td>
           <td class="text-center p-3">
             <span v-if="item.enabled" class="text-success d-flex
             align-items-center justify-content-center">

@@ -1,10 +1,11 @@
 <template>
-  <div class="modal-dialog w_max_80" role="document">
+  <div class="modal-dialog w_max_80 text-black" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-adminSecondary d-flex align-items-center">
         <h5 class="modal-title">新增/更改商品</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn m-0 p-0 d-flex align-items-center close opacity_1"
+        data-dismiss="modal" aria-label="Close">
+          <span class="material-icons">clear</span>
         </button>
       </div>
       <div class="modal-body">
@@ -88,7 +89,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-        <button type="button" @click="updateProduct" class="btn btn-primary">完成</button>
+        <button type="button" @click="updateProduct" class="btn btn-success">完成</button>
       </div>
     </div>
   </div>

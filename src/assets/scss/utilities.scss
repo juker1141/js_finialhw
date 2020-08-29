@@ -67,6 +67,19 @@ body {
 .w_50px {
   width: 50px;
 }
+.w_max_lg_50 {
+  @include media-breakpoint-up(lg) {
+    max-width: 50% !important;
+  }
+}
+.w_max_50 {
+  max-width: 50% !important;
+}
+.w_max_lg_70 {
+  @include media-breakpoint-up(lg) {
+    max-width: 70% !important;
+  }
+}
 .w_max_80 {
   max-width: 80% !important;
 }
@@ -108,4 +121,12 @@ body {
 }
 .pt_6 {
   padding-top: 6px;
+}
+.opacity_1 {
+  opacity: 1 !important;
+}
+.rounded-md-0 {
+  @include media-breakpoint-up(md) {
+    border-radius: 0 !important;
+  }
 }

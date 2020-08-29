@@ -20,7 +20,7 @@
       <tbody>
         <tr :key="item.id" v-for="item in orderList">
           <th class="text-center p-3 h-100 d-none d-md-table-cell">
-            <button class="btn" type="button">
+            <button class="btn" type="button" @click="openModal(item)">
               <i class="fas fa-mouse-pointer fz_20 text-black"></i>
             </button>
           </th>
@@ -43,12 +43,12 @@
           <td class="text-center p-3 d-none d-xl-block">
             <ul class="listStyle_none m-0 pl-0 pt_6">
               <li class="mb-1" v-for="(i, index) in item.products" :key="index">
-                {{ i.product.price }}
+                {{ i.product.price | toCurrency | DollarSign }} 元
               </li>
             </ul>
           </td>
           <td class="text-center p-3">
-            <div class="pt_6">{{ item.amount }} 元</div>
+            <div class="pt_6">{{ item.amount | toCurrency | DollarSign }} 元</div>
           </td>
           <td class="text-center p-3 d-none d-xl-block">
             <div class="pt_6">{{ item.payment }}</div>
@@ -60,9 +60,9 @@
                   :id="item.id"
                   v-model="item.paid"
                   type="checkbox"
-                  class="custom-control-input bg-adminPrimary"
+                  class="custom-control-input"
                   @change="setOrderPaid(item)"
-                ><br>
+                >
                 <label
                   class="custom-control-label"
                   :for="item.id">
@@ -83,20 +83,30 @@
         </tr>
       </tbody>
     </table>
+    <div class="modal fade" id="orderEditModal" tabindex="-1"
+    role="dialog" aria-labelledby="orderEditModal"
+      aria-hidden="true">
+      <OrderEditModal @update="getProducts(pagination.current_page)"
+      :temp-order="tempOrder"/>
+    </div>
     <Pagination :pages="pagination"/>
   </div>
 </template>
 
 <script>
 /* global $ */
+import OrderEditModal from '../../components/OrderEditModal.vue';
 
 export default {
   data() {
     return {
       orderList: {},
-      order: {},
+      tempOrder: {},
       pagination: {},
     };
+  },
+  components: {
+    OrderEditModal,
   },
   filters: {
     toDate(timestamp) {
@@ -136,6 +146,15 @@ export default {
         //   'success');
         this.getOrders();
       });
+    },
+    openModal(item) {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}`;
+      this.$http.get(url)
+        .then((res) => {
+          console.log(res);
+          this.tempOrder = res.data.data;
+          $('#orderEditModal').modal('show');
+        });
     },
   },
   created() {

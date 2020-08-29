@@ -2,8 +2,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger d-flex align-items-center">
-        <h5 class="modal-title text-white" id="exampleModalLabel">刪除商品</h5>
-        <button type="button" class="btn m-0 p-0 d-flex align-items-center close"
+        <h5 class="modal-title text-white">刪除商品</h5>
+        <button type="button" class="btn m-0 p-0 d-flex align-items-center close opacity_1"
         data-dismiss="modal" aria-label="Close">
           <span class="material-icons text-white">clear</span>
         </button>
