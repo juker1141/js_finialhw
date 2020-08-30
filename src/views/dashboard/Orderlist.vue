@@ -8,18 +8,18 @@
     <table class="table mt-2 rounded" width="400">
       <thead class="alert-success">
         <tr>
-          <th class="text-center border-0 table_w_5 d-none d-md-table-cell"></th>
-          <th class="text-center border-0 table_w_10">下單時間</th>
-          <th class="text-center border-0 table_w_15">購買款項</th>
+          <th class="text-center border-0 table_w_1 table_w_md_5"></th>
+          <th class="text-center border-0 table_w_3 table_w_md_10 fz_14 fz_md_16">下單時間</th>
+          <th class="text-center border-0 table_w_7 table_w_md_15 fz_14 fz_md_16">購買款項</th>
           <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">單價</th>
-          <th class="text-center border-0 table_w_10">應付金額</th>
+          <th class="text-center border-0 table_w_10 fz_14 fz_md_16">應付金額</th>
           <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">付款方式</th>
-          <th class="text-center border-0 table_w_10">是否付款</th>
+          <th class="text-center border-0 table_w_3 table_w_md_10 fz_14 fz_md_16">是否付款</th>
         </tr>
       </thead>
       <tbody>
         <tr :key="item.id" v-for="item in orderList">
-          <th class="text-center p-3 h-100 d-none d-md-table-cell">
+          <th class="text-center p-3 h-100">
             <button class="btn" type="button" @click="openModal(item)">
               <i class="fas fa-mouse-pointer fz_20 text-black"></i>
             </button>
@@ -35,7 +35,7 @@
           <td class="text-left p-3">
             <ul class="listStyle_none m-0 pl-0 pt_6">
               <li class="mb-1" v-for="( i, index ) in item.products" :key="index">
-                <div class="d-flex justify-content-between">{{ i.product.title }}
+                <div class="d-flex justify-content-between fz_12 fz_md_16">{{ i.product.title }}
                 <span class="d-none d-xl-block">{{ i.quantity }} {{ i.product.unit }}</span></div>
               </li>
             </ul>
@@ -47,7 +47,7 @@
               </li>
             </ul>
           </td>
-          <td class="text-center p-3">
+          <td class="text-center p-3 fz_12 fz_md_16">
             <div class="pt_6">{{ item.amount | toCurrency | DollarSign }} 元</div>
           </td>
           <td class="text-center p-3 d-none d-xl-block">
@@ -87,7 +87,8 @@
     role="dialog" aria-labelledby="orderEditModal"
       aria-hidden="true">
       <OrderEditModal @update="getProducts(pagination.current_page)"
-      :temp-order="tempOrder"/>
+      @updateQuantity="updatePrice" @updateOrder="updateOrder"
+      :temp-order="tempOrder" :total-price="totalPrice"/>
     </div>
     <Pagination :pages="pagination"/>
   </div>
@@ -103,6 +104,7 @@ export default {
       orderList: {},
       tempOrder: {},
       pagination: {},
+      totalPrice: 0,
     };
   },
   components: {
@@ -151,9 +153,23 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}`;
       this.$http.get(url)
         .then((res) => {
-          console.log(res);
           this.tempOrder = res.data.data;
+          this.updatePrice();
           $('#orderEditModal').modal('show');
+        });
+    },
+    updatePrice() {
+      this.totalPrice = 0;
+      this.tempOrder.products.forEach((item) => {
+        this.totalPrice += parseInt(item.product.price * item.quantity, 10);
+      });
+    },
+    updateOrder() {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${this.tempOrder.id}`;
+      this.$https.patch(url)
+        .then((res) => {
+          console.log(res);
+          $('#orderEditModal').modal('hide');
         });
     },
   },

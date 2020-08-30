@@ -10,6 +10,9 @@ body {
 .fz_12 {
   font-size: 12px;
 }
+.fz_14 {
+  font-size: 14px;
+}
 .fz_md_16 {
   @include media-breakpoint-up(md) {
     font-size: 16px;
@@ -75,16 +78,33 @@ body {
 .w_max_50 {
   max-width: 50% !important;
 }
-.w_max_lg_70 {
-  @include media-breakpoint-up(lg) {
-    max-width: 70% !important;
-  }
-}
 .w_max_80 {
   max-width: 80% !important;
 }
+.w_max_100 {
+  max-width: 100% !important;
+}
+.w_max_md_70 {
+  @include media-breakpoint-up(md) {
+    max-width: 70% !important;
+  }
+}
+.table_w_1 {
+  width: 1%;
+}
+.table_w_3 {
+  width: 3%;
+}
 .table_w_5 {
   width: 5%;
+}
+.table_w_md_5 {
+  @include media-breakpoint-up(lg) {
+    width: 5%;
+  }
+}
+.table_w_7 {
+  width: 7%;
 }
 .table_w_10 {
   width: 10%;
@@ -98,6 +118,11 @@ body {
 .table_w_md_10 {
   @include media-breakpoint-up(md) {
     width: 10%;
+  }
+}
+.table_w_md_15 {
+  @include media-breakpoint-up(md) {
+    width: 15%;
   }
 }
 .table_w_md_20 {
@@ -129,4 +154,7 @@ body {
   @include media-breakpoint-up(md) {
     border-radius: 0 !important;
   }
+}
+.d_none {
+  display: none;
 }
