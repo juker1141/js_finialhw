@@ -86,7 +86,7 @@
     <div class="modal fade" id="orderEditModal" tabindex="-1"
     role="dialog" aria-labelledby="orderEditModal"
       aria-hidden="true">
-      <OrderEditModal @update="getProducts(pagination.current_page)"
+      <OrderEditModal v-if="tempOrder" @update="getProducts(pagination.current_page)"
       @updateOrder="updateOrder"
       :temp-order="tempOrder"/>
     </div>
@@ -102,9 +102,8 @@ export default {
   data() {
     return {
       orderList: {},
-      tempOrder: {},
+      tempOrder: false,
       pagination: {},
-      totalPrice: 0,
     };
   },
   components: {
@@ -130,13 +129,6 @@ export default {
         this.pagination = res.data.meta.pagination;
       });
     },
-    getOrder(id) {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${id}`;
-      this.$http.get(url).then((res) => {
-        console.log(res);
-        this.order = res.data.data;
-      });
-    },
     setOrderPaid(item) {
       let url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/paid`;
       if (!item.paid) {
@@ -157,11 +149,21 @@ export default {
           $('#orderEditModal').modal('show');
         });
     },
-    updateOrder() {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${this.tempOrder.id}`;
-      this.$https.patch(url)
+    updateOrder(data) {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${data.id}`;
+      const editUser = {
+        address: '',
+        email: '',
+        name: '',
+        tel: '',
+      };
+      console.log(editUser);
+      this.$https.patch(url, editUser)
         .then((res) => {
           console.log(res);
+          $('#orderEditModal').modal('hide');
+        }).catch((error) => {
+          console.log(error.response);
           $('#orderEditModal').modal('hide');
         });
     },

@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="col-0 col-lg-5 col-xl-4">
-            <div class="fz_65 fontOrbitron w_320px text-right time_ml_auto d-none d-lg-block">
+            <div class="fz_65 fontOrbitron w_340px text-right time_ml_auto d-none d-lg-block">
               <div class="d-flex justify-content-start align-items-end">
                 <div class="d-inline-block mr-2">{{ nowDate.hour }} : {{ nowDate.min }}</div>
                 <div class="fz_30 d-inline-block mb_13 w_50px">{{ nowDate.sec }}</div>
