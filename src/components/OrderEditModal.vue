@@ -15,7 +15,7 @@
           </div>
           <form>
             <div class="row flex-column-reverse flex-lg-row">
-              <div class="col-12 col-lg-4 mt-3 mt-lg-0">
+              <div class="col-12 col-lg-4 offset-lg-1 mt-3 mt-lg-0">
                 <validation-provider rules="required|email" v-slot="{ errors, classes }">
                   <label for="email" class="text-left w-100">Email</label>
                   <input id="email" type="email" name="email" v-model="tempOrder.user.email"
@@ -50,56 +50,32 @@
                     :class="classes">
                   <span class="invalid-feedback text-right">{{ errors[0] }}</span>
                 </validation-provider>
-                <validation-provider rules="required" v-slot="{ errors, classes }">
-                  <label for="payment" class="text-left w-100">付款方式</label>
-                  <select v-model="tempOrder.payment"
-                  :class="classes" class="custom-select custom-select-lg mb-2" required>
-                    <option value="" selected disabled>更改選擇付款方式</option>
-                    <option value="WebATM">
-                      WebATM
-                    </option>
-                    <option value="ATM">
-                      ATM
-                    </option>
-                    <option value="CVS">
-                      CVS
-                    </option>
-                    <option value="Barcode">
-                      Barcode
-                    </option>
-                    <option value="Credit">
-                      Credit
-                    </option>
-                    <option value="ApplePay">
-                      ApplePay
-                    </option>
-                    <option value="GooglePay">
-                      GooglePay
-                    </option>
-                  </select>
-                  <span class="invalid-feedback text-right">{{ errors[0] }}</span>
-                </validation-provider>
+                <label for="payment" class="text-left w-100">付款方式</label>
+                <div class="text-left w-100 fz_20 ml-2 mb-2">{{ tempOrder.payment }}</div>
                 <validation-provider>
                   <label for="message" class="text-left w-100">留言</label>
                   <textarea class="form-control form-control-lg mb-2" v-model="tempOrder.message"
-                  rows="5" id="message"></textarea>
+                  rows="5" id="message" disabled></textarea>
                 </validation-provider>
               </div>
-              <div class="col-12 col-lg-8 mt-lg-5">
+              <div class="col-12 col-lg-6 mt-lg-5">
                 <div class="p-4 bg-adminSecondary rounded-lg">
                   <div @click="showDetail" class="d-flex d-lg-none
-                  font-weight-bold justify-content-between">
+                  font-weight-bold justify-content-between fz_20">
                     <div>總計</div>
                     <div class="d-flex align-items-center">
-                      <span class="showDetail_price">
+                      <div class="text-right showDetail_price" v-if="tempOrder.amount >= 5000">
+                        {{ tempOrder.amount + 0 | toCurrency | DollarSign }}
+                      </div>
+                      <div class="text-right showDetail_price" v-else>
                         {{ tempOrder.amount + 60 | toCurrency | DollarSign }}
-                      </span>
+                      </div>
                       <span class="material-icons text-success ml-2
-                      showDetail_down">
+                      showDetail_down fz_30">
                         expand_more
                       </span>
                       <span class="material-icons text-success ml-2
-                      showDetail_up d-none">
+                      showDetail_up d-none fz_30">
                         expand_less
                       </span>
                     </div>
@@ -110,66 +86,33 @@
                       <li v-for="(item, index) in tempOrder.products" :key="index"
                       class="mb-3">
                         <div class="row align-items-center">
-                          <div class="col-4 col-md-5 col-xl-3 d-flex align-items-center">
-                            <button class="btn p-0 mr-3 d-flex" type="button">
-                              <span class="material-icons text-danger">
-                                disabled_by_default
-                              </span>
-                            </button>
+                          <div class="col-4 col-md-5 col-lg-3 d-flex align-items-center">
                             <img class="img-fluid orderDetailImg"
                             :src="item.product.imageUrl[0]" alt>
                           </div>
-                          <div class="col-5 col-md-4 col-xl-7">
-                            <div class="row align-items-center flex-column flex-xl-row">
-                              <div class="col-12 col-xl-5 mb-2 mb-xl-0">
-                                <div class="font-weight-bold">{{ item.product.title }}</div>
-                              </div>
-                              <div class="col-12 col-xl-7">
-                                <div class="input-group justify-content-start
-                                justify-content-xl-end">
-                                  <div class="input-group-prepend">
-                                    <button type="button"
-                                    @click="item.quantity --;
-                                    updatePrice()"
-                                    class="btn btn-success p-0 d-flex
-                                    justify-content-center align-items-center"
-                                    :disabled="item.quantity === 1">
-                                      <span class="material-icons">
-                                        remove
-                                      </span>
-                                    </button>
-                                  </div>
-                                  <input id="inlineFormInputGroupUsername" type="text"
-                                  class="form-control border-success text-center p-0 orderNumInput"
-                                  :value="item.quantity" min="1"
-                                  @keyup.enter="updateOrder(tempOrder.id)">
-                                  <div class="input-group-append">
-                                    <button type="button"
-                                    @click="item.quantity ++;
-                                    updatePrice()"
-                                    class="btn btn-success p-0 d-flex
-                                    justify-content-center align-items-center">
-                                      <span class="material-icons">
-                                        add
-                                      </span>
-                                    </button>
-                                  </div>
-                                </div>
+                          <div class="col-5 col-md-4 col-lg-6 col-xl-6">
+                            <div class="row align-items-start flex-lg-column
+                            justify-content-between">
+                              <div class="font-weight-bold">{{ item.product.title }}</div>
+                              <div class="">
+                                x {{ item.quantity }}
                               </div>
                             </div>
                           </div>
-                          <div class="col-3 col-xl-2 text-right">
+                          <div class="col-3 col-xl-3 text-right">
                             {{ item.product.price | toCurrency | DollarSign }}
                           </div>
                         </div>
                       </li>
                     </ul>
                     <hr>
-                    <div class="d-flex mb-2 align-items-center justify-content-between">
+                    <div class="d-flex mb-2 align-items-center justify-content-between fz_20">
                       <div>訂單金額</div>
-                      <div class="text-right">{{ totalPrice | toCurrency | DollarSign }}</div>
+                      <div class="text-right">
+                        {{ tempOrder.amount | toCurrency | DollarSign }}
+                      </div>
                     </div>
-                    <div class="d-flex mb-2 align-items-center justify-content-between">
+                    <div class="d-flex mb-2 align-items-center justify-content-between fz_20">
                       <div>運費</div>
                       <div class="text-right" v-if="tempOrder.amount >= 5000">
                         <span class="text-danger mr-2">全館滿額免運！！</span>
@@ -182,16 +125,11 @@
                     align-items-center justify-content-between">
                       <div>總計</div>
                       <div class="d-flex align-items-center">
-                        <button class="btn btn-success p-0 d-flex mr-3" type="button">
-                          <span class="material-icons">
-                            refresh
-                          </span>
-                        </button>
                         <div class="text-right" v-if="tempOrder.amount >= 5000">
-                          {{ totalPrice + 0 | toCurrency | DollarSign }}
+                          {{ tempOrder.amount + 0 | toCurrency | DollarSign }}
                         </div>
                         <div class="text-right" v-else>
-                          {{ totalPrice + 60 | toCurrency | DollarSign }}
+                          {{ tempOrder.amount + 60 | toCurrency | DollarSign }}
                         </div>
                       </div>
                     </div>
@@ -219,22 +157,15 @@ export default {
   name: 'OrderEditModal',
   data() {
     return {
-      quantity: 0,
     };
   },
-  props: ['tempOrder', 'totalPrice'],
+  props: ['tempOrder'],
   methods: {
     showDetail() {
       $('.showDetail_down').toggleClass('d-none');
       $('.showDetail_up').toggleClass('d-block');
       $('.orderDetail').slideToggle('slow');
       $('.showDetail_price').fadeToggle('fast');
-    },
-    updatePrice() {
-      this.tempOrder.products.forEach((item) => {
-        this.quantity = parseInt(item.quantity, 10);
-      });
-      this.$emit('updateQuantity', this.quantity);
     },
     updateOrder() {
       // const url = `${process.env.VUE_APP_APIPATH}
@@ -250,12 +181,12 @@ export default {
 </script>
 
 <style lang="scss">
-  .orderDetailImg{
-    max-width: 60%;
-    @media (min-width: 1200px) {
-      max-width: 70%;
-    }
-  }
+  // .orderDetailImg{
+  //   max-width: 60%;
+  //   @media (min-width: 1200px) {
+  //     max-width: 70%;
+  //   }
+  // }
   .orderNumInput{
     width: 30px !important;
     flex: 0.6;

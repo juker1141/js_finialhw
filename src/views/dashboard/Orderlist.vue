@@ -87,8 +87,8 @@
     role="dialog" aria-labelledby="orderEditModal"
       aria-hidden="true">
       <OrderEditModal @update="getProducts(pagination.current_page)"
-      @updateQuantity="updatePrice" @updateOrder="updateOrder"
-      :temp-order="tempOrder" :total-price="totalPrice"/>
+      @updateOrder="updateOrder"
+      :temp-order="tempOrder"/>
     </div>
     <Pagination :pages="pagination"/>
   </div>
@@ -154,15 +154,8 @@ export default {
       this.$http.get(url)
         .then((res) => {
           this.tempOrder = res.data.data;
-          this.updatePrice();
           $('#orderEditModal').modal('show');
         });
-    },
-    updatePrice() {
-      this.totalPrice = 0;
-      this.tempOrder.products.forEach((item) => {
-        this.totalPrice += parseInt(item.product.price * item.quantity, 10);
-      });
     },
     updateOrder() {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${this.tempOrder.id}`;
