@@ -2,6 +2,7 @@
 @import "./helps/variables";
 @import "~bootstrap/scss/mixins";
 
-@import "./utilities.scss";
-@import "./layout_admin.scss";
+@import "./utilities";
+@import "./layout_admin";
+@import "./checkbox";
 @import "~bootstrap";

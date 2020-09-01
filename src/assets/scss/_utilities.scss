@@ -13,8 +13,18 @@ body {
 .fz_14 {
   font-size: 14px;
 }
+.fz_md_14 {
+  @include media-breakpoint-up(md) {
+    font-size: 14px;
+  }
+}
 .fz_md_16 {
   @include media-breakpoint-up(md) {
+    font-size: 16px;
+  }
+}
+.fz_lg_16 {
+  @include media-breakpoint-up(lg) {
     font-size: 16px;
   }
 }
@@ -58,6 +68,12 @@ body {
 .fontLobster {
   font-family: "Lobster", cursive;
 }
+.zIndex_10 {
+  z-index: 10;
+}
+.zIndex_20 {
+  z-index: 20;
+}
 .zIndex_100 {
   z-index: 10000;
 }
@@ -84,9 +100,19 @@ body {
 .w_max_100 {
   max-width: 100% !important;
 }
+.w_max_md_50 {
+  @include media-breakpoint-up(md) {
+    max-width: 50% !important;
+  }
+}
 .w_max_md_70 {
   @include media-breakpoint-up(md) {
     max-width: 70% !important;
+  }
+}
+.w_max_md_80 {
+  @include media-breakpoint-up(md) {
+    max-width: 80% !important;
   }
 }
 .table_w_1 {
@@ -146,6 +172,12 @@ body {
 }
 .pt_6 {
   padding-top: 6px;
+}
+.mx_15 {
+  margin: 0 15px;
+}
+.opacity_0 {
+  opacity: 0 !important;
 }
 .opacity_1 {
   opacity: 1 !important;

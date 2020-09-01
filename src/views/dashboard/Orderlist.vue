@@ -123,16 +123,17 @@ export default {
   },
   methods: {
     getOrders(num = 1) {
+      this.$bus.$emit('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}`;
       this.$http.get(url)
         .then((res) => {
-          console.log(res);
+          this.$bus.$emit('loadingChange', false);
           this.tempOrderStatus = false;
           this.orderList = res.data.data;
           this.pagination = res.data.meta.pagination;
           $('#orderEditModal').modal('hide');
-        }).catch((error) => {
-          console.log(error);
+        }).catch(() => {
+          this.$bus.$emit('loadingChange', false);
           this.tempOrderStatus = false;
           $('#orderEditModal').modal('hide');
         });
@@ -150,9 +151,11 @@ export default {
       });
     },
     openModal(item) {
+      this.$bus.$emit('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}`;
       this.$http.get(url)
         .then((res) => {
+          this.$bus.$emit('loadingChange', false);
           this.tempOrderStatus = true;
           this.tempOrder = res.data.data;
           $('#orderEditModal').modal('show');

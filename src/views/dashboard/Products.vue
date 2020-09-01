@@ -1,7 +1,7 @@
 <template>
   <div class="p-3">
-    <div class="d-flex align-items-center justify-content-between
-    mb-5 pt-lg-5 px-5 px-md-6">
+    <div class="text-left text-black d-flex
+    align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-5 px-md-6">
       <h3 class="d-flex align-items-center">
         <span class="material-icons fz_30 mr-3">list_alt</span>
         產品列表
@@ -18,27 +18,31 @@
       <thead class="alert-success">
         <tr>
           <th class="text-center border-0 table_w_5 table_w_md_10">產品名稱</th>
-          <th class="text-center border-0 table_w_5 d-none d-md-table-cell">分類</th>
-          <th class="text-center border-0 table_w_5 table_w_md_10">原價</th>
-          <th class="text-center border-0 table_w_5 table_w_md_10">售價</th>
-          <th class="text-center border-0 table_w_10"><span class="fz_12 fz_md_16">是否上架</span></th>
+          <th class="text-center border-0 table_w_5 d-none d-lg-table-cell">分類</th>
+          <th class="text-center border-0 table_w_5 table_w_md_15
+          d-none d-md-table-cell">原價</th>
+          <th class="text-center border-0 table_w_10 table_w_md_15">售價</th>
+          <th class="text-center border-0 table_w_10"><span class="fz_14 fz_lg_14">是否上架</span></th>
           <th class="text-center border-0 table_w_5 table_w_md_10"></th>
         </tr>
       </thead>
       <tbody>
         <tr :key="item.id" v-for="item in products">
           <td class="text-center p-3" scope="row">{{ item.title }}</td>
-          <th class="text-center p-3 d-none d-md-table-cell">{{ item.category }}</th>
-          <td class="text-center p-3">{{ item.origin_price | toCurrency | DollarSign }}</td>
+          <th class="text-center p-3 d-none d-lg-table-cell">{{ item.category }}</th>
+          <td class="text-center p-3 d-none d-md-table-cell">
+            {{ item.origin_price | toCurrency | DollarSign }}
+          </td>
           <td class="text-center p-3">{{ item.price | toCurrency | DollarSign }}</td>
           <td class="text-center p-3">
             <span v-if="item.enabled" class="text-success d-flex
-            align-items-center justify-content-center">
-              已上架<span class="material-icons ml-2">check</span>
+            align-items-center justify-content-center font-weight-bold">
+              <div class="d-none d-xl-block">已上架</div><span class="material-icons ml-2">check</span>
             </span>
             <span v-else
             class="text-danger d-flex align-items-center justify-content-center">
-              未上架<span class="material-icons ml-2">cloud_off</span></span>
+              <div class="d-none d-xl-block">未上架</div>
+            <span class="material-icons ml-2">cloud_off</span></span>
           </td>
           <td class="text-center p-3">
             <div class="d-flex justify-content-center">
@@ -123,11 +127,13 @@ export default {
           $('#productModal').modal('show');
           break;
         case 'edit': {
+          this.$bus.$emit('loadingChange', true);
           this.isNew = false;
           const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`;
           this.$http.get(url)
             .then((res) => {
               console.log(res);
+              this.$bus.$emit('loadingChange', false);
               this.tempProduct = res.data.data;
               $('#productModal').modal('show');
             });

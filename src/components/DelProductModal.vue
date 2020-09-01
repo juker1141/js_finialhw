@@ -14,7 +14,7 @@
       </div>
       <div class="modal-footer border-0">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-danger" @click="deleteProduct">確認刪除</button>
+        <button type="button" class="btn btn-danger" @click="delProduct">確認刪除</button>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
 export default {
   props: ['tempProduct'],
   methods: {
-    deleteProduct() {
+    delProduct() {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}
       /admin/ec/product/${this.tempProduct.id}`;
       this.$http.delete(url)

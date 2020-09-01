@@ -16,7 +16,12 @@
   }
 }
 .navbarList_hover :hover {
-  border-left: 8px solid #2a8356;
+  border-left: 6px solid #2a8356;
+  padding: 0 40% 0 42%;
+  @include media-breakpoint-up(lg) {
+    border-left: 8px solid #2a8356;
+    padding: 0;
+  }
 }
 .main_admin {
   margin-left: 0;

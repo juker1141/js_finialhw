@@ -1,6 +1,7 @@
 <template>
   <div class="fontNotoSans" id="app">
     <Loading v-if="isLoading"></Loading>
+    <Toast />
     <router-view />
   </div>
 </template>
@@ -8,11 +9,13 @@
 <script>
 
 import Loading from './components/Loading.vue';
+import Toast from './components/Toasts.vue';
 
 export default {
   /* eslint-disable */
   components: {
     Loading,
+    Toast,
   },
   data() {
     return {

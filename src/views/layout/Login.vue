@@ -60,9 +60,17 @@ export default {
           // 將token與到期日寫入cookie;
           document.cookie = `testToken=${token}; 
           expires=${new Date(expired * 1000)}; path=/`;
+          this.$bus.$emit('message:push',
+            '登入成功',
+            'success'
+          );
           this.$router.push('/admin/home');
         })
         .catch((error) => {
+          this.$bus.$emit('message:push',
+            `登入失敗惹，好糗Σ( ° △ °|||)︴
+              ${error}`,'danger'
+          );
           console.log(error);
         });
     },

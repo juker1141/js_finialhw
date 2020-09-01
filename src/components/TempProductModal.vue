@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-dialog w_max_80 text-black" role="document">
+  <div class="modal-dialog w_max_100 w_max_md_80 text-black" role="document">
     <div class="modal-content">
       <div class="modal-header bg-adminSecondary d-flex align-items-center">
         <h5 class="modal-title">新增/更改商品</h5>
@@ -10,18 +10,18 @@
       </div>
       <div class="modal-body">
         <form>
-          <div class="row">
-            <div class="col-4">
+          <div class="row flex-column flex-md-row">
+            <div class="col-12 col-md-4">
               <div class="form-group">
                 <label for="imageUrl" class="text-left w-100">輸入圖片網址</label>
                 <input id="imageUrl" v-model="tempProduct.imageUrl[0]"
                 type="text" class="form-control"
                   placeholder="請輸入圖片連結">
               </div>
-              <img class="img-fluid" :src="tempProduct.imageUrl" alt>
+              <img class="img-fluid" :src="tempProduct.imageUrl[0]" alt>
             </div>
-            <div class="col-8">
-              <div class="form-group">
+            <div class="col-12 col-md-8">
+              <div class="form-group mt-3 mt-md-0">
                 <label for="title" class="text-left w-100">標題</label>
                 <input type="text" class="form-control" id="title"
                 v-model="tempProduct.title"
@@ -77,10 +77,16 @@
                   placeholder="請說明商品內容">
                   </textarea>
               </div>
-              <div class="form-check">
-                <input id="is_enabled" v-model="tempProduct.enabled"
-                class="form-check-input" type="checkbox">
-                <label class="form-check-label text-left w-100" for="is_enabled">是否啟用</label>
+              <div class="form-check checkboxStyle
+              d-flex align-items-center position-relative">
+                <input id="enabled" v-model="tempProduct.enabled"
+                class="border-black ml-2 opacity_0 zIndex_20" type="checkbox">
+                <div v-if="tempProduct.enabled" class="position-absolute zIndex_10
+                checkboxStyle_check">
+                  <span class="material-icons fz_40 text-success font-weight-bold">check</span>
+                </div>
+                <label class="form-check-label
+                text-left fz_20 checkboxStyle_label position-absolute" for="enabled">是否啟用</label>
               </div>
             </div>
           </div>
