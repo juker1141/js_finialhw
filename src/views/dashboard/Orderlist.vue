@@ -84,10 +84,10 @@
       </tbody>
     </table>
     <div class="modal fade" id="orderEditModal" tabindex="-1"
-    role="dialog" aria-labelledby="orderEditModal"
+    role="dialog" aria-labelledby="orderEditModal" v-if="tempOrderStatus"
       aria-hidden="true">
-      <OrderEditModal v-if="tempOrder" @update="getProducts(pagination.current_page)"
-      @updateOrder="updateOrder"
+      <OrderEditModal @update="getProducts(pagination.current_page)"
+      @updateOrder="getOrders"
       :temp-order="tempOrder"/>
     </div>
     <Pagination :pages="pagination"/>
@@ -102,8 +102,9 @@ export default {
   data() {
     return {
       orderList: {},
-      tempOrder: false,
+      tempOrder: {},
       pagination: {},
+      tempOrderStatus: false,
     };
   },
   components: {
@@ -123,11 +124,18 @@ export default {
   methods: {
     getOrders(num = 1) {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}`;
-      this.$http.get(url).then((res) => {
-        console.log(res);
-        this.orderList = res.data.data;
-        this.pagination = res.data.meta.pagination;
-      });
+      this.$http.get(url)
+        .then((res) => {
+          console.log(res);
+          this.tempOrderStatus = false;
+          this.orderList = res.data.data;
+          this.pagination = res.data.meta.pagination;
+          $('#orderEditModal').modal('hide');
+        }).catch((error) => {
+          console.log(error);
+          this.tempOrderStatus = false;
+          $('#orderEditModal').modal('hide');
+        });
     },
     setOrderPaid(item) {
       let url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/paid`;
@@ -145,26 +153,9 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}`;
       this.$http.get(url)
         .then((res) => {
+          this.tempOrderStatus = true;
           this.tempOrder = res.data.data;
           $('#orderEditModal').modal('show');
-        });
-    },
-    updateOrder(data) {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${data.id}`;
-      const editUser = {
-        address: '',
-        email: '',
-        name: '',
-        tel: '',
-      };
-      console.log(editUser);
-      this.$https.patch(url, editUser)
-        .then((res) => {
-          console.log(res);
-          $('#orderEditModal').modal('hide');
-        }).catch((error) => {
-          console.log(error.response);
-          $('#orderEditModal').modal('hide');
         });
     },
   },

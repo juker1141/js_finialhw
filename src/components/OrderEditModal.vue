@@ -142,7 +142,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <button type="submit" class="btn btn-success" :disabled="invalid"
-          @click="updateOrder(editTempOrder)"
+          @click="updateOrder(editTempOrder.user)"
           >送出表單</button>
         </div>
       </validation-observer>
@@ -168,15 +168,16 @@ export default {
       $('.orderDetail').slideToggle('slow');
       $('.showDetail_price').fadeToggle('fast');
     },
-    updateOrder(data) {
-      // const url = `${process.env.VUE_APP_APIPATH}
-      // ${process.env.VUE_APP_UUID}/admin/ec/orders/${id}`;
-      // this.$https.patch(url, this.tempOrder)
-      //   .then((res) => {
-      //     console.log(res);
-      //   });
-      console.log(data);
-      this.$emit('updateOrder', data);
+    updateOrder(user) {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${this.tempOrder.id}`;
+      console.log(user);
+      this.$http.patch(url, user)
+        .then((res) => {
+          console.log(res);
+        }).catch((error) => {
+          console.log(error.response);
+        });
+      this.$emit('updateOrder', user);
     },
   },
   created() {
