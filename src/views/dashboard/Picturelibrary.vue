@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4" v-for="item in fileData" :key="item.id">
+      <div class="col-12 col-md-4 mb-3" v-for="item in fileData" :key="item.id">
         <img class="card-img img-fluid" :src="item.path" alt>
         <div class="card-img-overlay bg-grayOP mx_15 opacity_0
         d-flex align-items-center justify-content-center imgCard_hover">
@@ -46,9 +46,8 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/storage`;
       this.$http.get(url)
         .then((res) => {
-          this.$bus.$emit('loadingChange', false);
-          console.log(res);
           this.fileData = res.data.data;
+          this.$bus.$emit('loadingChange', false);
         }).catch(() => {
           this.$bus.$emit('loadingChange', false);
         });
