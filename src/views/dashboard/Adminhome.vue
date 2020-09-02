@@ -1,22 +1,19 @@
 <template>
   <div>
     <div class="h_100vh text-left text-black">
-      <h3 class="fontOrbitron mb-3 p-5 bg-adminSecondary d-block d-lg-none">
-        Hardware Store Admin
-      </h3>
       <div class="p-3">
-        <h3 class="text-left d-flex align-items-center mb-5 pt-lg-5 px-5 px-md-6">
+        <h3 class="text-left d-flex align-items-center my-4 pt-lg-5 px-3 px-md-6">
           <span class="material-icons fz_30 mr-3">home</span>
           首頁
         </h3>
         <div class="row px-5 pb-5 px-md-6">
-          <div class="col-12 col-lg-7 col-xl-8">
+          <div class="col-12 px-0 px_lg_15 col-lg-7 col-xl-8">
             <p class="h1 mb-5">您好，歡迎來到<br class="d-block d-xl-none"/>
               <span class="fontOrbitron"> Hardware Store Admin </span><br />
               管理系統
             </p>
             <div class="fz_30">
-              今天是 {{ nowDate.year }} {{ nowDate.month }} {{ nowDate.day }}
+              今天是<br class="d-lg-none"> {{ nowDate.year }} {{ nowDate.month }} {{ nowDate.day }}
               <span class="d-none d-xl-inline-block">，</span>
               <br class="d-xl-none"/>
               {{ nowDate.week }}

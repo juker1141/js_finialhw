@@ -1,14 +1,14 @@
 <template>
   <div class="p-3">
     <div class="text-left text-black d-flex
-    align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-5 px-md-6">
+    align-items-center mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
       <h3 class="d-flex align-items-center text-black">
         <span class="material-icons fz_30 mr-3">photo_library</span>
         圖片庫
       </h3>
     </div>
     <div class="w-100 d-flex justify-content-center mb-4">
-      <div class="w-50">
+      <div class="w_75 w_md_50">
         <div class="custom-file mr-3">
           <label class="custom-file-label text-left" for="customFile">請選擇檔案</label>
           <input type="file" class="custom-file-input" @change="uploadFile" id="customFile">
@@ -69,6 +69,10 @@ export default {
         console.log(res);
         this.filePath = res.data.data.path;
         this.getFiles();
+        this.$bus.$emit('message:push', '圖片上傳成功', 'success');
+      }).catch(() => {
+        this.$bus.$emit('message:push', '圖片上傳失敗，請再嘗試', 'danger');
+        this.getFiles();
       });
     },
     delFileData(item) {
@@ -78,6 +82,9 @@ export default {
         .then((res) => {
           console.log(res);
           this.getFiles();
+          this.$bus.$emit('message:push', '圖片刪除成功', 'success');
+        }).catch(() => {
+          this.$bus.$emit('message:push', '圖片刪除失敗，請再嘗試', 'danger');
         });
     },
   },

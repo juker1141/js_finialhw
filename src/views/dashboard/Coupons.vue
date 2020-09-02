@@ -1,7 +1,7 @@
 <template>
   <div class="p-3">
     <div class="text-left text-black d-flex
-    align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-5 px-md-6">
+    align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
       <h3 class="d-flex align-items-center text-black">
         <span class="material-icons fz_30 mr-3">local_activity</span>
         優惠卷
@@ -17,21 +17,30 @@
     <table class="table mt-2 rounded">
       <thead class="alert-success">
         <tr>
-          <th class="text-center border-0 table_w_5 table_w_md_10">名稱</th>
+          <th class="text-center border-0 table_w_20">名稱</th>
           <th class="text-center border-0 table_w_5 d-none d-lg-table-cell">序號</th>
           <th class="text-center border-0 table_w_10">折扣</th>
           <th class="text-center border-0 table_w_5 table_w_md_10">到期日</th>
-          <th class="text-center border-0 table_w_5 table_w_md_10 fz_12 fz_md_14">是否啟用</th>
+          <th class="text-center border-0 table_w_5 table_w_md_10 fz_12 fz_md_16">
+          <span class="d-none d-md-inline-block">是否</span>啟用
+          </th>
           <th class="text-center border-0 table_w_5"></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in coupons" :key="item.id">
-          <td class="text-center p-3" scope="row">{{ item.title }}</td>
-          <th class="text-center p-3 d-none d-lg-table-cell">{{ item.code }}</th>
-          <td class="text-center p-3">{{ item.percent }} %</td>
-          <td class="text-center p-3">{{ item.deadline.timestamp | toDate }}</td>
-          <td class="text-center p-3">
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3 fz_12 fz_md_16"
+          scope="row">
+            <span class="h-100">{{ item.title }}</span>
+          </td>
+          <th class="text-center p-1 py-2 p-md-2 p-lg-3 d-none d-lg-table-cell">
+            {{ item.code }}
+          </th>
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3 fz_12 fz_md_16">{{ item.percent }}</td>
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3 fz_12 fz_md_16">
+            {{ item.deadline.timestamp | toDate }}
+          </td>
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3">
             <span v-if="item.enabled" class="text-success d-flex
             align-items-center justify-content-center font-weight-bold">
               <div class="d-none d-xl-block">已啟用</div>
@@ -42,7 +51,7 @@
               <div class="d-none d-xl-block">未啟用</div>
             <span class="material-icons ml-2">cloud_off</span></span>
           </td>
-          <td class="text-center p-3">
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3">
             <div class="d-flex justify-content-center">
               <button class="btn
               d-flex align-items-center p-0 mr-2 mr-md-3"
@@ -216,11 +225,13 @@ export default {
     updateCoupons() {
       let url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/coupon`;
       let httpMethod = 'post';
+      let text = '新增';
       // 當不是新增商品時則切換成編輯商品 API
       if (!this.isNew) {
         url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}
         /admin/ec/coupon/${this.tempCoupon.id}`;
         httpMethod = 'patch';
+        text = '更改';
       }
       // 針對日期做組合重新寫入到物件中
       // 日期格式 Y-m-d H:i:s，例如：「2020-06-16 09:31:18」
@@ -230,9 +241,11 @@ export default {
         .then(() => {
           this.getCoupons();
           $('#couponModal').modal('hide');
+          this.$bus.$emit('message:push', `${text}優惠卷成功`, 'success');
         }).catch((error) => {
           console.log(error);
           $('#couponModal').modal('hide');
+          this.$bus.$emit('message:push', `${text}優惠卷失敗，請再嘗試`, 'danger');
         });
     },
     delCoupon() {
@@ -243,9 +256,11 @@ export default {
         .then(() => {
           this.getCoupons();
           $('#delCouponModal').modal('hide');
+          this.$bus.$emit('message:push', '已刪除優惠卷', 'success');
         }).catch(() => {
           this.getCoupons();
           $('#delCouponModal').modal('hide');
+          this.$bus.$emit('message:push', '刪除優惠卷失敗，請再嘗試', 'danger');
         });
     },
   },

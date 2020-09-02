@@ -1,8 +1,8 @@
 <template>
   <div class="p-3">
     <div class="text-left text-black d-flex
-    align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-5 px-md-6">
-      <h3 class="d-flex align-items-center">
+    align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
+      <h3 class="d-flex align-items-center m-0">
         <span class="material-icons fz_30 mr-3">list_alt</span>
         產品列表
       </h3>
@@ -18,23 +18,27 @@
       <thead class="alert-success">
         <tr>
           <th class="text-center border-0 table_w_5 table_w_md_10">產品名稱</th>
-          <th class="text-center border-0 table_w_5 d-none d-lg-table-cell">分類</th>
+          <th class="text-center border-0 table_w_10 d-none d-lg-table-cell">分類</th>
           <th class="text-center border-0 table_w_5 table_w_md_15
           d-none d-md-table-cell">原價</th>
           <th class="text-center border-0 table_w_10 table_w_md_15">售價</th>
-          <th class="text-center border-0 table_w_10"><span class="fz_14 fz_lg_14">是否上架</span></th>
+          <th class="text-center border-0 table_w_10"><span class="fz_12 fz_lg_16">是否上架</span></th>
           <th class="text-center border-0 table_w_5 table_w_md_10"></th>
         </tr>
       </thead>
       <tbody>
         <tr :key="item.id" v-for="item in products">
-          <td class="text-center p-3" scope="row">{{ item.title }}</td>
-          <th class="text-center p-3 d-none d-lg-table-cell">{{ item.category }}</th>
-          <td class="text-center p-3 d-none d-md-table-cell">
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3" scope="row">{{ item.title }}</td>
+          <th class="text-center p-1 py-2 p-md-2 p-lg-3 d-none d-lg-table-cell">
+            {{ item.category }}
+          </th>
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3 d-none d-md-table-cell">
             {{ item.origin_price | toCurrency | DollarSign }}
           </td>
-          <td class="text-center p-3">{{ item.price | toCurrency | DollarSign }}</td>
-          <td class="text-center p-3">
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3">
+            {{ item.price | toCurrency | DollarSign }}
+          </td>
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3">
             <span v-if="item.enabled" class="text-success d-flex
             align-items-center justify-content-center font-weight-bold">
               <div class="d-none d-xl-block">已上架</div><span class="material-icons ml-2">check</span>
@@ -44,7 +48,7 @@
               <div class="d-none d-xl-block">未上架</div>
             <span class="material-icons ml-2">cloud_off</span></span>
           </td>
-          <td class="text-center p-3">
+          <td class="text-center p-1 py-2 p-md-2 p-lg-3">
             <div class="d-flex justify-content-center">
               <button class="btn
               d-flex align-items-center p-0 mr-2 mr-md-3"

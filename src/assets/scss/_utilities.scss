@@ -13,6 +13,9 @@ body {
 .fz_14 {
   font-size: 14px;
 }
+.fz_16 {
+  font-size: 16px !important;
+}
 .fz_md_14 {
   @include media-breakpoint-up(md) {
     font-size: 14px;
@@ -31,13 +34,23 @@ body {
 .fz_20 {
   font-size: 20px;
 }
+.fz_md_20 {
+  @include media-breakpoint-up(md) {
+    font-size: 20px;
+  }
+}
 .fz_24 {
   font-size: 24px;
 }
 .fz_30 {
   font-size: 30px !important;
 }
-.fz_30_xl {
+.fz_md_24 {
+  @include media-breakpoint-up(md) {
+    font-size: 24px !important;
+  }
+}
+.fz_xl_30 {
   @include media-breakpoint-up(xl) {
     font-size: 30px !important;
   }
@@ -48,7 +61,7 @@ body {
 .fz_50 {
   font-size: 45px;
 }
-.fz_50_xl {
+.fz_xl_50 {
   @include media-breakpoint-up(xl) {
     font-size: 50px !important;
   }
@@ -85,6 +98,14 @@ body {
 }
 .w_50px {
   width: 50px;
+}
+.w_75 {
+  width: 75%;
+}
+.w_md_50 {
+  @include media-breakpoint-up(md) {
+    width: 50%;
+  }
 }
 .w_max_lg_50 {
   @include media-breakpoint-up(lg) {
@@ -173,6 +194,11 @@ body {
 .pt_6 {
   padding-top: 6px;
 }
+.px_lg_15 {
+  @include media-breakpoint-up(lg) {
+    padding: 0 15px !important;
+  }
+}
 .opacity_0 {
   opacity: 0 !important;
 }
@@ -186,4 +212,10 @@ body {
 }
 .d_none {
   display: none;
+}
+.table tbody tr td {
+  vertical-align: middle;
+  @include media-breakpoint-up(md) {
+    vertical-align: top;
+  }
 }

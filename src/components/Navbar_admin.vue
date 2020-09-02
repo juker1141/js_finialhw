@@ -4,16 +4,16 @@
       <div class="d-flex flex-column align-items-center justify-content-center">
         <h1 class="m-0 mt-6 mb-8">
           <router-link
-            class="navbar-brand fontOrbitron fz_20 fz_30_xl p-0 m-0 text-black"
+            class="navbar-brand fontOrbitron fz_20 fz_md_24 fz_xl_30 p-0 m-0 text-black"
             to="/admin"
           >
             <span class="d-md-block d-none">
               Hardware
               <br class="d-block d-lg-none" />Store
             </span>
-            <span class="d-block d-md-none fz_30">H. S.</span>
+            <span class="d-block d-md-none">H. S.</span>
             <br />
-            <span class="fz_30 fz_50_xl">Admin</span>
+            <span class="fz_xl_50">Admin</span>
           </router-link>
         </h1>
         <ul class="listStyle_none w-100 h-100 m-0 p-0 position-relative">
