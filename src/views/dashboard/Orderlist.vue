@@ -156,9 +156,9 @@ export default {
       this.$http.get(url)
         .then((res) => {
           this.$bus.$emit('loadingChange', false);
-          this.tempOrderStatus = true;
-          this.tempOrder = res.data.data;
+          
           $('#orderEditModal').modal('show');
+          this.tempOrder = res.data.data;
         });
     },
   },
@@ -169,36 +169,36 @@ export default {
 </script>
 
 <style lang="scss">
-  .tooltip_hover{
-    opacity: 1;
-  }
-  .tooltipText {
-    width: 110%;
-    padding: 5px;
-    opacity: 0;
-    font-size: .8em;
-    border-radius: 3px;
-    text-align: center;
-    transition: ease-in-out .5s;
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: -55px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-  }
-  .tooltipText::before{
-    content: "";/*讓before顯示出來*/
-    position: absolute;
-    top: -7px; /*調整位置*/
-    right: 70%;/*調整位置*/
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 7.5px 7px 7.5px;
-    border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
-  }
-  .tooltip_hover:hover .tooltipText {
-    opacity: 1;
-  }
+.tooltip_hover{
+  opacity: 1;
+}
+.tooltipText {
+  width: 110%;
+  padding: 5px;
+  opacity: 0;
+  font-size: .8em;
+  border-radius: 3px;
+  text-align: center;
+  transition: ease-in-out .5s;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: -55px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+.tooltipText::before{
+  content: "";/*讓before顯示出來*/
+  position: absolute;
+  top: -7px; /*調整位置*/
+  right: 70%;/*調整位置*/
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 7.5px 7px 7.5px;
+  border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+}
+.tooltip_hover:hover .tooltipText {
+  opacity: 1;
+}
 </style>

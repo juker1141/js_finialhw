@@ -15,10 +15,10 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 col-md-4 mb-3" v-for="item in fileData" :key="item.id">
-        <img class="card-img img-fluid" :src="item.path" alt>
-        <div class="card-img-overlay bg-grayOP mx_15 opacity_0
+    <div class="card-columns">
+      <div class="card" v-for="item in fileData" :key="item.id">
+        <img :src="item.path" class="card-img-top" alt="...">
+        <div class="card-img-overlay bg-grayOP opacity_0
         d-flex align-items-center justify-content-center imgCard_hover">
           <button type="button" @click="delFileData(item)" class="btn btn-danger p-2
           d-flex align-items-center justify-content-center">
@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .imgCard_hover:hover{
-    opacity: 1 !important;
-  }
+.imgCard_hover:hover{
+  opacity: 1 !important;
+}
 </style>

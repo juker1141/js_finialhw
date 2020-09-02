@@ -110,18 +110,22 @@ export default {
     updateProduct() {
       let url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product`;
       let httpMethod = 'post';
+      let text = '新增';
       // 當不是新增商品時則切換成編輯商品 API
       if (!this.isNew) {
         url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}
         /admin/ec/product/${this.tempProduct.id}`;
         httpMethod = 'patch';
+        text = '更新';
       }
       console.log(this.isNew);
       this.$http[httpMethod](url, this.tempProduct)
         .then(() => {
-          $('#productModal').modal('hide');
           this.$emit('update');
+          $('#productModal').modal('hide');
+          this.$bus.$emit('message:push', `${text}商品成功`, 'success');
         }).catch((error) => {
+          this.$bus.$emit('message:push', `${text}商品失敗，請再嘗試`, 'danger');
           console.log(error);
         });
     },

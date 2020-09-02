@@ -173,11 +173,13 @@ export default {
       console.log(user);
       this.$http.patch(url, user)
         .then((res) => {
+          this.$bus.$emit('message:push', '更新訂單資料成功', 'success');
           console.log(res);
+          this.$emit('updateOrder', user);
         }).catch((error) => {
+          this.$bus.$emit('message:push', '更新訂單資料失敗', 'danger');
           console.log(error.response);
         });
-      this.$emit('updateOrder', user);
     },
   },
   created() {
@@ -187,15 +189,9 @@ export default {
 </script>
 
 <style lang="scss">
-  // .orderDetailImg{
-  //   max-width: 60%;
-  //   @media (min-width: 1200px) {
-  //     max-width: 70%;
-  //   }
-  // }
-  .orderNumInput{
-    width: 30px !important;
-    flex: 0.6;
-    height: 30px;
-  }
+.orderNumInput{
+  width: 30px !important;
+  flex: 0.6;
+  height: 30px;
+}
 </style>

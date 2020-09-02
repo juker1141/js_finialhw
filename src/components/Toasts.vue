@@ -1,34 +1,33 @@
 <template>
-  <div style="position: fixed; top: 20px; right: 20px; min-width: 300px; z-index: 11000;">
+  <div class="position-fixed toastPosition">
     <div
       v-for="(item, i) in messages"
       :id="`toast-${i}`"
       :key="i"
-      class="toast fade show"
+      class="toast fade show bg-gray"
       role="alert"
       aria-live="assertive"
       aria-atomic="true"
       data-autohide="false"
     >
-      <div class="toast-header">
-        <div
-          class="inline-block rounded mr-2"
+      <div class="toast-header bg-gray text-black">
+        <div class="inline-block rounded mr-2"
           style="width: 20px; height: 20px"
-          :class="`bg-${ item.status }`"
-        />
-        <strong class="mr-auto">六角實戰班</strong>
-        <small>現在</small>
-        <button
-          type="button"
-          class="ml-2 mb-1 close"
-          data-dismiss="toast"
-          aria-label="Close"
+          :class="`bg-${ item.status }`">
+          <span class="material-icons text-white fz_14">
+          build
+          </span>
+        </div>
+        <strong class="mr-auto fontOrbitron">Hardware Store</strong>
+        <small class="pr-2">現在</small>
+        <button type="button" class="btn m-0 p-0
+        d-flex align-items-center close opacity_1"
           @click="closeToast(`toast-${i}`)"
-        >
-          <span aria-hidden="true">&times;</span>
+        data-dismiss="modal" aria-label="Close">
+          <span class="material-icons fz_14">clear</span>
         </button>
       </div>
-      <div class="toast-body">
+      <div class="toast-body text-black">
         {{ item.message }}
       </div>
     </div>
@@ -88,5 +87,10 @@ export default {
   top: 56px;
   right: 20px;
   z-index: 1100;
+}
+.toastPosition{
+  top: 20px;
+  right: 20px;
+  min-width: 300px;
 }
 </style>

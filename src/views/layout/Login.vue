@@ -68,8 +68,7 @@ export default {
         })
         .catch((error) => {
           this.$bus.$emit('message:push',
-            `登入失敗惹，好糗Σ( ° △ °|||)︴
-              ${error}`,'danger'
+            `登入失敗，請再嘗試`,'danger'
           );
           console.log(error);
         });

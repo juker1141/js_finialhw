@@ -49,13 +49,13 @@ export default {
 </script>
 
 <style lang="scss">
-  .btnSize_sm{
-    height: 36px !important;
-    weight: 32px !important;
-  }
-  .page-item.active .page-link {
-    background-color: #D4EDDA;
-    color: #155724;
-    font-weight: bold;
-  }
+.btnSize_sm{
+  height: 36px !important;
+  weight: 32px !important;
+}
+.page-item.active .page-link {
+  background-color: #D4EDDA;
+  color: #155724;
+  font-weight: bold;
+}
 </style>
