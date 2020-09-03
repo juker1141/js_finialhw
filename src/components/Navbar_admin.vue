@@ -22,7 +22,7 @@
             justify-content-center justify-content-lg-start"
           >
             <router-link
-              class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
+              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               to="/admin/home"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
@@ -35,7 +35,7 @@
             justify-content-center justify-content-lg-start"
           >
             <router-link
-              class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
+              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               to="/admin/products"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
@@ -48,7 +48,7 @@
             justify-content-center justify-content-lg-start"
           >
             <router-link
-              class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
+              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               to="/admin/orderlist"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
@@ -61,7 +61,7 @@
             justify-content-center justify-content-lg-start"
           >
             <router-link
-              class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
+              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               to="/admin/coupons"
             >
               <span
@@ -76,7 +76,7 @@
             justify-content-center justify-content-lg-start"
           >
             <router-link
-              class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
+              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               to="/admin/picturelibrary"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
@@ -89,7 +89,7 @@
             justify-content-center justify-content-lg-start"
           >
             <router-link
-              class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
+              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               to="/admin/simulateorder"
             >
               <span class="material-icons mr-lg-3 pl-xl-7
@@ -102,7 +102,7 @@
             justify-content-center justify-content-lg-start" @click="signout()"
           >
             <router-link
-              class="fz_20 text-black textDecoration_none d-flex align-items-center py-2"
+              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               to="/home"
             >
               <span class="material-icons mr-lg-3 pl-xl-7

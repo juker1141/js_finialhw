@@ -93,9 +93,6 @@ body {
 .zIndex_100 {
   z-index: 10000;
 }
-.textDecoration_none {
-  text-decoration: none !important;
-}
 .w_340px {
   width: 340px;
 }
@@ -220,5 +217,13 @@ body {
   vertical-align: middle;
   @include media-breakpoint-up(md) {
     vertical-align: top;
+  }
+}
+.position_absolute {
+  position: absolute;
+}
+.position_lg_relative {
+  @include media-breakpoint-up(lg) {
+    position: relative;
   }
 }
