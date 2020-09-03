@@ -1,5 +1,8 @@
+html,
 body {
+  overflow-x: hidden;
   overflow-y: scroll;
+  width: 100%;
 }
 .h_100vh {
   height: 100vh;
