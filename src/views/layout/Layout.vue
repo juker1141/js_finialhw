@@ -7,6 +7,7 @@
         </span>
       </button>
       <router-link class="fontOrbitron fz_30 text-black text-decoration-none" to="/home">
+      Hardware Store</router-link>
       <div>
         <router-link to="/products">Products</router-link>
         <router-link to="/cart">Cart</router-link>
