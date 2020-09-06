@@ -83,12 +83,13 @@ $theme-colors: map-merge(
     "warning": $warning,
     "danger": $danger,
     "light": $light,
-    "dark": $dark,
     "adminPrimary": #2a8356,
     "adminSecondary": #edf4ee,
     "grayOP": rgba(0, 0, 0, 0.8),
     "black": #121212,
     "gray": #f2f2f2,
+    "yellow": #fecf2f,
+    "dark": #22253f,
   ),
   $theme-colors
 );

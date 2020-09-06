@@ -57,6 +57,14 @@ body {
     font-size: 30px !important;
   }
 }
+.fz_36 {
+  font-size: 36px;
+}
+.fz_md_36 {
+  @include media-breakpoint-up(md) {
+    font-size: 36px;
+  }
+}
 .fz_40 {
   font-size: 40px;
 }
@@ -70,6 +78,11 @@ body {
 }
 .fz_65 {
   font-size: 65px;
+}
+.fz_md_72 {
+  @include media-breakpoint-up(md) {
+    font-size: 72px;
+  }
 }
 .fz_75 {
   font-size: 75px;
