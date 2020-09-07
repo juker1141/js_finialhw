@@ -13,7 +13,7 @@ body {
   font-size: 12px;
 }
 .fz_14 {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 .fz_16 {
   font-size: 16px !important;
@@ -44,12 +44,37 @@ body {
 .fz_24 {
   font-size: 24px;
 }
+.fz_lg_24 {
+  @include media-breakpoint-up(lg) {
+    font-size: 24px !important;
+  }
+}
 .fz_30 {
   font-size: 30px !important;
 }
 .fz_md_24 {
   @include media-breakpoint-up(md) {
     font-size: 24px !important;
+  }
+}
+.fz_lg_24 {
+  @include media-breakpoint-up(lg) {
+    font-size: 24px !important;
+  }
+}
+.fz_xl_24 {
+  @include media-breakpoint-up(xl) {
+    font-size: 24px !important;
+  }
+}
+.fz_md_30 {
+  @include media-breakpoint-up(md) {
+    font-size: 30px !important;
+  }
+}
+.fz_lg_30 {
+  @include media-breakpoint-up(lg) {
+    font-size: 30px !important;
   }
 }
 .fz_xl_30 {
@@ -65,6 +90,11 @@ body {
     font-size: 36px;
   }
 }
+.fz_xl_36 {
+  @include media-breakpoint-up(xl) {
+    font-size: 36px;
+  }
+}
 .fz_40 {
   font-size: 40px;
 }
@@ -74,6 +104,11 @@ body {
 .fz_xl_50 {
   @include media-breakpoint-up(xl) {
     font-size: 50px !important;
+  }
+}
+.fz_lg_64 {
+  @include media-breakpoint-up(lg) {
+    font-size: 64px;
   }
 }
 .fz_65 {
