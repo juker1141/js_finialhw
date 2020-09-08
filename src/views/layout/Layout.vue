@@ -1,6 +1,6 @@
 <template>
   <div class="position-relative">
-    <button @click="goToTop" class="position-fixed btn d-flex
+    <button v-if="windowY >= 500" @click="goToTop" class="position-fixed btn d-flex
     goToTopBtn_position p-1 border-yellow border_5px bg-dark"
     type="button" id="goToTopBtn">
       <span class="material-icons text-yellow font-weight-bold fz_24">
@@ -166,35 +166,37 @@
 /* global $ */
 
 export default {
+  data() {
+    return {
+      windowY: '',
+    };
+  },
   methods: {
     navbarShow() {
       $('.list_position').slideToggle('fast');
     },
     goToTop() {
       /* 按下GoTop按鈕時的事件 */
-      $('#goToTopBtn').click(() => {
-        $('html,body').animate({ scrollTop: 0 }, 'slow');/* 返回到最頂上 */
-        return false;
-      });
+      $('html,body').animate({ scrollTop: 0 }, 'slow');/* 返回到最頂上 */
+      return false;
+    },
+    goToTopBtnShow() {
       /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
       $(window).scroll(() => {
-        if ($(this).scrollTop() > 400) {
-          $('#goToTopBtn').fadeIn();
-        } else {
-          $('#goToTopBtn').fadeOut();
-        }
+        this.windowY = window.scrollY;
       });
     },
   },
   created() {
     this.navbarShow();
+    this.goToTopBtnShow();
   },
 };
 </script>
 
 <style lang="scss">
 .goToTopBtn_position{
-  bottom: 30px;
+  bottom: 150px;
   right: 30px;
   z-index: 50;
 }

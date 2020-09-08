@@ -183,9 +183,9 @@ body {
     max-width: 80% !important;
   }
 }
-.w_max_xl_100 {
+.w_xl_1440 {
   @include media-breakpoint-up(xl) {
-    max-width: 100% !important;
+    max-width: 1440px !important;
   }
 }
 .table_w_1 {
