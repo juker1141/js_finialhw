@@ -21,27 +21,40 @@
         </div>
       </div>
     </section>
-    <div class="container">
+    <div class="container w_max_xl_100">
       <div class="card-deck">
         <div class="row">
-          <div :key="item.id" class="col-4 mb-3" v-for="item in products">
-            <div class="card">
-              <img :src="item.imageUrl" alt="..." class="card-img-top" />
-              <div class="card-body">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <div class="card-text">
-                  <p class="card-text" v-html="item.content">{{ item.content }}</p>
-                  <div
-                    class="h5"
-                    v-if="!item.price || item.price === item.origin_price"
-                  >售價 ${{ item.origin_price }}元</div>
-                  <div v-else>
-                    <del class="h6">原價 ${{ item.origin_price }}元</del>
-                    <div class="h5">現在只要 ${{ item.price }}元</div>
+          <div class="col-12 col-lg-3">
+            <ul class="listStyle_none">
+              <li><a href="#">全部商品</a></li>
+              <li><a href="#">起子</a></li>
+              <li><a href="#">板手</a></li>
+              <li><a href="#">斧頭</a></li>
+              <li><a href="#">鐵鎚</a></li>
+            </ul>
+          </div>
+          <div class="col-12 col-lg-9">
+            <div class="row">
+              <div :key="item.id" class="col-4 mb-3" v-for="item in products">
+                <div class="card">
+                  <img :src="item.imageUrl" alt="..." class="card-img-top" />
+                  <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <div class="card-text">
+                      <p class="card-text" v-html="item.content">{{ item.content }}</p>
+                      <div
+                        class="h5"
+                        v-if="!item.price || item.price === item.origin_price"
+                      >售價 ${{ item.origin_price }}元</div>
+                      <div v-else>
+                        <del class="h6">原價 ${{ item.origin_price }}元</del>
+                        <div class="h5">現在只要 ${{ item.price }}元</div>
+                      </div>
+                    </div>
                   </div>
+                  <router-link :to="`/product/${item.id}`">詳細資訊</router-link>
                 </div>
               </div>
-              <router-link :to="`/product/${item.id}`">詳細資訊</router-link>
             </div>
           </div>
         </div>

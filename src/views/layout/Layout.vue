@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div class="position-relative">
+    <button @click="goToTop" class="position-fixed btn d-flex
+    goToTopBtn_position p-1 border-yellow border_5px bg-dark"
+    type="button" id="goToTopBtn">
+      <span class="material-icons text-yellow font-weight-bold fz_24">
+      keyboard_arrow_up
+      </span>
+    </button>
     <div class="container d-flex justify-content-between
     align-items-center my-3 px-2 position-relative">
       <button class="btn p-1 justify-content-between align-items-center d-flex d-lg-none"
@@ -61,8 +68,8 @@
         <div class="row">
           <div class="col-12 col-md-7">
             <div class="input-group mb-3">
-              <input type="text" class="form-control form_control
-              form_control_lg_lg fz_24" placeholder=""
+              <input type="text" class="form-control form_control bg-transparent border-yellow
+              form_control_lg_lg fz_24" placeholder=" 請輸入您的 Email"
               aria-label="Example text with button addon" aria-describedby="button-addon1">
               <div class="input-group-prepend">
                 <button class="btn btn-yellow fz_14 fz_lg_24
@@ -163,6 +170,21 @@ export default {
     navbarShow() {
       $('.list_position').slideToggle('fast');
     },
+    goToTop() {
+      /* 按下GoTop按鈕時的事件 */
+      $('#goToTopBtn').click(() => {
+        $('html,body').animate({ scrollTop: 0 }, 'slow');/* 返回到最頂上 */
+        return false;
+      });
+      /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+      $(window).scroll(() => {
+        if ($(this).scrollTop() > 400) {
+          $('#goToTopBtn').fadeIn();
+        } else {
+          $('#goToTopBtn').fadeOut();
+        }
+      });
+    },
   },
   created() {
     this.navbarShow();
@@ -171,6 +193,14 @@ export default {
 </script>
 
 <style lang="scss">
+.goToTopBtn_position{
+  bottom: 30px;
+  right: 30px;
+  z-index: 50;
+}
+.border_5px{
+  border-width: 5px;
+}
 .list_position {
   top: 50px;
   width: 100%;
@@ -190,6 +220,17 @@ export default {
   }
 }
 .list_hover:hover{
+}
+.form-control{
+  &::-webkit-input-placeholder{
+    color: #fecf2f;
+  }
+  &:-moz-placeholder{
+    color: #fecf2f;
+  }
+  &::-moz-placeholder{
+    color: #fecf2f;
+  }
 }
 .w_100{
   width: 100%;
