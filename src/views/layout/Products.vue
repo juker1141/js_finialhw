@@ -27,73 +27,34 @@
           <div class="col-12 col-lg-2">
             <ul class="listStyle_none m-0 p-2 rounded">
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-between
+                <a href="#" class="text-decoration-none d-flex justify-content-center
                 align-items-center w-100 d-block productList_hover">
-                  <div class="d-none align-items-end h-100 ml-1 mb-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
-                  <div class="w-100">
-                    <i class="fas fa-tools mr-2"></i>全部商品
-                  </div>
-                  <div class="d-none align-items-start h-100
-                  productListScrew mr-1 mt-1 ">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
+                  <i class="fas fa-tools mr-2"></i>全部商品
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-between
+                <a href="#" class="text-decoration-none d-flex justify-content-center
                 align-items-center w-100 d-block productList_hover">
-                  <div class="d-none align-items-end h-100 ml-1 mb-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
-                  <div class="w-100">
-                    <i class="fas fa-screwdriver mr-2"></i>起子
-                  </div>
-                  <div class="d-none align-items-start h-100 mr-1 mt-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
+                  <i class="fas fa-screwdriver mr-2"></i>起子
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-between
+                <a href="#" class="text-decoration-none d-flex justify-content-center
                 align-items-center w-100 d-block productList_hover">
-                  <div class="d-none align-items-end h-100 ml-1 mb-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
-                  <div class="w-100">
-                    <i class="fas fa-wrench mr-2"></i>板手
-                  </div>
-                  <div class="d-none align-items-start h-100 mr-1 mt-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
+                  <i class="fas fa-wrench mr-2"></i>板手
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-between
+                <a href="#" class="text-decoration-none d-flex justify-content-center
                 align-items-center w-100 d-block productList_hover">
-                  <div class="d-none align-items-end h-100 ml-1 mb-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
-                  <div class="w-100">
-                    <i class="fas fa-ruler mr-2"></i>尺
-                  </div>
-                  <div class="d-none align-items-start h-100 mr-1 mt-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
+                  <i class="fas fa-ruler mr-2"></i>尺
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-between
+                <a href="#" class="text-decoration-none d-flex justify-content-center
                 align-items-center w-100 d-block productList_hover">
-                  <div class="d-none align-items-end h-100 ml-1 mb-1">
-                    <i class="fas fa-ban text-dark"></i>
-                  </div>
                   <div class="w-100">
                     <i class="fas fa-hammer mr-2"></i>鐵鎚
-                  </div>
-                  <div class="d-none align-items-start h-100 mr-1 mt-1">
-                    <i class="fas fa-ban text-dark"></i>
                   </div>
                 </a>
               </li>
@@ -158,13 +119,13 @@ export default {
 }
 .productList_hover{
   height: 56px;
-  color: #22253f;
+  color: #121212;
   position: relative;
   &:hover {
     font-weight: bold;
     font-size: 20px;
-    color: #22253f !important;
-    border-bottom: 1px solid #22253f;
+    color: #121212 !important;
+    border-bottom: 1px solid #121212;
     &::before {
       content: '';
       position: absolute;
@@ -179,7 +140,7 @@ export default {
       right: -10px;
       top: 30px;
       width: 43.6px;
-      border-bottom: 1px solid #22253f;
+      border-bottom: 1px solid #121212;
       transform:rotateZ(125deg) scale(1.414);
       border-radius: 5px;
     }

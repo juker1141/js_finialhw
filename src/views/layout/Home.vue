@@ -4,35 +4,39 @@
     data-ride="carousel">
       <div class="carousel-inner fontRaleway">
         <div class="carousel-item active">
-          <div class="indexBannerImg bg-dark text-yellow p-5 px-9 flex-lg-row
-          d-flex flex-column align-items-center justify-content-center">
-            <div class="mr-lg-7 mb-3 mb-lg-0">
+          <div class="indexBannerImg indexBannerImg_1 text-black p-5 px-9 flex-lg-row
+          d-flex flex-column align-items-center border-black border_nm
+          border-top border-bottom border_lg_lg justify-content-center">
+            <div class="mr-lg-6 mb-2 mb-lg-0">
               <div class="fz_36 fz_lg_64 text-center
               text-lg-left w-100 font-weight-bold">開幕慶！</div>
               <div class="fz_lg_24 text-center text-lg-left w-100">
               即日起至 10/31 止<br>可使用 77 折折價卷</div>
             </div>
-            <div class="border border-yellow border_nm px-2 fz_36 fz_lg_64">
+            <div class="border border-black bg-white border_nm px-2 fz_36 fz_lg_64">
               HAPPY777
             </div>
           </div>
         </div>
         <div class="carousel-item">
-          <div class="indexBannerImg indexBannerImg_1"></div>
+          <div class="indexBannerImg indexBannerImg_2 border-black
+          border-top border-bottom border_lg_lg border_nm"></div>
           <div class="carousel-caption carouselTitle_position">
             <h3 class="fz_36 fz_md_72
             font-weight-bold font-italic">Do It Yourself !</h3>
           </div>
         </div>
         <div class="carousel-item">
-          <div class="indexBannerImg indexBannerImg_2"></div>
+          <div class="indexBannerImg indexBannerImg_3 border-black
+          border-top border-bottom border_lg_lg border_nm"></div>
           <div class="carousel-caption carouselTitle_position">
             <h3 class="fz_36 fz_md_72 font-weight-bold font-italic">
             Create It Yourself !</h3>
           </div>
         </div>
         <div class="carousel-item">
-          <div class="indexBannerImg indexBannerImg_3"></div>
+          <div class="indexBannerImg indexBannerImg_4 border-black
+          border-top border-bottom border_lg_lg border_nm"></div>
           <div class="carousel-caption carouselTitle_position">
             <h3 class="fz_36 fz_md_72
             font-weight-bold font-italic">Do It Yourself !</h3>
@@ -50,7 +54,7 @@
         <span class="sr-only">Next</span>
       </a>
     </section>
-    <div class="container mb-5 mb-lg-7">
+    <div class="container mb-5 mb-lg-7 text-black">
       <div class="row mb-5 mb-lg-7">
         <div class="col-12 col-lg-8">
           <h3 class="text-left m-0 pl-3">活動訊息</h3>
@@ -71,7 +75,7 @@
           </div>
         </div>
         <div class="col-4 d-none d-lg-block">
-          <h3 class="text-left text-dark m-0 pb-5">新品報到</h3>
+          <h3 class="text-left text-black m-0 pb-5">新品報到</h3>
           <section id="carouselNewProductsControls" class="carousel slide"
           data-ride="carousel">
             <div class="carousel-inner fontRaleway">
@@ -90,7 +94,7 @@
                         {{ item.title }}
                       </div>
                       <span class="badge badge-yellow fz_14
-                      text-dark">{{ item.category }}</span>
+                      text-black">{{ item.category }}</span>
                     </div>
                     <div class="card-text text-left text-yellow fz_24">
                       <div v-if="!item.price || item.price === item.origin_price">
@@ -227,6 +231,11 @@ export default {
 .border_lg{
   border-width: 10px !important;
 }
+.border_lg_lg{
+  @media (min-width: 992px) {
+    border-width: 10px !important;
+  }
+}
 .footerNews_height{
   height: 400px;
   @media (min-width: 992px) {
@@ -290,14 +299,19 @@ export default {
   background: url(https://images.pexels.com/photos/4393533/pexels-photo-4393533.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
 }
 .indexBannerImg_1 {
+  background: url(https://images.pexels.com/photos/3828315/pexels-photo-3828315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
+    no-repeat;
+  background-position: 50% 70% !important;
+}
+.indexBannerImg_2 {
   background: url(https://images.unsplash.com/photo-1502343019212-cc6a09783255?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80)
     no-repeat;
 }
-.indexBannerImg_2 {
+.indexBannerImg_3 {
   background: url(https://images.pexels.com/photos/3773836/pexels-photo-3773836.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
     no-repeat;
 }
-.indexBannerImg_3 {
+.indexBannerImg_4 {
   background: url(https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2167&q=80)
     no-repeat;
 }

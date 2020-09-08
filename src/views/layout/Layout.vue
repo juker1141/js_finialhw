@@ -14,7 +14,7 @@
         <span class="material-icons">menu</span>
       </button>
       <router-link
-        class="fontOrbitron fz_20 fz_md_30 text-dark text-decoration-none"
+        class="fontOrbitron fz_20 fz_md_30 text-black text-decoration-none"
         to="/home"
       >Hardware Store</router-link>
       <div class="d-flex align-items-center">
@@ -23,24 +23,24 @@
           zIndex_10 position_absolute position_lg_relative
           align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
           <li class="py-3 py-lg-0">
-            <router-link class="text-dark px-3 mr-2 text-decoration-none list_hover"
+            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
             to="/products">Products</router-link>
           </li>
           <li class="py-3 py-lg-0">
-            <router-link class="text-dark px-3 mr-2 text-decoration-none list_hover"
+            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
             to="/cart">Cart</router-link>
           </li>
           <li class="py-3 py-lg-0">
-            <router-link class="text-dark px-3 mr-2 text-decoration-none list_hover"
+            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
             to="/about">Orders</router-link>
           </li>
           <li class="py-3 py-lg-0">
-            <router-link class="text-dark px-3 mr-2 text-decoration-none list_hover"
+            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
             to="/about">About</router-link>
           </li>
           <li class="py-3 py-lg-0">
             <router-link
-              class="text-dark btn p-1 d-flex justify-content-center align-items-center"
+              class="text-black btn p-1 d-flex justify-content-center align-items-center"
               to="/login"
             >
               <span class="material-icons">person</span>
@@ -48,7 +48,7 @@
           </li>
         </ul>
         <button
-          class="text-dark btn ml-2 p-1 d-flex justify-content-center align-items-center"
+          class="text-black btn ml-2 p-1 d-flex justify-content-center align-items-center"
           type="button"
         >
           <span class="material-icons">shopping_cart</span>
@@ -74,7 +74,7 @@
               <div class="input-group-prepend">
                 <button class="btn btn-yellow fz_14 fz_lg_24
                 font-weight-bold px-2 px-lg-5 rounded-right
-                text-dark" type="button"
+                text-black" type="button"
                 id="button-addon1">訂閱每月電子報</button>
               </div>
             </div>
