@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="carouselBanner_sm" class="carousel slide mb-5 mb-lg-7"
+    <!--<section id="carouselBanner_sm" class="carousel slide mb-5 mb-lg-7"
     data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -20,79 +20,73 @@
             想要獲得更多活動訊息及優惠資訊嗎？快訂閱我們的會員電子報吧！</div>
         </div>
       </div>
-    </section>
+    </section>-->
+    <ProductsNavbar/>
     <div class="container">
       <div class="card-deck">
-        <div class="row">
+        <div class="row mb-7">
           <div class="col-12 col-lg-2">
-            <ul class="listStyle_none m-0 p-2 rounded">
-              <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex
-                align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-tools mr-3"></i>全部商品
-                </a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex
-                align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-screwdriver mr-3"></i>起子
-                </a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex
-                align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-wrench mr-3"></i>板手
-                </a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex
-                align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-ruler mr-3"></i>尺
-                </a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex
-                align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-hammer mr-3"></i>鐵鎚
-                </a>
-              </li>
-            </ul>
+            <router-view />
           </div>
           <div class="col-12 col-lg-10">
             <div class="row">
-              <div :key="item.id" class="col-4 mb-3" v-for="item in products">
-                <div class="card cardSize shadow border-0 m-0">
-                  <img :src="item.imageUrl" alt="..." class="card-img-top cardImg" />
-                  <div class="card-body">
-                    <h5 class="card-title">{{ item.title }}</h5>
-                    <div class="card-text">
-                      <div
-                        class="h5"
-                        v-if="!item.price || item.price === item.origin_price"
-                      >售價 ${{ item.origin_price }}元</div>
-                      <div v-else>
-                        <del class="h6">原價 ${{ item.origin_price }}元</del>
-                        <div class="h5">現在只要 ${{ item.price }}元</div>
+              <div :key="item.id" class="col-4 mb-5 position-relative" v-for="item in products">
+                <router-link class="text-decoration-none text-black"
+                :to="`/product/${item.id}`">
+                  <div class="card cardSize border-0 m-0">
+                    <img :src="item.imageUrl" alt="..." class="card-img-top rounded-0 cardImg" />
+                    <div v-if="!item.price || item.price != item.origin_price"
+                    class="card-img-overlay d-flex
+                    align-items-start justify-content-end p-3">
+                    <div class="text-white fz_14 bg-grayOP p-1 rounded">On Sale</div></div>
+                    <div class="card-body p-2 d-flex justify-content-between align-items-center">
+                      <div>
+                        <div class="card-title text-left mb-1 font-weight-bold fz_20">
+                        {{ item.title }}</div>
+                        <div class="card-text text-left fontRoboto">
+                          <div v-if="!item.price || item.price === item.origin_price"
+                          >NT {{ item.origin_price | toCurrency | DollarSign }}</div>
+                          <div v-else class="d-flex align-items-end">
+                            <div class="mr-2">NT {{ item.price | toCurrency | DollarSign }}</div>
+                            <del class="text-secondary fz_14">
+                            NT {{ item.origin_price | toCurrency | DollarSign }}</del>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <a href="#" class="p-2" @click.prevent="text">
+                          <span class="material-icons text-black fz_30">
+                          add_shopping_cart
+                          </span>
+                        </a>
                       </div>
                     </div>
                   </div>
-                  <router-link :to="`/product/${item.id}`">詳細資訊</router-link>
+                </router-link>
+                <div class="position-absolute">
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Pagination :pages="pagination" @update-pages="getProducts"/>
     </div>
   </div>
 </template>
 
 <script>
+import ProductsNavbar from './ProductsNavbar.vue';
+
 export default {
   data() {
     return {
       products: { imageUrl: [] },
+      pagination: {},
     };
+  },
+  components: {
+    ProductsNavbar,
   },
   methods: {
     getProducts(num = 1) {
@@ -100,6 +94,7 @@ export default {
       this.$http.get(url).then((res) => {
         console.log(res);
         this.products = res.data.data;
+        this.pagination = res.data.meta.pagination;
       });
     },
   },
@@ -110,24 +105,18 @@ export default {
 </script>
 
 <style lang="scss">
-.cardSize{
-  height: 400px;
-}
-.cardImg{
+.cardImg {
   width: 100%;
-  height: 250px;
+  height: 220px;
 }
-.border_nm{
+.border_nm {
   border-width: 5px !important;
 }
-.productList_hover{
-  height: 56px;
+.productList_hover {
   color: #121212;
-  position: relative;
   &:hover {
-    font-weight: bold;
-    font-size: 20px;
-    color: #121212 !important;
+    color: #121212;
+    border-bottom: 3px solid #B2815D;
   }
 }
 </style>
