@@ -21,41 +21,39 @@
         </div>
       </div>
     </section>
-    <div class="container w_xl_1440">
+    <div class="container">
       <div class="card-deck">
         <div class="row">
           <div class="col-12 col-lg-2">
             <ul class="listStyle_none m-0 p-2 rounded">
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-center
+                <a href="#" class="text-decoration-none d-flex
                 align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-tools mr-2"></i>全部商品
+                  <i class="fas fa-tools mr-3"></i>全部商品
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-center
+                <a href="#" class="text-decoration-none d-flex
                 align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-screwdriver mr-2"></i>起子
+                  <i class="fas fa-screwdriver mr-3"></i>起子
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-center
+                <a href="#" class="text-decoration-none d-flex
                 align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-wrench mr-2"></i>板手
+                  <i class="fas fa-wrench mr-3"></i>板手
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-center
+                <a href="#" class="text-decoration-none d-flex
                 align-items-center w-100 d-block productList_hover">
-                  <i class="fas fa-ruler mr-2"></i>尺
+                  <i class="fas fa-ruler mr-3"></i>尺
                 </a>
               </li>
               <li class="mb-2">
-                <a href="#" class="text-decoration-none d-flex justify-content-center
+                <a href="#" class="text-decoration-none d-flex
                 align-items-center w-100 d-block productList_hover">
-                  <div class="w-100">
-                    <i class="fas fa-hammer mr-2"></i>鐵鎚
-                  </div>
+                  <i class="fas fa-hammer mr-3"></i>鐵鎚
                 </a>
               </li>
             </ul>
@@ -96,12 +94,17 @@ export default {
       products: { imageUrl: [] },
     };
   },
+  methods: {
+    getProducts(num = 1) {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?page=${num}&paged=9`;
+      this.$http.get(url).then((res) => {
+        console.log(res);
+        this.products = res.data.data;
+      });
+    },
+  },
   created() {
-    const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
-    this.$http.get(url).then((res) => {
-      console.log(res);
-      this.products = res.data.data;
-    });
+    this.getProducts();
   },
 };
 </script>
@@ -125,25 +128,6 @@ export default {
     font-weight: bold;
     font-size: 20px;
     color: #121212 !important;
-    border-bottom: 1px solid #121212;
-    &::before {
-      content: '';
-      position: absolute;
-      right: -10px;
-      bottom: -1px;
-      width: 39px;
-      border-bottom: 1px solid #fff;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      right: -10px;
-      top: 30px;
-      width: 43.6px;
-      border-bottom: 1px solid #121212;
-      transform:rotateZ(125deg) scale(1.414);
-      border-radius: 5px;
-    }
   }
 }
 </style>
