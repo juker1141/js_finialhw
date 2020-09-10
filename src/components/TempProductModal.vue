@@ -76,7 +76,7 @@
                 type="text" class="form-control"
                   placeholder="請說明商品內容">
                   </textarea>-->
-                <TinyMCE :content="tempProduct.content"/>
+                <TinyMCE :tinymceHtml="tempProduct.content"/>
               </div>
               <div class="form-check checkboxStyle
               d-flex align-items-center position-relative">

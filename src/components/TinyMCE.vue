@@ -1,5 +1,5 @@
 <template>
-  <Editor id="tinymce" v-model="tempProduct.content" :init="editorInit" />
+  <Editor id="tinymce" v-model="tinymceHtml" :init="editorInit" />
 </template>
 
 <script>
@@ -22,10 +22,10 @@ export default {
   components: {
     Editor,
   },
-  props: ['content'],
+  props: ['tinymceHtml'],
   data() {
     return {
-      content: '',
+      // tinymce的绑定值
       // tinymce的初始化配置
       editorInit: {
         selector: '#tinymce',
