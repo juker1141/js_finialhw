@@ -24,7 +24,7 @@
           align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
           <li class="py-3 py-lg-0">
             <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-            to="/products">Products</router-link>
+            to="/products/handtools">Products</router-link>
           </li>
           <li class="py-3 py-lg-0">
             <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"

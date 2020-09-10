@@ -64,19 +64,19 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="description" class="text-left w-100">商品敘述</label>
+                <label for="description" class="text-left w-100">商品說明</label>
                 <textarea id="description" v-model="tempProduct.description"
                 type="text" class="form-control"
-                  placeholder="請輸入商品描述">
+                  placeholder="請輸入商品說明">
                   </textarea>
               </div>
               <div class="form-group">
-                <label for="content" class="text-left w-100">商品說明</label>
-                <!--<textarea id="description" v-model="tempProduct.content"
+                <label for="content" class="text-left w-100">商品敘述</label>
+                <textarea id="description" v-model="tempProduct.content"
                 type="text" class="form-control"
-                  placeholder="請說明商品內容">
-                  </textarea>-->
-                <TinyMCE :tinymceHtml="tempProduct.content"/>
+                  placeholder="請說明商品敘述">
+                  </textarea>
+                <!--<TinyMCE :tinymceHtml="tempProduct.content"/>-->
               </div>
               <div class="form-check checkboxStyle
               d-flex align-items-center position-relative">
@@ -104,12 +104,12 @@
 
 <script>
 /* global $ */
-import TinyMCE from './TinyMCE.vue';
+// import TinyMCE from './TinyMCE.vue';
 
 export default {
   props: ['tempProduct', 'isNew'],
   components: {
-    TinyMCE,
+    // TinyMCE,
   },
   methods: {
     updateProduct() {

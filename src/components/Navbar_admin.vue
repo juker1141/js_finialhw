@@ -13,7 +13,7 @@
             </span>
             <span class="d-block d-md-none">H. S.</span>
             <br />
-            <span class="fz_xl_50">Admin</span>
+            <span class="fz_xl_48">Admin</span>
           </router-link>
         </h1>
         <ul class="listStyle_none w-100 h-100 m-0 p-0 position-relative">

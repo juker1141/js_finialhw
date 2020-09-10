@@ -98,12 +98,12 @@ body {
 .fz_40 {
   font-size: 40px;
 }
-.fz_50 {
-  font-size: 45px;
+.fz_48 {
+  font-size: 48px;
 }
-.fz_xl_50 {
+.fz_xl_48 {
   @include media-breakpoint-up(xl) {
-    font-size: 50px !important;
+    font-size: 48px !important;
   }
 }
 .fz_lg_64 {

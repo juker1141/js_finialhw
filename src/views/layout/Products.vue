@@ -26,7 +26,7 @@
       <div class="card-deck">
         <div class="row mb-7">
           <div class="col-12 col-lg-2">
-            <router-view />
+            <router-view/>
           </div>
           <div class="col-12 col-lg-10">
             <div class="row">
@@ -38,7 +38,8 @@
                     <div v-if="!item.price || item.price != item.origin_price"
                     class="card-img-overlay d-flex
                     align-items-start justify-content-end p-3">
-                    <div class="text-white fz_14 bg-grayOP p-1 rounded">On Sale</div></div>
+                    <div class="text-dark font-weight-bold
+                    fz_14 bg-yellow p-1 rounded">On Sale</div></div>
                     <div class="card-body p-2 d-flex justify-content-between align-items-center">
                       <div>
                         <div class="card-title text-left mb-1 font-weight-bold fz_20">
@@ -54,7 +55,7 @@
                         </div>
                       </div>
                       <div>
-                        <a href="#" class="p-2" @click.prevent="text">
+                        <a href="#" class="p-2" @click.prevent="show">
                           <span class="material-icons text-black fz_30">
                           add_shopping_cart
                           </span>
