@@ -72,10 +72,11 @@
               </div>
               <div class="form-group">
                 <label for="content" class="text-left w-100">商品說明</label>
-                <textarea id="description" v-model="tempProduct.content"
+                <!--<textarea id="description" v-model="tempProduct.content"
                 type="text" class="form-control"
                   placeholder="請說明商品內容">
-                  </textarea>
+                  </textarea>-->
+                <TinyMCE :content="tempProduct.content"/>
               </div>
               <div class="form-check checkboxStyle
               d-flex align-items-center position-relative">
@@ -103,9 +104,13 @@
 
 <script>
 /* global $ */
+import TinyMCE from './TinyMCE.vue';
 
 export default {
   props: ['tempProduct', 'isNew'],
+  components: {
+    TinyMCE,
+  },
   methods: {
     updateProduct() {
       let url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product`;
