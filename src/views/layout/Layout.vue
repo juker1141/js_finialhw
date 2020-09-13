@@ -1,62 +1,178 @@
 <template>
-  <div class="position-relative">
-    <button v-if="windowY >= 500" @click="goToTop" class="position-fixed btn d-flex
-    goToTopBtn_position p-1 border-yellow border_5px bg-dark"
-    type="button" id="goToTopBtn">
-      <span class="material-icons text-yellow font-weight-bold fz_24">
-      keyboard_arrow_up
-      </span>
-    </button>
-    <div class="container d-flex justify-content-between
-    align-items-center my-3 px-2 position-relative">
-      <button class="btn p-1 justify-content-between align-items-center d-flex d-lg-none"
-      type="button" @click="navbarShow">
-        <span class="material-icons">menu</span>
+  <div>
+    <section id="navbar"
+    class="w-100 position-fixed navbarPosition zIndex_30 bg-white">
+      <button v-if="windowY >= 500" @click="goToTop" class="position-fixed btn d-flex
+      goToTopBtn_position p-1 border-yellow border_5px bg-dark"
+      type="button" id="goToTopBtn">
+        <span class="material-icons text-yellow font-weight-bold fz_24">
+        keyboard_arrow_up
+        </span>
       </button>
-      <router-link
-        class="fontOrbitron fz_20 fz_md_30 text-black text-decoration-none"
-        to="/home"
-      >Hardware Store</router-link>
-      <div class="d-flex align-items-center">
-        <ul
-          class="listStyle_none bg-gray bg_lg_transparent
-          zIndex_10 position_absolute position_lg_relative
-          align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
-          <li class="py-3 py-lg-0">
-            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-            to="/products/handtools">Products</router-link>
-          </li>
-          <li class="py-3 py-lg-0">
-            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-            to="/cart">Cart</router-link>
-          </li>
-          <li class="py-3 py-lg-0">
-            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-            to="/about">Orders</router-link>
-          </li>
-          <li class="py-3 py-lg-0">
-            <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-            to="/about">About</router-link>
-          </li>
-          <li class="py-3 py-lg-0">
-            <router-link
-              class="text-black btn p-1 d-flex justify-content-center align-items-center"
-              to="/login"
-            >
-              <span class="material-icons">person</span>
-            </router-link>
+      <div class="container d-flex justify-content-between
+      align-items-center my-3 px-2 position-relative">
+        <button class="btn p-1 justify-content-between align-items-center d-flex d-lg-none"
+        type="button" @click="navbarShow">
+          <span class="material-icons">menu</span>
+        </button>
+        <router-link
+          class="fontOrbitron fz_20 fz_md_30 text-black text-decoration-none"
+          to="/home"
+        >Hardware Store</router-link>
+        <div class="d-flex align-items-center">
+          <ul
+            class="listStyle_none bg-gray bg_lg_transparent
+            zIndex_10 position_absolute position_lg_relative
+            align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
+            <li class="py-3 py-lg-0">
+              <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
+              to="/products/handtools">Products</router-link>
+            </li>
+            <li class="py-3 py-lg-0">
+              <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
+              to="/about">Orders</router-link>
+            </li>
+            <li class="py-3 py-lg-0">
+              <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
+              to="/about">About</router-link>
+            </li>
+            <li class="py-3 py-lg-0">
+              <router-link
+                class="text-black btn p-1 d-flex justify-content-center align-items-center"
+                to="/login"
+              >
+                <span class="material-icons">person</span>
+              </router-link>
+            </li>
+          </ul>
+          <button @click="openCart"
+            class="text-black btn ml-2 p-1 d-flex justify-content-center
+            align-items-center position-relative"
+            type="button">
+            <span class="material-icons">shopping_cart</span>
+            <div v-if="cart.length > 1"
+            class="position-absolute cartNum bg-danger d-flex align-items-center
+            justify-content-center text-white rounded-circle fz_12">
+              {{ cart.length }}
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+    <div id="cartBlock" :class="{ 'active' : cartBlockShow }"
+    class="h-100 bg-white text-black position-fixed zIndex_40 p-6 cartBlockPosition">
+      <div class="d-flex justify-content-between mb-5">
+        <div class="fz_48 font-weight-bold">購物車</div>
+        <div class="d-flex align-items-center">
+          <button @click="closeCart"
+          class="btn d-flex align-items-center p-0" type="button">
+            <span class="material-icons fz_48">
+            close
+            </span>
+          </button>
+        </div>
+      </div>
+      <div>
+        <ul class="listStyle_none m-0 p-0">
+          <li class="d-flex bg-gray mb-2"
+          v-for="item in cart" :key="item.product.id">
+            <div class="card-img-top rounded-0 cartImg"
+            :style="{ background: `url(${item.product.imageUrl[0]})` }">
+            </div>
+            <div class="w-100 position-relative">
+              <div v-if="loadingProduct === item.product.id"
+              class="d-flex align-items-center justify-content-center
+              h-100 w-100 position-absolute bg-grayOP">
+                <div class="spinner-border text-white" id="loadingIcon" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div class="p-3 h-100 w-100 d-flex flex-column justify-content-between">
+                <div class="d-flex flex-column align-items-start">
+                  <div class="font-weight-bold w-100 mb-1 d-flex justify-content-between">
+                    {{ item.product.title }}
+                    <div class="d-flex align-items-center">
+                      <button @click="deleteCartProduct(item.product.id)"
+                      class="btn d-flex align-items-center p-0" type="button">
+                        <span class="material-icons">
+                        close
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="text-left fontRoboto">
+                    <div
+                    v-if="!item.product.price || item.product.price === item.product.origin_price"
+                    >NT {{ item.product.origin_price | toCurrency | DollarSign }}</div>
+                    <div v-else class="d-flex align-items-end">
+                      <div class="mr-2">NT {{ item.product.price | toCurrency | DollarSign }}</div>
+                      <del class="text-secondary fz_14">
+                      NT {{ item.product.origin_price | toCurrency | DollarSign }}</del>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center w-50">
+                    <button type="button" class="btn d-flex p-0" :disabled="item.quantity === 1"
+                    @click="item.quantity --; updateCartQuantity(item.product.id, item.quantity)">
+                      <span class="material-icons">
+                      remove
+                      </span>
+                    </button>
+                    <input type="number" min="1"
+                    @change="updateCartQuantity(item.product.id, item.quantity)"
+                    class="border-0 text-center w-50 bg-transparent pl-2"
+                    v-model.number="item.quantity">
+                    <button type="button" class="btn d-flex p-0"
+                    @click="item.quantity ++; updateCartQuantity(item.product.id, item.quantity)">
+                      <span class="material-icons">
+                      add
+                      </span>
+                    </button>
+                  </div>
+                  <div class="text-right font-weight-bold">
+                  NT {{ item.quantity * item.product.price | toCurrency | DollarSign }}</div>
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
-        <button
-          class="text-black btn ml-2 p-1 d-flex justify-content-center align-items-center"
-          type="button"
-        >
-          <span class="material-icons">shopping_cart</span>
-        </button>
+      </div>
+      <div class="d-flex justify-content-end p-3">
+        <div class="w-75 text-secondary d-flex flex-column">
+          <div v-if="cartTotal"
+          class="d-flex justify-content-between mb-1 align-items-center">
+          購物車金額<div>NT {{ cartTotal | toCurrency | DollarSign }}</div></div>
+          <div v-else
+          class="d-flex justify-content-between mb-1 align-items-center">
+          購物車金額<div>NT 0</div></div>
+          <div v-if="cartTotal > 2000"
+          class="d-flex justify-content-between align-items-center mb-1">
+          運費<div><span class="text-danger mr-2 font-weight-bold">
+          ( 滿 $ 2, 000 免運 )</span>NT 0</div></div>
+          <div v-else class="d-flex
+          justify-content-between align-items-center mb-1">
+          運費<div>NT {{ 60 | toCurrency | DollarSign }}</div></div>
+          <div v-if="cartTotal > 2000"
+          class="d-flex mb-3 justify-content-between align-items-center
+          font-weight-bold fz_20 text-black">
+          總金額<div>NT {{ cartTotal + 0 | toCurrency | DollarSign }}</div></div>
+          <div v-else class="d-flex mb-3 font-weight-bold fz_20
+          justify-content-between align-items-center text-black">
+          總金額<div>NT {{ cartTotal + 60 | toCurrency | DollarSign }}</div></div>
+          <div class="d-flex justify-content-end">
+          <button @click="closeCart(); toInformationPage()" type="button"
+          class="btn bg-black text-white rounded-0 fz_30 px-5"
+          :disabled="cart.length === 0">
+          前往結帳</button></div>
+          <div v-if="cart.length === 0"
+          class="text-danger mt-5 fz_30">您的購物車沒有東西！！</div>
+        </div>
       </div>
     </div>
-    <router-view />
-    <div class="footerBannerImg p-5 p-lg-9 text-white d-flex flex-column align-items-center">
+    <router-view class="navbar_mt" id="main" @updateCart="getcart"/>
+    <div id="subscribe"
+    class="footerBannerImg p-5 p-lg-9 text-white d-flex flex-column align-items-center">
       <div class="container">
         <div class="row">
           <div class="col-8 col-lg-7 text-left">
@@ -82,7 +198,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-dark p-3 p-lg-5">
+    <div id="footer" class="bg-dark p-3 p-lg-5">
       <div class="container d-flex align-items-center justify-content-between">
         <div class="w_100">
           <div class="mb-3">
@@ -169,7 +285,22 @@ export default {
   data() {
     return {
       windowY: '',
+      cart: [],
+      cartTotal: 0,
+      loadingProduct: '',
+      cartBlockShow: false,
+      toPathName: '',
+      fromPathName: '',
     };
+  },
+  watch: {
+    cart() {
+      this.cartTotal = 0;
+      this.cart.forEach((item) => {
+        this.cartTotal += (item.quantity * item.product.price);
+      });
+      return this.cartTotal;
+    },
   },
   methods: {
     navbarShow() {
@@ -186,21 +317,128 @@ export default {
         this.windowY = window.scrollY;
       });
     },
+    openCart() {
+      $('#cartBlock').toggleClass('active');
+      this.$bus.$emit('darkShadyChange', true);
+      this.cartBlockShow = true;
+    },
+    closeCart() {
+      $('#cartBlock').toggleClass('active');
+      setTimeout(() => {
+        this.$bus.$emit('darkShadyChange', false);
+      }, 200);
+    },
+    getcart() {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
+      this.$http.get(url)
+        .then((res) => {
+          console.log(res);
+          this.cart = res.data.data;
+        }).catch((error) => {
+          console.log(error.response);
+        });
+    },
+    updateCartQuantity(id, quantity) {
+      this.loadingProduct = id;
+      $('#loadingIcon').addClass('d-inline-block');
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
+      const cart = {
+        product: id,
+        quantity,
+      };
+      this.$http.patch(url, cart)
+        .then((res) => {
+          this.loadingProduct = '';
+          console.log(res);
+          this.getcart();
+        });
+    },
+    deleteCartProduct(id) {
+      this.loadingProduct = id;
+      $('#loadingIcon').addClass('d-inline-block');
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
+      this.$http.delete(url)
+        .then((res) => {
+          this.loadingProduct = '';
+          console.log(res);
+          this.getcart();
+        });
+    },
+    toInformationPage() {
+      setTimeout(() => {
+        this.$router.push('/information').catch(() => {});
+      }, 500);
+    },
+    hideFooter() {
+      if (this.$route.path === '/information'
+      || this.$route.path === '/payment'
+      || this.$route.path === '/paycheck'
+      || this.$route.path === '/paydone') {
+        $('#subscribe').addClass('d_none_important');
+        $('#footer').addClass('d_none_important');
+        $('#navbar').addClass('d_none_important');
+        $('#main').removeClass('navbar_mt');
+      } else {
+        $('#subscribe').removeClass('d_none_important');
+        $('#footer').removeClass('d_none_important');
+        $('#navbar').removeClass('d_none_important');
+        $('#main').addClass('navbar_mt');
+      }
+    },
   },
   created() {
     this.navbarShow();
     this.goToTopBtnShow();
+    this.getcart();
+    this.$bus.$on('cartBlockIsShow', (state) => {
+      this.cartBlockShow = state;
+    });
+    setInterval(this.hideFooter, 0);
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.toPathName = to.fullPath;
+    this.fromPathName = from.fullPath;
+    if (this.fromPathName === '/information') {
+      if (this.toPathName === '/payment') {
+        next();
+      } else {
+        $('#cartBlock').addClass('active');
+        this.$bus.$emit('darkShadyChange', true);
+      }
+    }
+    next();
   },
 };
 </script>
 
 <style lang="scss">
-.goToTopBtn_position{
+.d_none_important{
+  display: none !important;
+}
+.navbarPosition {
+  top: 0;
+}
+.cartBlockPosition{
+  top: 0;
+  right: -30%;
+  width: 30%;
+  transition: all .5s ease-out .2s;
+  &.active {
+    right: 0%;
+  }
+}
+.navbar_mt {
+  margin-top: 66px;
+  @media (min-width: 768px) {
+    margin-top: 77px;
+  }
+}
+.goToTopBtn_position {
   bottom: 150px;
   right: 30px;
   z-index: 50;
 }
-.border_5px{
+.border_5px {
   border-width: 5px;
 }
 .list_position {
@@ -261,5 +499,17 @@ export default {
   @media (min-width: 992px) {
     background-position: 50% 70% !important;
   }
+}
+.cartNum{
+  bottom: 0px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+}
+.cartImg{
+  height: 120px;
+  width: 120px;
+  background-position: center !important;
+  background-size: cover !important;
 }
 </style>

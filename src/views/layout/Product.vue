@@ -20,7 +20,7 @@
               {{ product.category }}</router-link>
             </div>
             <div class="text-left mb-2 fz_48 font-weight-bold">{{ product.title }}</div>
-            <div class="text-right mb-2 fontRoboto fz_24 font-weight-bold">
+            <div class="text-right mb-3 fontRoboto fz_24 font-weight-bold">
               <div v-if="!product.price || product.price === product.origin_price">
                 NT{{ product.origin_price | toCurrency | DollarSign }}
               </div>
@@ -31,23 +31,27 @@
                 <div class="">NT{{ product.price | toCurrency | DollarSign }}</div>
               </div>
             </div>
-            <div class="w-100">
-              <div class="d-flex align-items-center">
+            <div class="w-100 d-flex align-items-center">
+              <div class="d-flex align-items-center justify-content-between bg-gray w-50 mr-4">
                 <button type="button" class="btn d-flex p-2"
-                @click="product.num --">
+                @click="num --">
                   <span class="material-icons">
                   remove
                   </span>
                 </button>
-                <div class="text-black" v-text="product.num"></div>
+                <input type="number" min="1"
+                class="border-0 text-center w-50 bg-transparent pl-4" v-model="num">
                 <button type="button" class="btn d-flex p-2"
-                @click="product.num ++">
+                @click="num ++">
                   <span class="material-icons">
                   add
                   </span>
                 </button>
               </div>
-              <div></div>
+              <button type="button" class="btn
+              p-2 w-50 text-white bg-black rounded-0">
+                加入購物車
+              </button>
             </div>
           </div>
         </div>
@@ -71,8 +75,8 @@ export default {
     return {
       product: {
         imageUrl: [],
-        num: '',
       },
+      num: 1,
     };
   },
   methods: {

@@ -1,0 +1,165 @@
+<template>
+  <div class="container text-black">
+    <div class="row">
+      <div class="col-10 offset-1">
+        <div class="row my-3">
+          <div class="col-12 col-lg-10 offset-lg-1 d-flex justify-content-start">
+            <router-link
+              class="fontOrbitron fz_20 fz_md_30 text-black
+              text-decoration-none" to="/home"
+            >Hardware Store</router-link>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-12 col-lg-10 offset-lg-1 d-flex justify-content-start">
+            <router-link class="text-black mr-2 text-decoration-none"
+            to="/products">Cart</router-link>>
+            <div class="text-black mx-2 font-weight-bold">Information</div>>
+            <div class="text-secondary ml-2">Payment</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-6 offset-lg-1 mt-3 mt-lg-0">
+            <div class="text-left fz_24 mb-2">訂單資訊</div>
+            <div class="border border-black mb-5">
+              <div class="d-flex justify-content-between
+              align-items-center border-bottom border-black p-3">
+                <div>
+                  聯絡資訊<span class="ml-2 fz_14 text-secondary">
+                  {{ order.user.name }} / {{ order.user.email }} / {{ order.user.tel }}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <span class="material-icons">
+                  keyboard_arrow_down
+                  </span>
+                  <span class="material-icons">
+                  keyboard_arrow_up
+                  </span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-3">
+                <div>
+                  地址<span class="ml-2 fz_14 text-secondary">
+                  {{ order.user.address }}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <span class="material-icons">
+                  keyboard_arrow_down
+                  </span>
+                  <span class="material-icons">
+                  keyboard_arrow_up
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="text-left fz_24 mb-2">付款資訊</div>
+            <div class="border border-black p-3
+            d-flex align-items-center justify-content-between">
+              <div class="fz_20">請使用旁邊 QRcode 來進行支付</div>
+              <router-link to="/paycheck"  class="card-img-top rounded-0
+              border border-black orderImg"
+              :style="{ background: `url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/iD6Y460uwvAmMrHJGSqx5xWBgsONGu9zdHm5nIWQvdvCWKwQrhZD8Ws6GQbeLqiT0Eb2oxTFnmmJ70PUZ3QE2JL8f1GxP8jUb3ohODAogtwexWgMUZ8VkbSxuyaznt7R.jpg)` }"></router-link>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5 mt-3 mt-lg-1">
+            <ul class="listStyle_none bg-gray p-3 m-0 text-left">
+              <li class="d-flex bg-gray mb-2"
+              v-for="item in order.products" :key="item.id">
+                <div class="card-img-top rounded-0 orderImg_sm"
+                :style="{ background: `url(${item.product.imageUrl[0]})` }">
+                </div>
+                <div class="w-100">
+                  <div class="p-2 h-100 w-100 d-flex align-items-center justify-content-between">
+                    <div class="font-weight-bold mb-1
+                    d-flex align-items-end justify-content-between">
+                      {{ item.product.title }}
+                      <span class="fz_14 ml-2 fontRoboto font-weight-normal">
+                      x {{ item.quantity }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="text-right">
+                      NT {{ item.quantity * item.product.price | toCurrency | DollarSign }}</div>
+                    </div>
+                  </div>
+                </div>
+              </li><hr class="my-4 border-secondary">
+              <li class="p-2 d-flex justify-content-between">
+              購物車金額<span>NT {{ orderTotal | toCurrency | DollarSign }}</span></li>
+              <li class="p-2 d-flex justify-content-between">
+              運費
+              <div v-if="orderTotal > 2000">
+              <span class="mr-2 text-danger font-weight-bold">( 滿 2, 000 免運 )</span>NT 0
+              </div>
+              <div v-else>NT {{ 60 | toCurrency | DollarSign }}</div>
+              </li>
+              <li class="p-2 d-flex justify-content-between font-weight-bold fz_20">
+              總金額
+              <div v-if="orderTotal > 2000">NT {{ orderTotal | toCurrency | DollarSign }}
+              </div>
+              <div v-else>NT {{ orderTotal + 60 | toCurrency | DollarSign }}</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      order: {},
+      orderTotal: 0,
+      paymentOrderId: '',
+    };
+  },
+  watch: {
+    order() {
+      this.orderTotal = 0;
+      this.order.products.forEach((item) => {
+        this.orderTotal += (item.quantity * item.product.price);
+      });
+      return this.orderTotal;
+    },
+  },
+  methods: {
+    getOrder(id) {
+      console.log();
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/eFCf7nNpbn4q7vbGap2zayqFVxhIYNMVFeQgBYFRCMiDZm44bvrmIeD9lw4NSS8V`;
+      this.$http.get(url)
+        .then((res) => {
+          console.log(res);
+          this.order = res.data.data;
+        });
+    },
+  },
+  created() {
+    console.log('我是b 我已經創造了');
+    this.$bus.$on('orderId', (id) => {
+      console.log('我拿到了', id);
+      this.paymentOrderId = id;
+    });
+    setTimeout(() => {
+      this.getOrder();
+    }, 0);
+  },
+  beforeDestroy() {
+    this.bus.$off('orderId');
+  },
+};
+</script>
+
+<style lang="scss">
+.orderImg{
+  height: 120px;
+  width: 120px;
+  background-position: center !important;
+  background-size: cover !important;
+  &_sm {
+    height: 60px;
+    width: 60px;
+  }
+}
+</style>

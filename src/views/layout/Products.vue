@@ -30,7 +30,7 @@
           </div>
           <div class="col-12 col-lg-10">
             <div class="row">
-              <div :key="item.id" class="col-4 mb-5 position-relative" v-for="item in products">
+              <div :key="item.id" class="col-6 mb-5 position-relative" v-for="item in products">
                 <router-link class="text-decoration-none text-black"
                 :to="`/product/${item.id}`">
                   <div class="card cardSize border-0 m-0">
@@ -54,9 +54,10 @@
                           </div>
                         </div>
                       </div>
-                      <div>
-                        <a href="#" class="p-2" @click.prevent="show">
-                          <span class="material-icons text-black fz_30">
+                      <div class="zIndex_20">
+                        <a href="#" class="p-2 bg-black d-flex align-items-center
+                        text-decoration-none" @click.prevent="addToCart(item.id)">
+                          <span class="material-icons text-white fz_30">
                           add_shopping_cart
                           </span>
                         </a>
@@ -98,6 +99,18 @@ export default {
         this.pagination = res.data.meta.pagination;
       });
     },
+    addToCart(id, quantity = 1) {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
+      const cart = {
+        product: id,
+        quantity,
+      };
+      this.$http.post(url, cart)
+        .then((res) => {
+          console.log(res);
+          this.$emit('updateCart');
+        });
+    },
   },
   created() {
     this.getProducts();
@@ -108,7 +121,7 @@ export default {
 <style lang="scss">
 .cardImg {
   width: 100%;
-  height: 220px;
+  height: 350px;
 }
 .border_nm {
   border-width: 5px !important;
@@ -117,7 +130,7 @@ export default {
   color: #121212;
   &:hover {
     color: #121212;
-    border-bottom: 3px solid #B2815D;
+    border-bottom: 3px solid #121212;
   }
 }
 </style>

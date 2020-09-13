@@ -3,6 +3,9 @@ body {
   overflow-x: hidden;
   width: 100%;
 }
+.top_0 {
+  top: 0;
+}
 .h_100vh {
   height: 100vh;
 }
@@ -138,8 +141,17 @@ body {
 .zIndex_20 {
   z-index: 20;
 }
+.zIndex_30 {
+  z-index: 30;
+}
+.zIndex_40 {
+  z-index: 40;
+}
 .zIndex_100 {
-  z-index: 10000;
+  z-index: 100;
+}
+.zIndex_500 {
+  z-index: 500;
 }
 .w_340px {
   width: 340px;

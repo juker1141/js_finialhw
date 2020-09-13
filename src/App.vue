@@ -1,8 +1,10 @@
 <template>
-  <div class="fontNotoSans" id="app">
+  <div class="fontNotoSans position-relative" id="app">
     <Loading v-if="isLoading"></Loading>
+    <div v-if="darkShadyOn" @click="closeCart"
+    class="bg-grayOP position-fixed h-100 w-100 zIndex_40 top_0"></div>
     <Toast />
-    <router-view />
+    <router-view class="position-relative"/>
   </div>
 </template>
 
@@ -20,11 +22,25 @@ export default {
   data() {
     return {
       isLoading: false,
+      darkShadyOn: false,
     };
+  },
+  methods: {
+    closeCart() {
+      // 點擊黑幕時關閉購物車視窗
+      this.$bus.$emit('cartBlockIsShow', false);
+      setTimeout(() => {
+        this.darkShadyOn = false;
+      }, 200);
+    },
   },
   created() {
     this.$bus.$on('loadingChange', (state) => {
       this.isLoading = state;
+    });
+    this.darkShadyOn = false;
+    this.$bus.$on('darkShadyChange', (state) => {
+      this.darkShadyOn = state;
     });
   },
 };

@@ -22,6 +22,18 @@ const routes = [
         component: () => import('../views/layout/Home.vue'),
       },
       {
+        path: 'information',
+        component: () => import('../views/layout/Information.vue'),
+      },
+      {
+        path: 'payment',
+        component: () => import('../views/layout/Payment.vue'),
+      },
+      {
+        path: 'paycheck',
+        component: () => import('../views/layout/Paycheck.vue'),
+      },
+      {
         path: 'about',
         component: () => import('../views/layout/About.vue'),
       },
@@ -54,10 +66,6 @@ const routes = [
       {
         path: 'product/:id',
         component: () => import('../views/layout/Product.vue'),
-      },
-      {
-        path: 'cart',
-        component: () => import('../views/layout/Cart.vue'),
       },
       {
         path: 'login',
@@ -99,6 +107,10 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  next();
 });
 
 export default router;

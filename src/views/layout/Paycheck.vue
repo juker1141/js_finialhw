@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>This is a Cart Page</h1>
+    確認付款
   </div>
 </template>
