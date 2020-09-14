@@ -123,17 +123,16 @@
 export default {
   data() {
     return {
-      order: {
-        user: {
-          name: '',
-          tel: '',
-          email: '',
-          address: '',
-        },
-      },
       orderTotal: 0,
-      paymentOrderId: 'gXudU9F9lT5gz0cTy9iACUwWbfVlGHK9FcbBZbEgGlFqiVyxFCIuamTE8uCptS57',
     };
+  },
+  computed: {
+    order() {
+      return this.$store.state.order;
+    },
+    orderId() {
+      return this.$store.state.orderId;
+    },
   },
   watch: {
     order() {
@@ -146,24 +145,11 @@ export default {
   },
   methods: {
     getOrder(id) {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/${id}`;
-      this.$http.get(url)
-        .then((res) => {
-          console.log(res);
-          this.order = res.data.data;
-        });
+      this.$store.dispatch('getOrder', id);
     },
   },
   created() {
-    this.$bus.$on('orderId', (id) => {
-      this.paymentOrderId = id;
-    });
-    setTimeout(() => {
-      this.getOrder(this.paymentOrderId);
-    }, 0);
-  },
-  beforeDestroy() {
-    this.bus.$off('orderId');
+    this.getOrder(this.orderId);
   },
 };
 </script>

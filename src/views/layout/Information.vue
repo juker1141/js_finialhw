@@ -162,7 +162,6 @@ export default {
       },
       cart: [],
       cartTotal: 0,
-      orderId: '',
     };
   },
   watch: {
@@ -188,8 +187,7 @@ export default {
         .then((res) => {
           if (res.data.data.id) {
             // 跳出提示訊息
-            this.orderId = res.data.data.id;
-            console.log('這是資訊頁傳出的ID', this.orderId);
+            this.$store.dispatch('getOrderId', res.data.data.id);
             // this.$bus.$emit('orderId', orderId);
             this.$router.push('/payment');
             // 重新渲染購物車
@@ -202,10 +200,6 @@ export default {
   },
   created() {
     this.getCart();
-  },
-  beforeDestroy() {
-    console.log('我還拿著id', this.orderId);
-    this.$bus.$emit('orderId', this.orderId);
   },
 };
 </script>

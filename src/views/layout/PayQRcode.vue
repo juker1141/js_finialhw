@@ -7,7 +7,10 @@
         to="/home"
       >Hardware Store</router-link>
       <div>數位支付平台</div>
-      <div class="mb-3">確認付款嗎？</div>
+      <div v-if="order.amount > 2000" class="mb-3">
+      您將支付 NT {{ order.amount | toCurrency | DollarSign}}，確認付款嗎？</div>
+      <div else class="mb-3">
+      您將支付 NT {{ order.amount + 60 | toCurrency | DollarSign}}，確認付款嗎？</div>
       <button type="button" class="btn fz_24_important
       bg-white text-black rounded-0 p-1 px-5">確認付款</button>
     </div>
@@ -16,12 +19,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      orderId: '',
-    };
-  },
-  created() {
+  computed: {
+    order() {
+      return this.$store.state.order;
+    },
   },
 };
 </script>

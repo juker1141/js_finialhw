@@ -11,6 +11,7 @@ import TW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
 import router from './router';
 import Pagination from './components/Pagination.vue';
+import store from './store';
 
 // Add a rule.
 extend('secret', {
@@ -50,5 +51,6 @@ Vue.filter('DollarSign', (price) => `$ ${price}`);
 /* global $ */
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount('#app');
