@@ -372,7 +372,7 @@ export default {
     hideFooter() {
       if (this.$route.path === '/information'
       || this.$route.path === '/payment'
-      || this.$route.path === '/paycheck'
+      || this.$route.path === '/payqrcode'
       || this.$route.path === '/paydone') {
         $('#subscribe').addClass('d_none_important');
         $('#footer').addClass('d_none_important');
@@ -420,11 +420,22 @@ export default {
 }
 .cartBlockPosition{
   top: 0;
-  right: -30%;
-  width: 30%;
+  bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  right: -100%;
+  width: 100%;
   transition: all .5s ease-out .2s;
   &.active {
     right: 0%;
+  }
+  @media (min-width: 992px) {
+    width: 40%;
+    right: -40%;
+  }
+  @media (min-width: 1400px) {
+    width: 30%;
+    right: -30%;
   }
 }
 .navbar_mt {

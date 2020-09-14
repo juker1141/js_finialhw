@@ -96,8 +96,8 @@
                     keyboard_arrow_left
                     </span>返回購物車
                   </router-link>
-                  <button type="submit" class="btn bg-black text-white
-                  fz_48 rounded-0 px-6" :disabled="invalid">
+                  <button type="submit" class="bg-black text-white
+                  fz_24 rounded-0 px-6" :disabled="invalid">
                   前往付款</button>
                 </div>
               </form>

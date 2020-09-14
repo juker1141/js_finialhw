@@ -53,12 +53,25 @@
               </div>
             </div>
             <div class="text-left fz_24 mb-2">付款資訊</div>
-            <div class="border border-black p-3
-            d-flex align-items-center justify-content-between">
-              <div class="fz_20">請使用旁邊 QRcode 來進行支付</div>
-              <router-link to="/paycheck"  class="card-img-top rounded-0
-              border border-black orderImg"
-              :style="{ background: `url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/iD6Y460uwvAmMrHJGSqx5xWBgsONGu9zdHm5nIWQvdvCWKwQrhZD8Ws6GQbeLqiT0Eb2oxTFnmmJ70PUZ3QE2JL8f1GxP8jUb3ohODAogtwexWgMUZ8VkbSxuyaznt7R.jpg)` }"></router-link>
+            <div class="border border-black mb-3 fz_20 flex-column
+            d-flex">
+              <div class="d-flex justify-content-between p-3">
+                付款方式<div>{{ order.payment }}</div></div>
+              <div v-if="order.payment === 'ATM'" class="p-3 border-top border-black">
+                <div>請使用轉帳至下列號碼</div>
+                <div class="mt-3 border border-black p-3">00010061234567</div>
+              </div>
+              <div v-if="order.payment === 'CVS'" class="p-3 border-top border-black">
+                <div>請使用下列 QR code 至超商繳費</div>
+                <div class="d-flex justify-content-center">
+                  <div class="card-img-top rounded-0 border border-black orderImg mt-3"
+                  :style="{ background: `url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/iD6Y460uwvAmMrHJGSqx5xWBgsONGu9zdHm5nIWQvdvCWKwQrhZD8Ws6GQbeLqiT0Eb2oxTFnmmJ70PUZ3QE2JL8f1GxP8jUb3ohODAogtwexWgMUZ8VkbSxuyaznt7R.jpg)` }"></div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button class="p-2 bg-black text-white rounded-0 fz_24 px-6"
+              type="button">確認付款</button>
             </div>
           </div>
           <div class="col-12 col-lg-5 mt-3 mt-lg-1">
@@ -110,9 +123,16 @@
 export default {
   data() {
     return {
-      order: {},
+      order: {
+        user: {
+          name: '',
+          tel: '',
+          email: '',
+          address: '',
+        },
+      },
       orderTotal: 0,
-      paymentOrderId: '',
+      paymentOrderId: 'gXudU9F9lT5gz0cTy9iACUwWbfVlGHK9FcbBZbEgGlFqiVyxFCIuamTE8uCptS57',
     };
   },
   watch: {
@@ -126,8 +146,7 @@ export default {
   },
   methods: {
     getOrder(id) {
-      console.log();
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/eFCf7nNpbn4q7vbGap2zayqFVxhIYNMVFeQgBYFRCMiDZm44bvrmIeD9lw4NSS8V`;
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/${id}`;
       this.$http.get(url)
         .then((res) => {
           console.log(res);
@@ -136,13 +155,11 @@ export default {
     },
   },
   created() {
-    console.log('我是b 我已經創造了');
     this.$bus.$on('orderId', (id) => {
-      console.log('我拿到了', id);
       this.paymentOrderId = id;
     });
     setTimeout(() => {
-      this.getOrder();
+      this.getOrder(this.paymentOrderId);
     }, 0);
   },
   beforeDestroy() {
@@ -160,6 +177,8 @@ export default {
   &_sm {
     height: 60px;
     width: 60px;
+    background-position: center !important;
+    background-size: cover !important;
   }
 }
 </style>
