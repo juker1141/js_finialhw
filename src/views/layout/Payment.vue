@@ -59,9 +59,14 @@
                 付款方式<div>{{ order.payment }}</div></div>
               <div v-if="order.payment === 'ATM'" class="p-3 border-top border-black">
                 <div>請使用轉帳至下列號碼</div>
-                <div class="mt-3 border border-black p-3">00010061234567</div>
+                <div class="d-flex align-items-center justify-content-center
+                mt-3 border border-black p-3">00010061234567
+                <router-link to="/paycheck" class="btn
+                btn-black rounded-0 ml-5" v-if="!this.paid">前往轉帳</router-link>
+                <div v-else class="text-success ml-5">轉帳成功！</div>
+                </div>
               </div>
-              <div v-if="order.payment === 'CVS'" class="p-3 border-top border-black">
+              <div v-else class="p-3 border-top border-black">
                 <div>請使用下列 QR code 至超商繳費</div>
                 <div class="d-flex justify-content-center">
                   <div class="card-img-top rounded-0 border border-black orderImg mt-3"

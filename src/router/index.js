@@ -30,8 +30,8 @@ const routes = [
         component: () => import('../views/layout/Payment.vue'),
       },
       {
-        path: 'payqrcode',
-        component: () => import('../views/layout/PayQRcode.vue'),
+        path: 'paycheck',
+        component: () => import('../views/layout/Paycheck.vue'),
       },
       {
         path: 'about',

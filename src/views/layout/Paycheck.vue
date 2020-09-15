@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 h_100vh bg_payQRcode d-flex
+  <div class="w-100 h_100vh bg_paycheck d-flex
   justify-content-center align-items-center">
     <div class="bg-grayOP p-4 text-white mb-9">
       <router-link
@@ -34,12 +34,11 @@ export default {
     payMoney() {
       this.$store.dispatch('payMoney', true);
       localStorage.setItem('store', JSON.stringify(this.$store.state));
+      this.$router.push('/payment');
     },
   },
   created() {
-    if (localStorage.getItem('store')) {
-      this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
-    }
+    this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
     setTimeout(() => {
       this.getOrder(this.orderId);
     }, 0);
@@ -48,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-.bg_payQRcode{
+.bg_paycheck{
   background: url(https://images.unsplash.com/photo-1501516069922-a9982bd6f3bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80) no-repeat;
   background-position: center !important;
   background-size: cover !important;

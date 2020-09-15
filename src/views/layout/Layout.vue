@@ -372,7 +372,7 @@ export default {
     hideFooter() {
       if (this.$route.path === '/information'
       || this.$route.path === '/payment'
-      || this.$route.path === '/payqrcode'
+      || this.$route.path === '/paycheck'
       || this.$route.path === '/paydone') {
         $('#subscribe').addClass('d_none_important');
         $('#footer').addClass('d_none_important');
