@@ -188,6 +188,9 @@ export default {
           if (res.data.data.id) {
             // 跳出提示訊息
             this.$store.dispatch('getOrderId', res.data.data.id);
+            if (localStorage.getItem('store')) {
+              localStorage.removeItem('store');
+            }
             // this.$bus.$emit('orderId', orderId);
             this.$router.push('/payment');
             // 重新渲染購物車

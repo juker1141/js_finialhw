@@ -70,8 +70,8 @@
               </div>
             </div>
             <div class="d-flex justify-content-end">
-              <button class="p-2 bg-black text-white rounded-0 fz_24 px-6"
-              type="button">確認付款</button>
+              <button class="btn btn-black p-2 rounded-0 fz_24 px-6"
+              type="button" :disabled="!this.paid">確認付款</button>
             </div>
           </div>
           <div class="col-12 col-lg-5 mt-3 mt-lg-1">
@@ -133,6 +133,9 @@ export default {
     orderId() {
       return this.$store.state.orderId;
     },
+    paid() {
+      return this.$store.state.paid;
+    },
   },
   watch: {
     order() {
@@ -142,14 +145,28 @@ export default {
       });
       return this.orderTotal;
     },
+    paid() {
+      return this.paid;
+    },
   },
   methods: {
     getOrder(id) {
       this.$store.dispatch('getOrder', id);
     },
+    writeInLocalStorage() {
+      if (!localStorage.getItem('store')) {
+        localStorage.setItem('store', JSON.stringify(this.$store.state));
+      } else {
+        this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
+        this.getOrder(this.orderId);
+      }
+    },
   },
   created() {
     this.getOrder(this.orderId);
+    setTimeout(() => {
+      this.writeInLocalStorage();
+    }, 0);
   },
 };
 </script>
@@ -166,5 +183,8 @@ export default {
     background-position: center !important;
     background-size: cover !important;
   }
+}
+.fz_24{
+  font-size: 24px;
 }
 </style>

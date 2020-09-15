@@ -1,18 +1,18 @@
 <template>
   <div class="w-100 h_100vh bg_payQRcode d-flex
   justify-content-center align-items-center">
-    <div class="bg-grayOP p-3 text-white mb-9">
+    <div class="bg-grayOP p-4 text-white mb-9">
       <router-link
-        class="fontOrbitron fz_20 fz_md_30 text-white text-decoration-none"
+        class="fontOrbitron fz_30 text-white text-decoration-none"
         to="/home"
       >Hardware Store</router-link>
-      <div>數位支付平台</div>
-      <div v-if="order.amount > 2000" class="mb-3">
+      <div class="mb-3 fz_30">數位支付平台</div>
+      <div v-if="order.amount > 2000" class="mb-4">
       您將支付 NT {{ order.amount | toCurrency | DollarSign}}，確認付款嗎？</div>
-      <div else class="mb-3">
+      <div v-else class="mb-3">
       您將支付 NT {{ order.amount + 60 | toCurrency | DollarSign}}，確認付款嗎？</div>
       <button type="button" class="btn fz_24_important
-      bg-white text-black rounded-0 p-1 px-5">確認付款</button>
+      bg-white text-black rounded-0 p-1 px-5" @click="payMoney">確認付款</button>
     </div>
   </div>
 </template>
@@ -23,6 +23,26 @@ export default {
     order() {
       return this.$store.state.order;
     },
+    orderId() {
+      return this.$store.state.orderId;
+    },
+  },
+  methods: {
+    getOrder(id) {
+      this.$store.dispatch('getOrder', id);
+    },
+    payMoney() {
+      this.$store.dispatch('payMoney', true);
+      localStorage.setItem('store', JSON.stringify(this.$store.state));
+    },
+  },
+  created() {
+    if (localStorage.getItem('store')) {
+      this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
+    }
+    setTimeout(() => {
+      this.getOrder(this.orderId);
+    }, 0);
   },
 };
 </script>
