@@ -42,6 +42,9 @@ export default {
     this.$bus.$on('darkShadyChange', (state) => {
       this.darkShadyOn = state;
     });
+    window.addEventListener('storage', (event) => {
+      this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
+    })
   },
 };
 </script>

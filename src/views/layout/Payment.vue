@@ -22,20 +22,27 @@
           <div class="col-12 col-lg-6 offset-lg-1 mt-3 mt-lg-0">
             <div class="text-left fz_24 mb-2">訂單資訊</div>
             <div class="border border-black mb-5">
-              <div class="d-flex justify-content-between
-              align-items-center border-bottom border-black p-3">
-                <div>
-                  聯絡資訊<span class="ml-2 fz_14 text-secondary">
-                  {{ order.user.name }} / {{ order.user.email }} / {{ order.user.tel }}</span>
+              <div class="d-flex flex-column">
+                <div class="d-flex justify-content-between
+                align-items-center border-bottom border-black p-3">
+                  <div>
+                    聯絡資訊<span class="ml-2 fz_14 text-secondary">
+                    {{ order.user.name }} / {{ order.user.email }} / {{ order.user.tel }}</span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <span class="material-icons">
+                    keyboard_arrow_down
+                    </span>
+                    <span class="material-icons">
+                    keyboard_arrow_up
+                    </span>
+                  </div>
                 </div>
-                <div class="d-flex align-items-center">
-                  <span class="material-icons">
-                  keyboard_arrow_down
-                  </span>
-                  <span class="material-icons">
-                  keyboard_arrow_up
-                  </span>
-                </div>
+                <ul class="text-left listStyle_none m-0 p-3 border-bottom border-black">
+                  <li>姓名 ： {{ order.user.name }}</li>
+                  <li>信箱 ： {{ order.user.email }}</li>
+                  <li>電話 ： {{ order.user.tel }}</li>
+                </ul>
               </div>
               <div class="d-flex justify-content-between align-items-center p-3">
                 <div>
@@ -44,10 +51,7 @@
                 </div>
                 <div class="d-flex align-items-center">
                   <span class="material-icons">
-                  keyboard_arrow_down
-                  </span>
-                  <span class="material-icons">
-                  keyboard_arrow_up
+                  room
                   </span>
                 </div>
               </div>
@@ -67,7 +71,7 @@
                 </div>
               </div>
               <div v-else class="p-3 border-top border-black">
-                <div>請使用下列 QR code 至超商繳費</div>
+                <div>請掃描下列 QR code 繳費</div>
                 <div class="d-flex justify-content-center">
                   <div class="card-img-top rounded-0 border border-black orderImg mt-3"
                   :style="{ background: `url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/iD6Y460uwvAmMrHJGSqx5xWBgsONGu9zdHm5nIWQvdvCWKwQrhZD8Ws6GQbeLqiT0Eb2oxTFnmmJ70PUZ3QE2JL8f1GxP8jUb3ohODAogtwexWgMUZ8VkbSxuyaznt7R.jpg)` }"></div>
@@ -76,7 +80,11 @@
             </div>
             <div class="d-flex justify-content-end">
               <button class="btn btn-black p-2 rounded-0 fz_24 px-6"
-              type="button" :disabled="!this.paid">確認付款</button>
+              type="button" :disabled="!this.paid">確認付款
+                <div class="spinner-border text-light ml-2" v-if="isPaying" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button>
             </div>
           </div>
           <div class="col-12 col-lg-5 mt-3 mt-lg-1">
@@ -129,6 +137,7 @@ export default {
   data() {
     return {
       orderTotal: 0,
+      isPaying: false,
     };
   },
   computed: {
@@ -172,6 +181,13 @@ export default {
     setTimeout(() => {
       this.writeInLocalStorage();
     }, 0);
+    window.addEventListener('storage', (event) => {
+      this.isPaying = true;
+      this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
+      setTimeout(() => {
+        this.isPaying = false;
+      }, 1000);
+    });
   },
 };
 </script>

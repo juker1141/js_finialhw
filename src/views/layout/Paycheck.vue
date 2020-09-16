@@ -7,18 +7,27 @@
         to="/home"
       >Hardware Store</router-link>
       <div class="mb-3 fz_30">數位支付平台</div>
-      <div v-if="order.amount > 2000" class="mb-4">
-      您將支付 NT {{ order.amount | toCurrency | DollarSign}}，確認付款嗎？</div>
-      <div v-else class="mb-3">
-      您將支付 NT {{ order.amount + 60 | toCurrency | DollarSign}}，確認付款嗎？</div>
-      <button type="button" class="btn fz_24_important
-      bg-white text-black rounded-0 p-1 px-5" @click="payMoney">確認付款</button>
+      <div v-if="!isPaid">
+        <div v-if="order.amount > 2000" class="mb-4">
+        您將支付 NT {{ order.amount | toCurrency | DollarSign}}，確認付款嗎？</div>
+        <div v-else class="mb-3">
+        您將支付 NT {{ order.amount + 60 | toCurrency | DollarSign}}，確認付款嗎？</div>
+        <button type="button" class="btn fz_24_important
+        bg-white text-black rounded-0 p-1 px-5" @click="payMoney">確認付款</button>
+      </div>
+      <router-link v-else to="/payment" class="text-decoration-none text-white
+      fz_24_important bg-success p-1 px-5">付款成功！點擊回到原頁面確認</router-link>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isPaid: false,
+    };
+  },
   computed: {
     order() {
       return this.$store.state.order;
@@ -34,7 +43,8 @@ export default {
     payMoney() {
       this.$store.dispatch('payMoney', true);
       localStorage.setItem('store', JSON.stringify(this.$store.state));
-      this.$router.push('/payment');
+      this.isPaid = true;
+      // this.$router.push('/payment');
     },
   },
   created() {
