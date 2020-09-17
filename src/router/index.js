@@ -34,34 +34,16 @@ const routes = [
         component: () => import('../views/layout/Paycheck.vue'),
       },
       {
+        path: 'paydone',
+        component: () => import('../views/layout/Paydone.vue'),
+      },
+      {
         path: 'about',
         component: () => import('../views/layout/About.vue'),
       },
       {
         path: 'products',
         component: () => import('../views/layout/Products.vue'),
-        children: [
-          {
-            path: 'handtools',
-            component: () => import('../views/layout/Handtools.vue'),
-          },
-          {
-            path: 'measurementtools',
-            component: () => import('../views/layout/Measurementtools.vue'),
-          },
-          {
-            path: 'grindtools',
-            component: () => import('../views/layout/Grindtools.vue'),
-          },
-          {
-            path: 'electrictools',
-            component: () => import('../views/layout/Electrictools.vue'),
-          },
-          {
-            path: 'accessories',
-            component: () => import('../views/layout/Accessories.vue'),
-          },
-        ],
       },
       {
         path: 'product/:id',

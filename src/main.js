@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import 'swiper/swiper-bundle.css';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import $ from 'jquery';
@@ -13,6 +15,7 @@ import router from './router';
 import Pagination from './components/Pagination.vue';
 import store from './store';
 
+Vue.use(VueAwesomeSwiper);
 // Add a rule.
 extend('secret', {
   validate: (value) => value === 'example',

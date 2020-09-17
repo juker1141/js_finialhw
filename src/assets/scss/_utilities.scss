@@ -70,7 +70,7 @@ body {
     font-size: 24px !important;
   }
 }
-.fz_24_important{
+.fz_24_important {
   font-size: 24px !important;
 }
 .fz_md_30 {
@@ -162,8 +162,19 @@ body {
 .w_50px {
   width: 50px;
 }
+.w_50 {
+  width: 50%;
+}
 .w_75 {
   width: 75%;
+}
+.w_max_150px {
+  max-width: 150px;
+}
+.w_max_lg_230px {
+  @include media-breakpoint-up(lg) {
+    max-width: 230px;
+  }
 }
 .w_md_50 {
   @include media-breakpoint-up(md) {

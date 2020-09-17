@@ -123,48 +123,12 @@
           </section>
         </div>
       </div>
-      <div class="row mb-3">
-        <div class="col-12 col-lg-6">
-          <div class="featuresImg featuresImg_1"></div>
-        </div>
-        <div class="col-12 col-lg-6">
-          <div class="h-100 p-5 text-left d-flex align-items-start
-          flex-column justify-content-center">
-            <h4 class="mb-4">在地經營超過三十年</h4>
-            <p>從 1990 年代起， <span class="fontOrbitron">Hardware Store</span> 就開始經營五金批發<br>
-            對於各品牌的手工具、電動工具、氣動工具更是瞭若指掌<br>
-            若想了解更多資訊，歡迎直接聯繫我們！</p>
-            <div class="w-100 text-right"><a href="#" class="mr-3">了解更多</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3 flex-lg-row-reverse">
-        <div class="col-12 col-lg-6">
-          <div class="featuresImg featuresImg_2"></div>
-        </div>
-        <div class="col-12 col-lg-6">
-          <div class="h-100 p-5 text-left d-flex align-items-start
-          flex-column justify-content-center">
-            <h4 class="mb-4">物美價廉</h4>
-            <p><span class="fontOrbitron">Hardware Store</span> 有超多你想不到的商品<br>
-            還有超多意想不到的活動折扣，怎麼買都划算！！<br>
-            你看過我們的商品了嗎？快去看看吧！！！</p>
-            <div class="w-100 text-right"><a href="#" class="mr-3">了解更多</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-lg-6">
-          <div class="featuresImg featuresImg_3"></div>
-        </div>
-        <div class="col-12 col-lg-6">
-          <div class="h-100 p-5 text-left d-flex align-items-start
-          flex-column justify-content-center">
-            <h4 class="mb-4">快速又方便</h4>
-            <p>在 <span class="fontOrbitron">Hardware Store</span> 買東西，今天訂，後天到！<br>
-            我們支持多種支付方式，讓你不被現實的距離所拘束！</p>
-            <div class="w-100 text-right"><a href="#" class="mr-3">了解更多</a></div>
-          </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row mb-5 mb-lg-7">
+        <div class="col-12 px-7 text-left text-black">
+          <h3 class="mb-5">作業手工具</h3>
+          <Swiper :products="handTools"></Swiper>
         </div>
       </div>
     </div>
@@ -183,16 +147,67 @@
       </div>
       <div class="footerNewsImg h-100 p-6 mr-lg-9"></div>
     </div>
+    <div class="container-fluid">
+      <div class="row mb-5 mb-lg-9">
+        <div class="col-12 px-7 text-left text-black">
+          <h3 class="mb-5">更多工具</h3>
+          <div class="row mb-7">
+            <div class="col-4">
+              <router-link to="/products">
+                <div class="moreProductsImg moreProductsImg_1
+                position-relative"></div>
+                <div
+                class="moreProductsTitle position-absolute w-100 d-flex
+                justify-content-start p-3 ">
+                  <div class="text-black bg-white rounded-pill font-weight-bold fz_24
+                  ml-5 mt-3 py-1 px-5">量測工具</div>
+                </div>
+              </router-link>
+            </div>
+            <div class="col-4">
+              <router-link to="/products">
+                <div class="moreProductsImg moreProductsImg_2
+                position-relative"></div>
+                <div
+                class="moreProductsTitle position-absolute h-100 w-100 d-flex
+                justify-content-end align-items-end p-3">
+                  <div class="text-black bg-white rounded-pill font-weight-bold fz_24
+                  mr-5 mb-3 py-1 px-5">電動工具</div>
+                </div>
+              </router-link>
+            </div>
+            <div class="col-4">
+              <router-link to="/products">
+                <div class="moreProductsImg moreProductsImg_3
+                position-relative"></div>
+                <div
+                class="moreProductsTitle position-absolute w-100 d-flex
+                justify-content-start p-3 ">
+                  <div class="text-black bg-white rounded-pill font-weight-bold fz_24
+                  ml-5 mt-3 py-1 px-5">配件</div>
+                </div>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Swiper from '../../components/Swiper.vue';
+
 export default {
   data() {
     return {
       products: [],
       newProducts: [],
+      handTools: [],
     };
+  },
+  components: {
+    Swiper,
   },
   methods: {
     getProducts() {
@@ -202,6 +217,11 @@ export default {
           this.products = res.data.data;
           this.shuffle(this.products);
           this.newProducts = this.products.slice(0, 5);
+          this.products.forEach((item) => {
+            if (item.category === '手工具') {
+              this.handTools.push(item);
+            }
+          });
         });
     },
     shuffle(array) {
@@ -253,6 +273,25 @@ export default {
 .cardImg{
   @media (min-width: 992px) {
     height: 200px;
+  }
+}
+.moreProductsTitle{
+  top: 0;
+  left: 0;
+}
+.moreProductsImg{
+  height: 570px;
+  width: 100%;
+  background-position: center !important;
+  background-size: cover !important;
+  &_1 {
+    background: url(https://images.pexels.com/photos/3988555/pexels-photo-3988555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+  }
+  &_2 {
+    background: url(https://images.pexels.com/photos/162529/grinder-hitachi-power-tool-flexible-162529.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+  }
+  &_3 {
+    background: url(https://images.pexels.com/photos/20791/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
   }
 }
 .footerNewsImg{

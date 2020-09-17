@@ -9,8 +9,8 @@
         keyboard_arrow_up
         </span>
       </button>
-      <div class="container d-flex justify-content-between
-      align-items-center my-3 px-2 position-relative">
+      <div class="container-fluid d-flex justify-content-between
+      align-items-center my-3 px-5 position-relative">
         <button class="btn p-1 justify-content-between align-items-center d-flex d-lg-none"
         type="button" @click="navbarShow">
           <span class="material-icons">menu</span>
@@ -26,7 +26,7 @@
             align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
             <li class="py-3 py-lg-0">
               <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-              to="/products/handtools">Products</router-link>
+              to="/products">Products</router-link>
             </li>
             <li class="py-3 py-lg-0">
               <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"

@@ -34,13 +34,13 @@
             <div class="w-100 d-flex align-items-center">
               <div class="d-flex align-items-center justify-content-between bg-gray w-50 mr-4">
                 <button type="button" class="btn d-flex p-2"
-                @click="num --">
+                @click="num --" :disabled="num === 1">
                   <span class="material-icons">
                   remove
                   </span>
                 </button>
                 <input type="number" min="1"
-                class="border-0 text-center w-50 bg-transparent pl-4" v-model="num">
+                class="border-0 text-center w-50 bg-transparent pl-2" v-model="num">
                 <button type="button" class="btn d-flex p-2"
                 @click="num ++">
                   <span class="material-icons">
@@ -57,8 +57,16 @@
         </div>
       </div>
     </div>
-    <h3></h3>
-    <h5 class="mb-5">{{ product.content }}</h5>
+    <div class="row align-items-center">
+      <div class="col-4 text-left">
+        <div class="fz_24 mb-2">產品特色</div>
+        <div>{{ product.content }}</div>
+      </div>
+      <div class="col-4 text-left">
+        <div class="fz_24 mb-2">產品規格</div>
+        <div>{{ product.description }}</div>
+      </div>
+    </div>
     <router-link :to="`/products/${product.category}`">回到列表</router-link>
   </div>
 </template>

@@ -10,7 +10,7 @@
             >Hardware Store</router-link>
           </div>
         </div>
-        <div class="row mb-5">
+        <div class="row mb-2 mb-lg-5">
           <div class="col-12 col-lg-10 offset-lg-1 d-flex justify-content-start">
             <router-link class="text-black mr-2 text-decoration-none"
             to="/products">Cart</router-link>>
@@ -18,7 +18,7 @@
             <div class="text-secondary ml-2">Payment</div>
           </div>
         </div>
-        <div class="row">
+        <div class="row flex-column-reverse flex-lg-row">
           <div class="col-12 col-lg-6 offset-lg-1 mt-3 mt-lg-0">
             <validation-observer v-slot="{ invalid }">
               <form @submit.prevent="createOrder">
@@ -88,7 +88,8 @@
                 <label for="message" class="text-left w-100">留言</label>
                 <textarea class="form-control form-control-lg mb-3" v-model="form.message"
                 rows="5" id="message"></textarea>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column-reverse flex-lg-row
+                align-items-center justify-content-between">
                   <router-link class="d-flex align-items-center
                   text-decoration-none"
                   to="/products">
@@ -97,50 +98,75 @@
                     </span>返回購物車
                   </router-link>
                   <button type="submit" class="bg-black text-white
-                  fz_24 rounded-0 px-6" :disabled="invalid">
+                  fz_24 rounded-0 px-6 mb-3 mb-lg-0" :disabled="invalid">
                   前往付款</button>
                 </div>
               </form>
             </validation-observer>
           </div>
           <div class="col-12 col-lg-5 mt-3 mt-lg-1">
-            <ul class="listStyle_none bg-gray p-3 m-0 text-left">
-              <li class="d-flex bg-gray mb-2"
-              v-for="item in cart" :key="item.product.id">
-                <div class="card-img-top rounded-0 cartImg_sm"
-                :style="{ background: `url(${item.product.imageUrl[0]})` }">
-                </div>
-                <div class="w-100">
-                  <div class="p-2 h-100 w-100 d-flex align-items-center justify-content-between">
-                    <div class="font-weight-bold mb-1
-                    d-flex align-items-end justify-content-between">
-                      {{ item.product.title }}
-                      <span class="fz_14 ml-2 fontRoboto font-weight-normal">
-                      x {{ item.quantity }}</span>
+            <div class="bg-gray">
+              <div class="p-3 w-100 d_block d-lg-none
+                font-weight-bold fz_20">
+                <div @click="showCartDetail"
+                class="p-2 w-100 d-flex justify-content-between align-items-center">
+                  總金額
+                  <div class="d-flex align-items-center">
+                    <div class="cartDetail_total" v-if="cartTotal > 2000">
+                      NT {{ cartTotal | toCurrency | DollarSign }}
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-right">
-                      NT {{ item.quantity * item.product.price | toCurrency | DollarSign }}</div>
+                    <div class="cartDetail_total"
+                    v-else>NT {{ cartTotal + 60 | toCurrency | DollarSign }}</div>
+                    <div class="d-flex align-items-center ml-2">
+                      <span class="material-icons showCartDetail_down">
+                      keyboard_arrow_down
+                      </span>
+                      <span class="material-icons d_none showCartDetail_up">
+                      keyboard_arrow_up
+                      </span>
                     </div>
                   </div>
                 </div>
-              </li><hr class="my-4 border-secondary">
-              <li class="p-2 d-flex justify-content-between">
-              購物車金額<span>NT {{ cartTotal | toCurrency | DollarSign }}</span></li>
-              <li class="p-2 d-flex justify-content-between">
-              運費
-              <div v-if="cartTotal > 2000">
-              <span class="mr-2 text-danger font-weight-bold">( 滿 2, 000 免運 )</span>NT 0
               </div>
-              <div v-else>NT {{ 60 | toCurrency | DollarSign }}</div>
-              </li>
-              <li class="p-2 d-flex justify-content-between font-weight-bold fz_20">
-              總金額
-              <div v-if="cartTotal > 2000">NT {{ cartTotal | toCurrency | DollarSign }}
-              </div>
-              <div v-else>NT {{ cartTotal + 60 | toCurrency | DollarSign }}</div>
-              </li>
-            </ul>
+              <hr class="my-0 mx-3 d_none d-lg-none border-secondary cartDetail_line">
+              <ul id="cartDetail" class="listStyle_none d_none d-lg-block p-3 m-0 text-left">
+                <li class="d-flex bg-gray mb-2"
+                v-for="item in cart" :key="item.product.id">
+                  <div class="card-img-top rounded-0 cartImg_sm"
+                  :style="{ background: `url(${item.product.imageUrl[0]})` }">
+                  </div>
+                  <div class="w-100">
+                    <div class="p-2 h-100 w-100 d-flex align-items-center justify-content-between">
+                      <div class="font-weight-bold mb-1
+                      d-flex align-items-end justify-content-between">
+                        {{ item.product.title }}
+                        <span class="fz_14 ml-2 fontRoboto font-weight-normal">
+                        x {{ item.quantity }}</span>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-right">
+                        NT {{ item.quantity * item.product.price | toCurrency | DollarSign }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </li><hr class="my-4 border-secondary">
+                <li class="p-2 d-flex justify-content-between">
+                購物車金額<span>NT {{ cartTotal | toCurrency | DollarSign }}</span></li>
+                <li class="p-2 d-flex justify-content-between">
+                運費
+                <div v-if="cartTotal > 2000">
+                <span class="mr-2 text-danger font-weight-bold">( 滿 2, 000 免運 )</span>NT 0
+                </div>
+                <div v-else>NT {{ 60 | toCurrency | DollarSign }}</div>
+                </li>
+                <li class="p-2 d-flex justify-content-between font-weight-bold fz_20">
+                總金額
+                <div v-if="cartTotal > 2000">NT {{ cartTotal | toCurrency | DollarSign }}
+                </div>
+                <div v-else>NT {{ cartTotal + 60 | toCurrency | DollarSign }}</div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -149,6 +175,8 @@
 </template>
 
 <script>
+/* global $ */
+
 export default {
   data() {
     return {
@@ -180,6 +208,13 @@ export default {
         .then((res) => {
           this.cart = res.data.data;
         });
+    },
+    showCartDetail() {
+      $('#cartDetail').slideToggle(300);
+      $('.cartDetail_line').toggleClass('d-block');
+      $('.showCartDetail_down').toggleClass('d-none');
+      $('.showCartDetail_up').toggleClass('d-block');
+      $('.cartDetail_total').toggleClass('d-none');
     },
     createOrder() {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders`;
