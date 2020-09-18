@@ -238,7 +238,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .footerNews_mt{
   margin-top: 62.25px;
   @media (min-width: 992px) {

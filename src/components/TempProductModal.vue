@@ -12,13 +12,27 @@
         <form>
           <div class="row flex-column flex-md-row">
             <div class="col-12 col-md-4">
-              <div class="form-group">
-                <label for="imageUrl" class="text-left w-100">輸入圖片網址</label>
-                <input id="imageUrl" v-model="tempProduct.imageUrl[0]"
-                type="text" class="form-control"
-                  placeholder="請輸入圖片連結">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="imageUrl" class="text-left w-100">輸入圖片網址</label>
+                    <input id="imageUrl" v-model="tempProduct.imageUrl[0]"
+                    type="text" class="form-control"
+                      placeholder="請輸入圖片連結">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label class="custom-file-label text-left mx_15px"
+                    for="customFile">請選擇檔案</label>
+                    <input type="file" class="custom-file-input"
+                    @change="uploadFile" id="customFile">
+                  </div>
+                </div>
               </div>
               <img class="img-fluid" :src="tempProduct.imageUrl[0]" alt>
+              <img class="img-fluid" :src="tempProduct.imageUrl[1]" alt>
+              <img class="img-fluid" :src="tempProduct.imageUrl[2]" alt>
             </div>
             <div class="col-12 col-md-8">
               <div class="form-group mt-3 mt-md-0">
@@ -111,6 +125,11 @@ export default {
   components: {
     // TinyMCE,
   },
+  data() {
+    return {
+      filePath: '',
+    };
+  },
   methods: {
     updateProduct() {
       let url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product`;
@@ -133,6 +152,27 @@ export default {
           this.$bus.$emit('message:push', `${text}商品失敗，請再嘗試`, 'danger');
           console.log(error);
         });
+    },
+    uploadFile() {
+      // 選取 DOM 裡面的檔案資訊
+      this.$bus.$emit('loadingChange', true);
+      const uploadedFile = document.querySelector('#customFile').files[0];
+      // 轉成 Form Data
+      const formData = new FormData();
+      formData.append('file', uploadedFile);
+
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/storage`;
+      this.$http.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }).then((res) => {
+        console.log(res);
+        this.tempProduct.imageUrl.push(res.data.data.path);
+        this.$bus.$emit('message:push', '圖片上傳成功', 'success');
+      }).catch(() => {
+        this.$bus.$emit('message:push', '圖片上傳失敗，請再嘗試', 'danger');
+      });
     },
   },
 };

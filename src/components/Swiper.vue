@@ -71,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .swiper-slide {
-  width: 30%;
+  width: 40% !important;
   height: 550px;
 }
 .swiperImg{

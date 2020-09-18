@@ -370,7 +370,8 @@ export default {
       }, 500);
     },
     hideFooter() {
-      if (this.$route.path === '/information'
+      if (this.$route.path === '/login'
+      || this.$route.path === '/information'
       || this.$route.path === '/payment'
       || this.$route.path === '/paycheck'
       || this.$route.path === '/paydone') {
@@ -411,7 +412,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .d_none_important{
   display: none !important;
 }
@@ -469,8 +470,6 @@ export default {
   @media (min-width: 992px) {
     background-color:transparent !important;
   }
-}
-.list_hover:hover{
 }
 .form-control{
   &::-webkit-input-placeholder{

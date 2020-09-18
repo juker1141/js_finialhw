@@ -17,7 +17,7 @@
     <table class="table mt-2 rounded">
       <thead class="alert-success">
         <tr>
-          <th class="text-center border-0 table_w_5 table_w_md_10">產品名稱</th>
+          <th class="text-center border-0 table_w_5 table_w_md_15">產品名稱</th>
           <th class="text-center border-0 table_w_10 d-none d-lg-table-cell">分類</th>
           <th class="text-center border-0 table_w_5 table_w_md_15
           d-none d-md-table-cell">原價</th>
