@@ -80,7 +80,7 @@
       <DelProductModal @update="getProducts(pagination.current_page)"
       :temp-product="tempProduct"/>
     </div>
-    <Pagination :pages="pagination" @update-pages="getProducts"/>
+    <PaginationAdmin :pages="pagination" @update-pages="getProducts"/>
   </div>
 </template>
 

@@ -1,7 +1,8 @@
 <template>
   <div>
     <section id="navbar"
-    class="w-100 position-fixed navbarPosition zIndex_30 bg-white">
+    class="w-100 position-fixed
+    navbarPosition zIndex_30 bg-white">
       <button v-if="windowY >= 500" @click="goToTop" class="position-fixed btn d-flex
       goToTopBtn_position p-1 border-yellow border_5px bg-dark"
       type="button" id="goToTopBtn">
@@ -26,15 +27,15 @@
             align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
             <li class="py-3 py-lg-0">
               <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-              to="/products">Products</router-link>
+              to="/products">商品</router-link>
             </li>
             <li class="py-3 py-lg-0">
               <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-              to="/about">Orders</router-link>
+              to="/orderlist">訂單</router-link>
             </li>
             <li class="py-3 py-lg-0">
               <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-              to="/about">About</router-link>
+              to="/about">關於我們</router-link>
             </li>
             <li class="py-3 py-lg-0">
               <router-link
@@ -50,7 +51,7 @@
             align-items-center position-relative"
             type="button">
             <span class="material-icons">shopping_cart</span>
-            <div v-if="cart.length > 1"
+            <div v-if="cart.length >= 1"
             class="position-absolute cartNum bg-danger d-flex align-items-center
             justify-content-center text-white rounded-circle fz_12">
               {{ cart.length }}
@@ -62,7 +63,7 @@
     <div id="cartBlock" :class="{ 'active' : cartBlockShow }"
     class="h-100 bg-white text-black position-fixed zIndex_40 p-6 cartBlockPosition">
       <div class="d-flex justify-content-between mb-5">
-        <div class="fz_48 font-weight-bold">購物車</div>
+        <div class="fz_48 font-weight-bold text-black">購物車</div>
         <div class="d-flex align-items-center">
           <button @click="closeCart"
           class="btn d-flex align-items-center p-0" type="button">
@@ -74,7 +75,7 @@
       </div>
       <div>
         <ul class="listStyle_none m-0 p-0">
-          <li class="d-flex bg-gray mb-2"
+          <li class="d-flex bg-gray mb-2 text-black"
           v-for="item in cart" :key="item.product.id">
             <div class="card-img-top rounded-0 cartImg"
             :style="{ background: `url(${item.product.imageUrl[0]})` }">
@@ -140,6 +141,13 @@
       </div>
       <div class="d-flex justify-content-end p-3">
         <div class="w-75 text-secondary d-flex flex-column">
+          <div class="d-flex mb-2">
+            <input type="text" v-model="couponCode.title"
+            class="form-control w-75 rounded-0"
+            id="coupons" placeholder="請輸入優惠卷">
+            <button class="btn btn-yellow ml-auto px-3 rounded-0"
+            type="button" @click="checkCoupon">確認</button>
+          </div>
           <div v-if="cartTotal"
           class="d-flex justify-content-between mb-1 align-items-center">
           購物車金額<div>NT {{ cartTotal | toCurrency | DollarSign }}</div></div>
@@ -185,7 +193,7 @@
           <div class="col-12 col-md-7">
             <div class="input-group mb-3">
               <input type="text" class="form-control form_control bg-transparent border-yellow
-              form_control_lg_lg fz_24" placeholder=" 請輸入您的 Email"
+              form_control_lg_lg fz_24 form-control_yellow" placeholder=" 請輸入您的 Email"
               aria-label="Example text with button addon" aria-describedby="button-addon1">
               <div class="input-group-prepend">
                 <button class="btn btn-yellow fz_14 fz_lg_24
@@ -291,6 +299,9 @@ export default {
       cartBlockShow: false,
       toPathName: '',
       fromPathName: '',
+      couponCode: {
+        title: '',
+      },
     };
   },
   watch: {
@@ -362,6 +373,13 @@ export default {
           this.loadingProduct = '';
           console.log(res);
           this.getcart();
+        });
+    },
+    checkCoupon() {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/coupon/search`;
+      this.$http.post(url, 'HAPPY777')
+        .then((res) => {
+          console.log(res);
         });
     },
     toInformationPage() {
@@ -472,14 +490,16 @@ export default {
   }
 }
 .form-control{
-  &::-webkit-input-placeholder{
-    color: #fecf2f;
-  }
-  &:-moz-placeholder{
-    color: #fecf2f;
-  }
-  &::-moz-placeholder{
-    color: #fecf2f;
+  &_yellow{
+    &::-webkit-input-placeholder{
+      color: #fecf2f;
+    }
+    &:-moz-placeholder{
+      color: #fecf2f;
+    }
+    &::-moz-placeholder{
+      color: #fecf2f;
+    }
   }
 }
 .w_100{

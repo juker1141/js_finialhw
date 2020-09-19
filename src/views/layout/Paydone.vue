@@ -13,10 +13,11 @@
         <span class="d-none d-xl-inline-block">，</span>
         <br class="d-block d-xl-none">希望您會喜歡我們的商品！</div>
         <div>接著您可以至
-        <router-link class="mr-2" to="/home">首頁</router-link>
-        ><router-link class="ml-2" to="/order">我的訂單</router-link> 中查詢運送狀況</div>
+        <router-link class="mr-2 font-weight-bold" to="/home">首頁</router-link>
+        ><router-link class="ml-2 font-weight-bold" to="/orderlist">
+        我的訂單</router-link> 中查詢運送狀況</div>
       </div>
-      <router-link class="text-white bg-black
+      <router-link class="text-black text_xl_white bg-yellow bg_xl_black
       text-decoration-none fz_24 px-9 py-2 mt-9 mt-xl-7 font-weight-bold"
       to="/products">繼續購物</router-link>
     </div>
@@ -30,13 +31,23 @@
     color: #121212 !important;
   }
 }
+.text_xl_white{
+  @media (min-width: 1200px) {
+    color: #fff !important;
+  }
+}
 .bg_xl_transparent{
   @media (min-width: 1200px) {
     background: transparent !important;
   }
 }
+.bg_xl_black{
+  @media (min-width: 1200px) {
+    background: #121212 !important;
+  }
+}
 .payDone_mt_auto{
-  margin-top: 10%;
+  margin-top: 20%;
 }
 .payDoneImg {
   background: url(https://images.unsplash.com/photo-1580401884879-27237ae4468e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2978&q=80) no-repeat;

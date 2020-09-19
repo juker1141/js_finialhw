@@ -21,15 +21,63 @@
         </div>
       </div>
     </section>-->
-    <ProductsNavbar/>
+    <div class="container">
+      <div class="w-100 d-flex justify-content-center my-5">
+        <ul class="listStyle_none d-flex align-items-center m-0 p-2 rounded">
+          <li class="">
+            <a href="#" @click.prevent="productsSelect = '全部商品'
+            ; getProducts()"
+            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+              全部
+            </a>
+          </li>
+          <li class="">
+            <a href="#" @click.prevent="productsSelect = '手工具'
+            ; getProducts()"
+            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+              手工具
+            </a>
+          </li>
+          <li class="">
+            <a href="#" @click.prevent="productsSelect = '量測工具'
+            ; getProducts()"
+            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+              量測工具
+            </a>
+          </li>
+          <li class="">
+            <a href="#" @click.prevent="productsSelect = '研磨工具'
+            ; getProducts()"
+            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+              研磨工具
+            </a>
+          </li>
+          <li class="">
+            <a href="#" @click.prevent="productsSelect = '電動工具'
+            ; getProducts()"
+            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+              電動工具
+            </a>
+          </li>
+          <li class="">
+            <a href="#" @click.prevent="productsSelect = '配件'
+            ; getProducts()"
+            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+              配件
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="container-fluid">
       <div class="row mb-7 px-lg-7">
         <div class="col-12">
           <div class="row">
             <div :key="item.id" class="col-12 col-md-6 col-lg-4
-            mb-5 position-relative" v-for="item in products">
-              <router-link class="text-decoration-none text-black"
-              :to="`/product/${item.id}`">
+            mb-5 position-relative" v-for="item in products"
+            v-show="productsSelect === '全部商品' || item.category === productsSelect">
+              <a href="#" class="text-decoration-none text-black"
+              @click.prevent="addSessionStorage(item, item.id)">
                 <div class="card cardSize border-0 m-0">
                   <div v-if="item.imageUrl" class="card-img-top rounded-0 cardImg"
                   :style="{ background: `url(${item.imageUrl[0]})` }">
@@ -60,30 +108,30 @@
                     </div>
                   </div>
                 </div>
-              </router-link>
+              </a>
               <div class="position-absolute">
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Pagination :pages="pagination" @update-pages="getProducts"/>
+      <div class="row justify-content-center mb-5">
+        <Pagination :pages="pagination" @update-pages="getProducts"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import ProductsNavbar from './ProductsNavbar.vue';
 
 export default {
   data() {
     return {
       products: { imageUrl: [] },
       pagination: {},
+      productsSelect: '全部商品',
+      recentlyViewedProducts: [],
     };
-  },
-  components: {
-    ProductsNavbar,
   },
   methods: {
     getProducts(num = 1) {
@@ -94,21 +142,23 @@ export default {
         this.pagination = res.data.meta.pagination;
       });
     },
-    addToCart(id, quantity = 1) {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
-      const cart = {
-        product: id,
-        quantity,
-      };
-      this.$http.post(url, cart)
-        .then((res) => {
-          console.log(res);
-          this.$emit('updateCart');
-        });
+    addSessionStorage(product, itemId) {
+      if (sessionStorage.getItem('recentlyViewed')) {
+        this.recentlyViewedProducts = (JSON.parse(sessionStorage.getItem('recentlyViewed')));
+      }
+      this.recentlyViewedProducts.push(product);
+      sessionStorage.setItem('recentlyViewed', JSON.stringify(this.recentlyViewedProducts));
+      this.$router.push(`/product/${itemId}`);
     },
   },
   created() {
-    this.getProducts();
+    this.$bus.$on('productsCategory', (state) => {
+      console.log('state');
+      this.productsSelect = state;
+    });
+    setTimeout(() => {
+      this.getProducts();
+    }, 0);
   },
 };
 </script>
@@ -120,7 +170,10 @@ export default {
   background-position: center !important;
   background-size: cover !important;
   @media (min-width: 1200px) {
-    height: 560px;
+    height: 350px;
+  }
+  @media (min-width: 1400px) {
+    height: 500px;
   }
 }
 .border_nm {

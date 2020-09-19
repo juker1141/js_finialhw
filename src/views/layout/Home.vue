@@ -126,7 +126,7 @@
     </div>
     <div class="container-fluid">
       <div class="row mb-5 mb-lg-7">
-        <div class="col-12 px-7 text-left text-black">
+        <div class="col-12 px-lg-7 text-left text-black">
           <h3 class="mb-5">作業手工具</h3>
           <Swiper :products="handTools"></Swiper>
         </div>
@@ -151,40 +151,40 @@
       <div class="row mb-5 mb-lg-9">
         <div class="col-12 px-7 text-left text-black">
           <h3 class="mb-5">更多工具</h3>
-          <div class="row mb-7">
-            <div class="col-4">
+          <div class="row mb-xl-7">
+            <div class="col-12 col-lg-4 mb-4 mb-lg-0">
               <router-link to="/products">
                 <div class="moreProductsImg moreProductsImg_1
                 position-relative"></div>
                 <div
                 class="moreProductsTitle position-absolute w-100 d-flex
                 justify-content-start p-3 ">
-                  <div class="text-black bg-white rounded-pill font-weight-bold fz_24
-                  ml-5 mt-3 py-1 px-5">量測工具</div>
+                  <div class="text-black bg-white rounded-pill font-weight-bold fz_lg_24
+                  ml-3 ml-lg-5 mt-lg-3 py-1 px-5">量測工具</div>
                 </div>
               </router-link>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-lg-4 mb-4 mb-lg-0">
               <router-link to="/products">
                 <div class="moreProductsImg moreProductsImg_2
                 position-relative"></div>
                 <div
                 class="moreProductsTitle position-absolute h-100 w-100 d-flex
                 justify-content-end align-items-end p-3">
-                  <div class="text-black bg-white rounded-pill font-weight-bold fz_24
-                  mr-5 mb-3 py-1 px-5">電動工具</div>
+                  <div class="text-black bg-white rounded-pill font-weight-bold fz_lg_24
+                  mr-3 mr-lg-5 mb-lg-3 py-1 px-5">電動工具</div>
                 </div>
               </router-link>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-lg-4 mb-4 mb-lg-0">
               <router-link to="/products">
                 <div class="moreProductsImg moreProductsImg_3
                 position-relative"></div>
                 <div
                 class="moreProductsTitle position-absolute w-100 d-flex
                 justify-content-start p-3 ">
-                  <div class="text-black bg-white rounded-pill font-weight-bold fz_24
-                  ml-5 mt-3 py-1 px-5">配件</div>
+                  <div class="text-black bg-white rounded-pill font-weight-bold fz_lg_24
+                  ml-3 ml-lg-5 mt-lg-3 py-1 px-5">配件</div>
                 </div>
               </router-link>
             </div>
@@ -280,7 +280,7 @@ export default {
   left: 0;
 }
 .moreProductsImg{
-  height: 570px;
+  height: 200px;
   width: 100%;
   background-position: center !important;
   background-size: cover !important;
@@ -292,6 +292,15 @@ export default {
   }
   &_3 {
     background: url(https://images.pexels.com/photos/20791/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+  }
+  @media (min-width: 768px) {
+    height: 300px;
+  }
+  @media (min-width: 992px) {
+    height: 360px;
+  }
+  @media (min-width: 1200px) {
+    height: 570px;
   }
 }
 .footerNewsImg{
@@ -314,28 +323,6 @@ export default {
     height: 400px;
     background-position: top !important;
   }
-}
-.featuresImg{
-  height: 250px;
-  width: 100%;
-  background-size: cover !important;
-  @media (min-width: 992px) {
-    height: 350px;
-  }
-}
-.featuresImg_1{
-  background-position: 25% 75% !important;
-  background: url(https://images.unsplash.com/photo-1596274646294-748054a0e300?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80) no-repeat;
-  -webkit-filter: sepia(.6);
-}
-.featuresImg_2{
-  background-position: center !important;
-  background: url(https://images.unsplash.com/photo-1542992015-4a0b729b1385?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1367&q=80) no-repeat;
-  -webkit-filter:saturate(1);
-}
-.featuresImg_3{
-  background-position: center !important;
-  background: url(https://images.pexels.com/photos/4393533/pexels-photo-4393533.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
 }
 .indexBannerImg_1 {
   background: url(https://images.pexels.com/photos/3828315/pexels-photo-3828315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)

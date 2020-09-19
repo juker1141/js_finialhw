@@ -1,10 +1,10 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-    <swiper-slide v-for="item in products" :key="item.id">
-      <router-link class="text-decoration-none text-black"
+    <swiper-slide v-show="item.id !== id" v-for="(item, index) in products" :key="index">
+      <router-link class="text-decoration-none h-100 w-100 text-black"
       :to="`/product/${item.id}`">
         <div class="card cardSize border-0 m-0">
-          <div v-if="item.imageUrl" class="card-img-top rounded-0 swiperImg"
+          <div v-if="item.imageUrl" @click="update" class="card-img-top rounded-0 swiperImg"
           :style="{ background: `url(${item.imageUrl[0]})` }">
           </div>
           <div v-if="!item.price || item.price != item.origin_price"
@@ -13,9 +13,9 @@
             <div class="text-dark font-weight-bold
             fz_14 bg-yellow p-1 rounded">On Sale</div>
           </div>
-          <div class="card-body mt-4 py-3 px-2
+          <div class="card-body mt-1 p-1 py-lg-3 px-lg-2
           d-flex justify-content-between align-items-center">
-            <div class="w-100 d-flex justify-content-between align-items-start">
+            <div class="w-100 d-flex justify-content-between align-items-center">
               <div class="d-flex flex-column align-items-start">
                 <div class="text-left mb-1 fz_20">
                   {{ item.title }}
@@ -51,33 +51,50 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  props: ['products'],
+  props: ['products', 'id'],
   data() {
     return {
       swiperOption: {
-        slidesPerView: 3,
-        spaceBetween: 30,
+        slidesPerView: 'auto',
         freeMode: true,
-        loop: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
       },
     };
+  },
+  methods: {
+    update() {
+      this.$emit('update');
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .swiper-slide {
-  width: 40% !important;
-  height: 550px;
+  width: 80% !important;
+  margin-right: 20px;
+  height: 320px;
+  @media (min-width: 768px) {
+    height: 450px;
+  }
+  @media (min-width: 992px) {
+    width: 50% !important;
+    height: 550px;
+  }
+  @media (min-width: 1200px) {
+    width: 40% !important;
+    height: 550px;
+  }
 }
 .swiperImg{
-  height: 450px;
+  height: 220px;
   width: 100%;
   background-position: center !important;
   background-size: cover !important;
+  @media (min-width: 768px) {
+    height: 350px;
+  }
+  @media (min-width: 992px) {
+    height: 450px;
+  }
 }
 </style>

@@ -13,6 +13,7 @@ import TW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
 import router from './router';
 import Pagination from './components/Pagination.vue';
+import PaginationAdmin from './components/PaginationAdmin.vue';
 import store from './store';
 
 Vue.use(VueAwesomeSwiper);
@@ -35,6 +36,7 @@ Vue.component('ValidationObserver', ValidationObserver);
 
 Vue.config.productionTip = false;
 Vue.component('Pagination', Pagination);
+Vue.component('PaginationAdmin', PaginationAdmin);
 Vue.use(VueAxios, axios);
 Vue.prototype.$bus = new Vue();
 window.$ = $;

@@ -97,7 +97,7 @@
       @updateOrder="getOrders"
       :temp-order="tempOrder"/>
     </div>
-    <Pagination :pages="pagination"/>
+    <PaginationAdmin :pages="pagination" @update-pages="getOrders"/>
   </div>
 </template>
 

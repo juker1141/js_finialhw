@@ -1,6 +1,7 @@
 <template>
-  <div class="navbar_adminPosition d-flex align-items-center h-100">
-    <nav class="navbar_admin h-100 w-100 bg-adminSecondary">
+  <div class="navbarAdminPosition navbarAdminStyle d-flex
+  align-items-center bg-adminSecondary h_100vh">
+    <nav class="navbarAdmin h-100 bg-adminSecondary w-100">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <h1 class="m-0 mt-6 mb-8">
           <router-link
@@ -132,7 +133,7 @@ export default {
 
   methods: {
     navberHover() {
-      $('.navbar_adminPosition').toggleClass('move');
+      $('.navbarAdminPosition').toggleClass('move');
     },
     signout() {
       // 將cookie清空即為登出
@@ -141,3 +142,56 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.navbarAdminPosition {
+  padding: 0;
+  position: fixed;
+  top: 0 !important;
+  bottom: 0;
+  width: 25%;
+  left: -25%;
+  z-index: 100;
+  @media (min-width: 768px) {
+    width: 20%;
+    left: -20%;
+  }
+  @media (min-width: 992px) {
+    width: 25%;
+    left: 0;
+  }
+}
+.navbarAdminStyle {
+  @media (min-width: 992px) {
+    overflow-y: auto;
+  }
+}
+.navbarList_hover :hover {
+  border-left: 6px solid #2a8356;
+  padding: 0 40% 0 42%;
+  @media (min-width: 992px) {
+    border-left: 8px solid #2a8356;
+    padding: 0;
+  }
+}
+.main_admin {
+  margin-left: 0;
+  @media (min-width: 992px) {
+    margin-left: 25%;
+  }
+}
+.navbar_showBtn {
+  padding: 0;
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  bottom: 50%;
+  right: -24px;
+  height: 100px;
+  border-top-right-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+}
+.move {
+  left: 0 !important;
+}
+</style>
