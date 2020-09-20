@@ -55,7 +55,10 @@
             </ul>
           </td>
           <td class="text-center py-1 px-0 p-md-2 p-lg-3 fz_12 fz_md_16">
-            <div class="pt_6">{{ item.amount | toCurrency | DollarSign }} 元</div>
+            <div v-if="item.amount < 2000" class="pt_6">
+            NT {{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元</div>
+            <div v-else
+            class="pt_6">NT {{ Math.round(item.amount) | toCurrency | DollarSign }} 元</div>
           </td>
           <td class="text-center p-1 p-md-2 p-lg-3 d-none d-xl-table-cell">
             <div class="pt_6">{{ item.payment }}</div>
@@ -131,7 +134,7 @@ export default {
   methods: {
     getOrders(num = 1) {
       this.$bus.$emit('loadingChange', true);
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}`;
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}&paged=10`;
       this.$http.get(url)
         .then((res) => {
           this.$bus.$emit('loadingChange', false);

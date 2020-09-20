@@ -6,7 +6,7 @@
         <h1 class="m-0 mt-6 mb-8">
           <router-link
             class="navbar-brand fontOrbitron fz_20 fz_md_24 fz_xl_30 p-0 m-0 text-black"
-            to="/admin"
+            to="/admin/home"
           >
             <span class="d-md-block d-none">
               Hardware

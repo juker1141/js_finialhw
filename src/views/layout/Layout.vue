@@ -26,8 +26,8 @@
             zIndex_10 position_absolute position_lg_relative
             align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
             <li class="py-3 py-lg-0">
-              <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-              to="/products">商品</router-link>
+              <a href="#" class="text-black px-3 mr-2 text-decoration-none list_hover"
+              @click="toTheCategory">商品</a>
             </li>
             <li class="py-3 py-lg-0">
               <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
@@ -140,13 +140,23 @@
         </ul>
       </div>
       <div class="d-flex justify-content-end p-3">
+        <div class="w-25 d-flex justify-content-end">
+          <span v-if="couponWorking === true" class="material-icons
+          fz_36 text-success pr-2">
+            done
+          </span>
+        </div>
         <div class="w-75 text-secondary d-flex flex-column">
-          <div class="d-flex mb-2">
-            <input type="text" v-model="couponCode.title"
-            class="form-control w-75 rounded-0"
-            id="coupons" placeholder="請輸入優惠卷">
-            <button class="btn btn-yellow ml-auto px-3 rounded-0"
-            type="button" @click="checkCoupon">確認</button>
+          <div class="d-flex mb-2 flex-column">
+            <div class="d-flex justify-content-between">
+              <input type="text" v-model="couponCode"
+              class="form-control w-75 rounded-0"
+              id="coupons" placeholder="請輸入優惠卷">
+              <button class="btn btn-yellow ml-auto px-3 rounded-0"
+              type="button" @click="checkCoupon(couponCode)">確認</button>
+            </div>
+            <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
+            ">找不到此優惠卷，請您再次確認</div>
           </div>
           <div v-if="cartTotal"
           class="d-flex justify-content-between mb-1 align-items-center">
@@ -299,9 +309,9 @@ export default {
       cartBlockShow: false,
       toPathName: '',
       fromPathName: '',
-      couponCode: {
-        title: '',
-      },
+      couponCode: '',
+      couponWorking: '',
+      coupon: {},
     };
   },
   watch: {
@@ -375,16 +385,36 @@ export default {
           this.getcart();
         });
     },
-    checkCoupon() {
+    checkCoupon(code) {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/coupon/search`;
-      this.$http.post(url, 'HAPPY777')
+      const coupon = {
+        code,
+      };
+      this.$http.post(url, coupon)
         .then((res) => {
+          this.couponWorking = true;
+          this.coupon = res.data.data;
+          if (this.cartTotal) {
+            this.cartTotal = Math.round(this.cartTotal * (this.coupon.percent / 100));
+          }
+          if (!localStorage.getItem('coupon')) {
+            localStorage.setItem('coupon', JSON.stringify(this.coupon));
+          }
           console.log(res);
+        }).catch(() => {
+          this.couponWorking = false;
+          localStorage.removeItem('coupon');
         });
     },
     toInformationPage() {
       setTimeout(() => {
         this.$router.push('/information').catch(() => {});
+      }, 500);
+    },
+    toTheCategory() {
+      this.$bus.$emit('productsCategory', '全部商品');
+      setTimeout(() => {
+        this.$router.push('/products');
       }, 500);
     },
     hideFooter() {

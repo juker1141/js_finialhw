@@ -9,9 +9,9 @@
       <div class="mb-3 fz_30">數位支付平台</div>
       <div v-if="!isPaid">
         <div v-if="order.amount > 2000" class="mb-4">
-        您將支付 NT {{ order.amount | toCurrency | DollarSign}}，確認付款嗎？</div>
+        您將支付 NT {{ Math.round(order.amount) | toCurrency | DollarSign}}，確認付款嗎？</div>
         <div v-else class="mb-3">
-        您將支付 NT {{ order.amount + 60 | toCurrency | DollarSign}}，確認付款嗎？</div>
+        您將支付 NT {{ Math.round(order.amount) + 60 | toCurrency | DollarSign}}，確認付款嗎？</div>
         <button type="button" class="btn fz_24_important
         bg-white text-black rounded-0 p-1 px-5" @click="payMoney">確認付款</button>
       </div>
@@ -39,6 +39,7 @@ export default {
   methods: {
     getOrder(id) {
       this.$store.dispatch('getOrder', id);
+      this.$bus.$emit('loadingChange', false);
     },
     payMoney() {
       this.$store.dispatch('payMoney', true);
@@ -48,6 +49,7 @@ export default {
     },
   },
   created() {
+    this.$bus.$emit('loadingChange', true);
     this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
     setTimeout(() => {
       this.getOrder(this.orderId);

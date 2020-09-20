@@ -106,10 +106,18 @@
                       </li>
                     </ul>
                     <hr>
+                    <div v-if="tempOrder.coupon"
+                    class="d-flex mb-2 text-secondary
+                    align-items-center justify-content-between fz_20">
+                      <div>優惠卷</div>
+                      <div class="text-right">
+                        {{ tempOrder.coupon.code }}
+                      </div>
+                    </div>
                     <div class="d-flex mb-2 align-items-center justify-content-between fz_20">
                       <div>訂單金額</div>
                       <div class="text-right">
-                        {{ tempOrder.amount | toCurrency | DollarSign }}
+                        {{ Math.round(tempOrder.amount) | toCurrency | DollarSign }}
                       </div>
                     </div>
                     <div class="d-flex mb-2 align-items-center justify-content-between fz_20">
@@ -126,10 +134,10 @@
                       <div>總計</div>
                       <div class="d-flex align-items-center">
                         <div class="text-right" v-if="tempOrder.amount >= 5000">
-                          {{ tempOrder.amount + 0 | toCurrency | DollarSign }}
+                          {{ Math.round(tempOrder.amount) + 0 | toCurrency | DollarSign }}
                         </div>
                         <div class="text-right" v-else>
-                          {{ tempOrder.amount + 60 | toCurrency | DollarSign }}
+                          {{ Math.round(tempOrder.amount) + 60 | toCurrency | DollarSign }}
                         </div>
                       </div>
                     </div>

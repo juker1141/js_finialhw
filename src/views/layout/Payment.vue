@@ -79,7 +79,7 @@
                 <div>請掃描下列 QR code 繳費</div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
                   <div class="card-img-top rounded-0 border border-black orderImg mt-3"
-                  :style="{ background: `url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/iD6Y460uwvAmMrHJGSqx5xWBgsONGu9zdHm5nIWQvdvCWKwQrhZD8Ws6GQbeLqiT0Eb2oxTFnmmJ70PUZ3QE2JL8f1GxP8jUb3ohODAogtwexWgMUZ8VkbSxuyaznt7R.jpg)` }"></div>
+                  :style="{ background: `url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/MaqkiRmIuOSczfZpVpF8aOWJgJ4yWzCzu8jGu3Y7T7TBVoN7apiMP4A7D8XpHuBgvoUkmmbqKVaMDWwZQ4kbZsS8Ji6Pfe1V9QmgxXvjFQlpZ2BXUPV0dcK03HwNi9Ce.png)` }"></div>
                   <div v-if="this.paid" class="text-success mt-3">轉帳成功！</div>
                 </div>
               </div>
@@ -140,6 +140,9 @@
                     </div>
                   </div>
                 </li><hr class="my-4 border-secondary">
+                <li v-if="order.coupon"
+                class="p-2 fz_14 text-secondary d-flex justify-content-between">
+                優惠卷<span>{{ order.coupon.code }}</span></li>
                 <li class="p-2 d-flex justify-content-between">
                 購物車金額<span>NT {{ orderTotal | toCurrency | DollarSign }}</span></li>
                 <li class="p-2 d-flex justify-content-between">
@@ -191,6 +194,9 @@ export default {
       this.order.products.forEach((item) => {
         this.orderTotal += (item.quantity * item.product.price);
       });
+      if (this.order.coupon) {
+        this.orderTotal = Math.round(this.orderTotal * (this.order.coupon.percent / 100));
+      }
       return this.orderTotal;
     },
     paid() {

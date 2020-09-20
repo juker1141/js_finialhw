@@ -135,11 +135,14 @@ export default {
   },
   methods: {
     getProducts(num = 1) {
+      this.$bus.$emit('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?page=${num}&paged=9`;
       this.$http.get(url).then((res) => {
-        console.log(res);
+        this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
         this.pagination = res.data.meta.pagination;
+      }).catch(() => {
+        this.$bus.$emit('loadingChange', false);
       });
     },
     addSessionStorage(product, itemId) {
@@ -153,7 +156,6 @@ export default {
   },
   created() {
     this.$bus.$on('productsCategory', (state) => {
-      console.log('state');
       this.productsSelect = state;
     });
     setTimeout(() => {

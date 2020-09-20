@@ -97,7 +97,7 @@
                     keyboard_arrow_left
                     </span>返回購物車
                   </router-link>
-                  <button type="submit" class="bg-black text-white
+                  <button type="submit" class="btn btn-black
                   fz_24 rounded-0 px-6 mb-3 mb-lg-0" :disabled="invalid">
                   前往付款</button>
                 </div>
@@ -150,8 +150,35 @@
                     </div>
                   </div>
                 </li><hr class="my-4 border-secondary">
+                <li class="d-flex align-items-center">
+                  <div class="w-100 d-flex mb-2 flex-column align-items-end">
+                    <div class="d-flex justify-content-between">
+                      <span v-if="couponWorking === true" class="material-icons
+                      fz_36 text-success pr-2">
+                        done
+                      </span>
+                      <div class="d-flex">
+                        <input type="text" v-model="coupon.code"
+                        class="form-control w-75 rounded-0"
+                        id="coupons" placeholder="請輸入優惠卷">
+                        <button class="btn btn-yellow ml-auto px-2 rounded-0"
+                        type="button" @click="checkCoupon(coupon.code)">確認</button>
+                      </div>
+                    </div>
+                    <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
+                    ">找不到此優惠卷，請您再次確認</div>
+                  </div>
+                </li>
                 <li class="p-2 d-flex justify-content-between">
-                購物車金額<span>NT {{ cartTotal | toCurrency | DollarSign }}</span></li>
+                購物車金額
+                <div class="d-flex flex-column align-items-end">
+                <span v-if="couponWorking === true">
+                NT {{ cartTotal - couponPrice | toCurrency | DollarSign }}</span>
+                <span v-else>
+                NT {{ cartTotal | toCurrency | DollarSign }}</span>
+                <span v-if="couponWorking === true" class="text-danger">
+                節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
+                </div></li>
                 <li class="p-2 d-flex justify-content-between">
                 運費
                 <div v-if="cartTotal > 2000">
@@ -161,9 +188,10 @@
                 </li>
                 <li class="p-2 d-flex justify-content-between font-weight-bold fz_20">
                 總金額
-                <div v-if="cartTotal > 2000">NT {{ cartTotal | toCurrency | DollarSign }}
+                <div v-if="cartTotal > 2000">
+                NT {{ cartTotal - couponPrice | toCurrency | DollarSign }}
                 </div>
-                <div v-else>NT {{ cartTotal + 60 | toCurrency | DollarSign }}</div>
+                <div v-else>NT {{ cartTotal - couponPrice + 60 | toCurrency | DollarSign }}</div>
                 </li>
               </ul>
             </div>
@@ -190,6 +218,10 @@ export default {
       },
       cart: [],
       cartTotal: 0,
+      cartTotalCoupon: 0,
+      coupon: {},
+      couponPrice: 0,
+      couponWorking: '',
     };
   },
   watch: {
@@ -218,11 +250,15 @@ export default {
     },
     createOrder() {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders`;
+      if (this.coupon.code) {
+        this.form.coupon = this.coupon.code;
+      }
       this.$http.post(url, this.form)
         .then((res) => {
           if (res.data.data.id) {
             // 跳出提示訊息
             this.$store.dispatch('getOrderId', res.data.data.id);
+            this.$store.dispatch('payMoney', false);
             if (localStorage.getItem('store')) {
               localStorage.removeItem('store');
             }
@@ -235,8 +271,40 @@ export default {
           console.log(error.response.data.errors);
         });
     },
+    checkCoupon(code) {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/coupon/search`;
+      const coupon = {
+        code,
+      };
+      this.$http.post(url, coupon)
+        .then((res) => {
+          this.couponWorking = true;
+          this.coupon = res.data.data;
+          let newCartTotal = this.cartTotal;
+          this.cartTotalCoupon = 0;
+          this.couponPrice = 0;
+          if (this.coupon.percent) {
+            this.cartTotalCoupon = Math.round(newCartTotal * (this.coupon.percent / 100));
+            this.couponPrice = newCartTotal - this.cartTotalCoupon;
+            newCartTotal = this.cartTotalCoupon;
+          }
+          console.log(res);
+        }).catch(() => {
+          this.couponWorking = false;
+          this.couponPrice = 0;
+        });
+    },
   },
   created() {
+    if (localStorage.getItem('coupon')) {
+      this.couponWorking = true;
+      this.coupon = JSON.parse(localStorage.getItem('coupon'));
+      setTimeout(() => {
+        this.checkCoupon(this.coupon.code);
+      }, 0);
+    } else {
+      this.coupon = {};
+    }
     this.getCart();
   },
 };
@@ -249,7 +317,7 @@ export default {
   background-position: center !important;
   background-size: cover !important;
 }
-.fz_48{
-  font-size: 24px;
+.fz_24{
+  font-size: 24px !important;
 }
 </style>

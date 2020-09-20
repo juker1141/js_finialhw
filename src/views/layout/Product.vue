@@ -119,9 +119,11 @@ export default {
       const { id } = this.$route.params;
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/product/${id}`;
       this.$http.get(url).then((res) => {
-        console.log(res);
+        this.$bus.$emit('loadingChange', false);
         this.product = res.data.data;
         this.category = res.data.data.category;
+      }).catch(() => {
+        this.$bus.$emit('loadingChange', false);
       });
     },
     addToCart(quantity = 1) {
@@ -132,8 +134,11 @@ export default {
       };
       this.$http.post(url, cart)
         .then((res) => {
+          this.$bus.$emit('message:push', '商品已加入購物車', 'success');
           console.log(res);
           this.$emit('updateCart');
+        }).catch(() => {
+          this.$bus.$emit('message:push', '購物車裡已有該商品', 'danger');
         });
     },
     backToProducts() {
@@ -147,6 +152,7 @@ export default {
     },
   },
   created() {
+    this.$bus.$emit('loadingChange', true);
     this.getProduct();
     this.recentlyViewedProducts = JSON.parse(sessionStorage.getItem('recentlyViewed'));
   },

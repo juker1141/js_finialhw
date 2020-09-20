@@ -153,7 +153,7 @@
           <h3 class="mb-5">更多工具</h3>
           <div class="row mb-xl-7">
             <div class="col-12 col-lg-4 mb-4 mb-lg-0">
-              <router-link to="/products">
+              <a href="#" class="text-decoration-none" @click="category = '量測工具'; toTheCategory()">
                 <div class="moreProductsImg moreProductsImg_1
                 position-relative"></div>
                 <div
@@ -162,10 +162,10 @@
                   <div class="text-black bg-white rounded-pill font-weight-bold fz_lg_24
                   ml-3 ml-lg-5 mt-lg-3 py-1 px-5">量測工具</div>
                 </div>
-              </router-link>
+              </a>
             </div>
             <div class="col-12 col-lg-4 mb-4 mb-lg-0">
-              <router-link to="/products">
+              <a href="#" class="text-decoration-none" @click="category = '電動工具'; toTheCategory()">
                 <div class="moreProductsImg moreProductsImg_2
                 position-relative"></div>
                 <div
@@ -174,10 +174,10 @@
                   <div class="text-black bg-white rounded-pill font-weight-bold fz_lg_24
                   mr-3 mr-lg-5 mb-lg-3 py-1 px-5">電動工具</div>
                 </div>
-              </router-link>
+              </a>
             </div>
             <div class="col-12 col-lg-4 mb-4 mb-lg-0">
-              <router-link to="/products">
+              <a href="#" class="text-decoration-none" @click="category = '配件'; toTheCategory()">
                 <div class="moreProductsImg moreProductsImg_3
                 position-relative"></div>
                 <div
@@ -186,7 +186,7 @@
                   <div class="text-black bg-white rounded-pill font-weight-bold fz_lg_24
                   ml-3 ml-lg-5 mt-lg-3 py-1 px-5">配件</div>
                 </div>
-              </router-link>
+              </a>
             </div>
           </div>
         </div>
@@ -204,6 +204,7 @@ export default {
       products: [],
       newProducts: [],
       handTools: [],
+      category: '',
     };
   },
   components: {
@@ -231,9 +232,18 @@ export default {
         [array[i], array[j]] = [array[j], array[i]];
       }
     },
+    toTheCategory() {
+      console.log(this.category);
+      setTimeout(() => {
+        this.$router.push('/products');
+      }, 500);
+    },
   },
   created() {
     this.getProducts();
+  },
+  beforeDestroy() {
+    this.$bus.$emit('productsCategory', this.category);
   },
 };
 </script>
