@@ -38,7 +38,8 @@
               </td>
               <td class="text-left p-1 p-md-2 p-lg-3">
                 <ul class="listStyle_none m-0 pl-0 pt_6">
-                  <li class="mb-1" v-for="( i, index ) in item.products" :key="index">
+                  <li :class="{ mblg1 : index < 2 }"
+                  v-for="( i, index ) in item.products" :key="index">
                     <div class="d-flex justify-content-between fz_12 fz_md_16">
                     {{ i.product.title }}<span class="d-xl-none">x{{ i.quantity }}</span>
                       <span class="d-none d-xl-table-cell">
@@ -135,6 +136,11 @@ export default {
 </script>
 
 <style lang="scss">
+.mblg1{
+  @media (min-width: 992px) {
+    margin-bottom: 4px;
+  }
+}
 .navItem{
   color: #121212;
   &.navItem_active {
