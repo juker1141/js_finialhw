@@ -154,8 +154,10 @@
               <input type="text" v-model="couponCode"
               class="form-control w-75 rounded-0"
               id="coupons" placeholder="請輸入優惠卷">
-              <button class="btn btn-yellow ml-auto px-3 rounded-0"
-              type="button" @click="checkCoupon(couponCode)">確認</button>
+              <button class="btn btn-yellow ml-auto px-2 rounded-0 d-flex align-items-cneter"
+              type="button" @click="checkCoupon(couponCode)"><span class="material-icons">
+              autorenew
+              </span></button>
             </div>
             <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
             ">找不到此優惠卷，請您再次確認</div>
@@ -186,7 +188,8 @@
           :disabled="cart.length === 0">
           前往結帳</button></div>
           <div v-if="cart.length === 0"
-          class="text-danger mt-5 fz_30">您的購物車沒有東西！！</div>
+          class="text-danger mt-5 fz_20 fz_lg_24">您的購物車
+          <br class="d-lg-none">沒有東西！！</div>
         </div>
       </div>
     </div>

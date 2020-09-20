@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--<section id="carouselBanner_sm" class="carousel slide mb-5 mb-lg-7"
+    <section id="carouselBanner_sm" class="carousel slide mb-5 mb-lg-7"
     data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -20,49 +20,51 @@
             想要獲得更多活動訊息及優惠資訊嗎？快訂閱我們的會員電子報吧！</div>
         </div>
       </div>
-    </section>-->
-    <div class="container">
+    </section>
+    <div class="container-fluid">
       <div class="w-100 d-flex justify-content-center my-5">
-        <ul class="listStyle_none d-flex align-items-center m-0 p-2 rounded">
-          <li class="">
+        <ul class="w-100 listStyle_none d-flex align-items-center
+        justify-content-lg-center
+        justify-content-between m-0 p-2 rounded">
+          <li>
             <a href="#" @click.prevent="productsSelect = '全部商品'
             ; getProducts()"
-            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               全部
             </a>
           </li>
-          <li class="">
+          <li>
             <a href="#" @click.prevent="productsSelect = '手工具'
             ; getProducts()"
-            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               手工具
             </a>
           </li>
-          <li class="">
+          <li>
             <a href="#" @click.prevent="productsSelect = '量測工具'
             ; getProducts()"
-            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               量測工具
             </a>
           </li>
-          <li class="">
+          <li>
             <a href="#" @click.prevent="productsSelect = '研磨工具'
             ; getProducts()"
-            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               研磨工具
             </a>
           </li>
           <li class="">
             <a href="#" @click.prevent="productsSelect = '電動工具'
             ; getProducts()"
-            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               電動工具
             </a>
           </li>
           <li class="">
             <a href="#" @click.prevent="productsSelect = '配件'
             ; getProducts()"
-            class="px-5 py-2 my-2 text-decoration-none productList_hover">
+            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               配件
             </a>
           </li>
