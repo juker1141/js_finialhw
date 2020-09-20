@@ -142,15 +142,19 @@
         </ul>
       </div>
       <div class="d-flex justify-content-end p-3">
-        <div class="w-25 d-flex justify-content-end">
+        <div class="w-25 d-none d-lg-flex justify-content-end">
           <span v-if="couponWorking === true" class="material-icons
           fz_36 text-success pr-2">
             done
           </span>
         </div>
-        <div class="w-75 text-secondary d-flex flex-column">
+        <div class="w-100 w_lg_75 text-secondary d-flex flex-column">
           <div class="d-flex mb-2 flex-column">
             <div class="d-flex justify-content-between">
+              <span v-if="couponWorking === true" class="material-icons
+              fz_36 text-success d-block d-lg-none pr-2">
+                done
+              </span>
               <input type="text" v-model="couponCode"
               class="form-control w-75 rounded-0"
               id="coupons" placeholder="請輸入優惠卷">
@@ -191,7 +195,7 @@
           NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div></div>
           <div class="d-flex justify-content-end">
           <button @click="closeCart(); toInformationPage()" type="button"
-          class="btn bg-black text-white rounded-0 fz_30 px-5"
+          class="btn bg-black text-white rounded-0 fz_30 px-5 w-100 w_lg_75"
           :disabled="cart.length === 0">
           前往結帳</button></div>
           <div v-if="cart.length === 0"

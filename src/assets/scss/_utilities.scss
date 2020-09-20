@@ -175,6 +175,11 @@ body {
 .w_75 {
   width: 75%;
 }
+.w_lg_75 {
+  @include media-breakpoint-up(lg) {
+    width: 75%;
+  }
+}
 .w_max_150px {
   max-width: 150px;
 }
