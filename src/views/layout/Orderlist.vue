@@ -73,7 +73,7 @@
                   <div v-else class="text-danger d-flex flex-column align-items-center">
                     未付款
                     <buttuon @click="goToPay(item.id)"
-                    class="btn btn-yellow rounded-0 mt-1 mt-lg-3" type="button">
+                    class="btn btn-black rounded-0 p-1 px-3 my-2 mt-lg-3" type="button">
                       前往付款
                     </buttuon>
                   </div>
