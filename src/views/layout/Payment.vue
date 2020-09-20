@@ -76,11 +76,11 @@
                 </div>
               </div>
               <div v-else class="p-3 border-top border-black">
-                <div>請掃描下列 QR code 繳費</div>
+                <div>請按按鈕進行繳費</div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
-                  <div class="card-img-top rounded-0 border border-black orderImg mt-3"
-                  :style="{ background: `url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/MaqkiRmIuOSczfZpVpF8aOWJgJ4yWzCzu8jGu3Y7T7TBVoN7apiMP4A7D8XpHuBgvoUkmmbqKVaMDWwZQ4kbZsS8Ji6Pfe1V9QmgxXvjFQlpZ2BXUPV0dcK03HwNi9Ce.png)` }"></div>
-                  <div v-if="this.paid" class="text-success mt-3">轉帳成功！</div>
+                  <router-link to="/paycheck" class="btn
+                  btn-black rounded-0 mt-3" v-if="!this.paid">前往繳費</router-link>
+                  <div v-else class="text-success mt-3">轉帳成功！</div>
                 </div>
               </div>
             </div>

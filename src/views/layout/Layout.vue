@@ -202,8 +202,9 @@
         <div class="row">
           <div class="col-12 col-md-7">
             <div class="input-group mb-3">
-              <input type="text" class="form-control form_control bg-transparent border-yellow
-              form_control_lg_lg fz_24 form-control_yellow" placeholder=" 請輸入您的 Email"
+              <input type="text" class="form-control text-yellow
+              form_control bg-transparent border-yellow
+              form_control_lg_lg fz_lg_24 form-control_yellow" placeholder=" 請輸入您的 Email"
               aria-label="Example text with button addon" aria-describedby="button-addon1">
               <div class="input-group-prepend">
                 <button class="btn btn-yellow fz_14 fz_lg_24
@@ -523,12 +524,24 @@ export default {
   &_yellow{
     &::-webkit-input-placeholder{
       color: #fecf2f;
+      font-size: 16px;
+      @media (min-width: 992px) {
+        font-size: 24px;
+      }
     }
     &:-moz-placeholder{
       color: #fecf2f;
+      font-size: 16px;
+      @media (min-width: 992px) {
+        font-size: 24px;
+      }
     }
     &::-moz-placeholder{
       color: #fecf2f;
+      font-size: 16px;
+      @media (min-width: 992px) {
+        font-size: 24px;
+      }
     }
   }
 }
