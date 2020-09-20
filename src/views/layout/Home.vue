@@ -90,20 +90,20 @@
                   <img :src="item.imageUrl[0]" class="card-img-top img-fluid cardImg" alt="...">
                   <div class="card-body bg-dark">
                     <div class="d-flex justify-content-between align-items-center">
-                      <div class="card-title text-yellow fz_30 font-weight-bold">
+                      <div class="card-title text-yellow fz_24 font-weight-bold">
                         {{ item.title }}
                       </div>
                       <span class="badge badge-yellow fz_14
                       text-black">{{ item.category }}</span>
                     </div>
-                    <div class="card-text text-left text-yellow fz_24">
-                      <div v-if="!item.price || item.price === item.origin_price">
-                        售價  {{ item.price | toCurrency | DollarSign }} 元
+                    <div class="card-text text-left text-yellow fz_24 mt-3">
+                      <div class="mt-6" v-if="!item.price || item.price === item.origin_price">
+                        售價 NT  {{ item.price | toCurrency | DollarSign }} 元
                       </div>
                       <div v-else>
                         <div class="fz_20 mb-2">
-                        原價 <s>{{ item.origin_price | toCurrency | DollarSign }}</s> 元</div>
-                        <div>現在只要 {{ item.price | toCurrency | DollarSign }} 元</div>
+                        原價 <s>NT {{ item.origin_price | toCurrency | DollarSign }}</s> 元</div>
+                        <div>現在只要 NT {{ item.price | toCurrency | DollarSign }} 元</div>
                       </div>
                     </div>
                   </div>
