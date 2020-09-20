@@ -107,6 +107,11 @@ body {
 .fz_48 {
   font-size: 48px;
 }
+.fz_md_48 {
+  @include media-breakpoint-up(md) {
+    font-size: 48px !important;
+  }
+}
 .fz_xl_48 {
   @include media-breakpoint-up(xl) {
     font-size: 48px !important;

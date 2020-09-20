@@ -63,13 +63,13 @@
       </div>
     </section>
     <div id="cartBlock" :class="{ 'active' : cartBlockShow }"
-    class="h-100 bg-white text-black position-fixed zIndex_40 p-6 cartBlockPosition">
+    class="h-100 bg-white text-black position-fixed zIndex_40 p-4 px-5 p-lg-6 cartBlockPosition">
       <div class="d-flex justify-content-between mb-5">
-        <div class="fz_48 font-weight-bold text-black">購物車</div>
+        <div class="fz_30 fz_md_36 font-weight-bold text-black">購物車</div>
         <div class="d-flex align-items-center">
           <button @click="closeCart"
           class="btn d-flex align-items-center p-0" type="button">
-            <span class="material-icons fz_48">
+            <span class="material-icons fz_30 fz_md_36">
             close
             </span>
           </button>
@@ -195,8 +195,7 @@
           :disabled="cart.length === 0">
           前往結帳</button></div>
           <div v-if="cart.length === 0"
-          class="text-danger mt-5 fz_20 fz_lg_24">您的購物車
-          <br class="d-lg-none">沒有東西！！</div>
+          class="text-danger text-right mt-5 fz_20 fz_lg_24">您的購物車沒有東西！！</div>
         </div>
       </div>
     </div>
