@@ -164,7 +164,13 @@
           </div>
           <div v-if="cartTotal"
           class="d-flex justify-content-between mb-1 align-items-center">
-          購物車金額<div>NT {{ cartTotal | toCurrency | DollarSign }}</div></div>
+            購物車金額
+            <span v-if="couponWorking === true">
+            NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
+            <span v-else>
+            NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span></div>
+            <span v-if="couponWorking === true" class="text-danger text-right mb-2">
+            節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
           <div v-else
           class="d-flex justify-content-between mb-1 align-items-center">
           購物車金額<div>NT 0</div></div>
@@ -178,10 +184,11 @@
           <div v-if="cartTotal > 2000"
           class="d-flex mb-3 justify-content-between align-items-center
           font-weight-bold fz_20 text-black">
-          總金額<div>NT {{ cartTotal + 0 | toCurrency | DollarSign }}</div></div>
+          總金額<div>NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</div></div>
           <div v-else class="d-flex mb-3 font-weight-bold fz_20
           justify-content-between align-items-center text-black">
-          總金額<div>NT {{ cartTotal + 60 | toCurrency | DollarSign }}</div></div>
+          總金額<div>
+          NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div></div>
           <div class="d-flex justify-content-end">
           <button @click="closeCart(); toInformationPage()" type="button"
           class="btn bg-black text-white rounded-0 fz_30 px-5"
@@ -318,6 +325,8 @@ export default {
       couponCode: '',
       couponWorking: '',
       coupon: {},
+      cartTotalCoupon: 0,
+      couponPrice: 0,
     };
   },
   watch: {
@@ -363,10 +372,8 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
       this.$http.get(url)
         .then((res) => {
-          console.log(res);
           this.cart = res.data.data;
-        }).catch((error) => {
-          console.log(error.response);
+        }).catch(() => {
         });
     },
     updateCartQuantity(id, quantity) {
@@ -378,10 +385,10 @@ export default {
         quantity,
       };
       this.$http.patch(url, cart)
-        .then((res) => {
+        .then(() => {
           this.loadingProduct = '';
-          console.log(res);
           this.getcart();
+          this.checkCoupon(this.couponCode);
         });
     },
     deleteCartProduct(id) {
@@ -389,9 +396,8 @@ export default {
       $('#loadingIcon').addClass('d-inline-block');
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
       this.$http.delete(url)
-        .then((res) => {
+        .then(() => {
           this.loadingProduct = '';
-          console.log(res);
           this.getcart();
         });
     },
@@ -404,15 +410,18 @@ export default {
         .then((res) => {
           this.couponWorking = true;
           this.coupon = res.data.data;
-          if (this.cartTotal) {
-            this.cartTotal = Math.round(this.cartTotal * (this.coupon.percent / 100));
+          let newCartTotal = this.cartTotal;
+          this.cartTotalCoupon = 0;
+          this.couponPrice = 0;
+          if (this.coupon.percent) {
+            this.cartTotalCoupon = Math.round(newCartTotal * (this.coupon.percent / 100));
+            this.couponPrice = newCartTotal - this.cartTotalCoupon;
+            newCartTotal = this.cartTotalCoupon;
           }
-          if (!localStorage.getItem('coupon')) {
-            localStorage.setItem('coupon', JSON.stringify(this.coupon));
-          }
-          console.log(res);
         }).catch(() => {
-          this.couponWorking = false;
+          if (this.couponCode) {
+            this.couponWorking = false;
+          }
           localStorage.removeItem('coupon');
         });
     },

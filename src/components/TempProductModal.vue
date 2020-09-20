@@ -142,15 +142,13 @@ export default {
         httpMethod = 'patch';
         text = '更新';
       }
-      console.log(this.isNew);
       this.$http[httpMethod](url, this.tempProduct)
         .then(() => {
           this.$emit('update');
           $('#productModal').modal('hide');
           this.$bus.$emit('message:push', `${text}商品成功`, 'success');
-        }).catch((error) => {
+        }).catch(() => {
           this.$bus.$emit('message:push', `${text}商品失敗，請再嘗試`, 'danger');
-          console.log(error);
         });
     },
     uploadFile() {
@@ -167,7 +165,6 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       }).then((res) => {
-        console.log(res);
         this.tempProduct.imageUrl.push(res.data.data.path);
         this.$bus.$emit('message:push', '圖片上傳成功', 'success');
       }).catch(() => {

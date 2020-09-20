@@ -66,7 +66,6 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       }).then((res) => {
-        console.log(res);
         this.filePath = res.data.data.path;
         this.getFiles();
         this.$bus.$emit('message:push', '圖片上傳成功', 'success');
@@ -79,8 +78,7 @@ export default {
       this.$bus.$emit('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/storage/${item.id}`;
       this.$http.delete(url)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           this.getFiles();
           this.$bus.$emit('message:push', '圖片刪除成功', 'success');
         }).catch(() => {

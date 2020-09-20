@@ -133,9 +133,8 @@ export default {
         quantity: this.num,
       };
       this.$http.post(url, cart)
-        .then((res) => {
+        .then(() => {
           this.$bus.$emit('message:push', '商品已加入購物車', 'success');
-          console.log(res);
           this.$emit('updateCart');
         }).catch(() => {
           this.$bus.$emit('message:push', '購物車裡已有該商品', 'danger');

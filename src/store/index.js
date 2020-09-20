@@ -18,7 +18,6 @@ export default new Vuex.Store({
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/${payload}`;
       axios.get(url)
         .then((res) => {
-          console.log(res);
           context.commit('ORDER', res.data.data);
         });
     },

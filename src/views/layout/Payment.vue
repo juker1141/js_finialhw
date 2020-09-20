@@ -22,7 +22,7 @@
         <div class="row flex-column-reverse flex-lg-row">
           <div class="col-12 col-lg-6 offset-lg-1 mt-3 mt-lg-0">
             <div class="text-left fz_24 mb-2">訂單資訊</div>
-            <div class="border border-black mb-5">
+            <div v-if="loading" class="border border-black mb-5">
               <div class="d-flex flex-column">
                 <div @click="showOrderInfo" class="d-flex justify-content-between
                 align-items-center border-bottom border-black p-3">
@@ -175,6 +175,7 @@ export default {
     return {
       orderTotal: 0,
       isPaying: false,
+      loading: false,
     };
   },
   computed: {
@@ -244,6 +245,7 @@ export default {
     this.getOrder(this.orderId);
     setTimeout(() => {
       this.writeInLocalStorage();
+      this.loading = true;
     }, 0);
     window.addEventListener('storage', (event) => {
       this.isPaying = true;

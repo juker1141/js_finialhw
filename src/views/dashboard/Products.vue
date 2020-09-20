@@ -112,7 +112,6 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res);
           this.products = res.data.data;
           this.pagination = res.data.meta.pagination;
           this.$bus.$emit('loadingChange', false);
@@ -136,7 +135,6 @@ export default {
           const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`;
           this.$http.get(url)
             .then((res) => {
-              console.log(res);
               this.$bus.$emit('loadingChange', false);
               this.tempProduct = res.data.data;
               $('#productModal').modal('show');

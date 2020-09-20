@@ -93,7 +93,6 @@ export default {
       this.$http
         .post(url, this.user)
         .then((res) => {
-          console.log(res);
           const { token } = res.data;
           const { expired } = res.data;
           // 將token與到期日寫入cookie;
@@ -105,11 +104,10 @@ export default {
           );
           this.$router.push('/admin/home');
         })
-        .catch((error) => {
+        .catch(() => {
           this.$bus.$emit('message:push',
             `登入失敗，請再嘗試`,'danger'
           );
-          console.log(error);
         });
     },
     signout() {

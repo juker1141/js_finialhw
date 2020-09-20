@@ -173,9 +173,9 @@
                 購物車金額
                 <div class="d-flex flex-column align-items-end">
                 <span v-if="couponWorking === true">
-                NT {{ cartTotal - couponPrice | toCurrency | DollarSign }}</span>
+                NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
                 <span v-else>
-                NT {{ cartTotal | toCurrency | DollarSign }}</span>
+                NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span>
                 <span v-if="couponWorking === true" class="text-danger">
                 節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
                 </div></li>
@@ -189,9 +189,10 @@
                 <li class="p-2 d-flex justify-content-between font-weight-bold fz_20">
                 總金額
                 <div v-if="cartTotal > 2000">
-                NT {{ cartTotal - couponPrice | toCurrency | DollarSign }}
+                NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}
                 </div>
-                <div v-else>NT {{ cartTotal - couponPrice + 60 | toCurrency | DollarSign }}</div>
+                <div v-else>
+                NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div>
                 </li>
               </ul>
             </div>
@@ -268,8 +269,7 @@ export default {
             // 重新渲染購物車
             this.getCart();
           }
-        }).catch((error) => {
-          console.log(error.response.data.errors);
+        }).catch(() => {
         });
     },
     checkCoupon(code) {
@@ -289,7 +289,6 @@ export default {
             this.couponPrice = newCartTotal - this.cartTotalCoupon;
             newCartTotal = this.cartTotalCoupon;
           }
-          console.log(res);
         }).catch(() => {
           this.couponWorking = false;
           this.couponPrice = 0;

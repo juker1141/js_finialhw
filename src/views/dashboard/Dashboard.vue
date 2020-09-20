@@ -31,12 +31,10 @@ export default {
         .post(url, {
           api_token: this.token,
         })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           this.checkSuccess = true;
         })
-        .catch((error) => {
-          console.log(error.response);
+        .catch(() => {
           this.$router.push('/login');
         });
     },

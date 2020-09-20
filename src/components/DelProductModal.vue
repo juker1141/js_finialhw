@@ -30,13 +30,10 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}
       /admin/ec/product/${this.tempProduct.id}`;
       this.$http.delete(url)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           $('#delProductModal').modal('hide');
           this.$emit('update');
-        }).catch((error) => {
-          console.log(error);
-        });
+        }).catch(() => {});
     },
   },
 };

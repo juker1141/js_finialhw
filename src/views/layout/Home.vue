@@ -233,7 +233,6 @@ export default {
       }
     },
     toTheCategory() {
-      console.log(this.category);
       setTimeout(() => {
         this.$router.push('/products');
       }, 500);

@@ -207,7 +207,6 @@ export default {
         case 'edit': {
           this.isNew = false;
           this.tempCoupon = { ...item };
-          console.log(this.tempCoupon);
           // 使用 split 切割相關時間戳
           const dedlineAt = this.tempCoupon.deadline.datetime.split(' ');
           [this.due_date, this.due_time] = dedlineAt; // 日期
@@ -236,14 +235,12 @@ export default {
       // 針對日期做組合重新寫入到物件中
       // 日期格式 Y-m-d H:i:s，例如：「2020-06-16 09:31:18」
       this.tempCoupon.deadline_at = `${this.due_date} ${this.due_time}`;
-      console.log(this.isNew);
       this.$http[httpMethod](url, this.tempCoupon)
         .then(() => {
           this.getCoupons();
           $('#couponModal').modal('hide');
           this.$bus.$emit('message:push', `${text}優惠卷成功`, 'success');
-        }).catch((error) => {
-          console.log(error);
+        }).catch(() => {
           $('#couponModal').modal('hide');
           this.$bus.$emit('message:push', `${text}優惠卷失敗，請再嘗試`, 'danger');
         });

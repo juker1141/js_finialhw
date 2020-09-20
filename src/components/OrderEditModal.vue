@@ -178,15 +178,12 @@ export default {
     },
     updateOrder(user) {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${this.tempOrder.id}`;
-      console.log(user);
       this.$http.patch(url, user)
-        .then((res) => {
+        .then(() => {
           this.$bus.$emit('message:push', '更新訂單資料成功', 'success');
-          console.log(res);
           this.$emit('updateOrder', user);
-        }).catch((error) => {
+        }).catch(() => {
           this.$bus.$emit('message:push', '更新訂單資料失敗', 'danger');
-          console.log(error.response);
         });
     },
   },
