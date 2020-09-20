@@ -59,11 +59,11 @@
         </div>
       </div>
       <div class="row mb-5">
-        <div class="col-6 col-lg-4 text-left">
+        <div class="col-12 col-md-6 mb-3 mb-lg-0 col-lg-4 text-left">
           <div class="fz_24 mb-2">產品特色</div>
           <div>{{ product.content }}</div>
         </div>
-        <div class="col-6 col-lg-4 text-left">
+        <div class="col-12 col-md-6 col-lg-4 text-left">
           <div class="fz_24 mb-2">產品規格</div>
           <div>{{ product.description }}</div>
         </div>

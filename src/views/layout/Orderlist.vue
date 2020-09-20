@@ -72,10 +72,10 @@
                   </div>
                   <div v-else class="text-danger d-flex flex-column align-items-center">
                     未付款
-                    <buttuon @click="goToPay(item.id)"
-                    class="btn btn-black rounded-0 p-1 px-3 my-2 mt-lg-3" type="button">
+                    <a href="#" @click="goToPay(item.id)" class="btn btn-black
+                    text-decoration-none rounded-0 p-1 px-3 my-2 mt-lg-3">
                       前往付款
-                    </buttuon>
+                    </a>
                   </div>
                 </div>
               </td>
