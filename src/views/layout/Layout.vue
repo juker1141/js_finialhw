@@ -26,24 +26,26 @@
             zIndex_10 position_absolute position_lg_relative
             align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
             <li class="py-3 py-lg-0">
-              <a href="#" class="text-black px-3 mr-2 text-decoration-none list_hover"
+              <a href="#"
+              class="text-black px-3 mr-2 text-decoration-none list_hover"
               @click="toTheCategory">商品</a>
             </li>
             <li class="py-3 py-lg-0">
-              <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-              to="/orderlist">訂單</router-link>
+              <a href="#" @click="goToPage('/orderlist')"
+              class="text-black px-3 mr-2 text-decoration-none list_hover"
+              >訂單</a>
             </li>
             <li class="py-3 py-lg-0">
-              <router-link class="text-black px-3 mr-2 text-decoration-none list_hover"
-              to="/about">關於我們</router-link>
+              <a href="#" @click="goToPage('/about')"
+              class="text-black px-3 mr-2 text-decoration-none list_hover"
+              >關於我們</a>
             </li>
             <li class="py-3 py-lg-0">
-              <router-link
+              <a href="#" @click="goToPage('/login')"
                 class="text-black btn p-1 d-flex justify-content-center align-items-center"
-                to="/login"
-              >
+                >
                 <span class="material-icons">person</span>
-              </router-link>
+              </a>
             </li>
           </ul>
           <button @click="openCart"
@@ -328,6 +330,10 @@ export default {
     navbarShow() {
       $('.list_position').slideToggle('fast');
     },
+    goToPage(link) {
+      $('.list_position').slideUp('fast');
+      this.$router.push(link);
+    },
     goToTop() {
       /* 按下GoTop按鈕時的事件 */
       $('html,body').animate({ scrollTop: 0 }, 'slow');/* 返回到最頂上 */
@@ -413,6 +419,7 @@ export default {
       }, 500);
     },
     toTheCategory() {
+      $('.list_position').slideToggle('fast');
       this.$bus.$emit('productsCategory', '全部商品');
       setTimeout(() => {
         this.$router.push('/products');
