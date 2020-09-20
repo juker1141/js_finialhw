@@ -257,6 +257,7 @@ export default {
         .then((res) => {
           if (res.data.data.id) {
             // 跳出提示訊息
+            this.$bus.$emit('getcart');
             this.$store.dispatch('getOrderId', res.data.data.id);
             this.$store.dispatch('payMoney', false);
             if (localStorage.getItem('store')) {

@@ -15,7 +15,7 @@
         <table class="table mt-2 rounded" width="400">
           <thead class="bg-gray">
             <tr>
-              <th class="text-center border-0 table_w_3 table_w_md_10 fz_12 fz_md_16">下單時間</th>
+              <th class="text-center border-0 table_w_7 table_w_md_10 fz_12 fz_md_16">下單時間</th>
               <th class="text-center border-0 table_w_7 table_w_md_15 fz_12 fz_md_16">購買款項</th>
               <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">單價</th>
               <th class="text-center border-0 table_w_10 fz_12 fz_md_16">
@@ -27,8 +27,7 @@
           </thead>
           <tbody>
             <tr v-show="item.paid === paid" :key="item.id" v-for="item in orderList">
-              <td class="text-center p-1 p-md-2 p-lg-3
-              d-flex justify-content-center align-items-center">
+              <td class="text-center p-1 p-md-2 p-lg-3">
                 <div class="tooltip_hover position-relative d-flex justify-content-center pt_6
                 fz_12 fz_md_16">
                   {{ item.created.timestamp | toDate }}
@@ -40,7 +39,8 @@
               <td class="text-left p-1 p-md-2 p-lg-3">
                 <ul class="listStyle_none m-0 pl-0 pt_6">
                   <li class="mb-1" v-for="( i, index ) in item.products" :key="index">
-                    <div class="d-flex justify-content-between fz_12 fz_md_16">{{ i.product.title }}
+                    <div class="d-flex justify-content-between fz_12 fz_md_16">
+                    {{ i.product.title }}<span class="d-xl-none">x{{ i.quantity }}</span>
                       <span class="d-none d-xl-table-cell">
                       {{ i.quantity }} {{ i.product.unit }}
                       </span>
@@ -160,7 +160,6 @@ export default {
   font-size: .8em;
   border-radius: 3px;
   text-align: center;
-  transition: ease-in-out .5s;
   /* Position the tooltip */
   position: absolute;
   z-index: 1;

@@ -16,7 +16,7 @@
         bg-white text-black rounded-0 p-1 px-5" @click="payMoney">確認付款</button>
       </div>
       <router-link v-else to="/payment" class="text-decoration-none text-white
-      fz_24_important bg-success p-1 px-5">付款成功！點擊回到原頁面確認</router-link>
+      fz_24_important p-3 px-5"><div class="bg-success">付款成功！<br>點擊回到原頁面確認</div></router-link>
     </div>
   </div>
 </template>

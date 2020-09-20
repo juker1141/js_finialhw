@@ -417,6 +417,11 @@ export default {
         });
     },
     toInformationPage() {
+      if (!localStorage.getItem('coupon')) {
+        localStorage.setItem('coupon', JSON.stringify(this.coupon));
+      } else {
+        localStorage.removeItem('coupon');
+      }
       setTimeout(() => {
         this.$router.push('/information').catch(() => {});
       }, 500);
@@ -450,6 +455,9 @@ export default {
     this.navbarShow();
     this.goToTopBtnShow();
     this.getcart();
+    this.$bus.$on('getcart', () => {
+      this.getcart();
+    });
     this.$bus.$on('cartBlockIsShow', (state) => {
       this.cartBlockShow = state;
     });
