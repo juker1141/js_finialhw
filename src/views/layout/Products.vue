@@ -78,7 +78,7 @@
             <template v-for="item in products">
               <div :key="item.id" class="col-12 col-md-6 col-lg-4
               mb-5 position-relative isShowingProduct"
-              v-if="productsSelect === '全部商品' || item.category === productsSelect">
+              >
                 <a href="#" class="text-decoration-none text-black"
                 @click.prevent="addSessionStorage(item, item.id)">
                   <div class="card cardSize border-0 m-0">
@@ -132,7 +132,7 @@
 export default {
   data() {
     return {
-      products: { imageUrl: [] },
+      products: [],
       pagination: {},
       productsSelect: '全部商品',
       recentlyViewedProducts: [],
@@ -145,6 +145,10 @@ export default {
       this.$http.get(url).then((res) => {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
+        if (this.productsSelect !== '全部商品') {
+          console.log('這部是全部商品的功能');
+          this.products.filter((item) => item.category === this.productsSelect);
+        }
         this.pagination = res.data.meta.pagination;
         console.log($('.isShowingProduct:visible').length);
       }).catch(() => {
