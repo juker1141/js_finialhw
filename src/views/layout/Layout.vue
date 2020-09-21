@@ -11,7 +11,7 @@
         </span>
       </button>
       <div class="container-fluid d-flex justify-content-between
-      align-items-center my-3 px-5 position-relative">
+      align-items-center my-2 my-lg-3 px-5 position-relative">
         <button class="btn p-1 justify-content-between align-items-center d-flex d-lg-none"
         type="button" @click="navbarShow">
           <span class="material-icons">menu</span>
@@ -346,8 +346,11 @@ export default {
       $('.list_position').slideToggle('fast');
     },
     goToPage(link) {
-      $('.list_position').slideUp('fast');
-      this.$router.push(link);
+      const w = $(window).width();
+      if (w < 992) {
+        $('.list_position').slideToggle('fast');
+      }
+      this.$router.push(link).catch(() => {});
     },
     goToTop() {
       /* 按下GoTop按鈕時的事件 */
@@ -439,10 +442,13 @@ export default {
       }, 500);
     },
     toTheCategory() {
-      $('.list_position').slideToggle('fast');
+      const w = $(window).width();
+      if (w < 992) {
+        $('.list_position').slideToggle('fast');
+      }
       this.$bus.$emit('productsCategory', '全部商品');
       setTimeout(() => {
-        this.$router.push('/products');
+        this.$router.push('/products').catch(() => {});
       }, 500);
     },
     hideFooter() {
@@ -519,7 +525,7 @@ export default {
   }
 }
 .navbar_mt {
-  margin-top: 66px;
+  margin-top: 50px;
   @media (min-width: 768px) {
     margin-top: 77px;
   }
@@ -533,13 +539,13 @@ export default {
   border-width: 5px;
 }
 .list_position {
-  top: 50px;
+  top: 42px;
   width: 100%;
   left: 0;
   display: none;
   z-index: 30;
   @media (min-width: 768px) {
-    top: 60px;
+    top: 52px;
   }
   @media (min-width: 992px) {
     top: 0;

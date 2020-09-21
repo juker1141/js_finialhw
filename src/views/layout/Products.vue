@@ -75,45 +75,47 @@
       <div class="row mb-7 px-lg-7">
         <div class="col-12">
           <div class="row">
-            <div :key="item.id" class="col-12 col-md-6 col-lg-4
-            mb-5 position-relative" v-for="item in products"
-            v-show="productsSelect === '全部商品' || item.category === productsSelect">
-              <a href="#" class="text-decoration-none text-black"
-              @click.prevent="addSessionStorage(item, item.id)">
-                <div class="card cardSize border-0 m-0">
-                  <div v-if="item.imageUrl" class="card-img-top rounded-0 cardImg"
-                  :style="{ background: `url(${item.imageUrl[0]})` }">
-                  </div>
-                  <div v-if="!item.price || item.price != item.origin_price"
-                  class="card-img-overlay d-flex
-                  align-items-start justify-content-end p-3">
-                  <div class="text-dark font-weight-bold
-                  fz_14 bg-yellow p-1 rounded">On Sale</div></div>
-                  <div class="card-body py-3 px-2
-                  d-flex justify-content-between align-items-center">
-                    <div class="w-100 d-flex justify-content-between align-items-start">
-                      <div class="d-flex flex-column align-items-start">
-                        <div class="text-left mb-1 fz_20">
-                          {{ item.title }}
+            <template v-for="item in products">
+              <div :key="item.id" class="col-12 col-md-6 col-lg-4
+              mb-5 position-relative isShowingProduct"
+              v-if="productsSelect === '全部商品' || item.category === productsSelect">
+                <a href="#" class="text-decoration-none text-black"
+                @click.prevent="addSessionStorage(item, item.id)">
+                  <div class="card cardSize border-0 m-0">
+                    <div v-if="item.imageUrl" class="card-img-top rounded-0 cardImg"
+                    :style="{ background: `url(${item.imageUrl[0]})` }">
+                    </div>
+                    <div v-if="!item.price || item.price != item.origin_price"
+                    class="card-img-overlay d-flex
+                    align-items-start justify-content-end p-3">
+                    <div class="text-dark font-weight-bold
+                    fz_14 bg-yellow p-1 rounded">On Sale</div></div>
+                    <div class="card-body py-3 px-2
+                    d-flex justify-content-between align-items-center">
+                      <div class="w-100 d-flex justify-content-between align-items-start">
+                        <div class="d-flex flex-column align-items-start">
+                          <div class="text-left mb-1 fz_20">
+                            {{ item.title }}
+                          </div>
+                          <div class="text-secondary">{{ item.category }}</div>
                         </div>
-                        <div class="text-secondary">{{ item.category }}</div>
-                      </div>
-                      <div class="text-left fontRoboto">
-                        <div v-if="!item.price || item.price === item.origin_price"
-                        >NT {{ item.origin_price | toCurrency | DollarSign }}</div>
-                        <div v-else class="d-flex align-items-center">
-                          <del class="text-secondary">
-                          NT {{ item.origin_price | toCurrency | DollarSign }}</del>
-                          <div class="ml-3">NT {{ item.price | toCurrency | DollarSign }}</div>
+                        <div class="text-left fontRoboto">
+                          <div v-if="!item.price || item.price === item.origin_price"
+                          >NT {{ item.origin_price | toCurrency | DollarSign }}</div>
+                          <div v-else class="d-flex align-items-center">
+                            <del class="text-secondary">
+                            NT {{ item.origin_price | toCurrency | DollarSign }}</del>
+                            <div class="ml-3">NT {{ item.price | toCurrency | DollarSign }}</div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </a>
+                <div class="position-absolute">
                 </div>
-              </a>
-              <div class="position-absolute">
               </div>
-            </div>
+            </template>
           </div>
         </div>
       </div>
@@ -125,6 +127,7 @@
 </template>
 
 <script>
+/* global $ */
 
 export default {
   data() {
@@ -143,6 +146,7 @@ export default {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
         this.pagination = res.data.meta.pagination;
+        console.log($('.isShowingProduct:visible').length);
       }).catch(() => {
         this.$bus.$emit('loadingChange', false);
       });

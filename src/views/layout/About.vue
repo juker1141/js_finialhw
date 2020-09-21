@@ -1,7 +1,7 @@
 <template>
   <div class="text-black mb-5 mb-lg-7">
-    <div class="py-9 fz_48">歡迎來到
-    <span class="fontOrbitron ml-2">Hardware Store</span>！！</div>
+    <div class="py-5 py-md-7 py-lg-9 fz_30 fz_lg_48">歡迎來到<br class="d-lg-none">
+    <span class="fontOrbitron ml-2">Hardware Store</span></div>
     <div class="row mb-3 mx-md-5 mx-lg-7">
       <div class="col-12 col-lg-8">
         <div class="featuresImg featuresImg_1"></div>
