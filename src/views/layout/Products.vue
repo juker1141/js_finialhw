@@ -146,8 +146,13 @@ export default {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
         if (this.productsSelect !== '全部商品') {
-          console.log('這部是全部商品的功能');
-          this.products.filter((item) => item.category === this.productsSelect);
+          this.products = [];
+          console.log('這部是全部商品的功能', this.productsSelect);
+          res.data.data.filter((item) => {
+            console.log(item.category === this.productsSelect);
+            return item.category === this.productsSelect;
+          });
+          this.products = res.data.data;
         }
         this.pagination = res.data.meta.pagination;
         console.log($('.isShowingProduct:visible').length);
