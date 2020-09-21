@@ -78,7 +78,7 @@
             <template v-for="item in products">
               <div :key="item.id" class="col-12 col-md-6 col-lg-4
               mb-5 position-relative isShowingProduct"
-              >
+              v-show="productsSelect === '全部商品' || item.category === productsSelect">
                 <a href="#" class="text-decoration-none text-black"
                 @click.prevent="addSessionStorage(item, item.id)">
                   <div class="card cardSize border-0 m-0">
@@ -119,9 +119,6 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center mb-5">
-        <Pagination :pages="pagination" @update-pages="getProducts"/>
-      </div>
     </div>
   </div>
 </template>
@@ -133,29 +130,17 @@ export default {
   data() {
     return {
       products: [],
-      pagination: {},
       productsSelect: '全部商品',
       recentlyViewedProducts: [],
     };
   },
   methods: {
     getProducts(num = 1) {
-      const vm = this;
       this.$bus.$emit('loadingChange', true);
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?page=${num}&paged=9`;
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
       this.$http.get(url).then((res) => {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
-        if (vm.productsSelect !== '全部商品') {
-          console.log('這部是全部商品的功能', vm.productsSelect);
-          vm.products = res.data.data.filter((item) => {
-            console.log(item.category === vm.productsSelect);
-            return item.category === vm.productsSelect;
-          });
-          console.log(vm.products);
-        }
-        this.pagination = res.data.meta.pagination;
-        console.log($('.isShowingProduct:visible').length);
       }).catch(() => {
         this.$bus.$emit('loadingChange', false);
       });
@@ -165,7 +150,11 @@ export default {
         this.recentlyViewedProducts = (JSON.parse(sessionStorage.getItem('recentlyViewed')));
       }
       this.recentlyViewedProducts.push(product);
-      sessionStorage.setItem('recentlyViewed', JSON.stringify(this.recentlyViewedProducts));
+      const set = new Set();// 這邊取出暫存資料不重複的部分
+      const result = this.recentlyViewedProducts
+        .filter((item) => (!set.has(item.id) ? set.add(item.id) : false));
+      // 將不重複的部分上傳至storage
+      sessionStorage.setItem('recentlyViewed', JSON.stringify(result));
       this.$router.push(`/product/${itemId}`);
     },
   },

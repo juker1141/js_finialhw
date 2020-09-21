@@ -78,24 +78,24 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="description" class="text-left w-100">商品說明</label>
+                <label for="description" class="text-left w-100">商品規格</label>
                 <textarea id="description" v-model="tempProduct.description"
                 type="text" class="form-control"
-                  placeholder="請輸入商品說明">
+                  placeholder="請輸入商品規格">
                   </textarea>
               </div>
               <div class="form-group">
-                <label for="content" class="text-left w-100">商品敘述</label>
+                <label for="content" class="text-left w-100">商品特色</label>
                 <textarea id="description" v-model="tempProduct.content"
                 type="text" class="form-control"
-                  placeholder="請說明商品敘述">
+                  placeholder="請說明商品特色">
                   </textarea>
                 <!--<TinyMCE :tinymceHtml="tempProduct.content"/>-->
               </div>
-              <div class="form-check checkboxStyle
+              <div class="form-check checkboxStyle pl-0
               d-flex align-items-center position-relative">
                 <input id="enabled" v-model="tempProduct.enabled"
-                class="border-black ml-2 opacity_0 zIndex_20" type="checkbox">
+                class="border-black opacity_0 zIndex_20" type="checkbox">
                 <div v-if="tempProduct.enabled" class="position-absolute zIndex_10
                 checkboxStyle_check">
                   <span class="material-icons fz_40 text-success font-weight-bold">check</span>

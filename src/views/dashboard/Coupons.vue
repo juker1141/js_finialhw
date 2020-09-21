@@ -114,8 +114,9 @@
               aria-describedby="due_time"
               v-model="due_time">
             </div>
-            <div class="form-group checkboxStyle d-flex align-items-center mt-4 position-relative">
-              <input type="checkbox" class="border-black ml-2 opacity_0 zIndex_20"
+            <div class="form-group checkboxStyle pl-0
+            d-flex align-items-center mt-4 position-relative">
+              <input type="checkbox" class="border-black opacity_0 zIndex_20"
               id="enabled" aria-describedby="is_enabled"
               v-model="tempCoupon.enabled">
               <div v-if="tempCoupon.enabled" class="position-absolute zIndex_10

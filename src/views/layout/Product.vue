@@ -98,6 +98,8 @@
 </style>
 
 <script>
+/* global $ */
+
 import Swiper from '../../components/Swiper.vue';
 
 export default {
@@ -154,6 +156,9 @@ export default {
     this.$bus.$emit('loadingChange', true);
     this.getProduct();
     this.recentlyViewedProducts = JSON.parse(sessionStorage.getItem('recentlyViewed'));
+    // if ( === 0) {
+
+    // }
   },
   beforeDestroy() {
     this.$bus.$emit('productsCategory', this.category);
