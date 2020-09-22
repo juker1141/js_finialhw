@@ -1,5 +1,5 @@
 <template>
-  <div class="position-fixed toastPosition zIndex_40">
+  <div class="position-fixed toastPosition zIndex_100">
     <div
       v-for="(item, i) in messages"
       :id="`toast-${i}`"

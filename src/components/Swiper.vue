@@ -5,12 +5,13 @@
         <router-link class="text-decoration-none h-100 w-100 text-black"
         :to="`/product/${item.id}`">
           <div class="card cardSize border-0 m-0">
-            <div v-if="item.imageUrl" @click="update" class="card-img-top rounded-0 swiperImg"
-            :style="{ background: `url(${item.imageUrl[0]})` }">
+            <div @click="update" class="overflow-hidden"
+            >
+              <div class="card-img-top rounded-0 swiperImg" v-if="item.imageUrl"
+              :style="{ background: `url(${item.imageUrl[0]})` }"></div>
             </div>
             <div v-if="!item.price || item.price != item.origin_price"
-            class="card-img-overlay d-flex
-            align-items-start justify-content-end p-3">
+            class="position-absolute salePosition p-3">
               <div class="text-dark font-weight-bold
               fz_14 bg-yellow p-1 rounded">On Sale</div>
             </div>
@@ -90,6 +91,8 @@ export default {
 .swiperImg{
   height: 220px;
   width: 100%;
+  transform:scale(1);
+  transition: all .5s ease-out;
   background-position: center !important;
   background-size: cover !important;
   @media (min-width: 768px) {
@@ -97,6 +100,10 @@ export default {
   }
   @media (min-width: 992px) {
     height: 450px;
+  }
+  &:hover {
+    -webkit-filter:opacity(.7);
+    transform:scale(1.1);
   }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="fontNotoSans position-relative" id="app">
     <Loading v-if="isLoading"></Loading>
+    <Toast/>
     <div v-if="darkShadyOn" @click="closeCart"
     class="bg-grayOP position-fixed h-100 w-100 zIndex_40 top_0"></div>
-    <Toast />
     <router-view class="position-relative"/>
   </div>
 </template>

@@ -81,13 +81,14 @@
               v-show="productsSelect === '全部商品' || item.category === productsSelect">
                 <a href="#" class="text-decoration-none text-black"
                 @click.prevent="addSessionStorage(item, item.id)">
-                  <div class="card cardSize border-0 m-0">
-                    <div v-if="item.imageUrl" class="card-img-top rounded-0 cardImg"
-                    :style="{ background: `url(${item.imageUrl[0]})` }">
+                  <div class="card position-relative cardSize border-0 m-0">
+                    <div class="overflow-hidden"
+                    >
+                      <div class="card-img-top rounded-0 cardImg" v-if="item.imageUrl"
+                      :style="{ background: `url(${item.imageUrl[0]})` }"></div>
                     </div>
                     <div v-if="!item.price || item.price != item.origin_price"
-                    class="card-img-overlay d-flex
-                    align-items-start justify-content-end p-3">
+                    class="position-absolute salePosition p-3">
                     <div class="text-dark font-weight-bold
                     fz_14 bg-yellow p-1 rounded">On Sale</div></div>
                     <div class="card-body py-3 px-2
@@ -173,6 +174,8 @@ export default {
 .cardImg {
   width: 100%;
   height: 300px;
+  transform:scale(1);
+  transition: all .5s ease-out;
   background-position: center !important;
   background-size: cover !important;
   @media (min-width: 1200px) {
@@ -181,6 +184,13 @@ export default {
   @media (min-width: 1400px) {
     height: 500px;
   }
+  &:hover {
+    -webkit-filter:opacity(.7);
+    transform:scale(1.1);
+  }
+}
+.salePosition{
+  right: 0;
 }
 .border_nm {
   border-width: 5px !important;
