@@ -133,6 +133,7 @@ export default {
       products: [],
       productsSelect: '全部商品',
       recentlyViewedProducts: [],
+      pagination: {},
     };
   },
   methods: {
@@ -142,6 +143,17 @@ export default {
       this.$http.get(url).then((res) => {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
+        const pageOne = this.products.slice(0, 12);
+        const pageTwo = this.products.slice(12);
+        console.log(res, pageOne, pageTwo);
+        this.pagination = {
+          count: this.products.length,
+          current_page: 1,
+          per_page: 9,
+          total: 18,
+          total_pages: Math.ceil(this.products.length / 9),
+        };
+        console.log(this.pagination);
       }).catch(() => {
         this.$bus.$emit('loadingChange', false);
       });
