@@ -27,8 +27,7 @@
             align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
             <li class="py-3 py-lg-0">
               <a href="#"
-              class="text-black px-3 mr-2 text-decoration-none list_hover"
-              @click="toTheCategory">商品</a>
+              class="text-black px-3 mr-2 text-decoration-none list_hover">商品</a>
             </li>
             <li class="py-3 py-lg-0">
               <a href="#" @click="goToPage('/orderlist')"
@@ -439,16 +438,6 @@ export default {
       }
       setTimeout(() => {
         this.$router.push('/information').catch(() => {});
-      }, 500);
-    },
-    toTheCategory() {
-      const w = $(window).width();
-      if (w < 992) {
-        $('.list_position').slideToggle('fast');
-      }
-      this.$bus.$emit('productsCategory', '全部商品');
-      setTimeout(() => {
-        this.$router.push('/products').catch(() => {});
       }, 500);
     },
     hideFooter() {

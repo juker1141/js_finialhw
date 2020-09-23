@@ -27,43 +27,37 @@
         justify-content-lg-center
         justify-content-between m-0 p-2 rounded">
           <li>
-            <a href="#" @click.prevent="productsSelect = '全部商品'
-            ; getProducts()"
+            <a href="#" @click.prevent="productsSelect('全部商品')"
             class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               全部
             </a>
           </li>
           <li>
-            <a href="#" @click.prevent="productsSelect = '手工具'
-            ; getProducts()"
+            <a href="#" @click.prevent="productsSelect('手工具')"
             class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               手工具
             </a>
           </li>
           <li>
-            <a href="#" @click.prevent="productsSelect = '量測工具'
-            ; getProducts()"
+            <a href="#" @click.prevent="productsSelect('量測工具')"
             class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               量測工具
             </a>
           </li>
           <li>
-            <a href="#" @click.prevent="productsSelect = '研磨工具'
-            ; getProducts()"
+            <a href="#" @click.prevent="productsSelect('研磨工具')"
             class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               研磨工具
             </a>
           </li>
           <li class="">
-            <a href="#" @click.prevent="productsSelect = '電動工具'
-            ; getProducts()"
+            <a href="#" @click.prevent="productsSelect('電動工具')"
             class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               電動工具
             </a>
           </li>
           <li class="">
-            <a href="#" @click.prevent="productsSelect = '配件'
-            ; getProducts()"
+            <a href="#" @click.prevent="productsSelect('配件')"
             class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
               配件
             </a>
@@ -75,10 +69,9 @@
       <div class="row mb-7 px-lg-7">
         <div class="col-12">
           <div class="row">
-            <template v-for="item in products">
-              <div :key="item.id" class="col-12 col-md-6 col-lg-4
-              mb-5 position-relative isShowingProduct"
-              v-show="productsSelect === '全部商品' || item.category === productsSelect">
+            <template v-for="(item, index) in pagination.currentArticleList">
+              <div :key="index" class="col-12 col-md-6 col-lg-4
+              mb-5 position-relative isShowingProduct">
                 <a href="#" class="text-decoration-none text-black"
                 @click.prevent="addSessionStorage(item, item.id)">
                   <div class="card position-relative cardSize border-0 m-0">
@@ -121,6 +114,34 @@
         </div>
       </div>
     </div>
+    <div class="d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="paginationMain p-0 m-0 listStyle_none d-flex align-items-center">
+          <li class="page-item mr-2">
+            <a href="#" class="prev"
+            :class="{ disabled: pagination.currentPage === 1 }"
+            @click.prevent="changePageList('prev')">
+              <i class="fas fa-angle-left"></i>
+            </a>
+          </li>
+
+          <li class="page-item mr-2" v-for="(page, index) in pagination.totalPages"
+          :key="index">
+            <a href="#" class="num text-decoration-none fz_md_20"
+            @click.prevent="updatePage(i)"
+            :class="{ active: pagination.currentPage === page }">{{ page }}</a>
+          </li>
+
+          <li class="page-item">
+            <a href="#" class="next"
+            :class="{ disabled: pagination.currentPage === pagination.totalPages }"
+            @click.prevent="changePageList('next')">
+              <i class="fas fa-angle-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>
 
@@ -131,26 +152,27 @@ export default {
   data() {
     return {
       products: [],
-      productsSelect: '全部商品',
       recentlyViewedProducts: [],
-      pagination: {},
+      pagination: {
+        count: 12,
+        currentPage: 1,
+        currentArticleList: [],
+        totalArticleList: [],
+        totalPages: '',
+      },
     };
   },
   methods: {
-    getProducts(num = 1) {
+    getProducts() {
       this.$bus.$emit('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
       this.$http.get(url).then((res) => {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
-        this.pagination = {
-          count: this.products.length,
-          currentPage: 1,
-          per_page: 9,
-          total: 18,
-          total_pages: Math.ceil(this.products.length / 9),
-        };
-        console.log(this.pagination);
+        this.pagination.totalArticleList = this.products;
+        this.pagination.totalPages = Math.ceil(this.pagination.totalArticleList.length
+        / this.pagination.count);
+        this.initPageList();
       }).catch(() => {
         this.$bus.$emit('loadingChange', false);
       });
@@ -167,14 +189,43 @@ export default {
       sessionStorage.setItem('recentlyViewed', JSON.stringify(result));
       this.$router.push(`/product/${itemId}`);
     },
+    productsSelect(category) {
+      const vm = this.pagination;
+      if (category === '全部商品') {
+        vm.totalArticleList = this.products;
+        vm.totalPages = Math.ceil(vm.totalArticleList.length
+          / vm.count);
+      } else {
+        vm.totalArticleList = this.products.filter((item) => item.category === category);
+        vm.totalPages = Math.ceil(vm.totalArticleList.length
+          / vm.count);
+      }
+      this.initPageList();
+    },
+    initPageList() {
+      this.pagination.currentArticleList = [];
+      for (let i = ((this.pagination.currentPage - 1) * this.pagination.count);
+        i < (this.pagination.currentPage * this.pagination.count); i += 1) {
+        if (this.pagination.totalArticleList[i]) {
+          this.pagination.currentArticleList.push(this.pagination.totalArticleList[i]);
+        }
+      }
+    },
+    changePageList(state) {
+      if (state === 'prev') {
+        if (this.pagination.currentPage > 1) {
+          this.pagination.currentPage -= 1;
+        }
+      } else if (state === 'next') {
+        if (this.pagination.currentPage < this.pagination.totalPages) {
+          this.pagination.currentPage += 1;
+        }
+      }
+      this.initPageList();
+    },
   },
   created() {
-    this.$bus.$on('productsCategory', (state) => {
-      this.productsSelect = state;
-    });
-    setTimeout(() => {
-      this.getProducts();
-    }, 0);
+    this.getProducts();
   },
 };
 </script>
