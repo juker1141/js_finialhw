@@ -79,6 +79,11 @@
               </div>
               <div class="form-group">
                 <label for="description" class="text-left w-100">商品規格</label>
+                <div class="d-flex">
+                  <button class="btn btn-outline-black mb-2" type="button"
+                  @click="showEditor('description')"
+                  v-if="!tempProduct.description">編輯</button>
+                </div>
                 <div v-if="editorItem !== 'description'" v-html="tempProduct.description"
                 @dblclick="showEditor('description')"></div>
                 <Editor v-if="editorItem === 'description'" id="tinymce"
@@ -91,6 +96,11 @@
               </div>
               <div class="form-group">
                 <label for="content" class="text-left w-100">商品特色</label>
+                <div class="d-flex">
+                  <button class="btn btn-outline-black mb-2" type="button"
+                  @click="showEditor('content')"
+                  v-if="!tempProduct.content">編輯</button>
+                </div>
                 <div v-if="editorItem !== 'content'"
                 v-html="tempProduct.content" @dblclick="showEditor('content')"></div>
                 <Editor v-if="editorItem === 'content'" id="tinymce"

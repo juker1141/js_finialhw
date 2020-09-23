@@ -143,12 +143,9 @@ export default {
       this.$http.get(url).then((res) => {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
-        const pageOne = this.products.slice(0, 12);
-        const pageTwo = this.products.slice(12);
-        console.log(res, pageOne, pageTwo);
         this.pagination = {
           count: this.products.length,
-          current_page: 1,
+          currentPage: 1,
           per_page: 9,
           total: 18,
           total_pages: Math.ceil(this.products.length / 9),
@@ -187,7 +184,7 @@ export default {
   width: 100%;
   height: 300px;
   transform:scale(1);
-  transition: all .5s ease-out;
+  transition: all .8s ease-out;
   background-position: center !important;
   background-size: cover !important;
   @media (min-width: 1200px) {
@@ -198,7 +195,7 @@ export default {
   }
   &:hover {
     -webkit-filter:opacity(.7);
-    transform:scale(1.1);
+    transform:scale(1.05);
   }
 }
 .salePosition{
