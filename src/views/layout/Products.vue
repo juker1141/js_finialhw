@@ -5,7 +5,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="bg-danger py-3 text-white fz_lg_24">
-          開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
+            開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
           <div class="bg-dark py-3 text-yellow fz_lg_24">
@@ -13,7 +13,7 @@
         </div>
         <div class="carousel-item">
           <div class="bg-danger py-3 text-white fz_lg_24">
-          開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
+            開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
           <div class="bg-dark py-3 text-yellow fz_lg_24">
@@ -115,32 +115,8 @@
       </div>
     </div>
     <div class="d-flex justify-content-center">
-      <nav aria-label="Page navigation example">
-        <ul class="paginationMain p-0 m-0 listStyle_none d-flex align-items-center">
-          <li class="page-item mr-2">
-            <a href="#" class="prev"
-            :class="{ disabled: pagination.currentPage === 1 }"
-            @click.prevent="changePageList('prev')">
-              <i class="fas fa-angle-left"></i>
-            </a>
-          </li>
-
-          <li class="page-item mr-2" v-for="(page, index) in pagination.totalPages"
-          :key="index">
-            <a href="#" class="num text-decoration-none fz_md_20"
-            @click.prevent="updatePage(i)"
-            :class="{ active: pagination.currentPage === page }">{{ page }}</a>
-          </li>
-
-          <li class="page-item">
-            <a href="#" class="next"
-            :class="{ disabled: pagination.currentPage === pagination.totalPages }"
-            @click.prevent="changePageList('next')">
-              <i class="fas fa-angle-right"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <Pagination :pages="pagination" @update-pagelist="changePageList"
+      @update-page="changePage"></Pagination>
     </div>
   </div>
 </template>
@@ -155,11 +131,12 @@ export default {
       recentlyViewedProducts: [],
       pagination: {
         count: 12,
-        currentPage: 1,
+        current_page: 1,
         currentArticleList: [],
         totalArticleList: [],
-        totalPages: '',
+        total_pages: '',
       },
+      productsCategory: '',
     };
   },
   methods: {
@@ -170,9 +147,12 @@ export default {
         this.$bus.$emit('loadingChange', false);
         this.products = res.data.data;
         this.pagination.totalArticleList = this.products;
-        this.pagination.totalPages = Math.ceil(this.pagination.totalArticleList.length
+        this.pagination.total_pages = Math.ceil(this.pagination.totalArticleList.length
         / this.pagination.count);
         this.initPageList();
+        if (this.productsCategory) {
+          this.productsSelect(this.productsCategory);
+        }
       }).catch(() => {
         this.$bus.$emit('loadingChange', false);
       });
@@ -193,19 +173,25 @@ export default {
       const vm = this.pagination;
       if (category === '全部商品') {
         vm.totalArticleList = this.products;
-        vm.totalPages = Math.ceil(vm.totalArticleList.length
+        vm.total_pages = Math.ceil(vm.totalArticleList.length
           / vm.count);
+        vm.current_page = 1;
       } else {
         vm.totalArticleList = this.products.filter((item) => item.category === category);
-        vm.totalPages = Math.ceil(vm.totalArticleList.length
+        vm.total_pages = Math.ceil(vm.totalArticleList.length
           / vm.count);
+        vm.current_page = 1;
       }
+      this.initPageList();
+    },
+    changePage(page) {
+      this.pagination.current_page = page;
       this.initPageList();
     },
     initPageList() {
       this.pagination.currentArticleList = [];
-      for (let i = ((this.pagination.currentPage - 1) * this.pagination.count);
-        i < (this.pagination.currentPage * this.pagination.count); i += 1) {
+      for (let i = ((this.pagination.current_page - 1) * this.pagination.count);
+        i < (this.pagination.current_page * this.pagination.count); i += 1) {
         if (this.pagination.totalArticleList[i]) {
           this.pagination.currentArticleList.push(this.pagination.totalArticleList[i]);
         }
@@ -213,19 +199,24 @@ export default {
     },
     changePageList(state) {
       if (state === 'prev') {
-        if (this.pagination.currentPage > 1) {
-          this.pagination.currentPage -= 1;
+        if (this.pagination.current_page > 1) {
+          this.pagination.current_page -= 1;
         }
       } else if (state === 'next') {
-        if (this.pagination.currentPage < this.pagination.totalPages) {
-          this.pagination.currentPage += 1;
+        if (this.pagination.current_page < this.pagination.total_pages) {
+          this.pagination.current_page += 1;
         }
       }
       this.initPageList();
     },
   },
   created() {
-    this.getProducts();
+    this.$bus.$on('productsCategory', (category) => {
+      this.productsCategory = category;
+    });
+    setTimeout(() => {
+      this.getProducts();
+    }, 500);
   },
 };
 </script>

@@ -26,7 +26,7 @@
             zIndex_10 position_absolute position_lg_relative
             align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
             <li class="py-3 py-lg-0">
-              <a href="#"
+              <a href="#" @click="goToPage('/products')"
               class="text-black px-3 mr-2 text-decoration-none list_hover">商品</a>
             </li>
             <li class="py-3 py-lg-0">

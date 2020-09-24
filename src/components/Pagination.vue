@@ -5,22 +5,22 @@
         <li class="page-item mr-2">
           <a href="#" class="prev"
           :class="{ disabled: pages.current_page === 1 }"
-          @click.prevent="updatePage( pages.current_page - 1 )">
+          @click.prevent="changePageList('prev')">
             <i class="fas fa-angle-left"></i>
           </a>
         </li>
 
-        <li class="page-item mr-2" v-for="i in pages.total_pages"
-        :key="i">
+        <li class="page-item mr-2" v-for="(i, index) in pages.total_pages"
+        :key="index">
           <a href="#" class="num text-decoration-none fz_md_20"
-          @click.prevent="updatePage(i)"
+          @click.prevent="changePage(i)"
           :class="{ active: pages.current_page === i }">{{ i }}</a>
         </li>
 
         <li class="page-item">
           <a href="#" class="next"
           :class="{ disabled: pages.current_page === pages.total_pages }"
-          @click.prevent="updatePage( pages.current_page + 1 )">
+          @click.prevent="changePageList('next')">
           <i class="fas fa-angle-right"></i>
           </a>
         </li>
@@ -33,9 +33,12 @@
 export default {
   props: ['pages'],
   methods: {
-    updatePage(num) {
+    changePageList(state) {
       // 觸發外部事件
-      this.$emit('update-pages', num);
+      this.$emit('update-pagelist', state);
+    },
+    changePage(num) {
+      this.$emit('update-page', num);
     },
   },
 };
