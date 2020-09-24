@@ -22,43 +22,43 @@
       </div>
     </section>
     <div class="container-fluid">
-      <div class="w-100 d-flex justify-content-center my-5">
+      <div class="my-5">
         <ul class="w-100 listStyle_none d-flex align-items-center
         justify-content-lg-center
-        justify-content-between m-0 p-2 rounded">
+        justify-content-between m-0 p-2 rounded overflow_X_auto">
           <li>
             <a href="#" @click.prevent="productsSelect('全部商品')"
-            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
+            class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               全部
             </a>
           </li>
           <li>
             <a href="#" @click.prevent="productsSelect('手工具')"
-            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
+            class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               手工具
             </a>
           </li>
           <li>
             <a href="#" @click.prevent="productsSelect('量測工具')"
-            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
+            class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               量測工具
             </a>
           </li>
           <li>
             <a href="#" @click.prevent="productsSelect('研磨工具')"
-            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
+            class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               研磨工具
             </a>
           </li>
           <li class="">
             <a href="#" @click.prevent="productsSelect('電動工具')"
-            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
+            class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               電動工具
             </a>
           </li>
           <li class="">
             <a href="#" @click.prevent="productsSelect('配件')"
-            class="px-mg-3 px-lg-5 py-2 my-lg-2 text-decoration-none productList_hover">
+            class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               配件
             </a>
           </li>
@@ -252,5 +252,12 @@ export default {
     color: #121212;
     border-bottom: 3px solid #121212;
   }
+}
+.overflow_X_auto {
+  overflow-x: auto;
+  height: 50px;
+  white-space: nowrap;
+  webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 </style>
