@@ -72,7 +72,7 @@
     <div class="container-fluid">
       <div class="row mb-5">
         <div class="col-12 text-left px-lg-7">
-          <h3 v-if="recentlyViewedProducts.length > 1" class="mb-5">作業手工具</h3>
+          <h3 v-if="recentlyViewedProducts.length > 1" class="mb-5">你曾瀏覽過...</h3>
           <Swiper :products="recentlyViewedProducts" :id="product.id"
           @update="windowReload"></Swiper>
         </div>
