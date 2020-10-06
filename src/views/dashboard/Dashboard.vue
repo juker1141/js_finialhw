@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import NavbarAdmin from '../../components/Navbar_admin.vue';
+import NavbarAdmin from '@/components/Navbar_admin.vue';
 
 export default {
   data() {
@@ -20,10 +20,9 @@ export default {
   },
   methods: {
     checkLogin() {
-      /* eslint-disable */
       this.token = document.cookie.replace(
         /(?:(?:^|.*;\s*)testToken\s*=\s*([^;]*).*$)|^.*$/,
-        '$1'
+        '$1',
       );
       this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`;
       const url = `${process.env.VUE_APP_APIPATH}auth/check`;

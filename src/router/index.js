@@ -4,15 +4,6 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home,
-  // },
-  {
-    path: '*',
-    redirect: '/home',
-  },
   {
     path: '/',
     component: () => import('../views/layout/Layout.vue'),
@@ -88,6 +79,10 @@ const routes = [
         component: () => import('../views/dashboard/Simulateorder.vue'),
       },
     ],
+  },
+  {
+    path: '*',
+    redirect: '/home',
   },
 ];
 

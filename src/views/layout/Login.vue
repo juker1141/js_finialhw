@@ -74,7 +74,6 @@
 export default {
   data() {
     return {
-      /* eslint-disable */
       user: {
         email: '',
         password: '',
@@ -85,7 +84,7 @@ export default {
   },
   methods: {
     signin() {
-      if(this.remberChecked){
+      if (this.remberChecked) {
         this.setCookie('user', this.user.email, 7);
         this.setCookie('pswd', this.user.password, 7);
       }
@@ -100,19 +99,17 @@ export default {
           expires=${new Date(expired * 1000)}; path=/`;
           this.$bus.$emit('message:push',
             '登入成功',
-            'success'
-          );
+            'success');
           this.$router.push('/admin/home');
         })
         .catch(() => {
           this.$bus.$emit('message:push',
-            `登入失敗，請再嘗試`,'danger'
-          );
+            '登入失敗，請再嘗試', 'danger');
         });
     },
     signout() {
-      //將cookie清空即為登出
-      document.cookie = `testToken=; expires=; path=/`;
+      // 將cookie清空即為登出
+      document.cookie = 'testToken=; expires=; path=/';
     },
     remberMe() {
       if (this.getCookie('user') && this.getCookie('pswd')) {
@@ -122,24 +119,23 @@ export default {
       }
     },
     remberMeChange() {
-      if(this.remberChecked) {
+      if (this.remberChecked) {
         this.delCookie('user');
         this.delCookie('pswd');
       }
     },
-    setCookie(name, value, day){
-        var date = new Date();
-        date.setDate(date.getDate() + day);
-        document.cookie = name + '=' + value + ';expires='+ date;
+    setCookie(name, value, day) {
+      const date = new Date();
+      date.setDate(date.getDate() + day);
+      document.cookie = `${name}=${value};expires=${date}`;
     },
     getCookie(name) {
-      let reg = RegExp(name+'=([^;]+)');
-      let arr = document.cookie.match(reg);
-      if(arr){
-          return arr[1];
-      }else{
-          return '';
+      const reg = RegExp(`${name}=([^;]+)`);
+      const arr = document.cookie.match(reg);
+      if (arr) {
+        return arr[1];
       }
+      return '';
     },
     delCookie(name) {
       document.cookie = `${name}=; expires=; path=/`;

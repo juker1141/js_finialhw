@@ -67,7 +67,7 @@
 .featuresImg_1{
   background-position: 25% 75% !important;
   background: url(https://images.unsplash.com/photo-1596274646294-748054a0e300?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80) no-repeat;
-  -webkit-filter: sepia(.6);
+  filter: sepia(.6);
   height: 250px;
   @media (min-width: 992px) {
     height: 550px;
@@ -76,7 +76,7 @@
 .featuresImg_2{
   background-position: center !important;
   background: url(https://images.unsplash.com/photo-1542992015-4a0b729b1385?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1367&q=80) no-repeat;
-  -webkit-filter:saturate(1);
+  filter:saturate(1);
   height: 250px;
   @media (min-width: 992px) {
     height: 350px;

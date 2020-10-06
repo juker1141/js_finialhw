@@ -86,8 +86,8 @@
 
 <script>
 /* global $ */
-import TempProductModal from '../../components/TempProductModal.vue';
-import DelProductModal from '../../components/DelProductModal.vue';
+import TempProductModal from '@/components/TempProductModal.vue';
+import DelProductModal from '@/components/DelProductModal.vue';
 
 export default {
   data() {

@@ -10,10 +10,10 @@ import {
   localize,
 } from 'vee-validate/dist/vee-validate.full.esm';
 import TW from 'vee-validate/dist/locale/zh_TW.json';
+import PaginationAdmin from '@/components/PaginationAdmin.vue';
+import Pagination from '@/components/Pagination.vue';
 import App from './App.vue';
 import router from './router';
-import Pagination from './components/Pagination.vue';
-import PaginationAdmin from './components/PaginationAdmin.vue';
 import store from './store';
 
 Vue.use(VueAwesomeSwiper);

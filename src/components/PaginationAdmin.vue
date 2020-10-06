@@ -51,7 +51,7 @@ export default {
 <style lang="scss">
 .btnSize_sm{
   height: 36px !important;
-  weight: 32px !important;
+  width: 32px !important;
 }
 .pageAdmin-item.active .page-link {
   background-color: #D4EDDA;

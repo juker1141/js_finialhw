@@ -106,7 +106,7 @@
 
 <script>
 /* global $ */
-import OrderEditModal from '../../components/OrderEditModal.vue';
+import OrderEditModal from '@/components/OrderEditModal.vue';
 
 export default {
   data() {

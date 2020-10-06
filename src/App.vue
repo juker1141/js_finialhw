@@ -10,11 +10,10 @@
 
 <script>
 
-import Loading from './components/Loading.vue';
-import Toast from './components/Toasts.vue';
+import Loading from '@/components/Loading.vue';
+import Toast from '@/components/Toasts.vue';
 
 export default {
-  /* eslint-disable */
   components: {
     Loading,
     Toast,
@@ -44,7 +43,7 @@ export default {
     });
     window.addEventListener('storage', (event) => {
       this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
-    })
+    });
   },
 };
 </script>
@@ -59,17 +58,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-// #nav {
-//   padding: 30px;
-
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
 </style>

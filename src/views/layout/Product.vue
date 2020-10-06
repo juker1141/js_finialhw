@@ -101,7 +101,7 @@
 <script>
 /* global $ */
 
-import Swiper from '../../components/Swiper.vue';
+import Swiper from '@/components/Swiper.vue';
 
 export default {
   data() {

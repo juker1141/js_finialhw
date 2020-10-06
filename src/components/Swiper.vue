@@ -102,7 +102,7 @@ export default {
     height: 450px;
   }
   &:hover {
-    -webkit-filter:opacity(.7);
+    filter:opacity(.7);
     transform:scale(1.1);
   }
 }

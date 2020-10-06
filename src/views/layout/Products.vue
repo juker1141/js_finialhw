@@ -236,7 +236,7 @@ export default {
     height: 500px;
   }
   &:hover {
-    -webkit-filter:opacity(.7);
+    filter:opacity(.7);
     transform:scale(1.05);
   }
 }
