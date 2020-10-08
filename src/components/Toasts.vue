@@ -45,15 +45,9 @@ export default {
     };
   },
   computed: {
-    isLoading() {
-      return this.updateMessage(this.$store.state.isLoading);
+    message() {
+      return this.updateMessage(this.$store.state.toasts.message, this.$store.state.toasts.state);
     },
-  },
-  created() {
-    const vm = this;
-    vm.$bus.$on('message:push', (message, status = 'warning') => {
-      vm.updateMessage(message, status);
-    });
   },
   methods: {
     updateMessage(message, status) {

@@ -124,7 +124,11 @@ export default {
       };
       this.$http.post(url, cart)
         .then(() => {
-          this.$bus.$emit('message:push', '商品已加入購物車', 'success');
+          this.$store.dispatch('messagePush',
+            {
+              message: '商品已加入購物車',
+              status: 'success',
+            });
           this.$emit('updateCart');
         }).catch(() => {
           this.$bus.$emit('message:push', '購物車裡已有該商品', 'danger');

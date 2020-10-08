@@ -12,7 +12,7 @@ export default new Vuex.Store({
     isLoading: false,
     isDarkShadyOn: false,
     productsCategory: '',
-    messages: [],
+    toasts: {},
   },
   actions: { // 操作行為
     loadingChange(context, payload) {
@@ -22,7 +22,8 @@ export default new Vuex.Store({
       context.commit('DARKSHADY', payload);
     },
     messagePush(context, payload) {
-      context.commit('MESSAGE', (payload.message, payload.status));
+      console.log(payload);
+      context.commit('MESSAGE', payload);
     },
     categoryChange(context, payload) {
       context.commit('CATEGORY', payload);
@@ -49,7 +50,7 @@ export default new Vuex.Store({
       state.isDarkShadyOn = payload;
     },
     MESSAGE(state, payload) {
-      state.messages = payload;
+      state.toasts = payload;
     },
     CATEGORY(state, payload) {
       state.productsCategory = payload;
