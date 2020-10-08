@@ -82,22 +82,6 @@
   </div>
 </template>
 
-<style lang="scss">
-  .productInfo{
-    right:0;
-  }
-  .position_lg_absolute{
-    @media (min-width: 992px) {
-      position: absolute !important;
-    }
-  }
-  .h_lg_100{
-    @media (min-width: 992px) {
-      height: 100%;
-    }
-  }
-</style>
-
 <script>
 /* global $ */
 
@@ -166,3 +150,19 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .productInfo{
+    right:0;
+  }
+  .position_lg_absolute{
+    @media (min-width: 992px) {
+      position: absolute !important;
+    }
+  }
+  .h_lg_100{
+    @media (min-width: 992px) {
+      height: 100%;
+    }
+  }
+</style>

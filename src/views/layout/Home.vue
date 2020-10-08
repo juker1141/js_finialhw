@@ -294,13 +294,13 @@ export default {
   background-position: center !important;
   background-size: cover !important;
   &_1 {
-    background: url(https://images.pexels.com/photos/3988555/pexels-photo-3988555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+    background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/ofdBX9XSV48VC7w5KizGhhR82TdD8sZqxv96CUOdYz1DOsvNeZkj1gQk7ksZV9g4MHyLdfItg0VDzumKvYDwg4MjkPEJ7Y2gqw4STqNz6n2YPTwVA1kPI7URs7R6CA6h.jpeg) no-repeat;
   }
   &_2 {
-    background: url(https://images.pexels.com/photos/162529/grinder-hitachi-power-tool-flexible-162529.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+    background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/3ot0CNorDBHAORBwrYzkqsJcgfY4qYL3bHQvCwL7BUnCnKPNzHUfcB5a6beQf0XxDmEiZY9FMh9SOY0EFsom0og5LCAhVMb4KuysFlu3gfof3KcC0qCO0IIWX6CUMuDz.jpeg) no-repeat;
   }
   &_3 {
-    background: url(https://images.pexels.com/photos/20791/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+    background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/D9DslrL69WakIOId0dFyvfQ89t2xJjeKfxKKrMcwgGB73oYExzyRhybduchESiM3wm4pKRSPBcvOJI2XqO74mV0Ktn0jMqgZrMDhUjVZsvdJXdBfAaTECNG3PqCwmyPk.jpg) no-repeat;
   }
   @media (min-width: 768px) {
     height: 300px;
@@ -314,7 +314,7 @@ export default {
 }
 .footerNewsImg{
   position: absolute;
-  background: url(https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/iCQbnPyzxLmkrG0eIwK9bsCI9YjCecVYNcJ0vnhIaoHA1aNjhJFYrXJUMHW4pfwlRWDDu6WnFP4po2YWeVMG89LO7ceSU6WQhE4VEmjT26LYguCzRvAh5FSyswVRMiuq.jpg) no-repeat;
   width: 100%;
   right: 0;
   background-position: 50% 30% !important;
@@ -334,20 +334,20 @@ export default {
   }
 }
 .indexBannerImg_1 {
-  background: url(https://images.pexels.com/photos/3828315/pexels-photo-3828315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Nc6vMGS3HsKoVwvFFv4yqL3Kw0FaRBjpVXyjFW7M2lvC4CKjvhgincldG4LgeJsPyMVyw30lqJTlD2rPV1mIKxD4qQP0PtQS9EeMFh2JAIjCghrP1eMAvV2PWDscrKxH.jpeg)
     no-repeat;
   background-position: 50% 70% !important;
 }
 .indexBannerImg_2 {
-  background: url(https://images.unsplash.com/photo-1502343019212-cc6a09783255?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80)
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/jhNsAQoZsNhpjq7wv2ck9qlms6hQtZn7PK7ALZ1MjWBvI9wTESbhsXo2JRt7nuPuCoO3ZonWqi2OPrE3rqlcBP60sxtHiRWURNRsDyTKFl2NxQyTs2SEV9tB4Z8seaqY.jpg)
     no-repeat;
 }
 .indexBannerImg_3 {
-  background: url(https://images.pexels.com/photos/3773836/pexels-photo-3773836.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/y44GFvUb7eyrXKlsEhjg25BG7ffOpQ56igi04PHxfF1j9JYeG3l68oI2tx988VjQDdRC9obF4CooJjsundfuoGjUBY6L23R87kVWhwZIsNA69YRrXrZJMJE12l5ciXTx.jpg)
     no-repeat;
 }
 .indexBannerImg_4 {
-  background: url(https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2167&q=80)
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/A7UXX3SxtKi3719PqiSBbnP2dqNecuAFgFgWOCM90GNXOv7beraYep4oEEvEOne5BF3aLNoBbJNz9HqQaJ9l9L8iVpnTtwjkfIyZt9qO9uoizYuvFQVbrelasXqz6gw0.jpg)
     no-repeat;
 }
 </style>

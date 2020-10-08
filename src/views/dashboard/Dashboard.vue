@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex">
     <NavbarAdmin />
-    <router-view class="main_admin w-100" :token="token" v-if="checkSuccess" />
+    <router-view class="main_admin w-100" v-if="checkSuccess" />
   </div>
 </template>
 
@@ -24,7 +24,6 @@ export default {
         /(?:(?:^|.*;\s*)testToken\s*=\s*([^;]*).*$)|^.*$/,
         '$1',
       );
-      this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`;
       const url = `${process.env.VUE_APP_APIPATH}auth/check`;
       this.$http
         .post(url, {
@@ -32,6 +31,7 @@ export default {
         })
         .then(() => {
           this.checkSuccess = true;
+          this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`;
         })
         .catch(() => {
           this.$router.push('/login');

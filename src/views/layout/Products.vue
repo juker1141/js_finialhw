@@ -257,7 +257,6 @@ export default {
   overflow-x: auto;
   height: 50px;
   white-space: nowrap;
-  webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 </style>

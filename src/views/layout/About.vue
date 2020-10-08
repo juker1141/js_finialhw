@@ -66,7 +66,7 @@
 }
 .featuresImg_1{
   background-position: 25% 75% !important;
-  background: url(https://images.unsplash.com/photo-1596274646294-748054a0e300?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/BIzqAYnOJ9VVk2wUTGxVFyXvUVGvm52beZUQW70jAvDwSHXDLvyjek62b2CvLl7gIlKAHEsOn3sORffJHPVIZ2B0QZkyL2GdTU39A0cgmUMAWyOJ0OHezA1iqYAipAYf.jpg) no-repeat;
   filter: sepia(.6);
   height: 250px;
   @media (min-width: 992px) {
@@ -75,7 +75,7 @@
 }
 .featuresImg_2{
   background-position: center !important;
-  background: url(https://images.unsplash.com/photo-1542992015-4a0b729b1385?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1367&q=80) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/ofBcUDlx03tTlPUA43VtJ1qRJ8jZh56cFBukpYKEe0llmcf4NYINFnllB3YWviTyt4UO0g2B05arlzJeLioAMT5WVzXDKeOHNPQcbImgjWjo5aUCGaDEjYqfbGRwwW08.jpg) no-repeat;
   filter:saturate(1);
   height: 250px;
   @media (min-width: 992px) {
@@ -84,7 +84,7 @@
 }
 .featuresImg_3{
   background-position: center !important;
-  background: url(https://images.pexels.com/photos/4393533/pexels-photo-4393533.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/UaIIctwp56XoiJ9G8nFklzl6CLaeY4dY4w7ysDOUbyKyjWtSBK0bn6OMlRKfU7t77ygkEn7dtB1KUzVfSPpcyU3c6wEG80WXDlRgu3bKjeaEsgCrZsZaLjxr5i2oji29.jpeg) no-repeat;
   height: 250px;
   @media (min-width: 992px) {
     height: 550px;

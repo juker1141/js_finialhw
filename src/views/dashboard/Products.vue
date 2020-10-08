@@ -22,7 +22,8 @@
           <th class="text-center border-0 table_w_5 table_w_md_15
           d-none d-md-table-cell">原價</th>
           <th class="text-center border-0 table_w_10 table_w_md_15">售價</th>
-          <th class="text-center border-0 table_w_7"><span class="fz_12 fz_lg_16">是否上架</span></th>
+          <th class="text-center border-0 table_w_7 table_w_md_10">
+            <span class="fz_12 fz_lg_16">是否上架</span></th>
           <th class="text-center border-0 table_w_5 table_w_md_10"></th>
         </tr>
       </thead>

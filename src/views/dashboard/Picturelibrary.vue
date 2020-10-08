@@ -20,7 +20,9 @@
         <img :src="item.path" class="card-img-top" alt="...">
         <div class="card-img-overlay bg-grayOP opacity_0
         d-flex align-items-center justify-content-center imgCard_hover">
-          <button type="button" @click="delFileData(item)" class="btn btn-danger p-2
+          <button type="button" data-toggle="modal"
+          @click="delFile = item"
+          data-target="#delFileModal" class="btn btn-danger p-2
           d-flex align-items-center justify-content-center">
             <span class="material-icons fz_30">
             delete_outline
@@ -29,15 +31,40 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="delFileModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger d-flex align-items-center">
+            <h5 class="modal-title text-white">刪除圖片</h5>
+            <button type="button" class="btn m-0 p-0 d-flex align-items-center close opacity_1"
+            data-dismiss="modal" aria-label="Close">
+              <span class="material-icons text-white">clear</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            確認刪除該圖片嗎？<br>
+            <span class="text-danger font-weight-bold">( 刪除後不可復原！！！ )</span>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-secondary border-0"
+            data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-danger" @click="delFileData(delFile)">確認刪除</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+/* global $ */
+
 export default {
   data() {
     return {
       filePath: '',
       fileData: {},
+      delFile: {},
     };
   },
   methods: {
@@ -80,6 +107,7 @@ export default {
       this.$http.delete(url)
         .then(() => {
           this.getFiles();
+          $('#delFileModal').modal('hide');
           this.$bus.$emit('message:push', '圖片刪除成功', 'success');
         }).catch(() => {
           this.$bus.$emit('message:push', '圖片刪除失敗，請再嘗試', 'danger');

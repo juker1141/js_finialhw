@@ -592,7 +592,7 @@ export default {
   background-size: cover !important;
   @media (min-width: 576px) {
     background-position: 50% 70% !important;
-    background: url(https://images.pexels.com/photos/3930091/pexels-photo-3930091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+    background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/utQwKWxQLrvVbi0avlUogKazBWCHheWQhaJ6tgMtX2D7cU07ETkkVVXas3gACT1o5cHfn3cpMHJwfgGD5ZFooSw0a5ksvRtXoZsyq7inS2KJx4Lsy7vcB8Rcmn4QeT9s.jpg) no-repeat;
   }
   @media (min-width: 992px) {
     background-position: 50% 70% !important;

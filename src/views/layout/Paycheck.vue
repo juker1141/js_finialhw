@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss">
 .bg_paycheck{
-  background: url(https://images.unsplash.com/photo-1501516069922-a9982bd6f3bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/OLHvOex3N1qs6NtXunuoeBzBpC6srtPyaqw3jiuBJyhEHgbwbSpk54vgNsZo4BkeyZCoOqcXpeQBxgGGlZYkCSGxXPAmEBhi51EGXuds2fbMCjEuHiDqfaWOVAjvlW4V.jpg) no-repeat;
   background-position: center;
   background-size: cover;
 }

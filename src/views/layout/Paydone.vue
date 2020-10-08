@@ -50,7 +50,7 @@
   margin-top: 20%;
 }
 .payDoneImg {
-  background: url(https://images.unsplash.com/photo-1580401884879-27237ae4468e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2978&q=80) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/wtZ8mSbaTDNHGWCdLC4Eee9xcS4tRjossVcG5vu8S8moGGiTtQuzFWP79jehilgCoDALgvYbKRQOoDeDB9leC691RCQdqsC7TjjjTuTcJbhJMPqnGiAkszVi4CcWlaOL.jpg) no-repeat;
   top: 0;
   right: 0;
   width: 100%;
