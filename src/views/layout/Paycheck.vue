@@ -39,7 +39,7 @@ export default {
   methods: {
     getOrder(id) {
       this.$store.dispatch('getOrder', id);
-      this.$bus.$emit('loadingChange', false);
+      this.$store.dispatch('loadingChange', false);
     },
     payMoney() {
       this.$store.dispatch('payMoney', true);
@@ -49,7 +49,7 @@ export default {
     },
   },
   created() {
-    this.$bus.$emit('loadingChange', true);
+    this.$store.dispatch('loadingChange', true);
     this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
     setTimeout(() => {
       this.getOrder(this.orderId);

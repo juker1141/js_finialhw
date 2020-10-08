@@ -108,14 +108,14 @@ export default {
   },
   methods: {
     getOrderlist(num = 1) {
-      this.$bus.$emit('loadingChange', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders?page=${num}&paged=10`;
       this.$http.get(url)
         .then((res) => {
           this.orderList = res.data.data;
-          this.$bus.$emit('loadingChange', false);
+          this.$store.dispatch('loadingChange', false);
         }).catch(() => {
-          this.$bus.$emit('loadingChange', false);
+          this.$store.dispatch('loadingChange', false);
         });
     },
     goToPay(id) {

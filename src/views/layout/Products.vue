@@ -114,7 +114,7 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-9">
       <Pagination :pages="pagination" @update-pagelist="changePageList"
       @update-page="changePage"></Pagination>
     </div>
@@ -136,15 +136,18 @@ export default {
         totalArticleList: [],
         total_pages: '',
       },
-      productsCategory: '',
     };
+  },
+  computed: {
+    productsCategory() {
+      return this.$store.state.productsCategory;
+    },
   },
   methods: {
     getProducts() {
-      this.$store.dispatch('changeLoading', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
       this.$http.get(url).then((res) => {
-        this.$store.dispatch('changeLoading', false);
+        this.$store.dispatch('loadingChange', false);
         this.products = res.data.data;
         this.pagination.totalArticleList = this.products;
         this.pagination.total_pages = Math.ceil(this.pagination.totalArticleList.length
@@ -154,7 +157,7 @@ export default {
           this.productsSelect(this.productsCategory);
         }
       }).catch(() => {
-        this.$store.dispatch('changeLoading', false);
+        this.$store.dispatch('loadingChange', false);
       });
     },
     addSessionStorage(product, itemId) {
@@ -211,9 +214,7 @@ export default {
     },
   },
   created() {
-    this.$bus.$on('productsCategory', (category) => {
-      this.productsCategory = category;
-    });
+    this.$store.dispatch('loadingChange', true);
     setTimeout(() => {
       this.getProducts();
     }, 500);

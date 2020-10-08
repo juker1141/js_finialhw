@@ -44,6 +44,11 @@ export default {
       messages: [],
     };
   },
+  computed: {
+    isLoading() {
+      return this.updateMessage(this.$store.state.isLoading);
+    },
+  },
   created() {
     const vm = this;
     vm.$bus.$on('message:push', (message, status = 'warning') => {

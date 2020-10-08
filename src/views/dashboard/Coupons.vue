@@ -189,14 +189,14 @@ export default {
   },
   methods: {
     getCoupons() {
-      this.$store.dispatch('changeLoading', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/coupons`;
       this.$http.get(url)
         .then((res) => {
-          this.$store.dispatch('changeLoading', false);
+          this.$store.dispatch('loadingChange', false);
           this.coupons = res.data.data;
         }).catch(() => {
-          this.$store.dispatch('changeLoading', false);
+          this.$store.dispatch('loadingChange', false);
         });
     },
     openModal(isNew, item) {
@@ -249,17 +249,17 @@ export default {
         });
     },
     delCoupon() {
-      this.$store.dispatch('changeLoading', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}
       /admin/ec/coupon/${this.tempCoupon.id}`;
       this.$http.delete(url)
         .then(() => {
-          this.$store.dispatch('changeLoading', false);
+          this.$store.dispatch('loadingChange', false);
           this.getCoupons();
           $('#delCouponModal').modal('hide');
           this.$bus.$emit('message:push', '已刪除優惠卷', 'success');
         }).catch(() => {
-          this.$store.dispatch('changeLoading', false);
+          this.$store.dispatch('loadingChange', false);
           this.getCoupons();
           $('#delCouponModal').modal('hide');
           this.$bus.$emit('message:push', '刪除優惠卷失敗，請再嘗試', 'danger');

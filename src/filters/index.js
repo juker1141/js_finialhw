@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 // filter全域註冊
 
 // 千分號 filter

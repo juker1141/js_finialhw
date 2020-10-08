@@ -233,6 +233,7 @@ export default {
       }
     },
     toTheCategory() {
+      this.$store.dispatch('categoryChange', this.category);
       setTimeout(() => {
         this.$router.push('/products');
       }, 500);
@@ -240,9 +241,6 @@ export default {
   },
   created() {
     this.getProducts();
-  },
-  beforeDestroy() {
-    this.$bus.$emit('productsCategory', this.category);
   },
 };
 </script>

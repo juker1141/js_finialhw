@@ -133,49 +133,49 @@ export default {
   },
   methods: {
     getOrders(num = 1) {
-      this.$store.dispatch('changeLoading', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}&paged=10`;
       this.$http.get(url)
         .then((res) => {
-          this.$store.dispatch('changeLoading', false);
+          this.$store.dispatch('loadingChange', false);
           this.tempOrderStatus = false;
           this.orderList = res.data.data;
           this.pagination = res.data.meta.pagination;
           $('#orderEditModal').modal('hide');
         }).catch(() => {
-          this.$store.dispatch('changeLoading', false);
+          this.$store.dispatch('loadingChange', false);
           this.tempOrderStatus = false;
           $('#orderEditModal').modal('hide');
         });
     },
     setOrderPaid(item) {
-      this.$store.dispatch('changeLoading', true);
+      this.$store.dispatch('loadingChange', true);
       let url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/paid`;
       if (!item.paid) {
         url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/unpaid`;
       }
       this.$http.patch(url, item.id).then(() => {
-        this.$store.dispatch('changeLoading', false);
+        this.$store.dispatch('loadingChange', false);
         this.$bus.$emit('message:push', '付款狀態已修改', 'success');
         this.getOrders();
       }).catch(() => {
-        this.$store.dispatch('changeLoading', false);
+        this.$store.dispatch('loadingChange', false);
         this.$bus.$emit('message:push', '付款狀態修改失敗，請再嘗試', 'danger');
       });
     },
     openModal(item) {
-      this.$store.dispatch('changeLoading', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}`;
       this.$http.get(url)
         .then((res) => {
           this.tempOrderStatus = true;
           this.tempOrder = res.data.data;
           setTimeout(() => {
-            this.$store.dispatch('changeLoading', false);
+            this.$store.dispatch('loadingChange', false);
             $('#orderEditModal').modal('show');
           }, 500);
         }).catch(() => {
-          this.$store.dispatch('changeLoading', false);
+          this.$store.dispatch('loadingChange', false);
         });
     },
   },

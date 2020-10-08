@@ -108,17 +108,17 @@ export default {
   },
   methods: {
     getProducts(num = 1) {
-      this.$bus.$emit('loadingChange', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/products?page=${num}`;
       this.$http
         .get(url)
         .then((res) => {
           this.products = res.data.data;
           this.pagination = res.data.meta.pagination;
-          this.$bus.$emit('loadingChange', false);
+          this.$store.dispatch('loadingChange', false);
         })
         .catch(() => {
-          this.$bus.$emit('loadingChange', false);
+          this.$store.dispatch('loadingChange', false);
         });
     },
     openModal(isNew, item) {
@@ -131,12 +131,12 @@ export default {
           $('#productModal').modal('show');
           break;
         case 'edit': {
-          this.$bus.$emit('loadingChange', true);
+          this.$store.dispatch('loadingChange', true);
           this.isNew = false;
           const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`;
           this.$http.get(url)
             .then((res) => {
-              this.$bus.$emit('loadingChange', false);
+              this.$store.dispatch('loadingChange', false);
               this.tempProduct = res.data.data;
               $('#productModal').modal('show');
             });

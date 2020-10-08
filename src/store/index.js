@@ -10,10 +10,22 @@ export default new Vuex.Store({
     orderId: '',
     paid: false,
     isLoading: false,
+    isDarkShadyOn: false,
+    productsCategory: '',
+    messages: [],
   },
   actions: { // 操作行為
-    changeLoading(context, payload) {
+    loadingChange(context, payload) {
       context.commit('LOADING', payload);
+    },
+    darkShadyChange(context, payload) {
+      context.commit('DARKSHADY', payload);
+    },
+    messagePush(context, payload) {
+      context.commit('MESSAGE', (payload.message, payload.status));
+    },
+    categoryChange(context, payload) {
+      context.commit('CATEGORY', payload);
     },
     getOrderId(context, payload) {
       context.commit('ORDERID', payload);
@@ -32,6 +44,15 @@ export default new Vuex.Store({
   mutations: { // 操作狀態
     LOADING(state, payload) { // 改變讀取狀態
       state.isLoading = payload;
+    },
+    DARKSHADY(state, payload) {
+      state.isDarkShadyOn = payload;
+    },
+    MESSAGE(state, payload) {
+      state.messages = payload;
+    },
+    CATEGORY(state, payload) {
+      state.productsCategory = payload;
     },
     ORDERID(state, payload) {
       state.orderId = payload;

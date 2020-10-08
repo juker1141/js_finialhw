@@ -69,19 +69,19 @@ export default {
   },
   methods: {
     getFiles() {
-      this.$bus.$emit('loadingChange', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/storage`;
       this.$http.get(url)
         .then((res) => {
           this.fileData = res.data.data;
-          this.$bus.$emit('loadingChange', false);
+          this.$store.dispatch('loadingChange', false);
         }).catch(() => {
-          this.$bus.$emit('loadingChange', false);
+          this.$store.dispatch('loadingChange', false);
         });
     },
     uploadFile() {
       // 選取 DOM 裡面的檔案資訊
-      this.$bus.$emit('loadingChange', true);
+      this.$store.dispatch('loadingChange', true);
       const uploadedFile = document.querySelector('#customFile').files[0];
       // 轉成 Form Data
       const formData = new FormData();
@@ -102,7 +102,7 @@ export default {
       });
     },
     delFileData(item) {
-      this.$bus.$emit('loadingChange', true);
+      this.$store.dispatch('loadingChange', true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/storage/${item.id}`;
       this.$http.delete(url)
         .then(() => {

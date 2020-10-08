@@ -364,13 +364,13 @@ export default {
     },
     openCart() {
       $('#cartBlock').toggleClass('active');
-      this.$bus.$emit('darkShadyChange', true);
+      this.$store.dispatch('darkShadyChange', true);
       this.cartBlockShow = true;
     },
     closeCart() {
       $('#cartBlock').toggleClass('active');
       setTimeout(() => {
-        this.$bus.$emit('darkShadyChange', false);
+        this.$store.dispatch('darkShadyChange', false);
       }, 200);
     },
     getcart() {
@@ -478,7 +478,7 @@ export default {
         next();
       } else {
         $('#cartBlock').addClass('active');
-        this.$bus.$emit('darkShadyChange', true);
+        this.$store.dispatch('darkShadyChange', true);
       }
     }
     next();

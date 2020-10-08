@@ -15,10 +15,13 @@
           position-relative position_lg_absolute productInfo">
             <div class="bg-white w-100 p-4 shadow">
               <div class="d-flex mb-1">
-                <router-link class="mr-2" :to="`/home`">Home</router-link>>
-                <a href="#" class="mx-2" @click.prevent="backToProducts">Products</a>>
-                <router-link class="ml-2" :to="`/products`">
-                {{ product.category }}</router-link>
+                <router-link class="mr-3 text-black"
+                :to="`/home`">首頁</router-link>>
+                <a href="#" class="mx-3 text-black"
+                @click.prevent="backToProducts">商品</a>>
+                <a href="#" class="ml-3 text-secondary"
+                @click.prevent="backToProductCategory(product.category)">
+                {{ product.category }}</a>
               </div>
               <div class="text-left mb-2 fz_36 font-weight-bold">{{ product.title }}</div>
               <div class="text-right mb-3 fontRoboto fz_24 font-weight-bold">
@@ -106,11 +109,11 @@ export default {
       const { id } = this.$route.params;
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/product/${id}`;
       this.$http.get(url).then((res) => {
-        this.$bus.$emit('loadingChange', false);
+        this.$store.dispatch('loadingChange', false);
         this.product = res.data.data;
         this.category = res.data.data.category;
       }).catch(() => {
-        this.$bus.$emit('loadingChange', false);
+        this.$store.dispatch('loadingChange', false);
       });
     },
     addToCart(quantity = 1) {
@@ -129,6 +132,12 @@ export default {
     },
     backToProducts() {
       this.category = '全部商品';
+      this.$store.dispatch('categoryChange', this.category);
+      this.$router.push('/products');
+    },
+    backToProductCategory(category) {
+      this.category = category;
+      this.$store.dispatch('categoryChange', this.category);
       this.$router.push('/products');
     },
     windowReload() {
@@ -138,15 +147,9 @@ export default {
     },
   },
   created() {
-    this.$bus.$emit('loadingChange', true);
+    this.$store.dispatch('loadingChange', true);
     this.getProduct();
     this.recentlyViewedProducts = JSON.parse(sessionStorage.getItem('recentlyViewed'));
-    // if ( === 0) {
-
-    // }
-  },
-  beforeDestroy() {
-    this.$bus.$emit('productsCategory', this.category);
   },
 };
 </script>
