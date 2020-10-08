@@ -204,7 +204,7 @@ export default {
     },
     uploadFile() {
       // 選取 DOM 裡面的檔案資訊
-      this.$bus.$emit('loadingChange', true);
+      this.$store.dispatch('changeLoading', true);
       const uploadedFile = document.querySelector('#customFile').files[0];
       // 轉成 Form Data
       const formData = new FormData();

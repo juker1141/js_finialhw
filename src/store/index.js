@@ -9,8 +9,12 @@ export default new Vuex.Store({
     order: {},
     orderId: '',
     paid: false,
+    isLoading: false,
   },
   actions: { // 操作行為
+    changeLoading(context, payload) {
+      context.commit('LOADING', payload);
+    },
     getOrderId(context, payload) {
       context.commit('ORDERID', payload);
     },
@@ -26,6 +30,9 @@ export default new Vuex.Store({
     },
   },
   mutations: { // 操作狀態
+    LOADING(state, payload) { // 改變讀取狀態
+      state.isLoading = payload;
+    },
     ORDERID(state, payload) {
       state.orderId = payload;
     },

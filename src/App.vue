@@ -20,9 +20,13 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
       darkShadyOn: false,
     };
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
   },
   methods: {
     closeCart() {
@@ -34,9 +38,9 @@ export default {
     },
   },
   created() {
-    this.$bus.$on('loadingChange', (state) => {
-      this.isLoading = state;
-    });
+    // this.$bus.$on('loadingChange', (state) => {
+    //   this.isLoading = state;
+    // });
     this.darkShadyOn = false;
     this.$bus.$on('darkShadyChange', (state) => {
       this.darkShadyOn = state;
