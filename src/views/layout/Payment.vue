@@ -234,10 +234,18 @@ export default {
       this.$http.post(url)
         .then(() => {
           this.isPaying = false;
-          this.$bus.$emit('message:push', '付款成功', 'success');
+          this.$store.dispatch('messagePush',
+            {
+              message: '付款成功',
+              status: 'success',
+            });
           this.$router.push('/paydone');
         }).catch(() => {
-          this.$bus.$emit('message:push', '付款失敗，請再嘗試看看', 'danger');
+          this.$store.dispatch('messagePush',
+            {
+              message: '付款失敗，請再嘗試看看',
+              status: 'danger',
+            });
         });
     },
   },

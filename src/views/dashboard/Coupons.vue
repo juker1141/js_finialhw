@@ -242,10 +242,18 @@ export default {
         .then(() => {
           this.getCoupons();
           $('#couponModal').modal('hide');
-          this.$bus.$emit('message:push', `${text}優惠卷成功`, 'success');
+          this.$store.dispatch('messagePush',
+            {
+              message: `${text}優惠卷成功`,
+              status: 'success',
+            });
         }).catch(() => {
           $('#couponModal').modal('hide');
-          this.$bus.$emit('message:push', `${text}優惠卷失敗，請再嘗試`, 'danger');
+          this.$store.dispatch('messagePush',
+            {
+              message: `${text}優惠卷失敗，請再嘗試`,
+              status: 'danger',
+            });
         });
     },
     delCoupon() {
@@ -257,12 +265,20 @@ export default {
           this.$store.dispatch('loadingChange', false);
           this.getCoupons();
           $('#delCouponModal').modal('hide');
-          this.$bus.$emit('message:push', '已刪除優惠卷', 'success');
+          this.$store.dispatch('messagePush',
+            {
+              message: '已刪除優惠卷',
+              status: 'success',
+            });
         }).catch(() => {
           this.$store.dispatch('loadingChange', false);
           this.getCoupons();
           $('#delCouponModal').modal('hide');
-          this.$bus.$emit('message:push', '刪除優惠卷失敗，請再嘗試', 'danger');
+          this.$store.dispatch('messagePush',
+            {
+              message: '刪除優惠卷失敗，請再嘗試',
+              status: 'danger',
+            });
         });
     },
   },

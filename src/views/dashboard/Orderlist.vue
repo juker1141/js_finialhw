@@ -156,11 +156,19 @@ export default {
       }
       this.$http.patch(url, item.id).then(() => {
         this.$store.dispatch('loadingChange', false);
-        this.$bus.$emit('message:push', '付款狀態已修改', 'success');
+        this.$store.dispatch('messagePush',
+          {
+            message: '付款狀態已修改',
+            status: 'success',
+          });
         this.getOrders();
       }).catch(() => {
         this.$store.dispatch('loadingChange', false);
-        this.$bus.$emit('message:push', '付款狀態修改失敗，請再嘗試', 'danger');
+        this.$store.dispatch('messagePush',
+          {
+            message: '付款狀態修改失敗，請再嘗試',
+            status: 'danger',
+          });
       });
     },
     openModal(item) {

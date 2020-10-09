@@ -97,14 +97,19 @@ export default {
           // 將token與到期日寫入cookie;
           document.cookie = `testToken=${token}; 
           expires=${new Date(expired * 1000)}; path=/`;
-          this.$bus.$emit('message:push',
-            '登入成功',
-            'success');
+          this.$store.dispatch('messagePush',
+            {
+              message: '登入成功',
+              status: 'success',
+            });
           this.$router.push('/admin/home');
         })
         .catch(() => {
-          this.$bus.$emit('message:push',
-            '登入失敗，請再嘗試', 'danger');
+          this.$store.dispatch('messagePush',
+            {
+              message: '登入失敗，請再嘗試',
+              status: 'danger',
+            });
         });
     },
     signout() {

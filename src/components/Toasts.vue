@@ -36,17 +36,23 @@
 
 <script>
 /* global $ */
-
 export default {
   name: 'Toasts',
   data() {
     return {
       messages: [],
+      message: {},
     };
   },
   computed: {
-    message() {
-      return this.updateMessage(this.$store.state.toasts.message, this.$store.state.toasts.state);
+    toastsmessage() {
+      return this.$store.state.toasts;
+    },
+  },
+  watch: {
+    toastsmessage(toastsmessage) {
+      const { message, status } = toastsmessage;
+      this.updateMessage(message, status);
     },
   },
   methods: {

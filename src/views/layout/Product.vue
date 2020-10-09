@@ -131,7 +131,11 @@ export default {
             });
           this.$emit('updateCart');
         }).catch(() => {
-          this.$bus.$emit('message:push', '購物車裡已有該商品', 'danger');
+          this.$store.dispatch('messagePush',
+            {
+              message: '購物車裡已有該商品',
+              status: 'danger',
+            });
         });
     },
     backToProducts() {

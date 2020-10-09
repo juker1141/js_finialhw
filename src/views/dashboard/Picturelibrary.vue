@@ -20,6 +20,13 @@
         <img :src="item.path" class="card-img-top" alt="...">
         <div class="card-img-overlay bg-grayOP opacity_0
         d-flex align-items-center justify-content-center imgCard_hover">
+          <button type="button" @click="copyFilePath(item.path)"
+          class="btn btn-adminPrimary mr-3 p-2
+          d-flex align-items-center justify-content-center">
+            <span class="material-icons fz_30">
+            content_copy
+            </span>
+          </button>
           <button type="button" data-toggle="modal"
           @click="delFile = item"
           data-target="#delFileModal" class="btn btn-danger p-2
@@ -31,6 +38,7 @@
         </div>
       </div>
     </div>
+    <PaginationAdmin :pages="pagination" @update-pages="getFiles"/>
     <div class="modal fade" id="delFileModal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -65,15 +73,17 @@ export default {
       filePath: '',
       fileData: {},
       delFile: {},
+      pagination: {},
     };
   },
   methods: {
-    getFiles() {
+    getFiles(num = 1) {
       this.$store.dispatch('loadingChange', true);
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/storage`;
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/storage?page=${num}&paged=15`;
       this.$http.get(url)
         .then((res) => {
           this.fileData = res.data.data;
+          this.pagination = res.data.meta.pagination;
           this.$store.dispatch('loadingChange', false);
         }).catch(() => {
           this.$store.dispatch('loadingChange', false);
@@ -95,9 +105,17 @@ export default {
       }).then((res) => {
         this.filePath = res.data.data.path;
         this.getFiles();
-        this.$bus.$emit('message:push', '圖片上傳成功', 'success');
+        this.$store.dispatch('messagePush',
+          {
+            message: '圖片上傳成功',
+            status: 'success',
+          });
       }).catch(() => {
-        this.$bus.$emit('message:push', '圖片上傳失敗，請再嘗試', 'danger');
+        this.$store.dispatch('messagePush',
+          {
+            message: '圖片上傳失敗，請再嘗試',
+            status: 'danger',
+          });
         this.getFiles();
       });
     },
@@ -108,10 +126,24 @@ export default {
         .then(() => {
           this.getFiles();
           $('#delFileModal').modal('hide');
-          this.$bus.$emit('message:push', '圖片刪除成功', 'success');
+          this.$store.dispatch('messagePush',
+            {
+              message: '圖片刪除成功',
+              status: 'success',
+            });
         }).catch(() => {
-          this.$bus.$emit('message:push', '圖片刪除失敗，請再嘗試', 'danger');
+          this.$store.dispatch('messagePush',
+            {
+              message: '圖片刪除失敗，請再嘗試',
+              status: 'danger',
+            });
         });
+    },
+    copyFilePath(path) {
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(path);
+      document.execCommand('copy');
     },
   },
   created() {

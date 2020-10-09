@@ -197,9 +197,17 @@ export default {
         .then(() => {
           this.$emit('update');
           $('#productModal').modal('hide');
-          this.$bus.$emit('message:push', `${text}商品成功`, 'success');
+          this.$store.dispatch('messagePush',
+            {
+              message: `${text}商品成功`,
+              status: 'success',
+            });
         }).catch(() => {
-          this.$bus.$emit('message:push', `${text}商品失敗，請再嘗試`, 'danger');
+          this.$store.dispatch('messagePush',
+            {
+              message: `${text}商品失敗，請再嘗試`,
+              status: 'danger',
+            });
         });
     },
     uploadFile() {
@@ -217,9 +225,17 @@ export default {
         },
       }).then((res) => {
         this.tempProduct.imageUrl.push(res.data.data.path);
-        this.$bus.$emit('message:push', '圖片上傳成功', 'success');
+        this.$store.dispatch('messagePush',
+          {
+            message: '圖片上傳成功',
+            status: 'success',
+          });
       }).catch(() => {
-        this.$bus.$emit('message:push', '圖片上傳失敗，請再嘗試', 'danger');
+        this.$store.dispatch('messagePush',
+          {
+            message: '圖片上傳失敗，請再嘗試',
+            status: 'danger',
+          });
       });
     },
     showEditor(target) {
