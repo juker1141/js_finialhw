@@ -153,7 +153,7 @@
                 <li class="d-flex align-items-center">
                   <div class="w-100 d-flex mb-2 flex-column align-items-end">
                     <div class="d-flex justify-content-between">
-                      <span v-if="couponWorking === true" class="material-icons
+                      <span v-if="couponWorking === true && coupon.code" class="material-icons
                       fz_36 text-success pr-2">
                         done
                       </span>
@@ -165,7 +165,8 @@
                         type="button" @click="checkCoupon(coupon.code)">確認</button>
                       </div>
                     </div>
-                    <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
+                    <div v-if="couponWorking === false && coupon.code"
+                    class="fz_14 mt-2 text-danger text-left
                     ">找不到此優惠卷，請您再次確認</div>
                   </div>
                 </li>
@@ -176,7 +177,7 @@
                 NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
                 <span v-else>
                 NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span>
-                <span v-if="couponWorking === true" class="text-danger">
+                <span v-if="couponWorking === true && coupon.code" class="text-danger">
                 節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
                 </div></li>
                 <li class="p-2 d-flex justify-content-between">
@@ -217,13 +218,17 @@ export default {
         payment: '',
         message: '',
       },
-      cart: [],
       cartTotal: 0,
       cartTotalCoupon: 0,
       coupon: {},
       couponPrice: 0,
       couponWorking: '',
     };
+  },
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
   },
   watch: {
     cart() {
@@ -236,11 +241,7 @@ export default {
   },
   methods: {
     getCart() {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
-      this.$http.get(url)
-        .then((res) => {
-          this.cart = res.data.data;
-        });
+      this.$store.dispatch('getCart');
     },
     showCartDetail() {
       $('#cartDetail').slideToggle(300);
@@ -258,16 +259,13 @@ export default {
         .then((res) => {
           if (res.data.data.id) {
             // 跳出提示訊息
-            this.$bus.$emit('getcart');
             this.$store.dispatch('getOrderId', res.data.data.id);
             this.$store.dispatch('payMoney', false);
             if (localStorage.getItem('store')) {
               localStorage.removeItem('store');
             }
-            // this.$bus.$emit('orderId', orderId);
             this.$router.push('/payment');
             // 重新渲染購物車
-            this.getCart();
           }
         }).catch(() => {
         });
@@ -277,6 +275,7 @@ export default {
       const coupon = {
         code,
       };
+      console.log('我要檢查有無優惠卷囉');
       this.$http.post(url, coupon)
         .then((res) => {
           this.couponWorking = true;
@@ -299,9 +298,12 @@ export default {
     if (localStorage.getItem('coupon')) {
       this.couponWorking = true;
       this.coupon = JSON.parse(localStorage.getItem('coupon'));
-      setTimeout(() => {
-        this.checkCoupon(this.coupon.code);
-      }, 0);
+      if (this.coupon.code) {
+        console.log('你有優惠');
+        setTimeout(() => {
+          this.checkCoupon(this.coupon.code);
+        }, 0);
+      }
     } else {
       this.coupon = {};
     }

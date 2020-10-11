@@ -142,7 +142,7 @@
       </div>
       <div class="d-flex justify-content-end p-3">
         <div class="w-25 d-none d-lg-flex justify-content-end">
-          <span v-if="couponWorking === true" class="material-icons
+          <span v-if="couponWorking === true && cart.length >= 1" class="material-icons
           fz_36 text-success pr-2">
             done
           </span>
@@ -150,7 +150,7 @@
         <div class="w-100 w_lg_75 text-secondary d-flex flex-column">
           <div class="d-flex mb-2 flex-column">
             <div class="d-flex justify-content-between">
-              <span v-if="couponWorking === true" class="material-icons
+              <span v-if="couponWorking === true && cart.length >= 1" class="material-icons
               fz_36 text-success d-block d-lg-none pr-2">
                 done
               </span>
@@ -159,7 +159,7 @@
               id="coupons" placeholder="請輸入優惠卷">
               <button class="btn btn-yellow ml-auto px-2 rounded-0 d-flex align-items-cneter"
               type="button" @click="checkCoupon(couponCode)"><span class="material-icons">
-              autorenew
+              send
               </span></button>
             </div>
             <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
@@ -172,8 +172,12 @@
             NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
             <span v-else>
             NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span></div>
-            <span v-if="couponWorking === true" class="text-danger text-right mb-2">
+            <span v-if="couponWorking === true && cart.length >= 1"
+            class="text-danger text-right mb-2">
             節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
+            <span v-if="cart.length === 0"
+            class="text-danger text-right mb-2">
+            購物車內沒有東西，無法使用折價卷</span>
           <div v-else
           class="d-flex justify-content-between mb-1 align-items-center">
           購物車金額<div>NT 0</div></div>
@@ -318,10 +322,8 @@ export default {
   data() {
     return {
       windowY: '',
-      cart: [],
       cartTotal: 0,
       loadingProduct: '',
-      cartBlockShow: false,
       toPathName: '',
       fromPathName: '',
       couponCode: '',
@@ -331,12 +333,31 @@ export default {
       couponPrice: 0,
     };
   },
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
+    cartBlockShow() {
+      return this.$store.state.cartBlockShow;
+    },
+  },
   watch: {
     cart() {
       this.cartTotal = 0;
-      this.cart.forEach((item) => {
-        this.cartTotal += (item.quantity * item.product.price);
-      });
+      if (this.cart.length === 0) {
+        this.cartTotal = 0;
+        if (this.couponCode) {
+          this.checkCoupon(this.couponCode);
+        }
+        return this.cartTotal;
+      } if (this.cart.length >= 1) {
+        this.cart.forEach((item) => {
+          this.cartTotal += (item.quantity * item.product.price);
+        });
+        if (this.couponCode) {
+          this.checkCoupon(this.couponCode);
+        }
+      }
       return this.cartTotal;
     },
   },
@@ -365,7 +386,7 @@ export default {
     openCart() {
       $('#cartBlock').toggleClass('active');
       this.$store.dispatch('darkShadyChange', true);
-      this.cartBlockShow = true;
+      this.$store.dispatch('cartBlockisShow', true);
     },
     closeCart() {
       $('#cartBlock').toggleClass('active');
@@ -374,12 +395,7 @@ export default {
       }, 200);
     },
     getcart() {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
-      this.$http.get(url)
-        .then((res) => {
-          this.cart = res.data.data;
-        }).catch(() => {
-        });
+      this.$store.dispatch('getCart');
     },
     updateCartQuantity(id, quantity) {
       this.loadingProduct = id;
@@ -393,7 +409,9 @@ export default {
         .then(() => {
           this.loadingProduct = '';
           this.getcart();
-          this.checkCoupon(this.couponCode);
+          if (this.couponCode) {
+            this.checkCoupon(this.couponCode);
+          }
         });
     },
     deleteCartProduct(id) {
@@ -418,10 +436,12 @@ export default {
           let newCartTotal = this.cartTotal;
           this.cartTotalCoupon = 0;
           this.couponPrice = 0;
-          if (this.coupon.percent) {
-            this.cartTotalCoupon = Math.round(newCartTotal * (this.coupon.percent / 100));
-            this.couponPrice = newCartTotal - this.cartTotalCoupon;
-            newCartTotal = this.cartTotalCoupon;
+          if (this.cart.length >= 1) {
+            if (this.coupon.percent) {
+              this.cartTotalCoupon = Math.round(newCartTotal * (this.coupon.percent / 100));
+              this.couponPrice = newCartTotal - this.cartTotalCoupon;
+              newCartTotal = this.cartTotalCoupon;
+            }
           }
         }).catch(() => {
           if (this.couponCode) {
@@ -462,12 +482,6 @@ export default {
     this.navbarShow();
     this.goToTopBtnShow();
     this.getcart();
-    this.$bus.$on('getcart', () => {
-      this.getcart();
-    });
-    this.$bus.$on('cartBlockIsShow', (state) => {
-      this.cartBlockShow = state;
-    });
     setInterval(this.hideFooter, 0);
   },
   beforeRouteUpdate(to, from, next) {
@@ -477,7 +491,7 @@ export default {
       if (this.toPathName === '/payment') {
         next();
       } else {
-        $('#cartBlock').addClass('active');
+        this.$store.dispatch('cartBlockisShow', true);
         this.$store.dispatch('darkShadyChange', true);
       }
     }

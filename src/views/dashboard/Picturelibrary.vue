@@ -18,23 +18,27 @@
     <div class="card-columns">
       <div class="card" v-for="item in fileData" :key="item.id">
         <img :src="item.path" class="card-img-top" alt="...">
-        <div class="card-img-overlay bg-grayOP opacity_0
+        <div class="card-img-overlay bg-grayOP opacity_0 flex-column
         d-flex align-items-center justify-content-center imgCard_hover">
-          <button type="button" @click="copyFilePath(item.path)"
-          class="btn btn-adminPrimary mr-3 p-2
-          d-flex align-items-center justify-content-center">
-            <span class="material-icons fz_30">
-            content_copy
-            </span>
-          </button>
-          <button type="button" data-toggle="modal"
-          @click="delFile = item"
-          data-target="#delFileModal" class="btn btn-danger p-2
-          d-flex align-items-center justify-content-center">
-            <span class="material-icons fz_30">
-            delete_outline
-            </span>
-          </button>
+          <div :id="item.id"
+          class="fz_12 w-100 m-5 bg-white p-3 text-left mb-3">{{ item.path }}</div>
+          <div class="d-flex align-items-center">
+            <button type="button" @click="copyFilePath(item.id)"
+            class="btn btn-adminPrimary mr-3 p-2
+            d-flex align-items-center justify-content-center">
+              <span class="material-icons fz_30">
+              content_copy
+              </span>
+            </button>
+            <button type="button" data-toggle="modal"
+            @click="delFile = item"
+            data-target="#delFileModal" class="btn btn-danger p-2
+            d-flex align-items-center justify-content-center">
+              <span class="material-icons fz_30">
+              delete_outline
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -139,10 +143,13 @@ export default {
             });
         });
     },
-    copyFilePath(path) {
+    copyFilePath(id) {
+      const TextRange = document.createRange();
+      const path = document.getElementById(id);
+      TextRange.selectNode(path);
       const sel = window.getSelection();
       sel.removeAllRanges();
-      sel.addRange(path);
+      sel.addRange(TextRange);
       document.execCommand('copy');
     },
   },

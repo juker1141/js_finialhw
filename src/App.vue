@@ -29,7 +29,7 @@ export default {
   methods: {
     closeCart() {
       // 點擊黑幕時關閉購物車視窗
-      this.$bus.$emit('cartBlockIsShow', false);
+      this.$store.dispatch('cartBlockisShow', false);
       setTimeout(() => {
         this.$store.dispatch('darkShadyChange', false);
       }, 200);

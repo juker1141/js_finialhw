@@ -51,8 +51,10 @@ export default {
   },
   watch: {
     toastsmessage(toastsmessage) {
-      const { message, status } = toastsmessage;
-      this.updateMessage(message, status);
+      if (toastsmessage !== 'clear') {
+        const { message, status } = toastsmessage;
+        this.updateMessage(message, status);
+      }
     },
   },
   methods: {

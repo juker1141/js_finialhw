@@ -6,13 +6,22 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    order: {},
+    order: {
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+      },
+    },
     orderId: '',
     paid: false,
     isLoading: false,
     isDarkShadyOn: false,
+    cartBlockShow: false,
     productsCategory: '',
     toasts: {},
+    cart: [],
+    orderLoading: false,
   },
   actions: { // 操作行為
     loadingChange(context, payload) {
@@ -22,11 +31,20 @@ export default new Vuex.Store({
       context.commit('DARKSHADY', payload);
     },
     messagePush(context, payload) {
-      console.log(payload);
       context.commit('MESSAGE', payload);
     },
     categoryChange(context, payload) {
       context.commit('CATEGORY', payload);
+    },
+    getCart(context) {
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
+      axios.get(url)
+        .then((res) => {
+          context.commit('CART', res.data.data);
+        });
+    },
+    cartBlockisShow(context, payload) {
+      context.commit('CARTBLOCKSHOW', payload);
     },
     getOrderId(context, payload) {
       context.commit('ORDERID', payload);
@@ -55,11 +73,18 @@ export default new Vuex.Store({
     CATEGORY(state, payload) {
       state.productsCategory = payload;
     },
+    CART(state, payload) {
+      state.cart = payload;
+    },
+    CARTBLOCKSHOW(state, payload) {
+      state.cartBlockShow = payload;
+    },
     ORDERID(state, payload) {
       state.orderId = payload;
     },
     ORDER(state, payload) {
       state.order = payload;
+      state.orderLoading = true;
     },
     PAID(state, payload) {
       state.paid = payload;

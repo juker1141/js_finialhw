@@ -22,7 +22,7 @@
         <div class="row flex-column-reverse flex-lg-row">
           <div class="col-12 col-lg-6 offset-lg-1 mt-3 mt-lg-0">
             <div class="text-left fz_24 mb-2">訂單資訊</div>
-            <div v-if="loading" class="border border-black mb-5">
+            <div v-if="orderLoading" class="border border-black mb-5">
               <div class="d-flex flex-column">
                 <div @click="showOrderInfo" class="d-flex justify-content-between
                 align-items-center border-bottom border-black p-3">
@@ -175,12 +175,14 @@ export default {
     return {
       orderTotal: 0,
       isPaying: false,
-      loading: false,
     };
   },
   computed: {
     order() {
       return this.$store.state.order;
+    },
+    orderLoading() {
+      return this.$store.state.orderLoading;
     },
     orderId() {
       return this.$store.state.orderId;
@@ -190,11 +192,17 @@ export default {
     },
   },
   watch: {
+    orderId() {
+      this.getOrder(this.orderId);
+    },
     order() {
       this.orderTotal = 0;
-      this.order.products.forEach((item) => {
-        this.orderTotal += (item.quantity * item.product.price);
-      });
+      if (this.orderLoading) {
+        this.writeInLocalStorage();
+        this.order.products.forEach((item) => {
+          this.orderTotal += (item.quantity * item.product.price);
+        });
+      }
       if (this.order.coupon) {
         this.orderTotal = Math.round(this.orderTotal * (this.order.coupon.percent / 100));
       }
@@ -202,6 +210,9 @@ export default {
     },
     paid() {
       return this.paid;
+    },
+    cartBlockShow() {
+      return this.$store.state.cartBlockShow;
     },
   },
   methods: {
@@ -221,12 +232,13 @@ export default {
       $('.orderDetail_total').toggleClass('d-none');
     },
     writeInLocalStorage() {
-      if (!localStorage.getItem('store')) {
+      if (this.orderId === this.order.id) {
+        console.log('我要寫local了');
         localStorage.setItem('store', JSON.stringify(this.$store.state));
       } else {
         this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
-        this.getOrder(this.orderId);
       }
+      this.$store.dispatch('messagePush', 'clear');
     },
     paidOrder() {
       this.isPaying = true;
@@ -250,11 +262,11 @@ export default {
     },
   },
   created() {
-    this.getOrder(this.orderId);
+    // this.getOrder(this.orderId);
     setTimeout(() => {
       this.writeInLocalStorage();
-      this.loading = true;
     }, 0);
+    this.$store.dispatch('cartBlockisShow', false);
     window.addEventListener('storage', (event) => {
       this.isPaying = true;
       this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });

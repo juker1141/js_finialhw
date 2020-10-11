@@ -123,6 +123,7 @@ export default {
       this.$store.dispatch('payMoney', false);
       if (localStorage.getItem('store')) {
         localStorage.removeItem('store');
+        console.log(localStorage.getItem('store'));
       }
       setTimeout(() => {
         this.$router.push('/payment');

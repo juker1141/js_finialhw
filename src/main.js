@@ -39,7 +39,6 @@ Vue.config.productionTip = false;
 Vue.component('Pagination', Pagination);
 Vue.component('PaginationAdmin', PaginationAdmin);
 Vue.use(VueAxios, axios);
-Vue.prototype.$bus = new Vue();
 window.$ = $;
 
 /* global $ */
