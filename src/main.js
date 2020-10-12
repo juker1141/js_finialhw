@@ -12,12 +12,12 @@ import {
 import TW from 'vee-validate/dist/locale/zh_TW.json';
 import PaginationAdmin from '@/components/PaginationAdmin.vue';
 import Pagination from '@/components/Pagination.vue';
+import './assets/scss/all.scss';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import './filters';
 
-Vue.use(VueAwesomeSwiper);
 // Add a rule.
 extend('secret', {
   validate: (value) => value === 'example',
@@ -29,19 +29,25 @@ configure({
     invalid: 'is-invalid',
   },
 });
+// 載入中文語言包
 localize('zh_TW', TW);
 
-// Register it globally
+// Register it globally，表單驗證套件
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
-
-Vue.config.productionTip = false;
+// 使用swiper套件
+Vue.use(VueAwesomeSwiper);
+// 載入全域分頁套件
 Vue.component('Pagination', Pagination);
 Vue.component('PaginationAdmin', PaginationAdmin);
+// 在全域使用axios
 Vue.use(VueAxios, axios);
+// 關閉Vue自動生成的提示訊息，在編碼的時候那些訊息沒有用處!!
+Vue.config.productionTip = false;
+// 註冊jquery
 window.$ = $;
-
 /* global $ */
+
 new Vue({
   router,
   store,

@@ -2,8 +2,8 @@
   <swiper class="swiper" :options="swiperOption">
     <template v-for="(item, index) in products">
       <swiper-slide v-if="item.id !== id" :key="index">
-        <router-link class="text-decoration-none h-100 w-100 text-black"
-        :to="`/product/${item.id}`">
+        <a href="#" class="text-decoration-none h-100 w-100 text-black"
+        @click.prevent="addSessionStorage(item, item.id); goToProduct(item.id)">
           <div class="card cardSize border-0 m-0">
             <div @click="update" class="overflow-hidden"
             >
@@ -36,7 +36,7 @@
               </div>
             </div>
           </div>
-        </router-link>
+        </a>
       </swiper-slide>
     </template>
     <div class="swiper-pagination" slot="pagination"></div>
@@ -66,6 +66,20 @@ export default {
   methods: {
     update() {
       this.$emit('update');
+    },
+    addSessionStorage(product, itemId) {
+      if (sessionStorage.getItem('recentlyViewed')) {
+        this.recentlyViewedProducts = (JSON.parse(sessionStorage.getItem('recentlyViewed')));
+      }
+      this.recentlyViewedProducts.push(product);
+      const set = new Set();// 這邊取出暫存資料不重複的部分
+      const result = this.recentlyViewedProducts
+        .filter((item) => (!set.has(item.id) ? set.add(item.id) : false));
+      // 將不重複的部分上傳至storage
+      sessionStorage.setItem('recentlyViewed', JSON.stringify(result));
+    },
+    goToProduct(itemId) {
+      this.$router.push(`/product/${itemId}`);
     },
   },
 };

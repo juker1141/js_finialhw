@@ -84,7 +84,7 @@
             <div class="w-100 position-relative">
               <div v-if="loadingProduct === item.product.id"
               class="d-flex align-items-center justify-content-center
-              h-100 w-100 position-absolute bg-grayOP">
+              h-100 w-100 position-absolute bg-blackOP_8">
                 <div class="spinner-border text-white" id="loadingIcon" role="status">
                   <span class="sr-only">Loading...</span>
                 </div>
@@ -343,6 +343,7 @@ export default {
   },
   watch: {
     cart() {
+      this.getcart();
       this.cartTotal = 0;
       if (this.cart.length === 0) {
         this.cartTotal = 0;

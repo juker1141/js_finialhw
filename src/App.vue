@@ -3,7 +3,7 @@
     <Loading v-if="isLoading"></Loading>
     <Toast/>
     <div v-if="isDarkShadyOn" @click="closeCart"
-    class="bg-grayOP position-fixed h-100 w-100 zIndex_40 top_0"></div>
+    class="bg-blackOP_8 position-fixed h-100 w-100 zIndex_40 top_0"></div>
     <router-view class="position-relative"/>
   </div>
 </template>
@@ -44,7 +44,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/scss/all.scss';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -51,10 +51,15 @@ export default new Vuex.Store({
     },
     getOrder(context, payload) {
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/${payload}`;
-      axios.get(url)
-        .then((res) => {
-          context.commit('ORDER', res.data.data);
-        });
+      if (payload) {
+        axios.get(url)
+          .then((res) => {
+            context.commit('ORDER', res.data.data);
+          }).catch(() => {
+          });
+      } else {
+        context.commit('ORDERERROE');
+      }
     },
     payMoney(context, payload) {
       context.commit('PAID', payload);
@@ -84,7 +89,12 @@ export default new Vuex.Store({
     },
     ORDER(state, payload) {
       state.order = payload;
+      localStorage.removeItem('store');
+      localStorage.setItem('store', JSON.stringify(state));
       state.orderLoading = true;
+    },
+    ORDERERROE(state) {
+      this.replaceState({ ...state, ...JSON.parse(localStorage.getItem('store')) });
     },
     PAID(state, payload) {
       state.paid = payload;

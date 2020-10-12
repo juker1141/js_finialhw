@@ -7,7 +7,8 @@
           to="/home"
         >Hardware Store</router-link>
       </div>
-      <div class="bg-grayOP bg_xl_transparent p-5 p-xl-0 text-center text-xl-left payDone_mt_auto">
+      <div class="bg-blackOP_8 bg_xl_transparent
+      p-5 p-xl-0 text-center text-xl-left payDone_mt_auto">
         <div class="fz_48 mb-5 font-weight-bold">付款成功！！</div>
         <div class="fz_24 mb-5">我們將馬上為您出貨
         <span class="d-none d-xl-inline-block">，</span>

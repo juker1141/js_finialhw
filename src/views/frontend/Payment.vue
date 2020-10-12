@@ -198,7 +198,7 @@ export default {
     order() {
       this.orderTotal = 0;
       if (this.orderLoading) {
-        this.writeInLocalStorage();
+        // this.writeInLocalStorage();
         this.order.products.forEach((item) => {
           this.orderTotal += (item.quantity * item.product.price);
         });
@@ -218,6 +218,11 @@ export default {
   methods: {
     getOrder(id) {
       this.$store.dispatch('getOrder', id);
+      // if (!this.order) {
+      //   console.log('這裡沒東西');
+      //   this.$store.replaceState({ ...this.$store.state,
+      // ...JSON.parse(localStorage.getItem('store')) });
+      // }
     },
     showOrderInfo() {
       $('#orderInfo').slideToggle(300);
@@ -232,12 +237,6 @@ export default {
       $('.orderDetail_total').toggleClass('d-none');
     },
     writeInLocalStorage() {
-      if (this.orderId === this.order.id) {
-        console.log('我要寫local了');
-        localStorage.setItem('store', JSON.stringify(this.$store.state));
-      } else {
-        this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
-      }
       this.$store.dispatch('messagePush', 'clear');
     },
     paidOrder() {
@@ -262,14 +261,13 @@ export default {
     },
   },
   created() {
-    // this.getOrder(this.orderId);
-    setTimeout(() => {
-      this.writeInLocalStorage();
-    }, 0);
+    this.getOrder(this.orderId);
+    this.writeInLocalStorage();
     this.$store.dispatch('cartBlockisShow', false);
     window.addEventListener('storage', (event) => {
       this.isPaying = true;
-      this.$store.replaceState({ ...this.$store.state, ...JSON.parse(localStorage.getItem('store')) });
+      // this.$store.replaceState({ ...this.$store.state,
+      // ...JSON.parse(localStorage.getItem('store')) });
       setTimeout(() => {
         this.isPaying = false;
       }, 1000);

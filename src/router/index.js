@@ -6,77 +6,77 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    component: () => import('../views/layout/Layout.vue'),
+    component: () => import('../views/frontend/Layout.vue'),
     children: [
       {
         path: 'home',
-        component: () => import('../views/layout/Home.vue'),
+        component: () => import('../views/frontend/Home.vue'),
       },
       {
         path: 'information',
-        component: () => import('../views/layout/Information.vue'),
+        component: () => import('../views/frontend/Information.vue'),
       },
       {
         path: 'payment',
-        component: () => import('../views/layout/Payment.vue'),
+        component: () => import('../views/frontend/Payment.vue'),
       },
       {
         path: 'paycheck',
-        component: () => import('../views/layout/Paycheck.vue'),
+        component: () => import('../views/frontend/Paycheck.vue'),
       },
       {
         path: 'paydone',
-        component: () => import('../views/layout/Paydone.vue'),
+        component: () => import('../views/frontend/Paydone.vue'),
       },
       {
         path: 'about',
-        component: () => import('../views/layout/About.vue'),
+        component: () => import('../views/frontend/About.vue'),
       },
       {
         path: 'orderlist',
-        component: () => import('../views/layout/Orderlist.vue'),
+        component: () => import('../views/frontend/Orderlist.vue'),
       },
       {
         path: 'products',
-        component: () => import('../views/layout/Products.vue'),
+        component: () => import('../views/frontend/Products.vue'),
       },
       {
         path: 'product/:id',
-        component: () => import('../views/layout/Product.vue'),
+        component: () => import('../views/frontend/Product.vue'),
       },
       {
         path: 'login',
-        component: () => import('../views/layout/Login.vue'),
+        component: () => import('../views/frontend/Login.vue'),
       },
     ],
   },
   {
     path: '/admin',
-    component: () => import('../views/dashboard/Dashboard.vue'),
+    component: () => import('../views/backend/Dashboard.vue'),
     children: [
       {
         path: 'home',
-        component: () => import('../views/dashboard/Adminhome.vue'),
+        component: () => import('../views/backend/Adminhome.vue'),
       },
       {
         path: 'products',
-        component: () => import('../views/dashboard/Products.vue'),
+        component: () => import('../views/backend/Products.vue'),
       },
       {
         path: 'orderlist',
-        component: () => import('../views/dashboard/Orderlist.vue'),
+        component: () => import('../views/backend/Orderlist.vue'),
       },
       {
         path: 'coupons',
-        component: () => import('../views/dashboard/Coupons.vue'),
+        component: () => import('../views/backend/Coupons.vue'),
       },
       {
         path: 'picturelibrary',
-        component: () => import('../views/dashboard/Picturelibrary.vue'),
+        component: () => import('../views/backend/Picturelibrary.vue'),
       },
       {
         path: 'simulateorder',
-        component: () => import('../views/dashboard/Simulateorder.vue'),
+        component: () => import('../views/backend/Simulateorder.vue'),
       },
     ],
   },

@@ -15,11 +15,11 @@
           position-relative position_lg_absolute productInfo">
             <div class="bg-white w-100 p-4 shadow">
               <div class="d-flex mb-1">
-                <router-link class="mr-3 text-black"
+                <router-link class="mr-2 text-black"
                 :to="`/home`">首頁</router-link>>
-                <a href="#" class="mx-3 text-black"
+                <a href="#" class="mx-2 text-black"
                 @click.prevent="backToProducts">商品</a>>
-                <a href="#" class="ml-3 text-secondary"
+                <a href="#" class="ml-2 text-secondary"
                 @click.prevent="backToProductCategory(product.category)">
                 {{ product.category }}</a>
               </div>

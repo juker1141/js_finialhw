@@ -1,7 +1,7 @@
 <template>
   <div class="w-100 h_100vh bg_paycheck d-flex
   justify-content-center align-items-center">
-    <div class="bg-grayOP p-4 text-white mb-9">
+    <div class="bg-blackOP_8 p-4 text-white mb-9">
       <router-link
         class="fontOrbitron fz_30 text-white text-decoration-none"
         to="/home"
@@ -9,14 +9,18 @@
       <div class="mb-3 fz_30">數位支付平台</div>
       <div v-if="!isPaid">
         <div v-if="order.amount > 2000" class="mb-4">
-        您將支付 NT {{ Math.round(order.amount) | toCurrency | DollarSign}}，確認付款嗎？</div>
+        您將支付 NT <span class="fz_24">{{ Math.round(order.amount) | toCurrency | DollarSign}}</span>
+        ，確認付款嗎？</div>
         <div v-else class="mb-3">
-        您將支付 NT {{ Math.round(order.amount) + 60 | toCurrency | DollarSign}}，確認付款嗎？</div>
+        您將支付 NT <span class="fz_24">
+          {{ Math.round(order.amount) + 60 | toCurrency | DollarSign}}</span>
+        ，確認付款嗎？</div>
         <button type="button" class="btn fz_24_important
-        bg-white text-black rounded-0 p-1 px-5" @click="payMoney">確認付款</button>
+        bg-white text-black rounded-0 p-1 px-5 btn_white_hover" @click="payMoney">確認付款</button>
       </div>
       <router-link v-else to="/payment" class="text-decoration-none text-white
-      fz_24_important p-3 px-5"><div class="bg-success">付款成功！<br>點擊回到原頁面確認</div></router-link>
+      fz_24_important">
+      <div class="bg-success p-3 px-5">付款成功！<br>點擊回到原頁面確認</div></router-link>
     </div>
   </div>
 </template>
@@ -64,4 +68,8 @@ export default {
   background-position: center;
   background-size: cover;
 }
+.btn_white_hover:hover{
+  background: #fecf2f !important;
+}
+
 </style>

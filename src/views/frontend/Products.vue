@@ -73,7 +73,7 @@
               <div :key="index" class="col-12 col-md-6 col-lg-4
               mb-5 position-relative isShowingProduct">
                 <a href="#" class="text-decoration-none text-black"
-                @click.prevent="addSessionStorage(item, item.id)">
+                @click.prevent="addSessionStorage(item, item.id); goToProduct(item.id)">
                   <div class="card position-relative cardSize border-0 m-0">
                     <div class="overflow-hidden"
                     >
@@ -170,6 +170,8 @@ export default {
         .filter((item) => (!set.has(item.id) ? set.add(item.id) : false));
       // 將不重複的部分上傳至storage
       sessionStorage.setItem('recentlyViewed', JSON.stringify(result));
+    },
+    goToProduct(itemId) {
       this.$router.push(`/product/${itemId}`);
     },
     productsSelect(category) {

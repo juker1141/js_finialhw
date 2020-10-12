@@ -13,7 +13,8 @@
           <p>從 1990 年代起， <span class="fontOrbitron">Hardware Store</span> 就開始經營五金批發<br>
           對於各品牌的手工具、電動工具、氣動工具更是瞭若指掌<br>
           若想了解更多資訊，歡迎直接聯繫我們！</p>
-          <div class="w-100 text-right"><a href="#" @click.prevent class="mr-3">了解更多</a></div>
+          <div class="w-100 text-right"><a href="#" @click.prevent
+          data-toggle="modal" data-target="#exampleModal" class="mr-3">了解更多</a></div>
         </div>
       </div>
     </div>
@@ -23,7 +24,7 @@
       <div class="col-12 col-lg-4">
         <div class="featuresImg featuresImg_2 shadow"></div>
       </div>
-      <div class="col-12 col-lg-4 offset-lg-2 bg_lg_gray">
+      <div class="col-12 col-lg-4 offset-lg-2 bg_lg_yellow">
         <div class="h-100 p-5 text-left d-flex align-items-start
         flex-column justify-content-center">
           <h4 class="mb-4">物美價廉</h4>
@@ -48,6 +49,26 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+      <div class="modal-content bg-blackOP_6 text-white">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn
+          m-0 p-0 d-flex align-items-center close opacity_1"
+          data-dismiss="modal" aria-label="Close">
+            <span class="material-icons text-white">clear</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer border-0">
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -55,7 +76,7 @@
 .mt_lg_-7{
   margin-top: -64px;
 }
-.bg_lg_gray{
+.bg_lg_yellow{
   @media (min-width: 992px) {
     background: #fecf2f;
   }
