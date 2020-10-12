@@ -18,7 +18,7 @@
     <div class="card-columns">
       <div class="card card_height" v-for="item in fileData" :key="item.id">
         <img :src="item.path" class="card-img-top" alt="...">
-        <div class="card-img-overlay bg-blackOP_8 opacity_0 flex-column
+        <div class="card-img-overlay bg-blackOP opacity_0 flex-column
         d-flex align-items-center justify-content-center imgCard_hover">
           <div :id="item.id" class="fz_12 m-5 hideLongLine h_0
           bg-white p-1 px-2 text-left mb-3">{{ item.path }}</div>

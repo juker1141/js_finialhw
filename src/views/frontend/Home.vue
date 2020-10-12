@@ -134,11 +134,11 @@
     </div>
     <div class="d-flex w-100 footerNews_height position-relative mb-5 mb-lg-7">
       <div class="text-left zIndex_10 footerNews_mt ml-3 ml-lg-9 text-white">
-        <div class="fz_24 fz_xl_36 px-3 pt-3 px-lg-5 pt-lg-5 pb-0 mb-0 bg-blackOP_8">在地永續經營
+        <div class="fz_24 fz_xl_36 px-3 pt-3 px-lg-5 pt-lg-5 pb-0 mb-0 bg-blackOP">在地永續經營
         <span class="d-none d-xl-inline-block">，</span><br class="d-block d-xl-none">
         <span class="fontOrbitron"> Hardware Store </span><br class="d-block d-xl-none">
         邀您一起做公益</div>
-        <p class="fz_14 fz_xl_24 p-3 p-lg-5 pt-0 bg-blackOP_8">
+        <p class="fz_14 fz_xl_24 p-3 p-lg-5 pt-0 bg-blackOP">
         在 <span class="fontOrbitron">Hardware Store</span> 購買商品時
         <span class="d-none d-xl-inline-block">，</span><br class="d-block d-xl-none">
         只要您購物滿2000元<br>

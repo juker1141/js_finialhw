@@ -84,7 +84,7 @@
             <div class="w-100 position-relative">
               <div v-if="loadingProduct === item.product.id"
               class="d-flex align-items-center justify-content-center
-              h-100 w-100 position-absolute bg-blackOP_8">
+              h-100 w-100 position-absolute bg-blackOP">
                 <div class="spinner-border text-white" id="loadingIcon" role="status">
                   <span class="sr-only">Loading...</span>
                 </div>

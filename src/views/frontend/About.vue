@@ -4,7 +4,7 @@
     <span class="fontOrbitron ml-2">Hardware Store</span></div>
     <div class="row mb-3 mx-md-5 mx-lg-7">
       <div class="col-12 col-lg-8">
-        <div class="featuresImg featuresImg_1"></div>
+        <div class="aboutImg aboutImg_1"></div>
       </div>
       <div class="col-12 col-lg-4">
         <div class="h-100 p-5 text-left d-flex align-items-start
@@ -22,7 +22,7 @@
       <div class="col-lg-2">
       </div>
       <div class="col-12 col-lg-4">
-        <div class="featuresImg featuresImg_2 shadow"></div>
+        <div class="aboutImg aboutImg_2 shadow"></div>
       </div>
       <div class="col-12 col-lg-4 offset-lg-2 bg_lg_yellow">
         <div class="h-100 p-5 text-left d-flex align-items-start
@@ -37,7 +37,7 @@
     </div>
     <div class="row flex-lg-row-reverse mx-md-5 mx-lg-7">
       <div class="col-12 col-lg-8">
-        <div class="featuresImg featuresImg_3"></div>
+        <div class="aboutImg aboutImg_3"></div>
       </div>
       <div class="col-12 col-lg-4">
         <div class="h-100 p-5 text-left d-flex align-items-start
@@ -52,9 +52,10 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
-      <div class="modal-content bg-blackOP_6 text-white">
+      <div class="modal-content bg-blackOP text-white">
         <div class="modal-header border-0">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">
+          <span class="fontOrbitron ml-2">Hardware Store</span></h5>
           <button type="button" class="btn
           m-0 p-0 d-flex align-items-center close opacity_1"
           data-dismiss="modal" aria-label="Close">
@@ -62,7 +63,24 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <div class="">
+            <div class="row w-50">
+              <div class="col-6"><div class="aboutUsImg aboutUsImg_1"></div></div>
+              <div class="col-6">
+                <div class="d-flex flex-column">
+                  <div class="row">
+                    <div class="col-12"><div class="aboutUsImg aboutUsImg_2"></div></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12"><div class="aboutUsImg aboutUsImg_3"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>從 1990 年代起， <span class="fontOrbitron">Hardware Store</span> 就開始經營五金批發<br>
+          對於各品牌的手工具、電動工具、氣動工具更是瞭若指掌<br>
+          若想了解更多資訊，歡迎直接聯繫我們！</p>
         </div>
         <div class="modal-footer border-0">
         </div>
@@ -81,11 +99,11 @@
     background: #fecf2f;
   }
 }
-.featuresImg{
+.aboutImg{
   width: 100%;
   background-size: cover !important;
 }
-.featuresImg_1{
+.aboutImg_1{
   background-position: 25% 75% !important;
   background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/BIzqAYnOJ9VVk2wUTGxVFyXvUVGvm52beZUQW70jAvDwSHXDLvyjek62b2CvLl7gIlKAHEsOn3sORffJHPVIZ2B0QZkyL2GdTU39A0cgmUMAWyOJ0OHezA1iqYAipAYf.jpg) no-repeat;
   filter: sepia(.6);
@@ -94,7 +112,7 @@
     height: 550px;
   }
 }
-.featuresImg_2{
+.aboutImg_2{
   background-position: center !important;
   background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/ofBcUDlx03tTlPUA43VtJ1qRJ8jZh56cFBukpYKEe0llmcf4NYINFnllB3YWviTyt4UO0g2B05arlzJeLioAMT5WVzXDKeOHNPQcbImgjWjo5aUCGaDEjYqfbGRwwW08.jpg) no-repeat;
   filter:saturate(1);
@@ -103,12 +121,33 @@
     height: 350px;
   }
 }
-.featuresImg_3{
+.aboutImg_3{
   background-position: center !important;
   background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/UaIIctwp56XoiJ9G8nFklzl6CLaeY4dY4w7ysDOUbyKyjWtSBK0bn6OMlRKfU7t77ygkEn7dtB1KUzVfSPpcyU3c6wEG80WXDlRgu3bKjeaEsgCrZsZaLjxr5i2oji29.jpeg) no-repeat;
   height: 250px;
   @media (min-width: 992px) {
     height: 550px;
   }
+}
+.aboutUsImg{
+  width: 100%;
+  background-size: cover !important;
+}
+.aboutUsImg_1{
+  background-position: 50% 75% !important;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/BIzqAYnOJ9VVk2wUTGxVFyXvUVGvm52beZUQW70jAvDwSHXDLvyjek62b2CvLl7gIlKAHEsOn3sORffJHPVIZ2B0QZkyL2GdTU39A0cgmUMAWyOJ0OHezA1iqYAipAYf.jpg) no-repeat;
+  filter: sepia(.6);
+  height: 550px;
+}
+.aboutUsImg_2{
+  background-position: center !important;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/8yGbq2NuwZnfADDZSayJYILMsnHoDGAvEcnRmaJO8yarICrgiHwPhERBUggeuxiV5WtJYiXKJENstxWrwEtVz7TIyRcR5eCaNsZFuZUEnnXXT3WPbI24NZ3Wk63h0Tl9.jpg) no-repeat;
+  height: 265px;
+  margin-bottom: 20px;
+}
+.aboutUsImg_3{
+  background-position: center !important;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/9BjrmSggbENmkk9k4IxX6lSsSlvZV7FZheaZhbfznaxHyFkK01AWV4jPu655fDTmCQts6DmxfMuJOe53XSrEahRKb1ArIaBYHL4iJ9rc2nsPOQ7m0RDL5FUzqwH3aWX7.jpg) no-repeat;
+  height: 265px;
 }
 </style>

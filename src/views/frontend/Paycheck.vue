@@ -1,7 +1,7 @@
 <template>
   <div class="w-100 h_100vh bg_paycheck d-flex
   justify-content-center align-items-center">
-    <div class="bg-blackOP_8 p-4 text-white mb-9">
+    <div class="bg-blackOP p-4 text-white mb-9">
       <router-link
         class="fontOrbitron fz_30 text-white text-decoration-none"
         to="/home"
