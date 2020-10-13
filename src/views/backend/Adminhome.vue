@@ -3,7 +3,7 @@
     <div class="h_100vh text-left text-black">
       <div class="p-3">
         <h3 class="text-left d-flex align-items-center my-4 pt-lg-5 px-3 px-md-6">
-          <span class="material-icons fz_30 mr-3">home</span>
+          <span class="material-icons fz_30_important mr-3">home</span>
           首頁
         </h3>
         <div class="row px-5 pb-5 px-md-6">
@@ -12,7 +12,7 @@
               <span class="fontOrbitron"> Hardware Store Admin </span><br />
               管理系統
             </p>
-            <div class="fz_30">
+            <div class="fz_30_important">
               今天是<br class="d-lg-none"> {{ nowDate.year }} {{ nowDate.month }} {{ nowDate.day }}
               <span class="d-none d-xl-inline-block">，</span>
               <br class="d-xl-none"/>
@@ -23,7 +23,7 @@
             <div class="fz_65 fontOrbitron w_340px text-right time_ml_auto d-none d-lg-block">
               <div class="d-flex justify-content-start align-items-end">
                 <div class="d-inline-block mr-2">{{ nowDate.hour }} : {{ nowDate.min }}</div>
-                <div class="fz_30 d-inline-block mb_13 w_50px">{{ nowDate.sec }}</div>
+                <div class="fz_30_important d-inline-block mb_13 w_50px">{{ nowDate.sec }}</div>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@
     <div class="text-left text-black d-flex
     align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
       <h3 class="d-flex align-items-center m-0">
-        <span class="material-icons fz_30 mr-3">list_alt</span>
+        <span class="material-icons fz_30_important mr-3">list_alt</span>
         產品列表
       </h3>
       <button class="btn d-flex align-items-center" type="button"

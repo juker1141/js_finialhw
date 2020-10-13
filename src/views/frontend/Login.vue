@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12 col-lg-5 py-3">
         <router-link
-          class="fontOrbitron fz_30 text-black text-decoration-none"
+          class="fontOrbitron fz_30_important text-black text-decoration-none"
           to="/home"
         >Hardware Store</router-link>
       </div>

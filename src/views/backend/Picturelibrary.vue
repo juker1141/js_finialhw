@@ -3,7 +3,7 @@
     <div class="text-left text-black d-flex
     align-items-center mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
       <h3 class="d-flex align-items-center text-black">
-        <span class="material-icons fz_30 mr-3">photo_library</span>
+        <span class="material-icons fz_30_important mr-3">photo_library</span>
         圖片庫
       </h3>
     </div>
@@ -26,7 +26,7 @@
             <button type="button" @click="copyFilePath(item.id)"
             class="btn btn-adminPrimary mr-3 p-2
             d-flex align-items-center justify-content-center">
-              <span class="material-icons fz_30">
+              <span class="material-icons fz_30_important">
               content_copy
               </span>
             </button>
@@ -34,7 +34,7 @@
             @click="delFile = item"
             data-target="#delFileModal" class="btn btn-danger p-2
             d-flex align-items-center justify-content-center">
-              <span class="material-icons fz_30">
+              <span class="material-icons fz_30_important">
               delete_outline
               </span>
             </button>

@@ -71,11 +71,11 @@
                         {{ tempOrder.amount + 60 | toCurrency | DollarSign }}
                       </div>
                       <span class="material-icons text-success ml-2
-                      showDetail_down fz_30">
+                      showDetail_down fz_30_important">
                         expand_more
                       </span>
                       <span class="material-icons text-success ml-2
-                      showDetail_up d-none fz_30">
+                      showDetail_up d-none fz_30_important">
                         expand_less
                       </span>
                     </div>

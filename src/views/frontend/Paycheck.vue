@@ -3,10 +3,10 @@
   justify-content-center align-items-center">
     <div class="bg-blackOP p-4 text-white mb-9">
       <router-link
-        class="fontOrbitron fz_30 text-white text-decoration-none"
+        class="fontOrbitron fz_30_important text-white text-decoration-none"
         to="/home"
       >Hardware Store</router-link>
-      <div class="mb-3 fz_30">數位支付平台</div>
+      <div class="mb-3 fz_30_important">數位支付平台</div>
       <div v-if="!isPaid">
         <div v-if="order.amount > 2000" class="mb-4">
         您將支付 NT <span class="fz_24">{{ Math.round(order.amount) | toCurrency | DollarSign}}</span>

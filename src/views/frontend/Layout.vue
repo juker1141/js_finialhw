@@ -64,11 +64,11 @@
     <div id="cartBlock" :class="{ 'active' : cartBlockShow }"
     class="h-100 bg-white text-black position-fixed zIndex_40 p-4 px-5 p-lg-6 cartBlockPosition">
       <div class="d-flex justify-content-between mb-5">
-        <div class="fz_30 fz_md_36 font-weight-bold text-black">購物車</div>
+        <div class="fz_30_important fz_md_36 font-weight-bold text-black">購物車</div>
         <div class="d-flex align-items-center">
           <button @click="closeCart"
           class="btn d-flex align-items-center p-0" type="button">
-            <span class="material-icons fz_30 fz_md_36">
+            <span class="material-icons fz_30_important fz_md_36">
             close
             </span>
           </button>
@@ -198,7 +198,7 @@
           NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div></div>
           <div class="d-flex justify-content-end">
           <button @click="closeCart(); toInformationPage()" type="button"
-          class="btn bg-black text-white rounded-0 fz_30 px-5 w-100 w_lg_75"
+          class="btn bg-black text-white rounded-0 fz_30_important px-5 w-100 w_lg_75"
           :disabled="cart.length === 0">
           前往結帳</button></div>
           <div v-if="cart.length === 0"
@@ -240,7 +240,7 @@
         <div class="w_100">
           <div class="mb-3">
             <router-link
-            class="fontOrbitron fz_30 text-yellow text-decoration-none"
+            class="fontOrbitron fz_30_important text-yellow text-decoration-none"
             to="/home">
             Hardware Store
             </router-link><br class="d-lg-none">
@@ -258,22 +258,22 @@
             p-0 m-0 mb-3 d-flex align-items-center fz_14">
               <li class="mr-3">
                 <a href="#" class="text-decoration-none text-yellow">
-                  <i class="fab fa-github-square fz_30"></i>
+                  <i class="fab fa-github-square fz_30_important"></i>
                 </a>
               </li>
               <li class="mr-3">
                 <a href="#" class="text-decoration-none text-yellow">
-                  <i class="fab fa-facebook-square fz_30"></i>
+                  <i class="fab fa-facebook-square fz_30_important"></i>
                 </a>
               </li>
               <li class="mr-3">
                 <a href="#" class="text-decoration-none text-yellow">
-                  <i class="fab fa-instagram-square fz_30"></i>
+                  <i class="fab fa-instagram-square fz_30_important"></i>
                 </a>
               </li>
               <li>
                 <a href="#" class="text-decoration-none text-yellow">
-                  <i class="fas fa-envelope-square fz_30"></i>
+                  <i class="fas fa-envelope-square fz_30_important"></i>
                 </a>
               </li>
             </ul>
@@ -284,22 +284,22 @@
           text-left p-0 m-0 mb-3 d-none d-lg-flex align-items-center fz_14">
             <li class="mr-3">
               <a href="#" class="text-decoration-none text-yellow">
-                <i class="fab fa-github-square fz_30"></i>
+                <i class="fab fa-github-square fz_30_important"></i>
               </a>
             </li>
             <li class="mr-3">
               <a href="#" class="text-decoration-none text-yellow">
-                <i class="fab fa-facebook-square fz_30"></i>
+                <i class="fab fa-facebook-square fz_30_important"></i>
               </a>
             </li>
             <li class="mr-3">
               <a href="#" class="text-decoration-none text-yellow">
-                <i class="fab fa-instagram-square fz_30"></i>
+                <i class="fab fa-instagram-square fz_30_important"></i>
               </a>
             </li>
             <li>
               <a href="#" class="text-decoration-none text-yellow">
-                <i class="fas fa-envelope-square fz_30"></i>
+                <i class="fas fa-envelope-square fz_30_important"></i>
               </a>
             </li>
           </ul>

@@ -2,7 +2,7 @@
   <div class="p-3">
     <h3 class="text-left text-black d-flex
     align-items-center mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
-      <span class="material-icons fz_30 mr-3">receipt_long</span>
+      <span class="material-icons fz_30_important mr-3">receipt_long</span>
       訂單列表
     </h3>
     <table class="table mt-2 rounded" width="400">

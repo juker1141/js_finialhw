@@ -3,7 +3,7 @@
     <div class="container d-flex flex-column align-items-center align-items-xl-start">
       <div class="my-3 w-100 d-flex justify-content-start">
         <router-link
-          class="fontOrbitron fz_30 text-white text_xl_black text-decoration-none"
+          class="fontOrbitron fz_30_important text-white text_xl_black text-decoration-none"
           to="/home"
         >Hardware Store</router-link>
       </div>

@@ -9,7 +9,7 @@ body {
 .h_100vh {
   height: 100vh;
 }
-.h_550px{
+.h_550px {
   height: 550px;
 }
 .listStyle_none {
@@ -50,12 +50,15 @@ body {
 .fz_24 {
   font-size: 24px;
 }
+.fz_24_important {
+  font-size: 24px !important;
+}
 .fz_lg_24 {
   @include media-breakpoint-up(lg) {
     font-size: 24px !important;
   }
 }
-.fz_30 {
+.fz_30_important {
   font-size: 30px !important;
 }
 .fz_md_24 {

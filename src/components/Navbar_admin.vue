@@ -25,7 +25,7 @@
               class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               >
               <span class="material-icons mr-lg-3 pl-xl-7
-              pl-lg-4 pl-0 border-0 fz_30">home</span>
+              pl-lg-4 pl-0 border-0 fz_30_important">home</span>
               <span class="d-none d-lg-block border-0">首頁</span>
             </a>
           </li>
@@ -37,7 +37,7 @@
               class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               >
               <span class="material-icons mr-lg-3 pl-xl-7
-              pl-lg-4 pl-0 border-0 fz_30">list_alt</span>
+              pl-lg-4 pl-0 border-0 fz_30_important">list_alt</span>
               <span class="d-none d-lg-block border-0">產品列表</span>
             </a>
           </li>
@@ -49,7 +49,7 @@
               class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               >
               <span class="material-icons mr-lg-3 pl-xl-7
-              pl-lg-4 pl-0 border-0 fz_30">receipt_long</span>
+              pl-lg-4 pl-0 border-0 fz_30_important">receipt_long</span>
               <span class="d-none d-lg-block border-0">訂單列表</span>
             </a>
           </li>
@@ -62,7 +62,7 @@
               >
               <span
                 class="material-icons mr-lg-3 pl-xl-7
-                pl-lg-4 pl-0 border-0 fz_30"
+                pl-lg-4 pl-0 border-0 fz_30_important"
               >local_activity</span>
               <span class="d-none d-lg-block border-0">優惠卷</span>
             </a>
@@ -75,7 +75,7 @@
               class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               >
               <span class="material-icons mr-lg-3 pl-xl-7
-              pl-lg-4 pl-0 border-0 fz_30">photo_library</span>
+              pl-lg-4 pl-0 border-0 fz_30_important">photo_library</span>
               <span class="d-none d-lg-block border-0">圖片庫</span>
             </a>
           </li>
@@ -87,7 +87,7 @@
               class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               >
               <span class="material-icons mr-lg-3 pl-xl-7
-              pl-lg-4 pl-0 border-0 fz_30">book_online</span>
+              pl-lg-4 pl-0 border-0 fz_30_important">book_online</span>
               <span class="d-none d-lg-block border-0">模擬下單系統</span>
             </a>
           </li>
@@ -99,7 +99,7 @@
               class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
               >
               <span class="material-icons mr-lg-3 pl-xl-7
-              pl-lg-4 pl-0 border-0 fz_30">meeting_room</span>
+              pl-lg-4 pl-0 border-0 fz_30_important">meeting_room</span>
               <span class="d-none d-lg-block border-0">登出</span>
             </a>
           </li>
