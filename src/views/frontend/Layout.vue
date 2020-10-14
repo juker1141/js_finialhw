@@ -319,7 +319,7 @@
       <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
         <div class="modal-content bg-blackOP text-white">
           <div class="modal-header border-0">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <h5 class="modal-title fontOrbitron">Hardware Store</h5>
             <button type="button" class="btn
             m-0 p-0 d-flex align-items-center close opacity_1"
             data-dismiss="modal" aria-label="Close">
@@ -327,38 +327,87 @@
             </button>
           </div>
           <div class="modal-body">
-            <div id="aboutUs" class="row mx-5">
-              <div class="col-7">
-                <div class="d-flex">
-                  <div class="w-50 mr-3"><div class="h_550px paymentImg paymentImg_1"></div></div>
-                  <div class="w-50">
-                    <div class="h-100 d-flex flex-column">
-                      <div class="h-100 paymentImg paymentImg_2 mb-3"></div>
-                      <div class="h-100 paymentImg paymentImg_3 mb-3"></div>
-                      <div class="h-100 paymentImg paymentImg_4"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-5 h_550px">
-                <div class="d-flex h-100 flex-column text-left
-                align-items-center justify-content-center">
-                  <div class="w-100 ml-9">如果你是台灣地區的會員</div>
-                  <div class="w-100 ml-9">我們提供以下多種付款方式：</div>
-                  <div class="row w-100">
-                    <div class="col-6 offset-1">
-                      <ul class="mt-3">
-                        <li class="mb-3">WebATM</li>
-                        <li class="mb-3">ATM</li>
-                        <li class="mb-3">CVS</li>
-                        <li class="mb-3">Barcode</li>
-                        <li class="mb-3">Credit</li>
-                        <li class="mb-3">ApplePay</li>
-                        <li>GooglePay</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+            <div class="row mx-5">
+              <div class="col-8 offset-2 text-left">
+                <ol>
+                  <li>
+                    <h3>隱私權政策簡介</h3>
+                    本隱私權政策說明職人手工具股份有限公司（「本公司」、「我們」）如何處理、
+                    保護您於使用本公司之服務（「本服務」，見以下「涵蓋服務」之列表）時所提供之資訊，
+                    以及您可以如何存取、控管您的資訊。為尊重您的隱私權、保護您的個人資訊，我們將遵循以下基本原則：
+                    <ol>
+                      <li>蒐集您的個人資訊時，我們會清楚指出目的。</li>
+                      <li>個人資訊將被蒐集時，我們會事先通知您，以就個人資訊之蒐集、利用、揭露徵詢您的同意。</li>
+                      <li>我們僅會蒐集特定目的範圍內必要的個人資訊。</li>
+                      <li>除非經您的同意或基於法律要求，否則我們僅會針對蒐集目的利用或揭露您的個人資訊，且所蒐集之資訊僅會於蒐集目的完成之所需期間內保留。</li>
+                      <li>我們將盡力確保您個人資訊的精確性、完整性、和即時性。</li>
+                      <li>我們將以適當的安全保護措施保護您的個人資訊。</li>
+                      <li>我們會盡力使處理個人資訊的政策與措施公開透明。</li>
+                      <li>您隨時可以存取您的個人資訊並進行適當的修改。</li>
+                      <li>我們將會對您負責。您可以隨時針對我們是否遵循上述原則與此隱私權政策提出意見。</li>
+                    </ol>
+                  </li>
+                  <li>
+                    <h3>本公司蒐集何種資訊？如何蒐集資訊？</h3>
+                    為提供您使用本服務，我們將於必要範圍內取得您的資訊。我們所蒐集的資訊基本上有兩種：
+                    <ul style="list-style-type:lower-alpha;">
+                      <li>
+                        您提供的資訊
+                        <ul style="list-style-type:square;">
+                          <li>用戶提供之個人資料與註冊資訊<br>為提供用戶流暢的服務體驗，
+                          並促進用戶間更良好的交流，用戶可能會被要求註冊用戶資訊，如電話號碼、
+                          電子郵件地址、郵遞區號或郵寄／貨運地址或其他與本服務有關而得直接或間接識別用戶之個人資料。</li>
+                          <li>促銷活動<br>為進行問卷調查、抽獎與其他促銷活動，
+                          我們可能會要求您提供詳細資訊，如姓名、地址、電話號碼、電子郵件地址、
+                          性別、生日，便於頒發獎品、寄送購買商品等。</li>
+                          <li>用戶聯絡資訊<br>當用戶透過線上詢問表單方式聯絡我們時，
+                          為檢查回報問題並提供適當回應，我們會蒐集用戶的資訊（包括電子郵件地址、
+                          裝置類型、作業系統類型等）以識別用戶。</li>
+                          <li>交易及付款資訊<br>為處理購物與支付服務的相關交易服務或付款程序，
+                          因應相關服務所生之交易資料、付款金額與方式、用戶的信用卡資訊可能會被取得。
+                          請注意，購物程序應由適當的付款機構完成，我們不會保留任何信用卡資訊。</li>
+                        </ul>
+                      </li>
+                      <li>
+                        您使用本服務時，我們所取得的資訊
+                        <ul style="list-style-type:square;">
+                          <li>Cookies<br>為向用戶提供最佳服務，並維護服務與使用安全，
+                          我們可能會使用 Cookies儲存用戶設定以記錄存取功能，
+                          並監控使用模式及數據。例如，我們可能會使用Google Analytics協助我們進行上述工作。
+                          您可以選擇停用Cookies，但同時您將無法使用本服務的部分功能。</li>
+                          <li>記錄<br>存取本服務時，可能會自動取得並儲存您的使用紀錄（如：功能點擊、
+                          服務關閉或使用時間等等）、IP 位址、瀏覽器類型、瀏覽器語言等存取記錄資訊。
+                          該資訊將用以分析您的用戶環境，以便我們提升本服務，並避免未經授權／盜用行為干擾本服務正常運作。</li>
+                          <li>裝置資訊<br>我們可能會不定時取得您的裝置資訊（如應用程式版本、
+                          作業系統版本、語言與國家設定、裝置型號）。此資訊將用於提昇本服務品質，並避免非法或不當使用。
+                您得自行決定是否提供您的個人資訊予我們，然若您未提供這些資訊，您將無法使用本服務之部分功能。</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <h3>本公司是否分享蒐集到的資訊？</h3>
+                    除本隱私權政策（必要時亦包括其他相關隱私權政策與附錄）另有規定者外，
+                    未經您的同意，我們不會向第三人提供您的資訊。但若是我們本於善意認為係依據相關法律之要求或許可，
+                    或為保護本公司權利及財產而進行抗辯，則不在此限。
+                  </li>
+                  <li>
+                    <h3>本公司是否與其他服務供應商合作？</h3>
+                    本公司可能不定期與服務供應商合作，協助我們為您提供最佳服務。
+                    在與其他服務供應商建立合作關係前，我們會確保服務供應商將依此隱私權政策與相關法律處理您的資訊。
+                  </li>
+                  <li>
+                    <h3>如何存取我的資訊或更正我的資訊？</h3>
+                    本公司盡力協助您以最輕鬆的方式控管您的資訊。
+                    您可以隨時確認或修改您的註冊資訊。若無法直接於應用程式上確認，
+                    您可以隨時寄送書面意見要求本公司確認、更正、刪除其他本公司持有的個人資料。
+                    認證您的身分後，本公司將依相關法律於合理期限內回應您的要求。
+                  </li>
+                  <li>
+                    <h3>本公司如何確保本服務的安全性？</h3>
+                    我們會持續努力盡可能確保本服務的安全性。為前述工作進行，若本公司發現服務條款受到侵害、有受侵害之虞，或用戶間發生紛爭，我們的員工將可能會存取您提供的資訊。
+                  </li>
+                </ol>
               </div>
             </div>
           </div>
