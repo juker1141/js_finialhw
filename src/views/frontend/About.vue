@@ -79,7 +79,7 @@
               </div>
               <div class="col-5 h_550px">
                 <div class="d-flex h-100 flex-column justify-content-between">
-                  <div class="d-flex h-100 flex-column justify-content-center align-items-center">
+                  <div class="d-flex h-100 flex-column justify-content-center align-items-start">
                     <div class="mb-3 fz_24">從 1990 年代起</div>
                     <div class="mb-3"><span class="fontOrbitron">Hardware Store</span> 就在高雄發跡</div>
                     <div class="mb-3">從一開始10坪大的五金行做到現在的五金批發業</div>
@@ -125,7 +125,7 @@
                     返回
                   </button>
                   <button type="button" class="btn rounded-0
-                  bg-white">
+                  bg-white" data-toggle="modal" data-target="#alertModal">
                     確認送出
                   </button>
                 </div>
@@ -133,6 +133,27 @@
             </div>
           </div>
           <div class="modal-footer border-0">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog"
+    aria-labelledby="alertModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+            <button type="button" class="btn
+            m-0 p-0 d-flex align-items-center close opacity_1"
+            data-dismiss="modal" aria-label="Close">
+              <span class="material-icons">clear</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            感謝您的填寫，我們將會在最短時間內與您聯繫，謝謝！
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-black rounded-0" @click="closeModal">確認</button>
           </div>
         </div>
       </div>
@@ -156,15 +177,9 @@
                   <div class="w-50 mr-3"><div class="h_550px paymentImg paymentImg_1"></div></div>
                   <div class="w-50">
                     <div class="h-100 d-flex flex-column">
-                      <div class="h-50 w-100 mb-3">
-                        <div class="h-100 paymentImg paymentImg_2"></div>
-                      </div>
-                      <div class="h-50 w-100">
-                        <div class="d-flex h-100 align-items-center">
-                          <div class="h-100 w-50 paymentImg paymentImg_3 mr-3"></div>
-                          <div class="h-100 w-50 paymentImg paymentImg_4"></div>
-                        </div>
-                      </div>
+                      <div class="h-100 paymentImg paymentImg_2 mb-3"></div>
+                      <div class="h-100 paymentImg paymentImg_3 mb-3"></div>
+                      <div class="h-100 paymentImg paymentImg_4"></div>
                     </div>
                   </div>
                 </div>
@@ -172,11 +187,11 @@
               <div class="col-5 h_550px">
                 <div class="d-flex h-100 flex-column text-left
                 align-items-center justify-content-center">
-                  <h4 class="w-100 ml-9">如果你是台灣地區的會員</h4>
-                  <h4 class="w-100 ml-9">我們提供以下多種付款方式：</h4>
+                  <div class="w-100 ml-9">如果你是台灣地區的會員</div>
+                  <div class="w-100 ml-9">我們提供以下多種付款方式：</div>
                   <div class="row w-100">
                     <div class="col-6 offset-1">
-                      <ul class="mt-3 fz_24">
+                      <ul class="mt-3">
                         <li class="mb-3">WebATM</li>
                         <li class="mb-3">ATM</li>
                         <li class="mb-3">CVS</li>
@@ -188,10 +203,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div id="aboutUsForm" v-else class="row mx-5">
-              <div class="col-6 offset-3">
               </div>
             </div>
           </div>
@@ -213,6 +224,10 @@ export default {
     };
   },
   methods: {
+    closeModal() {
+      $('#aboutUsModal').modal('hide');
+      $('#alertModal').modal('hide');
+    },
   },
   created() {
   },

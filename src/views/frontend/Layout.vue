@@ -249,10 +249,11 @@
           <div class="d-flex d-lg-none
           flex-column-reverse justify-content-center align-items-center">
             <ul class="listStyle_none
-            p-0 m-0 text-yellow d-flex align-items-center fz_14">
-              <li class="mr-3">聯絡我們</li>
-              <li class="mr-3">隱私權聲明</li>
-              <li>服務條款</li>
+            p-0 m-0 d-flex align-items-center fz_14">
+              <button type="button" class="mr-3 text-yellow">聯絡我們</button>
+              <button type="button" data-toggle="modal"
+              data-target="#privacyModal" class="mr-3 text-yellow">隱私權聲明</button>
+              <button type="button" class="text-yellow">服務條款</button>
             </ul>
             <ul class="listStyle_none justify-content-end
             p-0 m-0 mb-3 d-flex align-items-center fz_14">
@@ -304,11 +305,65 @@
             </li>
           </ul>
           <ul class="listStyle_none
-          text-left p-0 m-0 text-yellow d-none d-lg-flex align-items-center fz_14">
-            <li class="mr-3">聯絡我們</li>
-            <li class="mr-3">隱私權聲明</li>
-            <li>服務條款</li>
+          text-left p-0 m-0 d-none d-lg-flex align-items-center fz_14">
+            <button type="button" class="mr-3 btn text-yellow">聯絡我們</button>
+            <button type="button" data-toggle="modal"
+              data-target="#privacyModal" class="mr-3 btn text-yellow">隱私權聲明</button>
+            <button type="button" class="btn text-yellow">服務條款</button>
           </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="privacyModal" tabindex="-1" role="dialog"
+    aria-labelledby="aboutUsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+        <div class="modal-content bg-blackOP text-white">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn
+            m-0 p-0 d-flex align-items-center close opacity_1"
+            data-dismiss="modal" aria-label="Close">
+              <span class="material-icons text-white">clear</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="aboutUs" class="row mx-5">
+              <div class="col-7">
+                <div class="d-flex">
+                  <div class="w-50 mr-3"><div class="h_550px paymentImg paymentImg_1"></div></div>
+                  <div class="w-50">
+                    <div class="h-100 d-flex flex-column">
+                      <div class="h-100 paymentImg paymentImg_2 mb-3"></div>
+                      <div class="h-100 paymentImg paymentImg_3 mb-3"></div>
+                      <div class="h-100 paymentImg paymentImg_4"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5 h_550px">
+                <div class="d-flex h-100 flex-column text-left
+                align-items-center justify-content-center">
+                  <div class="w-100 ml-9">如果你是台灣地區的會員</div>
+                  <div class="w-100 ml-9">我們提供以下多種付款方式：</div>
+                  <div class="row w-100">
+                    <div class="col-6 offset-1">
+                      <ul class="mt-3">
+                        <li class="mb-3">WebATM</li>
+                        <li class="mb-3">ATM</li>
+                        <li class="mb-3">CVS</li>
+                        <li class="mb-3">Barcode</li>
+                        <li class="mb-3">Credit</li>
+                        <li class="mb-3">ApplePay</li>
+                        <li>GooglePay</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-0">
+          </div>
         </div>
       </div>
     </div>
