@@ -250,10 +250,12 @@
           flex-column-reverse justify-content-center align-items-center">
             <ul class="listStyle_none
             p-0 m-0 d-flex align-items-center fz_14">
-              <button type="button" class="mr-3 text-yellow">聯絡我們</button>
+              <button type="button" data-toggle="modal"
+              data-target="#contactModal" class="mr-3 text-yellow">聯絡我們</button>
               <button type="button" data-toggle="modal"
               data-target="#privacyModal" class="mr-3 text-yellow">隱私權聲明</button>
-              <button type="button" class="text-yellow">服務條款</button>
+              <button type="button" data-toggle="modal"
+              data-target="#serviceModal" class="text-yellow">服務條款</button>
             </ul>
             <ul class="listStyle_none justify-content-end
             p-0 m-0 mb-3 d-flex align-items-center fz_14">
@@ -306,11 +308,68 @@
           </ul>
           <ul class="listStyle_none
           text-left p-0 m-0 d-none d-lg-flex align-items-center fz_14">
-            <button type="button" class="mr-3 btn text-yellow">聯絡我們</button>
+            <button type="button" data-toggle="modal"
+              data-target="#contactModal" class="mr-3 btn text-yellow">聯絡我們</button>
             <button type="button" data-toggle="modal"
               data-target="#privacyModal" class="mr-3 btn text-yellow">隱私權聲明</button>
-            <button type="button" class="btn text-yellow">服務條款</button>
+            <button type="button" data-toggle="modal"
+              data-target="#serviceModal" class="btn text-yellow">服務條款</button>
           </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+    aria-labelledby="aboutUsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+        <div class="modal-content bg-blackOP text-white">
+          <div class="modal-header border-0">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="btn
+            m-0 p-0 d-flex align-items-center close opacity_1"
+            data-dismiss="modal" aria-label="Close">
+              <span class="material-icons text-white">clear</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row mx-5">
+              <div class="col-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.570819148624!2d120.30473501439967!3d22.59514978517119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0372ebc9d327%3A0x92317d11de68daf9!2z5aSi5pmC5Luj6LO854mp5Lit5b-DIERyZWFtIE1hbGw!5e0!3m2!1szh-TW!2stw!4v1602737500796!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+              </div>
+              <div class="col-4 text-center d-flex flex-column align-items-center
+              justify-content-between">
+                <div>
+                  <h2 class="mb-5">聯絡我們</h2>
+                  <div class="mb-3 fz-20">若您有任何意見或疑問</div>
+                  <div class="mb-3 fz-20">您可以使用以下資訊聯繫到我們</div>
+                  <div class="fz-20">當然您也可以到我們的門市盡情選購！！</div>
+                </div>
+                <div>
+                  <div class="text-yellow fz_20 mb-3 d-flex
+                  align-items-center justify-content-start">
+                    <span class="material-icons fz_30">phone</span>
+                    <span class="ml-3">0800-000-000</span>
+                  </div>
+                  <div class="text-yellow fz_20 mb-3 d-flex
+                  align-items-center justify-content-start">
+                    <span class="material-icons fz_30">smartphone</span>
+                    <span class="ml-3">0912-345-678</span>
+                  </div>
+                  <div class="text-yellow mb-3 d-flex
+                  align-items-center justify-content-start">
+                    <span class="material-icons fz_30">place</span>
+                    <span class="ml-3">806高雄市前鎮區中華五路789號</span>
+                  </div>
+                  <div class="text-yellow fz_20 mb-3 d-flex
+                  align-items-center justify-content-start">
+                    <span class="material-icons fz_30">mail_outline</span>
+                    <span class="ml-3">hardwarestore@gmail.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-0">
+          </div>
         </div>
       </div>
     </div>
@@ -319,7 +378,7 @@
       <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
         <div class="modal-content bg-blackOP text-white">
           <div class="modal-header border-0">
-            <h5 class="modal-title fontOrbitron">Hardware Store</h5>
+            <h5 class="modal-title"></h5>
             <button type="button" class="btn
             m-0 p-0 d-flex align-items-center close opacity_1"
             data-dismiss="modal" aria-label="Close">
@@ -329,85 +388,149 @@
           <div class="modal-body">
             <div class="row mx-5">
               <div class="col-8 offset-2 text-left">
-                <ol>
-                  <li>
-                    <h3>隱私權政策簡介</h3>
-                    本隱私權政策說明職人手工具股份有限公司（「本公司」、「我們」）如何處理、
+                <h2 class="text-center mb-5">
+                  <span class="fontOrbitron">Hardware Store</span> 隱私權聲明</h2>
+                <ol class="fz_24">
+                  <li class="fz_16 mb-2">
+                    <div class="fz_20 mb-2">隱私權政策簡介</div>
+                    <div class="mb-2">本隱私權政策說明<span class="text-yellow">
+                    職人手工具股份有限公司</span>（「本公司」、「我們」）如何處理、
                     保護您於使用本公司之服務（「本服務」，見以下「涵蓋服務」之列表）時所提供之資訊，
-                    以及您可以如何存取、控管您的資訊。為尊重您的隱私權、保護您的個人資訊，我們將遵循以下基本原則：
+                    以及您可以如何存取、控管您的資訊。為尊重您的隱私權、保護您的個人資訊，我們將遵循以下基本原則：</div>
                     <ol>
-                      <li>蒐集您的個人資訊時，我們會清楚指出目的。</li>
-                      <li>個人資訊將被蒐集時，我們會事先通知您，以就個人資訊之蒐集、利用、揭露徵詢您的同意。</li>
-                      <li>我們僅會蒐集特定目的範圍內必要的個人資訊。</li>
-                      <li>除非經您的同意或基於法律要求，否則我們僅會針對蒐集目的利用或揭露您的個人資訊，且所蒐集之資訊僅會於蒐集目的完成之所需期間內保留。</li>
-                      <li>我們將盡力確保您個人資訊的精確性、完整性、和即時性。</li>
-                      <li>我們將以適當的安全保護措施保護您的個人資訊。</li>
-                      <li>我們會盡力使處理個人資訊的政策與措施公開透明。</li>
-                      <li>您隨時可以存取您的個人資訊並進行適當的修改。</li>
-                      <li>我們將會對您負責。您可以隨時針對我們是否遵循上述原則與此隱私權政策提出意見。</li>
+                      <li class="mb-2">蒐集您的個人資訊時，我們會清楚指出目的。</li>
+                      <li class="mb-2">個人資訊將被蒐集時，我們會事先通知您，以就個人資訊之蒐集、利用、揭露徵詢您的同意。</li>
+                      <li class="mb-2">我們僅會蒐集特定目的範圍內必要的個人資訊。</li>
+                      <li class="mb-2">除非經您的同意或基於法律要求，
+                        否則我們僅會針對蒐集目的利用或揭露您的個人資訊，且所蒐集之資訊僅會於蒐集目的完成之所需期間內保留。</li>
+                      <li class="mb-2">我們將盡力確保您個人資訊的精確性、完整性、和即時性。</li>
+                      <li class="mb-2">我們將以適當的安全保護措施保護您的個人資訊。</li>
+                      <li class="mb-2">我們會盡力使處理個人資訊的政策與措施公開透明。</li>
+                      <li class="mb-2">您隨時可以存取您的個人資訊並進行適當的修改。</li>
+                      <li class="mb-2">我們將會對您負責。您可以隨時針對我們是否遵循上述原則與此隱私權政策提出意見。</li>
                     </ol>
                   </li>
-                  <li>
-                    <h3>本公司蒐集何種資訊？如何蒐集資訊？</h3>
-                    為提供您使用本服務，我們將於必要範圍內取得您的資訊。我們所蒐集的資訊基本上有兩種：
+                  <li class="fz_16 mb-2">
+                    <div class="fz_20 mb-2">本公司蒐集何種資訊？如何蒐集資訊？</div>
+                    <div class="mb-2">為提供您使用本服務，我們將於必要範圍內取得您的資訊。我們所蒐集的資訊基本上有兩種：</div>
                     <ul style="list-style-type:lower-alpha;">
                       <li>
-                        您提供的資訊
+                        <div class="mb-2">您提供的資訊</div>
                         <ul style="list-style-type:square;">
-                          <li>用戶提供之個人資料與註冊資訊<br>為提供用戶流暢的服務體驗，
+                          <li class="mb-2">
+                          <div class="mb-2">用戶提供之個人資料與註冊資訊</div>
+                          為提供用戶流暢的服務體驗，
                           並促進用戶間更良好的交流，用戶可能會被要求註冊用戶資訊，如電話號碼、
                           電子郵件地址、郵遞區號或郵寄／貨運地址或其他與本服務有關而得直接或間接識別用戶之個人資料。</li>
-                          <li>促銷活動<br>為進行問卷調查、抽獎與其他促銷活動，
+                          <li class="mb-2"><div class="mb-2">促銷活動</div>
+                          為進行問卷調查、抽獎與其他促銷活動，
                           我們可能會要求您提供詳細資訊，如姓名、地址、電話號碼、電子郵件地址、
                           性別、生日，便於頒發獎品、寄送購買商品等。</li>
-                          <li>用戶聯絡資訊<br>當用戶透過線上詢問表單方式聯絡我們時，
+                          <li class="mb-2"><div class="mb-2">用戶聯絡資訊</div>
+                          當用戶透過線上詢問表單方式聯絡我們時，
                           為檢查回報問題並提供適當回應，我們會蒐集用戶的資訊（包括電子郵件地址、
                           裝置類型、作業系統類型等）以識別用戶。</li>
-                          <li>交易及付款資訊<br>為處理購物與支付服務的相關交易服務或付款程序，
+                          <li class="mb-2"><div class="mb-2">交易及付款資訊</div>
+                          為處理購物與支付服務的相關交易服務或付款程序，
                           因應相關服務所生之交易資料、付款金額與方式、用戶的信用卡資訊可能會被取得。
                           請注意，購物程序應由適當的付款機構完成，我們不會保留任何信用卡資訊。</li>
                         </ul>
                       </li>
                       <li>
-                        您使用本服務時，我們所取得的資訊
+                        <div class="mb-2">您使用本服務時，我們所取得的資訊</div>
                         <ul style="list-style-type:square;">
-                          <li>Cookies<br>為向用戶提供最佳服務，並維護服務與使用安全，
+                          <li class="mb-2"><div class="mb-2">Cookies</div>
+                          為向用戶提供最佳服務，並維護服務與使用安全，
                           我們可能會使用 Cookies儲存用戶設定以記錄存取功能，
                           並監控使用模式及數據。例如，我們可能會使用Google Analytics協助我們進行上述工作。
                           您可以選擇停用Cookies，但同時您將無法使用本服務的部分功能。</li>
-                          <li>記錄<br>存取本服務時，可能會自動取得並儲存您的使用紀錄（如：功能點擊、
+                          <li class="mb-2"><div class="mb-2">記錄</div>
+                          存取本服務時，可能會自動取得並儲存您的使用紀錄（如：功能點擊、
                           服務關閉或使用時間等等）、IP 位址、瀏覽器類型、瀏覽器語言等存取記錄資訊。
                           該資訊將用以分析您的用戶環境，以便我們提升本服務，並避免未經授權／盜用行為干擾本服務正常運作。</li>
-                          <li>裝置資訊<br>我們可能會不定時取得您的裝置資訊（如應用程式版本、
+                          <li class="mb-2"><div class="mb-2">裝置資訊</div>
+                          我們可能會不定時取得您的裝置資訊（如應用程式版本、
                           作業系統版本、語言與國家設定、裝置型號）。此資訊將用於提昇本服務品質，並避免非法或不當使用。
                 您得自行決定是否提供您的個人資訊予我們，然若您未提供這些資訊，您將無法使用本服務之部分功能。</li>
                         </ul>
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    <h3>本公司是否分享蒐集到的資訊？</h3>
+                  <li class="fz_16 mb-2">
+                    <div class="fz_20 mb-2">本公司是否分享蒐集到的資訊？</div>
                     除本隱私權政策（必要時亦包括其他相關隱私權政策與附錄）另有規定者外，
                     未經您的同意，我們不會向第三人提供您的資訊。但若是我們本於善意認為係依據相關法律之要求或許可，
                     或為保護本公司權利及財產而進行抗辯，則不在此限。
                   </li>
-                  <li>
-                    <h3>本公司是否與其他服務供應商合作？</h3>
+                  <li class="fz_16 mb-2">
+                    <div class="fz_20 mb-2">本公司是否與其他服務供應商合作？</div>
                     本公司可能不定期與服務供應商合作，協助我們為您提供最佳服務。
                     在與其他服務供應商建立合作關係前，我們會確保服務供應商將依此隱私權政策與相關法律處理您的資訊。
                   </li>
-                  <li>
-                    <h3>如何存取我的資訊或更正我的資訊？</h3>
+                  <li class="fz_16 mb-2">
+                    <div class="fz_20 mb-2">如何存取我的資訊或更正我的資訊？</div>
                     本公司盡力協助您以最輕鬆的方式控管您的資訊。
                     您可以隨時確認或修改您的註冊資訊。若無法直接於應用程式上確認，
                     您可以隨時寄送書面意見要求本公司確認、更正、刪除其他本公司持有的個人資料。
                     認證您的身分後，本公司將依相關法律於合理期限內回應您的要求。
                   </li>
-                  <li>
-                    <h3>本公司如何確保本服務的安全性？</h3>
+                  <li class="fz_16">
+                    <div class="fz_20 mb-2">本公司如何確保本服務的安全性？</div>
                     我們會持續努力盡可能確保本服務的安全性。為前述工作進行，若本公司發現服務條款受到侵害、有受侵害之虞，或用戶間發生紛爭，我們的員工將可能會存取您提供的資訊。
                   </li>
                 </ol>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-0">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="serviceModal" tabindex="-1" role="dialog"
+    aria-labelledby="aboutUsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+        <div class="modal-content bg-blackOP text-white">
+          <div class="modal-header border-0">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="btn
+            m-0 p-0 d-flex align-items-center close opacity_1"
+            data-dismiss="modal" aria-label="Close">
+              <span class="material-icons text-white">clear</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row mx-5">
+              <div class="col-8 offset-2 text-left">
+                <h2 class="text-center mb-5">
+                  <span class="fontOrbitron">Hardware Store</span> 服務條款</h2>
+                <div class="fz_20 mb-2">我們瞭解您可能會想略過本《服務條款》，
+                  但請務必詳閱，瞭解我們在您使用我們網站時致力遵守的原則，以及我們期許您遵守的行為準則。</div>
+                <ul class="fz_24 listStyle_none">
+                  <li class="fz_16 mb-2">
+                    <div class="mb-2">本《服務條款》反映出
+                      <span class="fontOrbitron"> Hardware Store</span> 的業務營運模式、本公司適用的法律，
+                    以及我們堅信的原則。因此，當您與我們的服務互動時，本《服務條款》有助於定義本公司與您的關係。例如，本條款包括下列主題：</div>
+                    <ul style="list-style-type:square;">
+                      <li class="mb-2">
+                      我們的服務原則，說明我們提供及開發服務的方式</li>
+                      <li class="mb-2">
+                      您的行為準則，說明使用本公司網站時須遵守的一些規則</li>
+                      <li class="mb-2">本公司服務中的內容，說明您在本公司網站
+                        中所接觸內容的智慧財產權歸屬</li>
+                      <li class="mb-2">發生問題或意見不合時，
+                        說明您擁有的其他合法權利，以及我們在有人違反本條款時採取的對應措施
+                        </li>
+                    </ul>
+                  </li>
+                  <li class="fz_16 mb-2">
+                    當您使用我們的服務，即表示您同意本條款，因此請務必詳閱本條款內容。
+                  </li>
+                  <li class="fz_16 mb-2">
+                    除了本條款外，我們還發布了<span class="text-yellow">《隱私權政策》</span>
+                    。該政策並非本條款的一部分，但仍建議您詳閱，進一步瞭解如何更新、管理、匯出及刪除您的資訊。
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
