@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- ... 這裡是表頭navbar開始 ... -->
     <section id="navbar"
     class="w-100 position-fixed
     navbarPosition zIndex_30 bg-white">
@@ -61,6 +62,8 @@
         </div>
       </div>
     </section>
+    <!-- ... 這裡是表頭navbar結束 ... -->
+    <!-- ... 這裡是購物車測欄開始 ... -->
     <div id="cartBlock" :class="{ 'active' : cartBlockShow }"
     class="h-100 bg-white text-black position-fixed zIndex_40 p-4 px-5 p-lg-6 cartBlockPosition">
       <div class="d-flex justify-content-between mb-5">
@@ -206,6 +209,7 @@
         </div>
       </div>
     </div>
+    <!-- ... 這裡是購物車測欄結束 ... -->
     <router-view class="navbar_mt" id="main" @updateCart="getcart"/>
     <div id="subscribe"
     class="footerBannerImg p-5 p-lg-9 text-white d-flex flex-column align-items-center">
@@ -250,12 +254,12 @@
           flex-column-reverse justify-content-center align-items-center">
             <ul class="listStyle_none
             p-0 m-0 d-flex align-items-center fz_14">
-              <button type="button" data-toggle="modal"
-              data-target="#contactModal" class="mr-3 text-yellow">聯絡我們</button>
-              <button type="button" data-toggle="modal"
-              data-target="#privacyModal" class="mr-3 text-yellow">隱私權聲明</button>
-              <button type="button" data-toggle="modal"
-              data-target="#serviceModal" class="text-yellow">服務條款</button>
+              <li><button type="button" data-toggle="modal"
+              data-target="#contactModal" class="btn p-0 mr-3 text-yellow">聯絡我們</button></li>
+              <li><button type="button" data-toggle="modal"
+              data-target="#privacyModal" class="btn p-0 mr-3 text-yellow">隱私權聲明</button></li>
+              <li><button type="button" data-toggle="modal"
+              data-target="#serviceModal" class="btn p-0 text-yellow">服務條款</button></li>
             </ul>
             <ul class="listStyle_none justify-content-end
             p-0 m-0 mb-3 d-flex align-items-center fz_14">
@@ -308,12 +312,12 @@
           </ul>
           <ul class="listStyle_none
           text-left p-0 m-0 d-none d-lg-flex align-items-center fz_14">
-            <button type="button" data-toggle="modal"
-              data-target="#contactModal" class="mr-3 btn text-yellow">聯絡我們</button>
-            <button type="button" data-toggle="modal"
-              data-target="#privacyModal" class="mr-3 btn text-yellow">隱私權聲明</button>
-            <button type="button" data-toggle="modal"
-              data-target="#serviceModal" class="btn text-yellow">服務條款</button>
+            <li><button type="button" data-toggle="modal"
+              data-target="#contactModal" class="mr-3 p-0 btn text-yellow">聯絡我們</button></li>
+            <li><button type="button" data-toggle="modal"
+              data-target="#privacyModal" class="mr-3 p-0 btn text-yellow">隱私權聲明</button></li>
+            <li><button type="button" data-toggle="modal"
+              data-target="#serviceModal" class="btn p-0 text-yellow">服務條款</button></li>
           </ul>
         </div>
       </div>
@@ -504,33 +508,37 @@
               <div class="col-8 offset-2 text-left">
                 <h2 class="text-center mb-5">
                   <span class="fontOrbitron">Hardware Store</span> 服務條款</h2>
-                <div class="fz_20 mb-2">我們瞭解您可能會想略過本《服務條款》，
+                <div>
+                  <div class="fz_20 mb-3">我們瞭解您可能會想略過<span class="text-yellow">《服務條款》</span>，
                   但請務必詳閱，瞭解我們在您使用我們網站時致力遵守的原則，以及我們期許您遵守的行為準則。</div>
-                <ul class="fz_24 listStyle_none">
-                  <li class="fz_16 mb-2">
-                    <div class="mb-2">本《服務條款》反映出
-                      <span class="fontOrbitron"> Hardware Store</span> 的業務營運模式、本公司適用的法律，
-                    以及我們堅信的原則。因此，當您與我們的服務互動時，本《服務條款》有助於定義本公司與您的關係。例如，本條款包括下列主題：</div>
-                    <ul style="list-style-type:square;">
-                      <li class="mb-2">
-                      我們的服務原則，說明我們提供及開發服務的方式</li>
-                      <li class="mb-2">
-                      您的行為準則，說明使用本公司網站時須遵守的一些規則</li>
-                      <li class="mb-2">本公司服務中的內容，說明您在本公司網站
-                        中所接觸內容的智慧財產權歸屬</li>
-                      <li class="mb-2">發生問題或意見不合時，
-                        說明您擁有的其他合法權利，以及我們在有人違反本條款時採取的對應措施
-                        </li>
-                    </ul>
-                  </li>
-                  <li class="fz_16 mb-2">
-                    當您使用我們的服務，即表示您同意本條款，因此請務必詳閱本條款內容。
-                  </li>
-                  <li class="fz_16 mb-2">
-                    除了本條款外，我們還發布了<span class="text-yellow">《隱私權政策》</span>
-                    。該政策並非本條款的一部分，但仍建議您詳閱，進一步瞭解如何更新、管理、匯出及刪除您的資訊。
-                  </li>
-                </ul>
+                  <ul class="fz_24 listStyle_none mx-5">
+                    <li class="fz_16 mb-2">
+                      <div class="mb-3">本<span class="text-yellow">《服務條款》</span>反映出
+                        <span class="fontOrbitron"> Hardware Store</span> 的業務營運模式、本公司適用的法律，
+                      以及我們堅信的原則。因此，當您與我們的服務互動時，本<span class="text-yellow">《服務條款》</span>
+                      有助於定義本公司與您的關係。例如，本條款包括下列主題：</div>
+                      <ul class="mx-6" style="list-style-type:square;">
+                        <li class="mb-2">
+                        我們的服務原則，說明我們提供及開發服務的方式</li>
+                        <li class="mb-2">
+                        您的行為準則，說明使用本公司網站時須遵守的一些規則</li>
+                        <li class="mb-2">本公司服務中的內容，說明您在本公司網站
+                          中所接觸內容的智慧財產權歸屬</li>
+                        <li class="mb-3">發生問題或意見不合時，
+                          說明您擁有的其他合法權利，以及我們在有人違反本條款時採取的對應措施
+                          </li>
+                      </ul>
+                    </li>
+                    <li class="fz_16 mb-3">
+                      當您使用我們的服務，即表示您同意本條款，因此請務必詳閱本條款內容。
+                    </li>
+                    <li class="fz_16">
+                      除了本條款外，我們還發布了<a href="#" @click.prevent="goToPrivacyModal"
+                      class="text-yellow">《隱私權政策》</a>
+                      。該政策並非本條款的一部分，但仍建議您詳閱，進一步瞭解如何更新、管理、匯出及刪除您的資訊。
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -705,6 +713,12 @@ export default {
         $('#main').addClass('navbar_mt');
       }
     },
+    goToPrivacyModal() {
+      $('#serviceModal').modal('hide');
+      setTimeout(() => {
+        $('#privacyModal').modal('show');
+      }, 500);
+    },
   },
   created() {
     this.navbarShow();
@@ -728,7 +742,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
+#main {
+  flex: 1 1 auto !important;
+}
 .d_none_important{
   display: none !important;
 }

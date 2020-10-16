@@ -1,10 +1,10 @@
 <template>
-  <div class="fontNotoSans position-relative" id="app">
+  <div class="fontNotoSans position-relative h-100" id="app">
     <Loading v-if="isLoading"></Loading>
     <Toast/>
     <div v-if="isDarkShadyOn" @click="closeCart"
     class="bg-blackOP position-fixed h-100 w-100 zIndex_40 top_0"></div>
-    <router-view class="position-relative"/>
+    <router-view class="position-relative d-flex flex-column h-100"/>
   </div>
 </template>
 
@@ -51,5 +51,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100%;
 }
 </style>
