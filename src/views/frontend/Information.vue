@@ -23,7 +23,11 @@
             <validation-observer v-slot="{ invalid }">
               <form @submit.prevent="createOrder">
                 <validation-provider rules="required|email" v-slot="{ errors, classes }">
-                  <label for="email" class="text-left w-100">Email</label>
+                  <div class="d-flex justify-content-between">
+                    <label for="email" class="text-left w-75">
+                    <span class="text-danger mr-1">*</span>Email</label>
+                    <div><div class="text-danger">* 為必填項目</div></div>
+                  </div>
                   <input id="email" type="email" name="Email" v-model="form.email"
                     class="form-control form-control-lg mb-2" :class="classes">
                   <span class="invalid-feedback text-right">{{ errors[0] }}</span>
@@ -31,7 +35,8 @@
                 <div class="row">
                   <div class="col-12 w_max_lg_50 pr-lg-1">
                     <validation-provider rules="required" v-slot="{ errors, classes}">
-                      <label for="name" class="text-left w-100">收件人姓名</label>
+                      <label for="name" class="text-left w-100">
+                      <span class="text-danger mr-1">*</span>收件人姓名</label>
                       <input id="name" type="text" name="收件人姓名"
                       v-model="form.name" class="form-control form-control-lg mb-2"
                         :class="classes">
@@ -41,7 +46,8 @@
                   <div class="col-12 w_max_lg_50 pl-lg-1">
                     <validation-provider rules="required|min:8|numeric"
                     v-slot="{ errors, classes }">
-                      <label for="tel" class="text-left w-100">聯絡電話</label>
+                      <label for="tel" class="text-left w-100">
+                      <span class="text-danger mr-1">*</span>聯絡電話</label>
                       <input id="tel" type="tel" name="聯絡電話"
                       v-model="form.tel" class="form-control
                       form-control-lg mb-2" :class="classes">
@@ -50,14 +56,16 @@
                   </div>
                 </div>
                 <validation-provider rules="required" v-slot="{ errors, classes }">
-                  <label for="address" class="text-left w-100">收件地址</label>
+                  <label for="address" class="text-left w-100">
+                  <span class="text-danger mr-1">*</span>收件地址</label>
                   <input id="address" type="text" name="收件地址"
                   v-model="form.address" class="form-control form-control-lg mb-2"
                     :class="classes">
                   <span class="invalid-feedback text-right">{{ errors[0] }}</span>
                 </validation-provider>
                 <validation-provider rules="required" v-slot="{ errors }">
-                  <label for="payment" class="text-left w-100">付款方式</label>
+                  <label for="payment" class="text-left w-100">
+                  <span class="text-danger mr-1">*</span>付款方式</label>
                   <select v-model="form.payment"
                   class="custom-select custom-select-lg mb-2" required>
                     <option value="" selected disabled>請選擇付款方式</option>
@@ -152,17 +160,25 @@
                 </li><hr class="my-4 border-secondary">
                 <li class="d-flex align-items-center">
                   <div class="w-100 d-flex mb-2 flex-column align-items-end">
-                    <div class="d-flex justify-content-between">
+                    <div class="w-100 d-flex">
                       <span v-if="couponWorking === true && coupon.code" class="material-icons
                       fz_36 text-success pr-2">
                         done
                       </span>
-                      <div class="d-flex">
+                      <div class="d-flex w-100">
                         <input type="text" v-model="coupon.code"
-                        class="form-control w-75 rounded-0"
+                        class="form-control rounded-0"
                         id="coupons" placeholder="請輸入優惠卷">
-                        <button class="btn btn-yellow ml-auto px-2 rounded-0"
-                        type="button" @click="checkCoupon(coupon.code)">確認</button>
+                        <button class="btn btn-yellow ml-auto px-2
+                        d-flex align-items-center rounded-0"
+                        type="button" @click="checkCoupon(coupon.code); couponLoading = true">
+                          <span v-if="!couponLoading" class="material-icons">
+                          send
+                          </span>
+                          <div v-else class="spinner-border spinner-border_sm" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                        </button>
                       </div>
                     </div>
                     <div v-if="couponWorking === false && coupon.code"
@@ -223,6 +239,7 @@ export default {
       coupon: {},
       couponPrice: 0,
       couponWorking: '',
+      couponLoading: false,
     };
   },
   computed: {
@@ -278,6 +295,7 @@ export default {
       console.log('我要檢查有無優惠卷囉');
       this.$http.post(url, coupon)
         .then((res) => {
+          this.couponLoading = false;
           this.couponWorking = true;
           this.coupon = res.data.data;
           let newCartTotal = this.cartTotal;
@@ -289,6 +307,7 @@ export default {
             newCartTotal = this.cartTotalCoupon;
           }
         }).catch(() => {
+          this.couponLoading = false;
           this.couponWorking = false;
           this.couponPrice = 0;
         });

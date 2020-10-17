@@ -27,21 +27,21 @@
             zIndex_10 position_absolute position_lg_relative
             align-items-center d-lg-flex m-0 p-0 pt-2 pb-3 p-lg-0 list_position">
             <li class="py-3 py-lg-0">
-              <a href="#" @click="goToPage('/products')"
+              <a href="#" @click.prevent="goToPage('/products')"
               class="text-black px-3 mr-2 text-decoration-none list_hover">商品</a>
             </li>
             <li class="py-3 py-lg-0">
-              <a href="#" @click="goToPage('/orderlist')"
+              <a href="#" @click.prevent="goToPage('/orderlist')"
               class="text-black px-3 mr-2 text-decoration-none list_hover"
               >訂單</a>
             </li>
             <li class="py-3 py-lg-0">
-              <a href="#" @click="goToPage('/about')"
+              <a href="#" @click.prevent="goToPage('/about')"
               class="text-black px-3 mr-2 text-decoration-none list_hover"
               >關於我們</a>
             </li>
             <li class="py-3 py-lg-0">
-              <a href="#" @click="goToPage('/login')"
+              <a href="#" @click.prevent="goToPage('/login')"
                 class="text-black btn p-1 d-flex justify-content-center align-items-center"
                 >
                 <span class="material-icons">person</span>
@@ -158,12 +158,17 @@
                 done
               </span>
               <input type="text" v-model="couponCode"
-              class="form-control w-75 rounded-0"
+              class="form-control rounded-0"
               id="coupons" placeholder="請輸入優惠卷">
               <button class="btn btn-yellow ml-auto px-2 rounded-0 d-flex align-items-cneter"
-              type="button" @click="checkCoupon(couponCode)"><span class="material-icons">
-              send
-              </span></button>
+              type="button" @click="checkCoupon(couponCode); couponLoading = true">
+                <span v-if="!couponLoading" class="material-icons">
+                send
+                </span>
+                <div v-else class="spinner-border spinner-border_sm" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button>
             </div>
             <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
             ">找不到此優惠卷，請您再次確認</div>
@@ -199,13 +204,17 @@
           justify-content-between align-items-center text-black">
           總金額<div>
           NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div></div>
-          <div class="d-flex justify-content-end">
+          <div v-if="cart.length !== 0" class="d-flex justify-content-end">
           <button @click="closeCart(); toInformationPage()" type="button"
           class="btn bg-black text-white rounded-0 fz_30_important px-5 w-100 w_lg_75"
-          :disabled="cart.length === 0">
+          >
           前往結帳</button></div>
           <div v-if="cart.length === 0"
           class="text-danger text-right mt-5 fz_20 fz_lg_24">您的購物車沒有東西！！</div>
+          <div v-if="cart.length === 0" class="mt-5">
+          <a href="#" class="btn bg-yellow font-weight-bold rounded-0
+          fz_30_important px-5 w-100 w_lg_75"
+          @click.prevent="goToPage('/products'); closeCart()">去逛逛</a></div>
         </div>
       </div>
     </div>
@@ -566,6 +575,7 @@ export default {
       coupon: {},
       cartTotalCoupon: 0,
       couponPrice: 0,
+      couponLoading: false,
     };
   },
   computed: {
@@ -667,6 +677,7 @@ export default {
       };
       this.$http.post(url, coupon)
         .then((res) => {
+          this.couponLoading = false;
           this.couponWorking = true;
           this.coupon = res.data.data;
           let newCartTotal = this.cartTotal;
@@ -680,6 +691,7 @@ export default {
             }
           }
         }).catch(() => {
+          this.couponLoading = false;
           if (this.couponCode) {
             this.couponWorking = false;
           }
@@ -787,6 +799,10 @@ export default {
 .border_5px {
   border-width: 5px;
 }
+.spinner-border_sm{
+  height: 1.5rem;
+  width: 1.5rem;
+}
 .list_position {
   top: 42px;
   width: 100%;
@@ -859,7 +875,7 @@ export default {
   }
 }
 .cartNum{
-  bottom: 0px;
+  top: 0px;
   right: 0px;
   width: 16px;
   height: 16px;

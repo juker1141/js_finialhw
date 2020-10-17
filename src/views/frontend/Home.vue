@@ -89,21 +89,21 @@
                 <div class="card border-yellow border_lg w-100 h-100" style="width: 18rem;">
                   <img :src="item.imageUrl[0]" class="card-img-top img-fluid cardImg" alt="...">
                   <div class="card-body bg-dark">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="card-title text-yellow fz_24 font-weight-bold">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <div class="card-title mb-0 text-white fz_24 font-weight-bold">
                         {{ item.title }}
                       </div>
                       <span class="badge badge-yellow fz_14
                       text-black">{{ item.category }}</span>
                     </div>
-                    <div class="card-text text-left text-yellow fz_24 mt-3">
+                    <div class="card-text text-left text-white fz_24 mt-3">
                       <div class="mt-6" v-if="!item.price || item.price === item.origin_price">
-                        售價 NT  {{ item.price | toCurrency | DollarSign }} 元
+                        NT  {{ item.price | toCurrency | DollarSign }} 元
                       </div>
                       <div v-else>
                         <div class="fz_20 mb-2">
-                        原價 <s>NT {{ item.origin_price | toCurrency | DollarSign }}</s> 元</div>
-                        <div>現在只要 NT {{ item.price | toCurrency | DollarSign }} 元</div>
+                        <s>NT {{ item.origin_price | toCurrency | DollarSign }}</s> 元</div>
+                        <div>NT {{ item.price | toCurrency | DollarSign }} 元</div>
                       </div>
                     </div>
                   </div>
@@ -134,16 +134,16 @@
     </div>
     <div class="d-flex w-100 footerNews_height position-relative mb-5 mb-lg-7">
       <div class="text-left zIndex_10 footerNews_mt ml-3 ml-lg-9 text-white">
-        <div class="fz_24 fz_xl_36 px-3 pt-3 px-lg-5 pt-lg-5 pb-0 mb-0 bg-blackOP">在地永續經營
+        <div class="fz_20 fz_xl_24 px-3 pt-3 px-lg-5 pt-lg-5 pb-0 mb-0 bg-blackOP">在地永續經營
         <span class="d-none d-xl-inline-block">，</span><br class="d-block d-xl-none">
         <span class="fontOrbitron"> Hardware Store </span><br class="d-block d-xl-none">
         邀您一起做公益</div>
-        <p class="fz_14 fz_xl_24 p-3 p-lg-5 pt-0 bg-blackOP">
+        <div class="fz_20 fz_xl_24 p-3 p-lg-5 pt-0 bg-blackOP">
         在 <span class="fontOrbitron">Hardware Store</span> 購買商品時
         <span class="d-none d-xl-inline-block">，</span><br class="d-block d-xl-none">
-        只要您購物滿2000元<br>
+        只要您購物滿 2, 000 元<br>
         我們就將其訂單的 5% 捐贈給慈善基金會<br>
-        <span class="fz_20 fz_xl_30 mt-3">買越多，愛心多更多！</span></p>
+        <div class="fz_20 fz_xl_24 mt-3">買越多，愛心多更多！</div></div>
       </div>
       <div class="footerNewsImg h-100 p-6 mr-lg-9"></div>
     </div>
@@ -169,10 +169,10 @@
                 <div class="moreProductsImg moreProductsImg_2
                 position-relative"></div>
                 <div
-                class="moreProductsTitle position-absolute h-100 w-100 d-flex
-                justify-content-end align-items-end p-3">
+                class="moreProductsTitle position-absolute w-100 d-flex
+                justify-content-start p-3 ">
                   <div class="text-black bg-white rounded-pill font-weight-bold fz_lg_24
-                  mr-3 mr-lg-5 mb-lg-3 py-1 px-5">電動工具</div>
+                  ml-3 ml-lg-5 mt-lg-3 py-1 px-5">電動工具</div>
                 </div>
               </a>
             </div>

@@ -13,8 +13,9 @@
           <p>從 1990 年代起， <span class="fontOrbitron">Hardware Store</span> 就開始經營五金批發<br>
           對於各品牌的手工具、電動工具、氣動工具更是瞭若指掌<br>
           若想了解更多資訊，歡迎直接聯繫我們！</p>
-          <div class="w-100 text-right"><a href="#" @click.prevent="changeAboutUs = true"
-          data-toggle="modal" data-target="#aboutUsModal" class="mr-3">了解更多</a></div>
+          <div class="w-100 text-left mt-5"><a href="#" @click.prevent="changeAboutUs = true"
+          data-toggle="modal" data-target="#aboutUsModal" class="mr-3
+          btn border-black rounded-0 btn_black_hover">了解更多</a></div>
         </div>
       </div>
     </div>
@@ -31,6 +32,10 @@
           <p><span class="fontOrbitron">Hardware Store</span> 有超多你想不到的商品<br>
           還有超多意想不到的活動折扣，怎麼買都划算！！<br>
           你看過我們的商品了嗎？快去看看吧！！！</p>
+          <div class="w-100 text-left mt-5">
+          <router-link to="/products"
+          class="mr-3 btn border-black rounded-0
+          btn_black_hover">去逛逛</router-link></div>
         </div>
       </div>
     </div>
@@ -44,9 +49,9 @@
           <h4 class="mb-4">快速又方便</h4>
           <p>在 <span class="fontOrbitron">Hardware Store</span> 買東西，今天訂，後天到！<br>
           我們支持多種支付方式，讓你不被現實的距離所拘束！</p>
-          <div class="w-100 text-right">
+          <div class="w-100 text-left mt-5">
           <a href="#" data-toggle="modal" data-target="#payMethodModal"
-          @click.prevent class="mr-3">了解更多</a></div>
+          @click.prevent class="mr-3 btn border-black rounded-0 btn_black_hover">了解更多</a></div>
         </div>
       </div>
     </div>
@@ -237,6 +242,10 @@ export default {
 <style lang="scss">
 .mt_lg_-7{
   margin-top: -64px;
+}
+.btn_black_hover:hover{
+  background: #121212;
+  color: #fff;
 }
 .bg_lg_yellow{
   @media (min-width: 992px) {

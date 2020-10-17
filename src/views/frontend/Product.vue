@@ -53,8 +53,14 @@
                   </button>
                 </div>
                 <button type="button" @click="addToCart" class="btn
-                p-2 w-50 text-white bg-black rounded-0">
+                p-2 w-50 text-white bg-black rounded-0
+                d-flex align-items-center justify-content-center"
+                :disabled="addToCartLoading">
                   加入購物車
+                  <div v-if="addToCartLoading"
+                  class="spinner-border spinner-border_sm ml-2" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
                 </button>
               </div>
             </div>
@@ -99,6 +105,7 @@ export default {
       num: 1,
       category: '',
       recentlyViewedProducts: [],
+      addToCartLoading: false,
     };
   },
   components: {
@@ -117,6 +124,7 @@ export default {
       });
     },
     addToCart(quantity = 1) {
+      this.addToCartLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
       const cart = {
         product: this.product.id,
@@ -124,6 +132,7 @@ export default {
       };
       this.$http.post(url, cart)
         .then(() => {
+          this.addToCartLoading = false;
           this.$store.dispatch('messagePush',
             {
               message: '商品已加入購物車',
@@ -131,6 +140,7 @@ export default {
             });
           this.$emit('updateCart');
         }).catch(() => {
+          this.addToCartLoading = false;
           this.$store.dispatch('messagePush',
             {
               message: '購物車裡已有該商品',

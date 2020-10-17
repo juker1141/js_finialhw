@@ -4,7 +4,7 @@
     data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="bg-danger py-3 text-white fz_lg_24">
+          <div class="bg-yellow py-3 text-black fz_lg_24">
             開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
@@ -12,7 +12,7 @@
             想要獲得更多活動訊息及優惠資訊嗎？快訂閱我們的會員電子報吧！</div>
         </div>
         <div class="carousel-item">
-          <div class="bg-danger py-3 text-white fz_lg_24">
+          <div class="bg-yellow py-3 text-black fz_lg_24">
             開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
