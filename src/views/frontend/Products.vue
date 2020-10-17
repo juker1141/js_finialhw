@@ -4,19 +4,19 @@
     data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="bg-yellow py-3 text-black fz_lg_24">
+          <div class="bg-yellow py-3 text-dark font-weight-bold fz_lg_24">
             開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
-          <div class="bg-dark py-3 text-yellow fz_lg_24">
+          <div class="bg-dark py-3 text-yellow font-weight-bold fz_lg_24">
             想要獲得更多活動訊息及優惠資訊嗎？快訂閱我們的會員電子報吧！</div>
         </div>
         <div class="carousel-item">
-          <div class="bg-yellow py-3 text-black fz_lg_24">
+          <div class="bg-yellow py-3 text-dark font-weight-bold fz_lg_24">
             開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
-          <div class="bg-dark py-3 text-yellow fz_lg_24">
+          <div class="bg-dark py-3 text-yellow font-weight-bold fz_lg_24">
             想要獲得更多活動訊息及優惠資訊嗎？快訂閱我們的會員電子報吧！</div>
         </div>
       </div>
@@ -28,36 +28,48 @@
         justify-content-between m-0 p-2 rounded overflow_X_auto">
           <li>
             <a href="#" @click.prevent="productsSelect('全部商品')"
+            :class="{ 'font-weight-bold' : category === '全部商品',
+            'fz_20' : category === '全部商品' }"
             class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               全部
             </a>
           </li>
           <li>
             <a href="#" @click.prevent="productsSelect('手工具')"
+            :class="{ 'font-weight-bold' : category === '手工具',
+            'fz_20' : category === '手工具' }"
             class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               手工具
             </a>
           </li>
           <li>
             <a href="#" @click.prevent="productsSelect('量測工具')"
+            :class="{ 'font-weight-bold' : category === '量測工具',
+            'fz_20' : category === '量測工具' }"
             class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               量測工具
             </a>
           </li>
           <li>
             <a href="#" @click.prevent="productsSelect('研磨工具')"
+            :class="{ 'font-weight-bold' : category === '研磨工具',
+            'fz_20' : category === '研磨工具' }"
             class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               研磨工具
             </a>
           </li>
           <li class="">
             <a href="#" @click.prevent="productsSelect('電動工具')"
+            :class="{ 'font-weight-bold' : category === '電動工具',
+            'fz_20' : category === '電動工具' }"
             class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               電動工具
             </a>
           </li>
           <li class="">
             <a href="#" @click.prevent="productsSelect('配件')"
+            :class="{ 'font-weight-bold' : category === '配件',
+            'fz_20' : category === '配件' }"
             class="px-5 py-2 my-lg-2 text-decoration-none productList_hover">
               配件
             </a>
@@ -96,10 +108,11 @@
                         <div class="text-left fontRoboto">
                           <div v-if="!item.price || item.price === item.origin_price"
                           >NT {{ item.origin_price | toCurrency | DollarSign }}</div>
-                          <div v-else class="d-flex align-items-center">
+                          <div v-else class="d-flex flex-lg-column flex-xl-row align-items-center">
                             <del class="text-secondary">
                             NT {{ item.origin_price | toCurrency | DollarSign }}</del>
-                            <div class="ml-3">NT {{ item.price | toCurrency | DollarSign }}</div>
+                            <div class="ml-3 ml-lg-0 ml-xl-3">
+                            NT {{ item.price | toCurrency | DollarSign }}</div>
                           </div>
                         </div>
                       </div>
@@ -128,6 +141,7 @@ export default {
   data() {
     return {
       products: [],
+      category: '全部商品',
       recentlyViewedProducts: [],
       pagination: {
         count: 12,
@@ -177,11 +191,13 @@ export default {
     productsSelect(category) {
       const vm = this.pagination;
       if (category === '全部商品') {
+        this.category = category;
         vm.totalArticleList = this.products;
         vm.total_pages = Math.ceil(vm.totalArticleList.length
           / vm.count);
         vm.current_page = 1;
       } else {
+        this.category = category;
         vm.totalArticleList = this.products.filter((item) => item.category === category);
         vm.total_pages = Math.ceil(vm.totalArticleList.length
           / vm.count);
@@ -258,6 +274,7 @@ export default {
 }
 .overflow_X_auto {
   overflow-x: auto;
+  overflow-y: hidden;
   height: 50px;
   white-space: nowrap;
   -ms-overflow-style: -ms-autohiding-scrollbar;

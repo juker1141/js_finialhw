@@ -234,12 +234,12 @@
           <div class="col-12 col-md-7">
             <div class="input-group mb-3">
               <input type="text" class="form-control text-yellow
-              form_control bg-transparent border-yellow
+              form_control bg-transparent border-yellow rounded-0
               form_control_lg_lg fz_lg_24 form-control_yellow" placeholder=" 請輸入您的 Email"
               aria-label="Example text with button addon" aria-describedby="button-addon1">
               <div class="input-group-prepend">
                 <button class="btn btn-yellow fz_14 fz_lg_24
-                font-weight-bold px-2 px-lg-5 rounded-right
+                font-weight-bold px-2 px-lg-5 rounded-0
                 text-black" type="button"
                 id="button-addon1">訂閱每月電子報</button>
               </div>
@@ -249,7 +249,7 @@
       </div>
     </div>
     <div id="footer" class="bg-dark p-3 p-lg-5">
-      <div class="container d-flex align-items-center justify-content-between">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
         <div class="w_100">
           <div class="mb-3">
             <router-link
@@ -352,8 +352,8 @@
               justify-content-between">
                 <div>
                   <h2 class="mb-5">聯絡我們</h2>
-                  <div class="mb-3 fz-20">若您有任何意見或疑問</div>
-                  <div class="mb-3 fz-20">您可以使用以下資訊聯繫到我們</div>
+                  <div class="mb-3 fz-20">若您有任何的意見及疑問</div>
+                  <div class="mb-3 fz-20">我們歡迎您使用以下資訊聯繫到我們</div>
                   <div class="fz-20">當然您也可以到我們的門市盡情選購！！</div>
                 </div>
                 <div>
@@ -616,6 +616,7 @@ export default {
       if (w < 992) {
         $('.list_position').slideToggle('fast');
       }
+      this.$store.dispatch('categoryChange', '全部商品');
       this.$router.push(link).catch(() => {});
     },
     goToTop() {

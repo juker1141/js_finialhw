@@ -12,7 +12,6 @@ import {
 import TW from 'vee-validate/dist/locale/zh_TW.json';
 import PaginationAdmin from '@/components/PaginationAdmin.vue';
 import Pagination from '@/components/Pagination.vue';
-import './assets/scss/all.scss';
 import App from './App.vue';
 import router from './router';
 import store from './store';

@@ -27,10 +27,12 @@
                 <div class="text-left fontRoboto">
                   <div v-if="!item.price || item.price === item.origin_price"
                   >NT {{ item.origin_price | toCurrency | DollarSign }}</div>
-                  <div v-else class="d-flex align-items-center">
+                  <div v-else class="d-flex flex-column flex-md-row
+                  flex-lg-column flex-xl-row align-items-center">
                     <del class="text-secondary">
                     NT {{ item.origin_price | toCurrency | DollarSign }}</del>
-                    <div class="ml-3">NT {{ item.price | toCurrency | DollarSign }}</div>
+                    <div class="ml-md-3 ml-lg-0 ml-xl-3">
+                    NT {{ item.price | toCurrency | DollarSign }}</div>
                   </div>
                 </div>
               </div>
@@ -88,10 +90,11 @@ export default {
 
 <style lang="scss" scoped>
 .swiper-slide {
-  width: 80% !important;
+  width: 60% !important;
   margin-right: 20px;
   height: 320px;
   @media (min-width: 768px) {
+    width: 60% !important;
     height: 450px;
   }
   @media (min-width: 992px) {
@@ -99,7 +102,7 @@ export default {
     height: 550px;
   }
   @media (min-width: 1200px) {
-    width: 40% !important;
+    width: 35% !important;
     height: 550px;
   }
 }

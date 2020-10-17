@@ -26,13 +26,13 @@
               <div class="text-left mb-2 fz_36 font-weight-bold">{{ product.title }}</div>
               <div class="text-right mb-3 fontRoboto fz_24 font-weight-bold">
                 <div v-if="!product.price || product.price === product.origin_price">
-                  NT{{ product.origin_price | toCurrency | DollarSign }}
+                  NT {{ product.origin_price | toCurrency | DollarSign }}
                 </div>
                 <div v-else class="d-flex align-items-end flex-column">
                   <del class="text-secondary fz_16 font-weight-normal">
-                    NT{{ product.origin_price | toCurrency | DollarSign }}
+                    NT {{ product.origin_price | toCurrency | DollarSign }}
                   </del>
-                  <div class="">NT{{ product.price | toCurrency | DollarSign }}</div>
+                  <div class="">NT {{ product.price | toCurrency | DollarSign }}</div>
                 </div>
               </div>
               <div class="w-100 d-flex align-items-center">
@@ -74,7 +74,7 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4 text-left">
           <div class="fz_24 mb-2">產品規格</div>
-          <div v-html="product.description"></div>
+          <div class="ml-4" v-html="product.description"></div>
         </div>
       </div>
     </div>
