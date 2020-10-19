@@ -615,8 +615,10 @@ export default {
       this.checkCoupon(this.couponCode);
       if (!this.couponCode) {
         console.log(123);
-        this.couponWorking = false;
+        this.couponWorking = '';
         this.cartTotal = 0;
+        this.cartTotalCoupon = 0;
+        this.couponPrice = 0;
         if (this.cart.length >= 1) {
           this.cart.forEach((item) => {
             this.cartTotal += (item.quantity * item.product.price);
@@ -719,9 +721,6 @@ export default {
         if (this.coupon.percent) {
           this.cartTotalCoupon = Math.round(newCartTotal * (this.coupon.percent / 100));
           this.couponPrice = newCartTotal - this.cartTotalCoupon;
-        } else {
-          this.cartTotalCoupon = 0;
-          this.couponPrice = 0;
         }
       }
     },
