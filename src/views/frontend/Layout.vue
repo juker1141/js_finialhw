@@ -174,40 +174,50 @@
             <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
             ">找不到此優惠卷，請您再次確認</div>
           </div>
-          <div v-if="cartTotal"
-          class="d-flex justify-content-between mb-1 align-items-center">
-            購物車金額
-            <span v-if="couponWorking === true">
-            NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
-            <span v-else>
-            NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span></div>
-            <span v-if="couponWorking === true && cart.length >= 1"
-            class="text-danger text-right mb-2">
-            節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
-            <span v-if="cart.length === 0"
-            class="text-danger text-right mb-2">
-            購物車內沒有東西，無法使用折價卷</span>
-          <div v-else
-          class="d-flex justify-content-between mb-1 align-items-center">
-          購物車金額<div>NT 0</div></div>
-          <div v-if="cartTotal > 2000"
-          class="d-flex justify-content-between align-items-center mb-1">
-          運費<div><span class="text-danger mr-2 font-weight-bold">
-          ( 滿 $ 2, 000 免運 )</span>NT 0</div></div>
-          <div v-else class="d-flex
-          justify-content-between align-items-center mb-1">
-          運費<div>NT {{ 60 | toCurrency | DollarSign }}</div></div>
-          <div v-if="cartTotal > 2000"
-          class="d-flex mb-3 justify-content-between align-items-center
-          font-weight-bold fz_20 text-black">
-          總金額<div>NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</div></div>
-          <div v-else class="d-flex mb-3 font-weight-bold fz_20
-          justify-content-between align-items-center text-black">
-          總金額<div>
-          NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div></div>
+          <div class="position-relative">
+            <div v-if="computeCart" class="d-flex align-items-center justify-content-center
+            w-100 h-100 position-absolute cartTotalLoading">
+              <div class="spinner-border text-dark" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <div v-if="cartTotal"
+            class="d-flex justify-content-between mb-1 align-items-center">
+              購物車金額
+              <span v-if="couponWorking === true">
+              NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
+              <span v-else>
+              NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span></div>
+              <span v-if="couponWorking === true && cart.length >= 1"
+              class="text-danger text-right mb-2">
+              節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
+              <span v-if="cart.length === 0"
+              class="text-danger text-right mb-2">
+              購物車內沒有東西，無法使用折價卷</span>
+            <div v-else
+            class="d-flex justify-content-between mb-1 align-items-center">
+            購物車金額<div>NT 0</div></div>
+            <div v-if="cartTotal > 2000"
+            class="d-flex justify-content-between align-items-center mb-1">
+            運費<div><span class="text-danger mr-2 font-weight-bold">
+            ( 滿 $ 2, 000 免運 )</span>NT 0</div></div>
+            <div v-else class="d-flex
+            justify-content-between align-items-center mb-1">
+            運費<div>NT {{ 60 | toCurrency | DollarSign }}</div></div>
+            <div v-if="cartTotal > 2000"
+            class="d-flex mb-3 justify-content-between align-items-center
+            font-weight-bold fz_20 text-black">
+            總金額<div>NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}
+            </div></div>
+            <div v-else class="d-flex mb-3 font-weight-bold fz_20
+            justify-content-between align-items-center text-black">
+            總金額<div>
+            NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div></div>
+          </div>
           <div v-if="cart.length !== 0" class="d-flex justify-content-end">
           <button @click="closeCart(); toInformationPage()" type="button"
           class="btn bg-black text-white rounded-0 fz_30_important px-5 w-100 w_lg_75"
+          :disabled="computeCart"
           >
           前往結帳</button></div>
           <div v-if="cart.length === 0"
@@ -581,6 +591,7 @@ export default {
       cartTotalCoupon: 0,
       couponPrice: 0,
       couponLoading: false,
+      computeCart: false,
     };
   },
   computed: {
@@ -602,9 +613,7 @@ export default {
         }
         return this.cartTotal;
       } if (this.cart.length >= 1) {
-        this.cart.forEach((item) => {
-          this.cartTotal += (item.quantity * item.product.price);
-        });
+        this.computeCartTotal();
         if (this.couponCode) {
           this.checkCoupon(this.couponCode);
         }
@@ -612,19 +621,7 @@ export default {
       return this.cartTotal;
     },
     couponCode() {
-      this.checkCoupon(this.couponCode);
-      if (!this.couponCode) {
-        this.couponWorking = '';
-        this.cartTotal = 0;
-        this.cartTotalCoupon = 0;
-        this.couponPrice = 0;
-        if (this.cart.length >= 1) {
-          this.cart.forEach((item) => {
-            this.cartTotal += (item.quantity * item.product.price);
-          });
-        }
-      }
-      return this.cartTotal;
+      this.computeCart = true;
     },
   },
   methods: {
@@ -698,11 +695,13 @@ export default {
       };
       this.$http.post(url, coupon)
         .then((res) => {
+          this.computeCart = false;
           this.couponLoading = false;
           this.couponWorking = true;
           this.coupon = res.data.data;
-          this.computeCartTotal(this.coupon);
+          this.computeCoupon(this.coupon);
         }).catch(() => {
+          this.computeCart = false;
           this.couponLoading = false;
           this.coupon = {};
           if (this.couponCode) {
@@ -711,7 +710,12 @@ export default {
           localStorage.removeItem('coupon');
         });
     },
-    computeCartTotal(coupon) {
+    computeCartTotal() {
+      this.cart.forEach((item) => {
+        this.cartTotal += (item.quantity * item.product.price);
+      });
+    },
+    computeCoupon(coupon) {
       const newCartTotal = this.cartTotal;
       this.cartTotalCoupon = 0;
       this.couponPrice = 0;
@@ -923,5 +927,8 @@ export default {
   width: 120px;
   background-position: center !important;
   background-size: cover !important;
+}
+.cartTotalLoading{
+  background: rgba(255, 255, 255, 0.5);
 }
 </style>
