@@ -63,7 +63,7 @@
       </div>
     </section>
     <!-- ... 這裡是表頭navbar結束 ... -->
-    <!-- ... 這裡是購物車測欄開始 ... -->
+    <!-- ... 這裡是購物車側欄開始 ... -->
     <div id="cartBlock" :class="{ 'active' : cartBlockShow }"
     class="h-100 bg-white text-black position-fixed zIndex_40 p-4 px-5 p-lg-6 cartBlockPosition">
       <div class="d-flex justify-content-between mb-5">
@@ -161,7 +161,8 @@
               class="form-control rounded-0"
               id="coupons" placeholder="請輸入優惠卷">
               <button class="btn btn-yellow ml-auto px-2 rounded-0 d-flex align-items-cneter"
-              type="button" @click="checkCoupon(couponCode); couponLoading = true">
+              type="button" @click="checkCoupon(couponCode); couponLoading = true"
+              :disabled="!couponCode">
                 <span v-if="!couponLoading" class="material-icons">
                 send
                 </span>
@@ -218,7 +219,7 @@
         </div>
       </div>
     </div>
-    <!-- ... 這裡是購物車測欄結束 ... -->
+    <!-- ... 這裡是購物車側欄結束 ... -->
     <router-view class="navbar_mt" id="main" @updateCart="getcart"/>
     <div id="subscribe"
     class="footerBannerImg p-5 p-lg-9 text-white d-flex flex-column align-items-center">
@@ -331,9 +332,9 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+    <div class="modal fade pr-0" id="contactModal" tabindex="-1" role="dialog"
     aria-labelledby="aboutUsModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+      <div class="modal-dialog w_max_md_80" role="document">
         <div class="modal-content bg-blackOP text-white">
           <div class="modal-header border-0">
             <h5 class="modal-title"></h5>
@@ -344,19 +345,21 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-5">
-              <div class="col-8">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.570819148624!2d120.30473501439967!3d22.59514978517119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0372ebc9d327%3A0x92317d11de68daf9!2z5aSi5pmC5Luj6LO854mp5Lit5b-DIERyZWFtIE1hbGw!5e0!3m2!1szh-TW!2stw!4v1602737500796!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <div class="row mx-5 flex-column-reverse flex-xl-row">
+              <div class="col-12 col-xl-8">
+                <div class="iframe-rwd">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.570819148624!2d120.30473501439967!3d22.59514978517119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0372ebc9d327%3A0x92317d11de68daf9!2z5aSi5pmC5Luj6LO854mp5Lit5b-DIERyZWFtIE1hbGw!5e0!3m2!1szh-TW!2stw!4v1602737500796!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
               </div>
-              <div class="col-4 text-center d-flex flex-column align-items-center
+              <div class="col-12 col-xl-4 text-center d-flex flex-column align-items-center
               justify-content-between">
-                <div>
+                <div class="mb-5">
                   <h2 class="mb-5">聯絡我們</h2>
                   <div class="mb-3 fz-20">若您有任何的意見及疑問</div>
                   <div class="mb-3 fz-20">我們歡迎您使用以下資訊聯繫到我們</div>
                   <div class="fz-20">當然您也可以到我們的門市盡情選購！！</div>
                 </div>
-                <div>
+                <div class="mb-3 mb-xl-0">
                   <div class="text-yellow fz_20 mb-3 d-flex
                   align-items-center justify-content-start">
                     <span class="material-icons fz_30">phone</span>
@@ -386,9 +389,9 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="privacyModal" tabindex="-1" role="dialog"
+    <div class="modal fade pr-0" id="privacyModal" tabindex="-1" role="dialog"
     aria-labelledby="aboutUsModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+      <div class="modal-dialog w_max_md_80" role="document">
         <div class="modal-content bg-blackOP text-white">
           <div class="modal-header border-0">
             <h5 class="modal-title"></h5>
@@ -400,9 +403,10 @@
           </div>
           <div class="modal-body">
             <div class="row mx-5">
-              <div class="col-8 offset-2 text-left">
+              <div class="col-12 col-xl-8 offset-xl-2 text-left">
                 <h2 class="text-center mb-5">
-                  <span class="fontOrbitron">Hardware Store</span> 隱私權聲明</h2>
+                  <span class="fontOrbitron">Hardware Store
+                    </span><br class="d-xl-none"> 隱私權聲明</h2>
                 <ol class="fz_24">
                   <li class="fz_16 mb-2">
                     <div class="fz_20 mb-2">隱私權政策簡介</div>
@@ -500,9 +504,9 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="serviceModal" tabindex="-1" role="dialog"
+    <div class="modal fade pr-0" id="serviceModal" tabindex="-1" role="dialog"
     aria-labelledby="aboutUsModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+      <div class="modal-dialog w_max_md_80" role="document">
         <div class="modal-content bg-blackOP text-white">
           <div class="modal-header border-0">
             <h5 class="modal-title"></h5>
@@ -514,9 +518,10 @@
           </div>
           <div class="modal-body">
             <div class="row mx-5">
-              <div class="col-8 offset-2 text-left">
+              <div class="col-12 col-xl-8 offset-xl-2 text-left">
                 <h2 class="text-center mb-5">
-                  <span class="fontOrbitron">Hardware Store</span> 服務條款</h2>
+                  <span class="fontOrbitron">Hardware Store </span>
+                  <br class="d-xl-none">服務條款</h2>
                 <div>
                   <div class="fz_20 mb-3">我們瞭解您可能會想略過<span class="text-yellow">《服務條款》</span>，
                   但請務必詳閱，瞭解我們在您使用我們網站時致力遵守的原則，以及我們期許您遵守的行為準則。</div>
@@ -543,7 +548,7 @@
                     </li>
                     <li class="fz_16">
                       除了本條款外，我們還發布了<a href="#" @click.prevent="goToPrivacyModal"
-                      class="text-yellow">《隱私權政策》</a>
+                      class="text-yellow">《隱私權聲明》</a>
                       。該政策並非本條款的一部分，但仍建議您詳閱，進一步瞭解如何更新、管理、匯出及刪除您的資訊。
                     </li>
                   </ul>
@@ -593,7 +598,7 @@ export default {
       if (this.cart.length === 0) {
         this.cartTotal = 0;
         if (this.couponCode) {
-          this.checkCoupon(this.couponCode);
+          this.couponCode = '';
         }
         return this.cartTotal;
       } if (this.cart.length >= 1) {
@@ -602,6 +607,20 @@ export default {
         });
         if (this.couponCode) {
           this.checkCoupon(this.couponCode);
+        }
+      }
+      return this.cartTotal;
+    },
+    couponCode() {
+      this.checkCoupon(this.couponCode);
+      if (!this.couponCode) {
+        console.log(123);
+        this.couponWorking = false;
+        this.cartTotal = 0;
+        if (this.cart.length >= 1) {
+          this.cart.forEach((item) => {
+            this.cartTotal += (item.quantity * item.product.price);
+          });
         }
       }
       return this.cartTotal;
@@ -681,23 +700,30 @@ export default {
           this.couponLoading = false;
           this.couponWorking = true;
           this.coupon = res.data.data;
-          let newCartTotal = this.cartTotal;
-          this.cartTotalCoupon = 0;
-          this.couponPrice = 0;
-          if (this.cart.length >= 1) {
-            if (this.coupon.percent) {
-              this.cartTotalCoupon = Math.round(newCartTotal * (this.coupon.percent / 100));
-              this.couponPrice = newCartTotal - this.cartTotalCoupon;
-              newCartTotal = this.cartTotalCoupon;
-            }
-          }
+          this.computeCartTotal(this.coupon);
         }).catch(() => {
           this.couponLoading = false;
+          console.log('你這裡是空的');
+          this.coupon = {};
           if (this.couponCode) {
             this.couponWorking = false;
           }
           localStorage.removeItem('coupon');
         });
+    },
+    computeCartTotal(coupon) {
+      const newCartTotal = this.cartTotal;
+      this.cartTotalCoupon = 0;
+      this.couponPrice = 0;
+      if (this.cart.length >= 1) {
+        if (this.coupon.percent) {
+          this.cartTotalCoupon = Math.round(newCartTotal * (this.coupon.percent / 100));
+          this.couponPrice = newCartTotal - this.cartTotalCoupon;
+        } else {
+          this.cartTotalCoupon = 0;
+          this.couponPrice = 0;
+        }
+      }
     },
     toInformationPage() {
       if (!localStorage.getItem('coupon')) {
@@ -765,6 +791,20 @@ export default {
 }
 .navbarPosition {
   top: 0;
+}
+.iframe-rwd {
+  position: relative;
+  padding-bottom: 65.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+.iframe-rwd iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .cartBlockPosition{
   top: 0;

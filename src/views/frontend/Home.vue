@@ -7,7 +7,7 @@
           <div class="indexBannerImg indexBannerImg_1 text-black p-5 px-9 flex-lg-row
           d-flex flex-column align-items-center border-black border_nm
           border-top border-bottom border_lg_lg justify-content-center">
-            <div class="mr-lg-6 mb-2 mb-lg-0">
+            <div class="mr-lg-6 mt-5 mt-lg-0 mb-2 mb-lg-0">
               <div class="fz_36 fz_lg_64 text-center
               text-lg-left w-100 font-weight-bold">開幕慶！</div>
               <div class="fz_lg_24 text-center text-lg-left w-100">
