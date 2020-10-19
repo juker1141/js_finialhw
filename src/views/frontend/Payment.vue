@@ -219,7 +219,6 @@ export default {
     getOrder(id) {
       this.$store.dispatch('getOrder', id);
       // if (!this.order) {
-      //   console.log('這裡沒東西');
       //   this.$store.replaceState({ ...this.$store.state,
       // ...JSON.parse(localStorage.getItem('store')) });
       // }

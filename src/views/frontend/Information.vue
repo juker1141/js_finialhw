@@ -255,6 +255,9 @@ export default {
       });
       return this.cartTotal;
     },
+    'coupon.code': function () {
+      this.checkCoupon(this.coupon.code);
+    },
   },
   methods: {
     getCart() {
@@ -292,7 +295,6 @@ export default {
       const coupon = {
         code,
       };
-      console.log('我要檢查有無優惠卷囉');
       this.$http.post(url, coupon)
         .then((res) => {
           this.couponLoading = false;
@@ -318,7 +320,6 @@ export default {
       this.couponWorking = true;
       this.coupon = JSON.parse(localStorage.getItem('coupon'));
       if (this.coupon.code) {
-        console.log('你有優惠');
         setTimeout(() => {
           this.checkCoupon(this.coupon.code);
         }, 0);

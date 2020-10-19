@@ -614,7 +614,6 @@ export default {
     couponCode() {
       this.checkCoupon(this.couponCode);
       if (!this.couponCode) {
-        console.log(123);
         this.couponWorking = '';
         this.cartTotal = 0;
         this.cartTotalCoupon = 0;
@@ -705,7 +704,6 @@ export default {
           this.computeCartTotal(this.coupon);
         }).catch(() => {
           this.couponLoading = false;
-          console.log('你這裡是空的');
           this.coupon = {};
           if (this.couponCode) {
             this.couponWorking = false;
