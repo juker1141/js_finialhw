@@ -121,10 +121,11 @@
                   總金額
                   <div class="d-flex align-items-center">
                     <div class="cartDetail_total" v-if="cartTotal > 2000">
-                      NT {{ cartTotal | toCurrency | DollarSign }}
+                      NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}
                     </div>
                     <div class="cartDetail_total"
-                    v-else>NT {{ cartTotal + 60 | toCurrency | DollarSign }}</div>
+                    v-else>NT {{ Math.round(cartTotal - couponPrice)
+                    + 60 | toCurrency | DollarSign }}</div>
                     <div class="d-flex align-items-center ml-2">
                       <span class="material-icons showCartDetail_down">
                       keyboard_arrow_down
@@ -161,24 +162,24 @@
                 <li class="d-flex align-items-center">
                   <div class="w-100 d-flex mb-2 flex-column align-items-end">
                     <div class="w-100 d-flex">
-                      <span v-if="couponWorking === true && coupon.code" class="material-icons
-                      fz_36 text-success pr-2">
-                        done
-                      </span>
-                      <div class="d-flex w-100">
+                      <div class="d-flex w-100 position-relative">
                         <input type="text" v-model="coupon.code"
                         class="form-control rounded-0"
                         id="coupons" placeholder="請輸入優惠卷">
-                        <button class="btn btn-yellow ml-auto px-2
-                        d-flex align-items-center rounded-0"
-                        type="button" @click="checkCoupon(coupon.code); couponLoading = true">
-                          <span v-if="!couponLoading" class="material-icons">
-                          send
-                          </span>
-                          <div v-else class="spinner-border spinner-border_sm" role="status">
+                        <div class="position-absolute loading_position">
+                          <div v-if="couponLoading === true"
+                          class="spinner-border spinner-border_sm text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
-                        </button>
+                          <span v-if="couponWorking === true"
+                          class="material-icons text-success font-weight-bold">
+                          done
+                          </span>
+                          <span v-if="couponWorking === false"
+                          class="material-icons text-danger font-weight-bold">
+                          close
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div v-if="couponWorking === false && coupon.code"
@@ -206,10 +207,11 @@
                 <li class="p-2 d-flex justify-content-between font-weight-bold fz_20">
                 總金額
                 <div v-if="cartTotal > 2000">
-                NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}
+                  NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}
                 </div>
                 <div v-else>
-                NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}</div>
+                  NT {{ Math.round(cartTotal - couponPrice) + 60 | toCurrency | DollarSign }}
+                </div>
                 </li>
               </ul>
             </div>
@@ -291,6 +293,8 @@ export default {
         });
     },
     checkCoupon(code) {
+      this.couponLoading = true;
+      this.couponWorking = '';
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/coupon/search`;
       const coupon = {
         code,

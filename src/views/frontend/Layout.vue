@@ -144,32 +144,26 @@
         </ul>
       </div>
       <div class="d-flex justify-content-end p-3">
-        <div class="w-25 d-none d-lg-flex justify-content-end">
-          <span v-if="couponWorking === true && cart.length >= 1" class="material-icons
-          fz_36 text-success pr-2">
-            done
-          </span>
-        </div>
-        <div class="w-100 w_lg_75 text-secondary d-flex flex-column">
+        <div class="w_lg_75 w_100 text-secondary d-flex flex-column">
           <div class="d-flex mb-2 flex-column">
-            <div class="d-flex justify-content-between">
-              <span v-if="couponWorking === true && cart.length >= 1" class="material-icons
-              fz_36 text-success d-block d-lg-none pr-2">
-                done
-              </span>
+            <div class="d-flex justify-content-between position-relative">
               <input type="text" v-model="couponCode"
               class="form-control rounded-0"
               id="coupons" placeholder="請輸入優惠卷">
-              <button class="btn btn-yellow ml-auto px-2 rounded-0 d-flex align-items-cneter"
-              type="button" @click="checkCoupon(couponCode); couponLoading = true"
-              :disabled="!couponCode">
-                <span v-if="!couponLoading" class="material-icons">
-                send
-                </span>
-                <div v-else class="spinner-border spinner-border_sm" role="status">
+              <div class="position-absolute loading_position">
+                <div v-if="couponLoading === true"
+                class="spinner-border spinner-border_sm text-primary" role="status">
                   <span class="sr-only">Loading...</span>
                 </div>
-              </button>
+                <span v-if="couponWorking === true"
+                class="material-icons text-success font-weight-bold">
+                done
+                </span>
+                <span v-if="couponWorking === false"
+                class="material-icons text-danger font-weight-bold">
+                close
+                </span>
+              </div>
             </div>
             <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
             ">找不到此優惠卷，請您再次確認</div>
@@ -188,9 +182,10 @@
               NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
               <span v-else>
               NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span></div>
-              <span v-if="couponWorking === true && cart.length >= 1"
+              <div class="d-flex justify-content-end align-items-center">
+                <span v-if="couponWorking === true && cart.length >= 1"
               class="text-danger text-right mb-2">
-              節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>
+              節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span></div>
               <span v-if="cart.length === 0"
               class="text-danger text-right mb-2">
               購物車內沒有東西，無法使用折價卷</span>
@@ -261,7 +256,7 @@
     </div>
     <div id="footer" class="bg-dark p-3 p-lg-5">
       <div class="container-fluid d-flex align-items-center justify-content-between">
-        <div class="w_100">
+        <div class="w_100 w_lg_auto">
           <div class="mb-3">
             <router-link
             class="fontOrbitron fz_30_important text-yellow text-decoration-none"
@@ -614,14 +609,11 @@ export default {
         return this.cartTotal;
       } if (this.cart.length >= 1) {
         this.computeCartTotal();
-        if (this.couponCode) {
-          this.checkCoupon(this.couponCode);
-        }
       }
       return this.cartTotal;
     },
     couponCode() {
-      this.computeCart = true;
+      this.checkCoupon(this.couponCode);
     },
   },
   methods: {
@@ -689,6 +681,8 @@ export default {
         });
     },
     checkCoupon(code) {
+      this.couponWorking = '';
+      this.couponLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/coupon/search`;
       const coupon = {
         code,
@@ -704,9 +698,8 @@ export default {
           this.computeCart = false;
           this.couponLoading = false;
           this.coupon = {};
-          if (this.couponCode) {
-            this.couponWorking = false;
-          }
+          this.couponWorking = false;
+          this.computeCoupon();
           localStorage.removeItem('coupon');
         });
     },
@@ -734,7 +727,7 @@ export default {
       }
       setTimeout(() => {
         this.$router.push('/information').catch(() => {});
-      }, 500);
+      }, 1000);
     },
     hideFooter() {
       if (this.$route.path === '/login'
@@ -890,6 +883,8 @@ export default {
 }
 .w_100{
   width: 100%;
+}
+.w_lg_auto {
   @media (min-width: 992px) {
     width: auto;
   }

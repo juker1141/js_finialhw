@@ -79,10 +79,10 @@
                         <div class="h-100 aboutUsImg aboutUsImg_3"></div></div>
                     </div>
                   </div>
-                  <div class="w-50"><div class="h_550px aboutUsImg aboutUsImg_1"></div></div>
+                  <div class="w-50"><div class="h_lg_550px aboutUsImg aboutUsImg_1"></div></div>
                 </div>
               </div>
-              <div class="col-5 h_550px">
+              <div class="col-5 h_250px h_lg_550px">
                 <div class="d-flex h-100 flex-column justify-content-between">
                   <div class="d-flex h-100 flex-column justify-content-center align-items-start">
                     <div class="mb-3 fz_24">從 1990 年代起</div>
@@ -163,9 +163,9 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="payMethodModal" tabindex="-1" role="dialog"
+    <div class="modal fade pr-0" id="payMethodModal" tabindex="-1" role="dialog"
     aria-labelledby="aboutUsModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered w_max_md_80" role="document">
+      <div class="modal-dialog w_max_md_80" role="document">
         <div class="modal-content bg-blackOP text-white">
           <div class="modal-header border-0">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -176,10 +176,11 @@
             </button>
           </div>
           <div class="modal-body">
-            <div id="aboutUs" v-if="changeAboutUs" class="row mx-5">
-              <div class="col-7">
+            <div class="row mx-5">
+              <div class="d-none d-lg-block col-lg-7">
                 <div class="d-flex">
-                  <div class="w-50 mr-3"><div class="h_550px paymentImg paymentImg_1"></div></div>
+                  <div class="w-50 mr-3"><div class="
+                  h_lg_550px paymentImg paymentImg_1"></div></div>
                   <div class="w-50">
                     <div class="h-100 d-flex flex-column">
                       <div class="h-100 paymentImg paymentImg_2 mb-3"></div>
@@ -189,13 +190,15 @@
                   </div>
                 </div>
               </div>
-              <div class="col-5 h_550px">
+              <div class="col-12 col-lg-5 h_lg_550px">
                 <div class="d-flex h-100 flex-column text-left
                 align-items-center justify-content-center">
-                  <div class="w-100 ml-9">如果你是台灣地區的會員</div>
-                  <div class="w-100 ml-9">我們提供以下多種付款方式：</div>
+                  <div class="w-100 d-flex justify-content-center justify-content-lg-start
+                  ml-lg-9">如果你是台灣地區的會員</div>
+                  <div class="w-100 d-flex justify-content-center justify-content-lg-start
+                  ml-lg-9">我們提供以下多種付款方式：</div>
                   <div class="row w-100">
-                    <div class="col-6 offset-1">
+                    <div class="col-6 offset-4 offset-lg-1">
                       <ul class="mt-3">
                         <li class="mb-3">WebATM</li>
                         <li class="mb-3">ATM</li>
