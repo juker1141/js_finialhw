@@ -217,9 +217,10 @@
       </div>
     </div>
     <!-- ... 這裡是購物車側欄結束 ... -->
-    <router-view class="navbar_mt" id="main" @updateCart="getcart"/>
+    <router-view class="navbar_mt flex_1" id="main" @updateCart="getcart"/>
     <div id="subscribe"
-    class="footerBannerImg p-5 p-lg-9 text-white d-flex flex-column align-items-center">
+    class="footerBannerImg p-5 p-lg-9 text-white d-flex flex-column align-items-center
+    flex_1">
       <div class="container">
         <div class="row">
           <div class="col-8 col-lg-7 text-left">
@@ -769,7 +770,7 @@ export default {
 
 <style lang="scss">
 
-#main {
+.flex_1 {
   flex: 1 !important;
 }
 .d_none_important{
