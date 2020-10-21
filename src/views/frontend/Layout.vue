@@ -168,13 +168,7 @@
             <div v-if="couponWorking === false" class="fz_14 mt-2 text-danger text-left
             ">找不到此優惠卷，請您再次確認</div>
           </div>
-          <div class="position-relative">
-            <div v-if="computeCart" class="d-flex align-items-center justify-content-center
-            w-100 h-100 position-absolute cartTotalLoading">
-              <div class="spinner-border text-dark" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div>
+          <div>
             <div v-if="cartTotal"
             class="d-flex justify-content-between mb-1 align-items-center">
               購物車金額
@@ -922,8 +916,5 @@ export default {
   width: 120px;
   background-position: center !important;
   background-size: cover !important;
-}
-.cartTotalLoading{
-  background: rgba(255, 255, 255, 0.5);
 }
 </style>

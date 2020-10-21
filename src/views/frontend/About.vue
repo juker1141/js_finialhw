@@ -69,8 +69,8 @@
           </div>
           <div class="modal-body">
             <div id="aboutUs" v-if="changeAboutUs" class="row mx-5">
-              <div class="col-7">
-                <div class="d-flex">
+              <div class="col-12 col-lg-7">
+                <div class="d-none d-lg-flex">
                   <div class="w-50 mr-3">
                     <div class="h-100 d-flex flex-column">
                       <div class="h-75 w-100 mb-3">
@@ -81,13 +81,40 @@
                   </div>
                   <div class="w-50"><div class="h_lg_550px aboutUsImg aboutUsImg_1"></div></div>
                 </div>
+                <div class="d-block d-lg-none">
+                  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <div class="aboutUsImg_carousel aboutUsImg_1"></div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="aboutUsImg_carousel aboutUsImg_2"></div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="aboutUsImg_carousel aboutUsImg_3"></div>
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls"
+                    role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls"
+                    role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div class="col-5 h_250px h_lg_550px">
+              <div class="col-12 col-lg-5 mt-3 h_lg_550px">
                 <div class="d-flex h-100 flex-column justify-content-between">
-                  <div class="d-flex h-100 flex-column justify-content-center align-items-start">
+                  <div class="d-flex h-100 flex-column justify-content-center
+                  align-items-center align-items-lg-start mb-5 mb-lg-0">
                     <div class="mb-3 fz_24">從 1990 年代起</div>
                     <div class="mb-3"><span class="fontOrbitron">Hardware Store</span> 就在高雄發跡</div>
-                    <div class="mb-3">從一開始10坪大的五金行做到現在的五金批發業</div>
+                    <div class="mb-3">從一開始 10 坪大的五金行</div>
+                    <div class="mb-3">一直到到現在的五金批發業</div>
                     <div class="mb-3">就在今年也加入網路這個大家族了！</div>
                     <div class="mb-3">專門販售各品牌的手工具</div>
                     <div class="mb-3">電動工具、氣動工具以及其配件、耗材</div>
@@ -109,7 +136,7 @@
               </div>
             </div>
             <div id="aboutUsForm" v-else class="row mx-5">
-              <div class="col-6 offset-3">
+              <div class="col-12 col-lg-6 offset-lg-3">
                 <h3 class="mb-5"><span class="fontOrbitron">Hardware Store</span> 聯絡表單</h3>
                 <label for="email" class="text-left w-100">Email</label>
                 <input id="email" type="email" name="Email"
@@ -125,13 +152,17 @@
                 rows="7" id="message"></textarea>
                 <div class="mx-3 d-flex align-items-center justify-content-end">
                   <button type="button" @click="changeAboutUs = !changeAboutUs"
-                  class="btn rounded-0
+                  class="btn rounded-0 bg_white_hover text_black_hover
                   border-white text-white mr-3">
                     返回
                   </button>
-                  <button type="button" class="btn rounded-0
-                  bg-white" data-toggle="modal" data-target="#alertModal">
+                  <button type="button" class="btn rounded-0 align-items-center
+                  bg-yellow submitBtn_hover d-flex"
+                  data-toggle="modal" data-target="#alertModal">
                     確認送出
+                    <span class="material-icons fz_24 pl-2 text-black d-none submit_hover_arrow">
+                    navigate_next
+                    </span>
                   </button>
                 </div>
               </div>
@@ -288,6 +319,11 @@ export default {
 .aboutUsImg{
   width: 100%;
   background-size: cover !important;
+  &_carousel{
+    height: 150px;
+    width: 100%;
+    background-size: cover !important;
+  }
 }
 .aboutUsImg_1{
   background-position: 50% 75% !important;
@@ -306,6 +342,12 @@ export default {
   color: #000 !important;
   background: #fff;
   .formBtn_hover_arrow{
+    display: inline-block !important;
+  }
+}
+.submitBtn_hover:hover{
+  font-weight: bold;
+  .submit_hover_arrow{
     display: inline-block !important;
   }
 }
