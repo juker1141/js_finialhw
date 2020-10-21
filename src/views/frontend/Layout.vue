@@ -770,7 +770,7 @@ export default {
 <style lang="scss">
 
 #main {
-  flex: 1 1 auto !important;
+  flex: 1 !important;
 }
 .d_none_important{
   display: none !important;
