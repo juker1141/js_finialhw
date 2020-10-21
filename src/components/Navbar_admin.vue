@@ -81,18 +81,6 @@
           </li>
           <li
             class="pb-2 text-left font-weight-bold navbarList_hover d-flex
-            justify-content-center justify-content-lg-start"
-          >
-            <a href="#" @click="goToPage('/admin/simulateorder')"
-              class="fz_20 text-black text-decoration-none d-flex align-items-center py-2"
-              >
-              <span class="material-icons mr-lg-3 pl-xl-7
-              pl-lg-4 pl-0 border-0 fz_30_important">book_online</span>
-              <span class="d-none d-lg-block border-0">模擬下單系統</span>
-            </a>
-          </li>
-          <li
-            class="pb-2 text-left font-weight-bold navbarList_hover d-flex
             justify-content-center justify-content-lg-start" @click="signout()"
           >
             <a href="#" @click="goToPage('/home'); signout()"

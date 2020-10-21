@@ -51,7 +51,7 @@
   margin-top: 20%;
 }
 .payDoneImg {
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/wtZ8mSbaTDNHGWCdLC4Eee9xcS4tRjossVcG5vu8S8moGGiTtQuzFWP79jehilgCoDALgvYbKRQOoDeDB9leC691RCQdqsC7TjjjTuTcJbhJMPqnGiAkszVi4CcWlaOL.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/A5alFEBJwxiwq3VtuMPGZnLKA3GUA2dm9Xr4Pq7PhMF9VYx3WvBhysasINNnqIOIw2tPrXLDVAveMJWyUS0ZX0oDM9JIKvv6pfcM2V79ab3K9dcM4Crchgm4rTq2PXJn.jpg) no-repeat;
   top: 0;
   right: 0;
   width: 100%;

@@ -74,10 +74,6 @@ const routes = [
         path: 'picturelibrary',
         component: () => import('../views/backend/Picturelibrary.vue'),
       },
-      {
-        path: 'simulateorder',
-        component: () => import('../views/backend/Simulateorder.vue'),
-      },
     ],
   },
   {

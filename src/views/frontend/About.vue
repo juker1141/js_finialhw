@@ -292,7 +292,7 @@ export default {
 }
 .aboutImg_1{
   background-position: 25% 75% !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/BIzqAYnOJ9VVk2wUTGxVFyXvUVGvm52beZUQW70jAvDwSHXDLvyjek62b2CvLl7gIlKAHEsOn3sORffJHPVIZ2B0QZkyL2GdTU39A0cgmUMAWyOJ0OHezA1iqYAipAYf.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/SI0k3PgbXw9Vm0fLxezuhy68rP3tWE8d9r3RNBgwkgJxQ6Uzxo92FArXNIYxYz1fkf230wSLSomp7donINUvXk292lqYcVWkNU2C7cL2AByU7lQErPBxrT5ABuvFn1IR.jpg) no-repeat;
   filter: sepia(.6);
   height: 250px;
   @media (min-width: 992px) {
@@ -301,7 +301,7 @@ export default {
 }
 .aboutImg_2{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/ofBcUDlx03tTlPUA43VtJ1qRJ8jZh56cFBukpYKEe0llmcf4NYINFnllB3YWviTyt4UO0g2B05arlzJeLioAMT5WVzXDKeOHNPQcbImgjWjo5aUCGaDEjYqfbGRwwW08.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Gs5UjadWsi9k9z1nzF5mE0phAQUwF9Pb8dIf0MidbXDWpCDceQ32n54fnS0l60Axm28LvJ0vDF1Bw4Ax8m2j3Q0RuGuUosYl9tknK7aSrNHhBtCpkvkYTtJ1WCjyBk1q.jpg) no-repeat;
   filter:saturate(1);
   height: 250px;
   @media (min-width: 992px) {
@@ -310,7 +310,7 @@ export default {
 }
 .aboutImg_3{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/UaIIctwp56XoiJ9G8nFklzl6CLaeY4dY4w7ysDOUbyKyjWtSBK0bn6OMlRKfU7t77ygkEn7dtB1KUzVfSPpcyU3c6wEG80WXDlRgu3bKjeaEsgCrZsZaLjxr5i2oji29.jpeg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/G2lMzH2lr83fAXxGBEjZDwiMqq931qEe77ogf0oxPLwfRvoKzdQd6HD0zGALnft9DKb0T6ilDuVYEeA2LTW0bkZ1QVXR7WSSGqaN3Xgj2xQldfjM51uAtmExJSOlvMEW.jpeg) no-repeat;
   height: 250px;
   @media (min-width: 992px) {
     height: 550px;
@@ -327,16 +327,16 @@ export default {
 }
 .aboutUsImg_1{
   background-position: 50% 75% !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/BIzqAYnOJ9VVk2wUTGxVFyXvUVGvm52beZUQW70jAvDwSHXDLvyjek62b2CvLl7gIlKAHEsOn3sORffJHPVIZ2B0QZkyL2GdTU39A0cgmUMAWyOJ0OHezA1iqYAipAYf.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/SI0k3PgbXw9Vm0fLxezuhy68rP3tWE8d9r3RNBgwkgJxQ6Uzxo92FArXNIYxYz1fkf230wSLSomp7donINUvXk292lqYcVWkNU2C7cL2AByU7lQErPBxrT5ABuvFn1IR.jpg) no-repeat;
   filter: sepia(.6);
 }
 .aboutUsImg_2{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/8yGbq2NuwZnfADDZSayJYILMsnHoDGAvEcnRmaJO8yarICrgiHwPhERBUggeuxiV5WtJYiXKJENstxWrwEtVz7TIyRcR5eCaNsZFuZUEnnXXT3WPbI24NZ3Wk63h0Tl9.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/S2CwRqkSQTpy0VWuX8W7OJ0sGN31jHeZ6yTD5G9MZNeCTCSutcWC0k7ZMKctbVz2qkALUOHneCqH9YHSu89HePTTHQFXRk7I7tJVsrERQw6QH2Gi1qkDC4nNbBk3uO9P.jpg) no-repeat;
 }
 .aboutUsImg_3{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/9BjrmSggbENmkk9k4IxX6lSsSlvZV7FZheaZhbfznaxHyFkK01AWV4jPu655fDTmCQts6DmxfMuJOe53XSrEahRKb1ArIaBYHL4iJ9rc2nsPOQ7m0RDL5FUzqwH3aWX7.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/QBMT5X8l1LtqFw8TOZQE890CckMIJEw1I69Zen9YrNEG3oHo5WaA2qv8YavqFV79kIKA7VGkRwInGGwKC8T9seTXF6ajgb2rIQszm08MQWGyOkJw61OmNDH2AcunFt2e.jpg) no-repeat;
 }
 .formBtn_hover:hover{
   color: #000 !important;
@@ -357,18 +357,18 @@ export default {
 }
 .paymentImg_1{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/0jdnMy8XEC0yA5gVdCJtf639n2ICRk3zBpHsSLr2Z5pFWrKYiI1R5HDlC9kHvHdmRxn8Xcci3o9fClE04zbb3XqYdQQPWuTym0zOQ0NybJe1H7aNHJgTYVU2tA9bE4Te.jpeg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/BePEQVgDeigWc7MU7oJicTWL0QjOcUO5kxf3vWqKYfwh7b9DD6bBcoVgznIdpbLFLHYbDHv1CK5B51xcDUdLGaQqUvX2xq04UqTzOBjxTEZhxperpw1EgGireLNOKE44.webp) no-repeat;
 }
 .paymentImg_2{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/ubu43Q4JcIUz7ihK8y5alU7rJUi99eINsnGQPnhKVjBtQyvZUsTV6uHhNgNX5t0Y9IKUSf6281MJwfh1RL4ZdYRAkNcbEQ68iKhmgSw65Bqj3NpEqzJqDJSL05RwqFcP.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/5xTm7SESTGAJ3EVfGfCnZTZRP6yTECVnC8v1XOrgKYZH57gnqdbj1JakcuGA4Kwx0aU48UzK1dwdjC3hoEtgcKGwR9TNz0F96hFGnDCIbHbzL1YyQynzYgsO361OKZs2.jpg) no-repeat;
 }
 .paymentImg_3{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/B8peVbjhTBBhINtXFib8s1ENppP3xlgAhFn7FPE7KxBppGOSBDb4VEYUYhIvgrCkTlSIJfRSgVmP536iveusXacnxMD5VZNSV99HrrWh3hoB1rChbrUr5RiNd4QsgHSC.jpeg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/g11YQ3BkNqojH4N6A6GO5D4jaombuX3WDf2Ux3UrM9797PWrMNaig87UapM7S7h20NZjfsL40GfzfWwh9TTx2Atykkd805ELYpJUf805HRC6gvOki121eS8fJNMaGlfN.jpeg) no-repeat;
 }
 .paymentImg_4{
   background-position: center !important;
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/tXd2HN0oYQg1JrhRRCJXR721TpoSzoIRhSaTZrA7H7uaoPoMZF6C2jsgSn2pzEvwBZMSlm9SFmgxkwvDZ3L4DzuM0kpP0pMdNKBgoejfj7aasiD8EFiP9oUF3kZOiesZ.jpeg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/731a3tnMpFZ2NzzcPn60x8sJLAkmCVCfGU1tWOiT7KuiKg4e3Z4AJPKbtCgPJ9YcHjqquHDGvb4PnrNwQdOGD3zJ7tZC0nEmulJjfSKVoMpct6htVboRM6zEk1YoKudF.webp) no-repeat;
 }
 </style>

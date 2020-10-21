@@ -154,7 +154,7 @@ export default {
 
 <style lang="scss">
 .bgLoginImg{
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/oi0oJutq0UAjvNjHMpb2QG4B3UWqRYdXxxtu4i268XNMvkPtauotuqvtex6tte6EnucrxFBoOuYtUopnKuWvbEsW4v04QKOVSG8WRS3bRenGX1D9B5ib6wKxuKWsMbJp.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Ze1hQaqBBL5k7TpD8XBXLBRLzvgCgSHaFg74LSugBfvQHEmjDZL5t1KtcfV44lk646DA3ArvpHxLElmPTDfh4Cew5loG4ACydAb22TbvVAHZCk2jE878HdE3SwfbTXt4.jpg) no-repeat;
   width: 100%;
   top: 0;
   bottom: 0;

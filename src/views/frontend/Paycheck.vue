@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss">
 .bg_paycheck{
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/OLHvOex3N1qs6NtXunuoeBzBpC6srtPyaqw3jiuBJyhEHgbwbSpk54vgNsZo4BkeyZCoOqcXpeQBxgGGlZYkCSGxXPAmEBhi51EGXuds2fbMCjEuHiDqfaWOVAjvlW4V.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/WKEKFrARE3wM25Vu09weWZnn2Kln3u7BXhG6WRJBxLu5Us8PpQ92BtxOsAzkbLGtwNWP46C1Y9GIDluURSqnOxNYcTsip0WJoexybmMxNN33B18DSUbljnMph0tqD5hv.jpg) no-repeat;
   background-position: center;
   background-size: cover;
 }

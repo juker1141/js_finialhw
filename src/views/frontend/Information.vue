@@ -190,9 +190,7 @@
                 <li class="p-2 d-flex justify-content-between">
                 購物車金額
                 <div class="d-flex flex-column align-items-end">
-                <span v-if="couponWorking === true">
-                NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
-                <span v-else>
+                <span>
                 NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span>
                 <span v-if="couponWorking === true && coupon.code" class="text-danger">
                 節省 - NT {{ couponPrice | toCurrency | DollarSign }}</span>

@@ -172,9 +172,7 @@
             <div v-if="cartTotal"
             class="d-flex justify-content-between mb-1 align-items-center">
               購物車金額
-              <span v-if="couponWorking === true">
-              NT {{ Math.round(cartTotal - couponPrice) | toCurrency | DollarSign }}</span>
-              <span v-else>
+              <span>
               NT {{ Math.round(cartTotal) | toCurrency | DollarSign }}</span></div>
               <div class="d-flex justify-content-end align-items-center">
                 <span v-if="couponWorking === true && cart.length >= 1"
@@ -639,7 +637,7 @@ export default {
       this.$store.dispatch('cartBlockisShow', true);
     },
     closeCart() {
-      $('#cartBlock').toggleClass('active');
+      this.$store.dispatch('cartBlockisShow', false);
       setTimeout(() => {
         this.$store.dispatch('darkShadyChange', false);
       }, 200);
@@ -893,13 +891,13 @@ export default {
   }
 }
 .footerBannerImg{
-  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/xmI2A2YPHdkHGViAW26w27QRcnsX9EdnqMNYpgR7lZVZopsY3ycMRkqOcXvCZsk8fhI09j9qbM2rvAzBEgnTTeo9DpfQh4mUrGcOLB4thlzPH2496r5bpAgirBKtc3hz.jpg) no-repeat;
+  background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/p3rxqB5dTgZTGUxzfqMshk5E6p6hLPo4sxfm428FFUD3XPoeieyG0v163fim6x2FJoLQBYntPSCrlo6dkFETyjD4byq8cqppVdjdM2yML3RpxY6Gg5j8mh9OBKn1rpd2.jpg) no-repeat;
   width: 100%;
   background-position: 30% 100% !important;
   background-size: cover !important;
   @media (min-width: 576px) {
     background-position: 50% 70% !important;
-    background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/utQwKWxQLrvVbi0avlUogKazBWCHheWQhaJ6tgMtX2D7cU07ETkkVVXas3gACT1o5cHfn3cpMHJwfgGD5ZFooSw0a5ksvRtXoZsyq7inS2KJx4Lsy7vcB8Rcmn4QeT9s.jpg) no-repeat;
+    background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/3pW4MngPAKBZGLFh6kMUujmDD5KQuTVO65DsZlYLMia7QWJhnxiO9CHnr8lsjw51N4muvtbapi8bgRiuTKmb8knkJA1cFONrda0INMssz7LgPJ8aeGAIcwWXM5hqMdbM.webp) no-repeat;
   }
   @media (min-width: 992px) {
     background-position: 50% 70% !important;
