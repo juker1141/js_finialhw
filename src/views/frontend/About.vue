@@ -68,7 +68,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div id="aboutUs" v-if="changeAboutUs" class="row mx-5">
+            <div id="aboutUs" v-if="changeAboutUs" class="row mx-lg-5">
               <div class="col-12 col-lg-7">
                 <div class="d-none d-lg-flex">
                   <div class="w-50 mr-3">
@@ -137,7 +137,8 @@
             </div>
             <div id="aboutUsForm" v-else class="row mx-5">
               <div class="col-12 col-lg-6 offset-lg-3">
-                <h3 class="mb-5"><span class="fontOrbitron">Hardware Store</span> 聯絡表單</h3>
+                <h3 class="mb-5"><span class="fontOrbitron">Hardware Store</span>
+                <br class="d-lg-none"> 聯絡表單</h3>
                 <label for="email" class="text-left w-100">Email</label>
                 <input id="email" type="email" name="Email"
                 class="form-control mb-2">
@@ -207,7 +208,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-5">
+            <div class="row mx-lg-5">
               <div class="d-none d-lg-block col-lg-7">
                 <div class="d-flex">
                   <div class="w-50 mr-3"><div class="
@@ -228,17 +229,24 @@
                   ml-lg-9">如果你是台灣地區的會員</div>
                   <div class="w-100 d-flex justify-content-center justify-content-lg-start
                   ml-lg-9">我們提供以下多種付款方式：</div>
-                  <div class="row w-100">
-                    <div class="col-6 offset-4 offset-lg-1">
-                      <ul class="mt-3">
-                        <li class="mb-3">WebATM</li>
-                        <li class="mb-3">ATM</li>
-                        <li class="mb-3">CVS</li>
-                        <li class="mb-3">Barcode</li>
-                        <li class="mb-3">Credit</li>
-                        <li class="mb-3">ApplePay</li>
-                        <li>GooglePay</li>
-                      </ul>
+                  <div class="row w-100 mt-5">
+                    <div class="col-12 offset-lg-1">
+                      <div class="row w-100">
+                        <div class="w-50 d-lg-none">
+                          <div class="paymentImg paymentImg_1 w-100 h-100 d-lg-none"></div>
+                        </div>
+                        <div>
+                          <ul class="mt-3 ml-7 ml-lg-0">
+                            <li class="mb-3">WebATM</li>
+                            <li class="mb-3">ATM</li>
+                            <li class="mb-3">CVS</li>
+                            <li class="mb-3">Barcode</li>
+                            <li class="mb-3">Credit</li>
+                            <li class="mb-3">ApplePay</li>
+                            <li>GooglePay</li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

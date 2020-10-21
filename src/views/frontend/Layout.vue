@@ -342,7 +342,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-5 flex-column-reverse flex-xl-row">
+            <div class="row mx-lg-5 flex-column-reverse flex-xl-row">
               <div class="col-12 col-xl-8">
                 <div class="iframe-rwd">
                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.570819148624!2d120.30473501439967!3d22.59514978517119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0372ebc9d327%3A0x92317d11de68daf9!2z5aSi5pmC5Luj6LO854mp5Lit5b-DIERyZWFtIE1hbGw!5e0!3m2!1szh-TW!2stw!4v1602737500796!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
@@ -514,7 +514,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-5">
+            <div class="row mx-lg-5">
               <div class="col-12 col-xl-8 offset-xl-2 text-left">
                 <h2 class="text-center mb-5">
                   <span class="fontOrbitron">Hardware Store </span>
@@ -522,7 +522,7 @@
                 <div>
                   <div class="fz_20 mb-3">我們瞭解您可能會想略過<span class="text-yellow">《服務條款》</span>，
                   但請務必詳閱，瞭解我們在您使用我們網站時致力遵守的原則，以及我們期許您遵守的行為準則。</div>
-                  <ul class="fz_24 listStyle_none mx-5">
+                  <ul class="fz_24 listStyle_none mx-lg-5">
                     <li class="fz_16 mb-2">
                       <div class="mb-3">本<span class="text-yellow">《服務條款》</span>反映出
                         <span class="fontOrbitron"> Hardware Store</span> 的業務營運模式、本公司適用的法律，

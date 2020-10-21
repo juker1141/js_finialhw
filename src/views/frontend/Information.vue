@@ -24,7 +24,7 @@
               <form @submit.prevent="createOrder">
                 <validation-provider rules="required|email" v-slot="{ errors, classes }">
                   <div class="d-flex justify-content-between">
-                    <label for="email" class="text-left w-75">
+                    <label for="email" class="text-left">
                     <span class="text-danger mr-1">*</span>Email</label>
                     <div><div class="text-danger">* 為必填項目</div></div>
                   </div>
@@ -146,10 +146,11 @@
                   </div>
                   <div class="w-100">
                     <div class="p-2 h-100 w-100 d-flex align-items-center justify-content-between">
-                      <div class="font-weight-bold mb-1
-                      d-flex align-items-end justify-content-between">
+                      <div class="font-weight-bold mb-1 d-flex
+                      flex-column flex-lg-row align-items-start
+                      align-items-lg-end justify-content-between">
                         {{ item.product.title }}
-                        <span class="fz_14 ml-2 fontRoboto font-weight-normal">
+                        <span class="fz_14 ml-lg-2 fontRoboto font-weight-normal">
                         x {{ item.quantity }}</span>
                       </div>
                       <div class="d-flex justify-content-between align-items-center">
@@ -319,7 +320,6 @@ export default {
   },
   created() {
     if (localStorage.getItem('coupon')) {
-      this.couponWorking = true;
       this.coupon = JSON.parse(localStorage.getItem('coupon'));
       if (this.coupon.code) {
         setTimeout(() => {
