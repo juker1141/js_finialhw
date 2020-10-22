@@ -195,7 +195,8 @@
         </div>
       </div>
     </div>
-    <div class="modal fade pr-0" id="payMethodModal" tabindex="-1" role="dialog"
+    <div class="modal fade pr-0"
+    id="payMethodModal" tabindex="-1" role="dialog"
     aria-labelledby="aboutUsModalLabel" aria-hidden="true">
       <div class="modal-dialog w_max_md_80" role="document">
         <div class="modal-content bg-blackOP text-white">

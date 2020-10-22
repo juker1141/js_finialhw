@@ -152,7 +152,8 @@
             <div class="d-flex justify-content-between position-relative">
               <input type="text" v-model="couponCode"
               class="form-control rounded-0"
-              id="coupons" placeholder="請輸入優惠卷">
+              id="coupons" placeholder="請輸入優惠卷"
+              :disabled="cart.length === 0">
               <div class="position-absolute loading_position">
                 <div v-if="couponLoading === true"
                 class="spinner-border spinner-border_sm text-primary" role="status">
@@ -345,7 +346,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-lg-5 flex-column-reverse flex-xl-row">
+            <div class="row mx-3 mx-lg-5 flex-column-reverse flex-xl-row">
               <div class="col-12 col-xl-8">
                 <div class="iframe-rwd">
                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.570819148624!2d120.30473501439967!3d22.59514978517119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0372ebc9d327%3A0x92317d11de68daf9!2z5aSi5pmC5Luj6LO854mp5Lit5b-DIERyZWFtIE1hbGw!5e0!3m2!1szh-TW!2stw!4v1602737500796!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
@@ -402,38 +403,38 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-5">
+            <div class="row mx-3 mx-lg-5">
               <div class="col-12 col-xl-8 offset-xl-2 text-left">
                 <h2 class="text-center mb-5">
                   <span class="fontOrbitron">Hardware Store
                     </span><br class="d-xl-none"> 隱私權聲明</h2>
                 <ol class="fz_24">
-                  <li class="fz_16 mb-2">
-                    <div class="fz_20 mb-2">隱私權政策簡介</div>
-                    <div class="mb-2">本隱私權政策說明<span class="text-yellow">
+                  <li class="fz_16 mb-5">
+                    <div class="fz_20 mb-3">隱私權政策簡介</div>
+                    <div class="mb-3">本隱私權政策說明<span class="text-yellow">
                     職人手工具股份有限公司</span>（「本公司」、「我們」）如何處理、
                     保護您於使用本公司之服務（「本服務」，見以下「涵蓋服務」之列表）時所提供之資訊，
                     以及您可以如何存取、控管您的資訊。為尊重您的隱私權、保護您的個人資訊，我們將遵循以下基本原則：</div>
-                    <ol>
-                      <li class="mb-2">蒐集您的個人資訊時，我們會清楚指出目的。</li>
-                      <li class="mb-2">個人資訊將被蒐集時，我們會事先通知您，以就個人資訊之蒐集、利用、揭露徵詢您的同意。</li>
-                      <li class="mb-2">我們僅會蒐集特定目的範圍內必要的個人資訊。</li>
-                      <li class="mb-2">除非經您的同意或基於法律要求，
+                    <ol class="mx-3">
+                      <li class="mb-3">蒐集您的個人資訊時，我們會清楚指出目的。</li>
+                      <li class="mb-3">個人資訊將被蒐集時，我們會事先通知您，以就個人資訊之蒐集、利用、揭露徵詢您的同意。</li>
+                      <li class="mb-3">我們僅會蒐集特定目的範圍內必要的個人資訊。</li>
+                      <li class="mb-3">除非經您的同意或基於法律要求，
                         否則我們僅會針對蒐集目的利用或揭露您的個人資訊，且所蒐集之資訊僅會於蒐集目的完成之所需期間內保留。</li>
-                      <li class="mb-2">我們將盡力確保您個人資訊的精確性、完整性、和即時性。</li>
-                      <li class="mb-2">我們將以適當的安全保護措施保護您的個人資訊。</li>
-                      <li class="mb-2">我們會盡力使處理個人資訊的政策與措施公開透明。</li>
-                      <li class="mb-2">您隨時可以存取您的個人資訊並進行適當的修改。</li>
-                      <li class="mb-2">我們將會對您負責。您可以隨時針對我們是否遵循上述原則與此隱私權政策提出意見。</li>
+                      <li class="mb-3">我們將盡力確保您個人資訊的精確性、完整性、和即時性。</li>
+                      <li class="mb-3">我們將以適當的安全保護措施保護您的個人資訊。</li>
+                      <li class="mb-3">我們會盡力使處理個人資訊的政策與措施公開透明。</li>
+                      <li class="mb-3">您隨時可以存取您的個人資訊並進行適當的修改。</li>
+                      <li class="mb-3">我們將會對您負責。您可以隨時針對我們是否遵循上述原則與此隱私權政策提出意見。</li>
                     </ol>
                   </li>
-                  <li class="fz_16 mb-2">
-                    <div class="fz_20 mb-2">本公司蒐集何種資訊？如何蒐集資訊？</div>
-                    <div class="mb-2">為提供您使用本服務，我們將於必要範圍內取得您的資訊。我們所蒐集的資訊基本上有兩種：</div>
-                    <ul style="list-style-type:lower-alpha;">
-                      <li>
-                        <div class="mb-2">您提供的資訊</div>
-                        <ul style="list-style-type:square;">
+                  <li class="fz_16 mb-5">
+                    <div class="fz_20 mb-3">本公司蒐集何種資訊？如何蒐集資訊？</div>
+                    <div class="mb-5">為提供您使用本服務，我們將於必要範圍內取得您的資訊。我們所蒐集的資訊基本上有兩種：</div>
+                    <ul class="mx-3" style="list-style-type:lower-alpha;">
+                      <li class="mb-5">
+                        <div class="mb-3">您提供的資訊</div>
+                        <ul class="mx-3" style="list-style-type:square;">
                           <li class="mb-2">
                           <div class="mb-2">用戶提供之個人資料與註冊資訊</div>
                           為提供用戶流暢的服務體驗，
@@ -454,8 +455,8 @@
                         </ul>
                       </li>
                       <li>
-                        <div class="mb-2">您使用本服務時，我們所取得的資訊</div>
-                        <ul style="list-style-type:square;">
+                        <div class="mb-3">您使用本服務時，我們所取得的資訊</div>
+                        <ul class="mx-3" style="list-style-type:square;">
                           <li class="mb-2"><div class="mb-2">Cookies</div>
                           為向用戶提供最佳服務，並維護服務與使用安全，
                           我們可能會使用 Cookies儲存用戶設定以記錄存取功能，
@@ -473,26 +474,26 @@
                       </li>
                     </ul>
                   </li>
-                  <li class="fz_16 mb-2">
-                    <div class="fz_20 mb-2">本公司是否分享蒐集到的資訊？</div>
+                  <li class="fz_16 mb-5">
+                    <div class="fz_20 mb-3">本公司是否分享蒐集到的資訊？</div>
                     除本隱私權政策（必要時亦包括其他相關隱私權政策與附錄）另有規定者外，
                     未經您的同意，我們不會向第三人提供您的資訊。但若是我們本於善意認為係依據相關法律之要求或許可，
                     或為保護本公司權利及財產而進行抗辯，則不在此限。
                   </li>
-                  <li class="fz_16 mb-2">
-                    <div class="fz_20 mb-2">本公司是否與其他服務供應商合作？</div>
+                  <li class="fz_16 mb-5">
+                    <div class="fz_20 mb-3">本公司是否與其他服務供應商合作？</div>
                     本公司可能不定期與服務供應商合作，協助我們為您提供最佳服務。
                     在與其他服務供應商建立合作關係前，我們會確保服務供應商將依此隱私權政策與相關法律處理您的資訊。
                   </li>
-                  <li class="fz_16 mb-2">
-                    <div class="fz_20 mb-2">如何存取我的資訊或更正我的資訊？</div>
+                  <li class="fz_16 mb-5">
+                    <div class="fz_20 mb-3">如何存取我的資訊或更正我的資訊？</div>
                     本公司盡力協助您以最輕鬆的方式控管您的資訊。
                     您可以隨時確認或修改您的註冊資訊。若無法直接於應用程式上確認，
                     您可以隨時寄送書面意見要求本公司確認、更正、刪除其他本公司持有的個人資料。
                     認證您的身分後，本公司將依相關法律於合理期限內回應您的要求。
                   </li>
                   <li class="fz_16">
-                    <div class="fz_20 mb-2">本公司如何確保本服務的安全性？</div>
+                    <div class="fz_20 mb-3">本公司如何確保本服務的安全性？</div>
                     我們會持續努力盡可能確保本服務的安全性。為前述工作進行，若本公司發現服務條款受到侵害、有受侵害之虞，或用戶間發生紛爭，我們的員工將可能會存取您提供的資訊。
                   </li>
                 </ol>
@@ -517,7 +518,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-lg-5">
+            <div class="row mx-3 mx-lg-5">
               <div class="col-12 col-xl-8 offset-xl-2 text-left">
                 <h2 class="text-center mb-5">
                   <span class="fontOrbitron">Hardware Store </span>
