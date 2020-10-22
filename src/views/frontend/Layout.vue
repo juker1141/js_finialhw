@@ -129,7 +129,7 @@
                     v-if="productCartQuantity === ''">{{ item.quantity }}</div>
                     <input v-else type="number" min="1"
                     @blur="updateCartQuantity(item.product.id, editQuantity)"
-                    class="border-0 text-center w-50 bg-transparent pl-2"
+                    class="border-0 text-center w-50 bg-transparent"
                     v-model.number="editQuantity">
                     <button type="button" class="btn d-flex p-0"
                     @click="item.quantity ++; updateCartQuantity(item.product.id, item.quantity)">
