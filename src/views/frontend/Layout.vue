@@ -117,17 +117,20 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
-                  <div class="d-flex align-items-center w-50">
+                  <div class="d-flex align-items-center justify-content-between w-50">
                     <button type="button" class="btn d-flex p-0" :disabled="item.quantity === 1"
                     @click="item.quantity --; updateCartQuantity(item.product.id, item.quantity)">
                       <span class="material-icons">
                       remove
                       </span>
                     </button>
-                    <input type="number" min="1"
-                    @change="updateCartQuantity(item.product.id, item.quantity)"
+                    <div @click="productCartQuantity = item.product.id;
+                    editQuantity = item.quantity"
+                    v-if="productCartQuantity === ''">{{ item.quantity }}</div>
+                    <input v-else type="number" min="1"
+                    @blur="updateCartQuantity(item.product.id, editQuantity)"
                     class="border-0 text-center w-50 bg-transparent pl-2"
-                    v-model.number="item.quantity">
+                    v-model.number="editQuantity">
                     <button type="button" class="btn d-flex p-0"
                     @click="item.quantity ++; updateCartQuantity(item.product.id, item.quantity)">
                       <span class="material-icons">
@@ -579,6 +582,8 @@ export default {
       couponPrice: 0,
       couponLoading: false,
       computeCart: false,
+      editQuantity: '',
+      productCartQuantity: '',
     };
   },
   computed: {
@@ -655,11 +660,15 @@ export default {
       };
       this.$http.patch(url, cart)
         .then(() => {
+          this.productCartQuantity = '';
           this.loadingProduct = '';
           this.getcart();
           if (this.couponCode) {
             this.checkCoupon(this.couponCode);
           }
+        }).catch(() => {
+          this.productCartQuantity = '';
+          this.loadingProduct = '';
         });
     },
     deleteCartProduct(id) {
