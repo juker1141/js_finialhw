@@ -63,6 +63,11 @@ body {
     font-size: 20px;
   }
 }
+.fz_xl_20 {
+  @include media-breakpoint-up(xl) {
+    font-size: 20px;
+  }
+}
 .fz_24 {
   font-size: 24px;
 }
@@ -147,6 +152,11 @@ body {
     font-size: 48px !important;
   }
 }
+.fz_md_64 {
+  @include media-breakpoint-up(md) {
+    font-size: 64px;
+  }
+}
 .fz_lg_64 {
   @include media-breakpoint-up(lg) {
     font-size: 64px;
@@ -205,7 +215,7 @@ body {
 .w_75 {
   width: 75%;
 }
-.w_100_important{
+.w_100_important {
   width: 100% !important;
 }
 .w_lg_75 {
@@ -321,6 +331,11 @@ body {
 .pt_6 {
   padding-top: 6px;
 }
+
+.px_0 {
+  padding: 0 !important;
+}
+
 .px_lg_15 {
   @include media-breakpoint-up(lg) {
     padding: 0 15px !important;
@@ -355,16 +370,16 @@ body {
   }
 }
 
-.loading_position{
+.loading_position {
   right: 7.5px;
   top: 15%;
 }
-.bg_white_hover:hover{
+.bg_white_hover:hover {
   background: #fff !important;
 }
-.text_black_hover:hover{
+.text_black_hover:hover {
   color: #121212 !important;
 }
-.font_weight_bold_hover:hover{
+.font_weight_bold_hover:hover {
   font-weight: bold;
 }

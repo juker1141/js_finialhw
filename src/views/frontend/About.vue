@@ -3,10 +3,10 @@
     <div class="py-5 py-md-7 py-lg-9 fz_30_important fz_lg_48">歡迎來到<br class="d-lg-none">
     <span class="fontOrbitron ml-2">Hardware Store</span></div>
     <div class="row mb-3 mx-md-5 mx-lg-7">
-      <div class="col-12 col-lg-8">
+      <div class="col-12 px_0 col-lg-8 px_lg_15">
         <div class="aboutImg aboutImg_1"></div>
       </div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12 px_0 col-lg-4 px_lg_15">
         <div class="h-100 p-5 text-left d-flex align-items-start
         flex-column justify-content-center">
           <h4 class="mb-4">在地經營超過三十年</h4>
@@ -22,10 +22,10 @@
     <div class="row mb-3 flex-lg-row-reverse mx-md-5">
       <div class="col-lg-2">
       </div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12 px_0 col-lg-4 px_lg_15">
         <div class="aboutImg aboutImg_2 shadow"></div>
       </div>
-      <div class="col-12 col-lg-4 offset-lg-2 bg_lg_yellow">
+      <div class="col-12 px_0 col-lg-4 px_lg_15 offset-lg-2 bg_lg_yellow">
         <div class="h-100 p-5 text-left d-flex align-items-start
         flex-column justify-content-center">
           <h4 class="mb-4">物美價廉</h4>
@@ -40,10 +40,10 @@
       </div>
     </div>
     <div class="row flex-lg-row-reverse mx-md-5 mx-lg-7">
-      <div class="col-12 col-lg-8">
+      <div class="col-12 px_0 col-lg-8 px_lg_15">
         <div class="aboutImg aboutImg_3"></div>
       </div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12 px_0 col-lg-4 px_lg_15">
         <div class="h-100 p-5 text-left d-flex align-items-start
         flex-column justify-content-center">
           <h4 class="mb-4">快速又方便</h4>

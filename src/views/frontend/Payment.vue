@@ -12,10 +12,10 @@
         </div>
         <div class="row mb-2 mb-lg-5">
           <div class="col-12 col-lg-10 offset-lg-1 d-flex justify-content-start">
-            <router-link class="text-black mr-2 text-decoration-none"
-            to="/home">Home</router-link>>
-            <router-link class="text-black mx-2 text-decoration-none"
-            to="/order">Order</router-link>>
+            <a class="text-black mr-2 text-decoration-none"
+            to="/home" @click="getCart('/home')">Home</a>>
+            <a class="text-black mx-2 text-decoration-none"
+            to="/order" @click="getCart('/orderlist')">Order</a>>
             <div class="ml-2 text-black font-weight-bold">Payment</div>
           </div>
         </div>
@@ -222,6 +222,12 @@ export default {
       //   this.$store.replaceState({ ...this.$store.state,
       // ...JSON.parse(localStorage.getItem('store')) });
       // }
+    },
+    getCart(address) {
+      this.$store.dispatch('getCart');
+      setTimeout(() => {
+        this.$router.push(address);
+      }, 500);
     },
     showOrderInfo() {
       $('#orderInfo').slideToggle(300);

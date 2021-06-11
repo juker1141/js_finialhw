@@ -11,7 +11,7 @@
         keyboard_arrow_up
         </span>
       </button>
-      <div class="container-fluid d-flex justify-content-between
+      <div class="container d-flex justify-content-between
       align-items-center my-2 my-lg-3 px-5 position-relative">
         <button class="btn p-1 justify-content-between align-items-center d-flex d-lg-none"
         type="button" @click="navbarShow">
@@ -64,8 +64,11 @@
     </section>
     <!-- ... 這裡是表頭navbar結束 ... -->
     <!-- ... 這裡是購物車側欄開始 ... -->
-    <div id="cartBlock" :class="{ 'active' : cartBlockShow }"
-    class="h-100 bg-white text-black position-fixed zIndex_40 p-4 px-5 p-lg-6 cartBlockPosition">
+    <div
+      id="cartBlock" :class="{ 'active' : cartBlockShow }"
+      class="container h-100 bg-white text-black position-fixed
+      zIndex_40 py-4 cartBlockPosition"
+    >
       <div class="d-flex justify-content-between mb-5">
         <div class="fz_30_important fz_md_36 font-weight-bold text-black">購物車</div>
         <div class="d-flex align-items-center">
@@ -106,14 +109,7 @@
                     </div>
                   </div>
                   <div class="text-left fontRoboto">
-                    <div
-                    v-if="!item.product.price || item.product.price === item.product.origin_price"
-                    >NT {{ item.product.origin_price | toCurrency | DollarSign }}</div>
-                    <div v-else class="d-flex align-items-end">
-                      <div class="mr-2">NT {{ item.product.price | toCurrency | DollarSign }}</div>
-                      <del class="text-secondary fz_14">
-                      NT {{ item.product.origin_price | toCurrency | DollarSign }}</del>
-                    </div>
+                    NT {{ item.product.price | toCurrency | DollarSign }}
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
@@ -221,7 +217,7 @@
       </div>
     </div>
     <!-- ... 這裡是購物車側欄結束 ... -->
-    <router-view class="navbar_mt flex_1" id="main" @updateCart="getcart"/>
+    <router-view class="navbar_mt flex_1" id="main" @updateCart="getCart"/>
     <div id="subscribe"
     class="footerBannerImg p-5 p-lg-9 text-white">
       <div class="container">
@@ -243,7 +239,7 @@
                 <button class="btn btn-yellow fz_14 fz_lg_24
                 font-weight-bold px-2 px-lg-5 rounded-0
                 text-black" type="button"
-                id="button-addon1">訂閱每月電子報</button>
+                id="button-addon1">訂閱電子報</button>
               </div>
             </div>
           </div>
@@ -251,7 +247,7 @@
       </div>
     </div>
     <div id="footer" class="bg-dark p-3 p-lg-5">
-      <div class="container-fluid d-flex align-items-center justify-content-between">
+      <div class="container d-flex align-items-center justify-content-between">
         <div class="w_100 w_lg_auto">
           <div class="mb-3">
             <router-link
@@ -346,7 +342,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-3 mx-lg-5 flex-column-reverse flex-xl-row">
+            <div class="row mx-sm-2 mx-md-3 mx-lg-5 flex-column-reverse flex-xl-row">
               <div class="col-12 col-xl-8">
                 <div class="iframe-rwd">
                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.570819148624!2d120.30473501439967!3d22.59514978517119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0372ebc9d327%3A0x92317d11de68daf9!2z5aSi5pmC5Luj6LO854mp5Lit5b-DIERyZWFtIE1hbGw!5e0!3m2!1szh-TW!2stw!4v1602737500796!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
@@ -403,7 +399,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-3 mx-lg-5">
+            <div class="row mx-sm-2 mx-md-3 mx-lg-5">
               <div class="col-12 col-xl-8 offset-xl-2 text-left">
                 <h2 class="text-center mb-5">
                   <span class="fontOrbitron">Hardware Store
@@ -518,7 +514,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row mx-3 mx-lg-5">
+            <div class="row mx-sm-2 mx-md-3 mx-lg-5">
               <div class="col-12 col-xl-8 offset-xl-2 text-left">
                 <h2 class="text-center mb-5">
                   <span class="fontOrbitron">Hardware Store </span>
@@ -597,7 +593,6 @@ export default {
   },
   watch: {
     cart() {
-      this.getcart();
       this.cartTotal = 0;
       if (this.cart.length === 0) {
         this.cartTotal = 0;
@@ -648,7 +643,7 @@ export default {
         this.$store.dispatch('darkShadyChange', false);
       }, 200);
     },
-    getcart() {
+    getCart() {
       this.$store.dispatch('getCart');
     },
     updateCartQuantity(id, quantity) {
@@ -663,7 +658,7 @@ export default {
         .then(() => {
           this.productCartQuantity = '';
           this.loadingProduct = '';
-          this.getcart();
+          this.getCart();
           if (this.couponCode) {
             this.checkCoupon(this.couponCode);
           }
@@ -679,7 +674,7 @@ export default {
       this.$http.delete(url)
         .then(() => {
           this.loadingProduct = '';
-          this.getcart();
+          this.getCart();
         });
     },
     checkCoupon(code) {
@@ -758,7 +753,7 @@ export default {
   created() {
     this.navbarShow();
     this.goToTopBtnShow();
-    this.getcart();
+    this.getCart();
     setInterval(this.hideFooter, 0);
   },
   beforeRouteUpdate(to, from, next) {

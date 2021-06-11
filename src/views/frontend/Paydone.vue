@@ -14,17 +14,35 @@
         <span class="d-none d-xl-inline-block">，</span>
         <br class="d-block d-xl-none">希望您會喜歡我們的商品！</div>
         <div>接著您可以至
-        <router-link class="mr-2 font-weight-bold" to="/home">首頁</router-link>
-        ><router-link class="ml-2 font-weight-bold" to="/orderlist">
-        我的訂單</router-link> 中查詢運送狀況</div>
+        <a class="mr-2 font-weight-bold" to="/home" @click="getCart('/home')">首頁</a>
+        ><a class="ml-2 font-weight-bold" to="/orderlist" @click="getCart('/orderlist')">
+        我的訂單</a> 中查詢運送狀況</div>
       </div>
-      <router-link class="text-black text_xl_white bg-yellow bg_xl_black
-      text-decoration-none fz_24 px-9 py-2 mt-9 mt-xl-7 font-weight-bold"
-      to="/products">繼續購物</router-link>
+      <a
+        class="text-black text_xl_white bg-yellow bg_xl_black
+        text-decoration-none fz_24 px-9 py-2 mt-9 mt-xl-7 font-weight-bold"
+        to="/products"
+        @click="getCart('/products')"
+      >
+        繼續購物
+      </a>
     </div>
     <div class="payDoneImg h_100vh position-absolute"></div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    getCart(address) {
+      this.$store.dispatch('getCart');
+      setTimeout(() => {
+        this.$router.push(address);
+      }, 500);
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 .text_xl_black{

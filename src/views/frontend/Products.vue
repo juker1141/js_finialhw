@@ -4,19 +4,19 @@
     data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="bg-yellow py-3 text-dark font-weight-bold fz_lg_24">
+          <div class="bg-yellow py-3 text-dark font-weight-bold fz_14 fz_lg_24">
             開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
-          <div class="bg-dark py-3 text-yellow font-weight-bold fz_lg_24">
+          <div class="bg-dark py-3 text-yellow font-weight-bold fz_14 fz_lg_24">
             想要獲得更多活動訊息及優惠資訊嗎？快訂閱我們的會員電子報吧！</div>
         </div>
         <div class="carousel-item">
-          <div class="bg-yellow py-3 text-dark font-weight-bold fz_lg_24">
+          <div class="bg-yellow py-3 text-dark font-weight-bold fz_14 fz_lg_24">
             開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
         <div class="carousel-item">
-          <div class="bg-dark py-3 text-yellow font-weight-bold fz_lg_24">
+          <div class="bg-dark py-3 text-yellow font-weight-bold fz_14 fz_lg_24">
             想要獲得更多活動訊息及優惠資訊嗎？快訂閱我們的會員電子報吧！</div>
         </div>
       </div>
@@ -77,13 +77,13 @@
         </ul>
       </div>
     </div>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row mb-7 px-lg-7">
         <div class="col-12">
           <div class="row">
             <template v-for="(item, index) in pagination.currentArticleList">
               <div :key="index" class="col-12 col-md-6 col-lg-4
-              mb-5 position-relative isShowingProduct">
+              mb-3 position-relative isShowingProduct">
                 <a href="#" class="text-decoration-none text-black"
                 @click.prevent="addSessionStorage(item, item.id); goToProduct(item.id)">
                   <div class="card position-relative cardSize border-0 m-0">
@@ -100,16 +100,16 @@
                     d-flex justify-content-between align-items-center">
                       <div class="w-100 d-flex justify-content-between align-items-start">
                         <div class="d-flex flex-column align-items-start">
-                          <div class="text-left mb-1 fz_20">
+                          <div class="text-left mb-1">
                             {{ item.title }}
                           </div>
-                          <div class="text-secondary">{{ item.category }}</div>
+                          <div class="text-secondary fz_14">{{ item.category }}</div>
                         </div>
                         <div class="text-left fontRoboto">
                           <div v-if="!item.price || item.price === item.origin_price"
                           >NT {{ item.origin_price | toCurrency | DollarSign }}</div>
-                          <div v-else class="d-flex flex-lg-column flex-xl-row align-items-center">
-                            <del class="text-secondary">
+                          <div v-else class="d-flex flex-column align-items-end">
+                            <del class="text-secondary fz_14">
                             NT {{ item.origin_price | toCurrency | DollarSign }}</del>
                             <div class="ml-3 ml-lg-0 ml-xl-3">
                             NT {{ item.price | toCurrency | DollarSign }}</div>
@@ -243,16 +243,16 @@ export default {
 <style lang="scss">
 .cardImg {
   width: 100%;
-  height: 300px;
+  height: 200px;
   transform:scale(1);
   transition: all .8s ease-out;
   background-position: center !important;
   background-size: cover !important;
   @media (min-width: 1200px) {
-    height: 350px;
+    height: 250px;
   }
   @media (min-width: 1400px) {
-    height: 500px;
+    height: 270px;
   }
   &:hover {
     filter:opacity(.7);

@@ -12,76 +12,61 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <table class="table mt-2 rounded" width="400">
-          <thead class="bg-gray">
-            <tr>
-              <th class="text-center border-0 table_w_7 table_w_md_10 fz_12 fz_md_16">下單時間</th>
-              <th class="text-center border-0 table_w_7 table_w_md_15 fz_12 fz_md_16">購買款項</th>
-              <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">單價</th>
-              <th class="text-center border-0 table_w_10 fz_12 fz_md_16">
-              <span class="d-none d-md-inline-block">應付</span>金額
-              </th>
-              <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">付款方式</th>
-              <th class="text-center border-0 table_w_10 table_w_md_10 fz_12 fz_md_16">是否付款</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-show="item.paid === paid" :key="item.id" v-for="item in orderList">
-              <td class="text-center p-1 p-md-2 p-lg-3">
-                <div class="tooltip_hover position-relative d-flex justify-content-center pt_6
+        <div v-show="item.paid === paid" :key="item.id" v-for="item in orderList">
+          <div class="card mt-3">
+            <div class="card-body">
+              <h5 class="card-title">
+                <div class="tooltip_hover w-25 position-relative d-flex justify-content-start pt_6
                 fz_12 fz_md_16">
                   {{ item.created.timestamp | toDate }}
-                  <span class="tooltipText position-absolute ml-7">
+                  <span class="tooltipText position-absolute w-25 ml-7">
                     {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
                   </span>
                 </div>
-              </td>
-              <td class="text-left p-1 p-md-2 p-lg-3">
-                <ul class="listStyle_none m-0 pl-0 pt_6">
-                  <li :class="{ mblg1 : index < 2 }"
-                  v-for="( i, index ) in item.products" :key="index">
-                    <div class="d-flex justify-content-between fz_12 fz_md_16">
-                    {{ i.product.title }}<span class="d-xl-none">x{{ i.quantity }}</span>
-                      <span class="d-none d-xl-table-cell">
-                      {{ i.quantity }} {{ i.product.unit }}
-                      </span>
+              </h5>
+              <div class="card-text">
+                <div class="d-flex align-items-center justify-content-between">
+                  <ul class="listStyle_none m-0 pl-0 pt_6">
+                    <li :class="{ mblg1 : index < 2 }"
+                    v-for="( i, index ) in item.products" :key="index">
+                      <div class="d-flex justify-content-between fz_12 fz_md_16">
+                      {{ i.product.title }}<span class="d-xl-none">x{{ i.quantity }}</span>
+                        <span class="d-none d-xl-table-cell pl-5">
+                        {{ i.quantity }} {{ i.product.unit }}
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="listStyle_none m-0 pl-0 pt_6">
+                    <li class="mb-1" v-for="(i, index) in item.products" :key="index">
+                      {{ i.product.price | toCurrency | DollarSign }} 元
+                    </li>
+                  </ul>
+                  <div class="pt_6">{{ item.payment }}</div>
+                  <div>
+                    <div v-if="item.amount < 2000"
+                    class="pt_6">{{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元
                     </div>
-                  </li>
-                </ul>
-              </td>
-              <td class="text-center p-1 p-md-2 p-lg-3 d-none d-xl-table-cell">
-                <ul class="listStyle_none m-0 pl-0 pt_6">
-                  <li class="mb-1" v-for="(i, index) in item.products" :key="index">
-                    {{ i.product.price | toCurrency | DollarSign }} 元
-                  </li>
-                </ul>
-              </td>
-              <td class="text-center py-1 px-0 p-md-2 p-lg-3 fz_12 fz_md_16">
-                <div v-if="item.amount < 2000"
-                class="pt_6">{{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元</div>
-                <div v-else
-                class="pt_6">{{ Math.round(item.amount) | toCurrency | DollarSign }} 元</div>
-              </td>
-              <td class="text-center p-1 p-md-2 p-lg-3 d-none d-xl-table-cell">
-                <div class="pt_6">{{ item.payment }}</div>
-              </td>
-              <td class="text-center p-1 p-md-2 p-lg-3">
-                <div class="pt_6">
-                  <div v-if="item.paid" class="text-success font-weight-bold">
-                    已付款
+                    <div v-else
+                    class="pt_6">{{ Math.round(item.amount) | toCurrency | DollarSign }} 元</div>
                   </div>
-                  <div v-else class="text-danger d-flex flex-column align-items-center">
-                    未付款
-                    <a href="#" @click="goToPay(item.id)" class="btn btn-black
-                    text-decoration-none rounded-0 p-1 px-3 my-2 mt-lg-3">
-                      前往付款
-                    </a>
+                  <div class="pt_6">
+                    <div v-if="item.paid" class="text-success font-weight-bold">
+                      已付款
+                    </div>
+                    <div v-else class="text-danger d-flex flex-column align-items-center">
+                      未付款
+                      <a href="#" @click="goToPay(item.id)" class="btn btn-black
+                      text-decoration-none rounded-0 p-1 px-3 my-2 mt-lg-3">
+                        前往付款
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
