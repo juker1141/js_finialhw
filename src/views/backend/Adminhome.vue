@@ -2,20 +2,20 @@
   <div>
     <div class="h_100vh text-left text-black">
       <div class="p-3">
-        <h3 class="text-left d-flex align-items-center my-4 pt-lg-5 px-3 px-md-6">
-          <span class="material-icons fz_30_important mr-3">home</span>
+        <div class="text-left d-flex align-items-center fz_20 fz_lg_24
+        font-weight-bold mt-3 mb-4 my-lg-4 px-3 px-md-5">
+          <span class="material-icons fz_30 fz_lg_36 mr-2">home</span>
           首頁
-        </h3>
+        </div>
         <div class="row px-5 pb-5 px-md-6">
           <div class="col-12 px-0 px_lg_15 col-lg-7 col-xl-8">
-            <p class="h1 mb-5">您好，歡迎來到<br class="d-block d-xl-none"/>
-              <span class="fontOrbitron"> Hardware Store Admin </span><br />
+            <p class="fz_24 fz_lg_36 mb-5">您好，歡迎來到<br/>
+              <span class="fontOrbitron"> Hardware Store Admin </span>
               管理系統
             </p>
-            <div class="fz_30_important">
-              今天是<br class="d-lg-none"> {{ nowDate.year }} {{ nowDate.month }} {{ nowDate.day }}
-              <span class="d-none d-xl-inline-block">，</span>
-              <br class="d-xl-none"/>
+            <div class="fz_lg_24">
+              今天是 {{ nowDate.year }} {{ nowDate.month }} {{ nowDate.day }}
+              <span class="d-none d-xl-inline-block">-</span>
               {{ nowDate.week }}
             </div>
           </div>

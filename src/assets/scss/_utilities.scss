@@ -126,6 +126,11 @@ body {
     font-size: 36px;
   }
 }
+.fz_lg_36 {
+  @include media-breakpoint-up(lg) {
+    font-size: 36px;
+  }
+}
 .fz_xl_36 {
   @include media-breakpoint-up(xl) {
     font-size: 36px;
@@ -215,13 +220,16 @@ body {
 .w_75 {
   width: 75%;
 }
-.w_100_important {
-  width: 100% !important;
-}
 .w_lg_75 {
   @include media-breakpoint-up(lg) {
     width: 75% !important;
   }
+}
+.w_100 {
+  width: 100%;
+}
+.w_100_important {
+  width: 100% !important;
 }
 .w_max_150px {
   max-width: 150px;
@@ -229,6 +237,11 @@ body {
 .w_max_lg_230px {
   @include media-breakpoint-up(lg) {
     max-width: 230px;
+  }
+}
+.w_md_auto {
+  @include media-breakpoint-up(md) {
+    width: auto;
   }
 }
 .w_md_50 {
@@ -336,6 +349,15 @@ body {
   padding: 0 !important;
 }
 
+.px_1 {
+  padding: 4px !important;
+}
+
+.px_md_15 {
+  @include media-breakpoint-up(md) {
+    padding: 0 15px !important;
+  }
+}
 .px_lg_15 {
   @include media-breakpoint-up(lg) {
     padding: 0 15px !important;

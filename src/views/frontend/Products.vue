@@ -81,9 +81,9 @@
       <div class="row mb-7 px-lg-7">
         <div class="col-12">
           <div class="row">
-            <template v-for="(item, index) in pagination.currentArticleList">
-              <div :key="index" class="col-12 col-md-6 col-lg-4
-              mb-3 position-relative isShowingProduct">
+            <template v-for="(item, index) in pagination.currentDataList">
+              <div :key="index" class="col-6 px_1 col-md-6 px_md_15 col-lg-4
+              mb-md-3 position-relative isShowingProduct">
                 <a href="#" class="text-decoration-none text-black"
                 @click.prevent="addSessionStorage(item, item.id); goToProduct(item.id)">
                   <div class="card position-relative cardSize border-0 m-0">
@@ -96,16 +96,20 @@
                     class="position-absolute salePosition p-3">
                     <div class="text-dark font-weight-bold
                     fz_14 bg-yellow p-1 rounded">On Sale</div></div>
-                    <div class="card-body py-3 px-2
+                    <div class="card-body pt-3 pb-1 py-md-3 px-2
                     d-flex justify-content-between align-items-center">
-                      <div class="w-100 d-flex justify-content-between align-items-start">
+                      <div
+                        class="w-100 d-flex flex-column flex-md-row
+                        justify-content-between align-items-start"
+                      >
                         <div class="d-flex flex-column align-items-start">
                           <div class="text-left mb-1">
                             {{ item.title }}
                           </div>
                           <div class="text-secondary fz_14">{{ item.category }}</div>
                         </div>
-                        <div class="text-left fontRoboto">
+                        <div class="text-left fontRoboto w_100 w_md_auto d-flex
+                        justify-content-end">
                           <div v-if="!item.price || item.price === item.origin_price"
                           >NT {{ item.origin_price | toCurrency | DollarSign }}</div>
                           <div v-else class="d-flex flex-column align-items-end">
@@ -128,8 +132,11 @@
       </div>
     </div>
     <div class="d-flex justify-content-center mb-9">
-      <Pagination :pages="pagination" @update-pagelist="changePageList"
-      @update-page="changePage"></Pagination>
+      <Pagination
+        :pages="pagination"
+        @update-pagelist="changePageList"
+        @update-page="changePage"
+      />
     </div>
   </div>
 </template>
@@ -146,8 +153,8 @@ export default {
       pagination: {
         count: 12,
         current_page: 1,
-        currentArticleList: [],
-        totalArticleList: [],
+        currentDataList: [],
+        totalDataList: [],
         total_pages: '',
       },
     };
@@ -159,12 +166,12 @@ export default {
   },
   methods: {
     getProducts() {
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=200`;
       this.$http.get(url).then((res) => {
         this.$store.dispatch('loadingChange', false);
         this.products = res.data.data;
-        this.pagination.totalArticleList = this.products;
-        this.pagination.total_pages = Math.ceil(this.pagination.totalArticleList.length
+        this.pagination.totalDataList = this.products;
+        this.pagination.total_pages = Math.ceil(this.pagination.totalDataList.length
         / this.pagination.count);
         this.initPageList();
         if (this.productsCategory) {
@@ -192,31 +199,31 @@ export default {
       const vm = this.pagination;
       if (category === '全部商品') {
         this.category = category;
-        vm.totalArticleList = this.products;
-        vm.total_pages = Math.ceil(vm.totalArticleList.length
+        vm.totalDataList = this.products;
+        vm.total_pages = Math.ceil(vm.totalDataList.length
           / vm.count);
         vm.current_page = 1;
       } else {
         this.category = category;
-        vm.totalArticleList = this.products.filter((item) => item.category === category);
-        vm.total_pages = Math.ceil(vm.totalArticleList.length
+        vm.totalDataList = this.products.filter((item) => item.category === category);
+        vm.total_pages = Math.ceil(vm.totalDataList.length
           / vm.count);
         vm.current_page = 1;
       }
       this.initPageList();
     },
+    initPageList() {
+      this.pagination.currentDataList = [];
+      for (let i = ((this.pagination.current_page - 1) * this.pagination.count);
+        i < (this.pagination.current_page * this.pagination.count); i += 1) {
+        if (this.pagination.totalDataList[i]) {
+          this.pagination.currentDataList.push(this.pagination.totalDataList[i]);
+        }
+      }
+    },
     changePage(page) {
       this.pagination.current_page = page;
       this.initPageList();
-    },
-    initPageList() {
-      this.pagination.currentArticleList = [];
-      for (let i = ((this.pagination.current_page - 1) * this.pagination.count);
-        i < (this.pagination.current_page * this.pagination.count); i += 1) {
-        if (this.pagination.totalArticleList[i]) {
-          this.pagination.currentArticleList.push(this.pagination.totalArticleList[i]);
-        }
-      }
     },
     changePageList(state) {
       if (state === 'prev') {
@@ -243,11 +250,17 @@ export default {
 <style lang="scss">
 .cardImg {
   width: 100%;
-  height: 200px;
+  height: 150px;
   transform:scale(1);
   transition: all .8s ease-out;
   background-position: center !important;
   background-size: cover !important;
+  @media (min-width: 500px) {
+    height: 200px;
+  }
+  @media (min-width: 768px) {
+    height: 230px;
+  }
   @media (min-width: 1200px) {
     height: 250px;
   }

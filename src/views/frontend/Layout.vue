@@ -878,9 +878,6 @@ export default {
     }
   }
 }
-.w_100{
-  width: 100%;
-}
 .w_lg_auto {
   @media (min-width: 992px) {
     width: auto;

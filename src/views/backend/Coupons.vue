@@ -1,11 +1,12 @@
 <template>
   <div class="p-3">
     <div class="text-left text-black d-flex
-    align-items-center justify-content-between mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
-      <h3 class="d-flex align-items-center text-black">
-        <span class="material-icons fz_30_important mr-3">local_activity</span>
+    align-items-center justify-content-between mt-3 mt-lg-0 mb-4 pt-lg-5
+    px-0 px-md-5 font-weight-bold">
+      <div class="d-flex align-items-center text-black fz_20 fz_lg_24">
+        <span class="material-icons fz_30 fz_lg_36 mr-2">local_activity</span>
         優惠卷
-      </h3>
+      </div>
       <button class="btn d-flex align-items-center" type="button"
       @click="openModal('new')">
         <span class="material-icons mr-2">

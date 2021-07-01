@@ -1,10 +1,12 @@
 <template>
   <div class="p-3">
-    <h3 class="text-left text-black d-flex
-    align-items-center mt-3 mt-lg-0 mb-5 pt-lg-5 px-0 px-md-6">
-      <span class="material-icons fz_30_important mr-3">receipt_long</span>
-      訂單列表
-    </h3>
+    <div class="text-left text-black d-flex
+    align-items-center mt-3 mt-lg-0 mb-4 pt-lg-5 px-0 px-md-5 font-weight-bold">
+      <div class="d-flex align-items-center text-black fz_20 fz_lg_24">
+        <span class="material-icons fz_30 fz_lg_36 mr-2">receipt_long</span>
+        訂單列表
+      </div>
+    </div>
     <table class="table mt-2 rounded" width="400">
       <thead class="alert-success">
         <tr>
@@ -20,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr :key="item.id" v-for="item in orderList">
+        <tr :key="item.id" v-for="item in pagination.currentDataList">
           <th class="text-center p-1 p-md-2 p-lg-3 h-100">
             <button class="btn p-1 px-2" type="button" @click="openModal(item)">
               <i class="fas fa-mouse-pointer fz_14 fz_md_20 text-black"></i>
@@ -100,7 +102,12 @@
       @updateOrder="getOrders"
       :temp-order="tempOrder"/>
     </div>
-    <PaginationAdmin :pages="pagination" @update-pages="getOrders"/>
+    <PaginationAdmin
+      :pages="pagination"
+      @update-pagelist="changePageList"
+      @update-page="changePage"
+      @update-pagegroup="changePageGroup"
+    />
   </div>
 </template>
 
@@ -113,7 +120,16 @@ export default {
     return {
       orderList: {},
       tempOrder: {},
-      pagination: {},
+      pagination: {
+        count: 8,
+        current_page: 1,
+        currentDataList: [],
+        totalDataList: [],
+        total_pages: '',
+        pageGroup: [],
+        totalPageGroup: 0,
+        current_group: 0,
+      },
       tempOrderStatus: false,
     };
   },
@@ -132,21 +148,54 @@ export default {
     },
   },
   methods: {
-    getOrders(num = 1) {
+    getOrders() {
       this.$store.dispatch('loadingChange', true);
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}&paged=10`;
+      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/orders?paged=200`;
       this.$http.get(url)
         .then((res) => {
           this.$store.dispatch('loadingChange', false);
           this.tempOrderStatus = false;
           this.orderList = res.data.data;
-          this.pagination = res.data.meta.pagination;
+          this.pagination.totalDataList = this.orderList;
+          this.pagination.total_pages = Math.ceil(this.pagination.totalDataList.length
+          / this.pagination.count);
+          this.initPageList();
+          this.computedPageGroup();
           $('#orderEditModal').modal('hide');
         }).catch(() => {
           this.$store.dispatch('loadingChange', false);
           this.tempOrderStatus = false;
           $('#orderEditModal').modal('hide');
         });
+    },
+    initPageList() {
+      this.pagination.currentDataList = [];
+      for (let i = ((this.pagination.current_page - 1) * this.pagination.count);
+        i < (this.pagination.current_page * this.pagination.count); i += 1) {
+        if (this.pagination.totalDataList[i]) {
+          this.pagination.currentDataList.push(this.pagination.totalDataList[i]);
+        }
+      }
+    },
+    changePage(page) {
+      this.pagination.current_page = page;
+      this.initPageList();
+    },
+    changePageList(state) {
+      if (state === 'prev' && this.pagination.current_page > 1) {
+        if (this.pagination.current_page === this.pagination.pageGroup[0]) {
+          this.pagination.current_group -= 1;
+        }
+        this.pagination.current_page -= 1;
+      } else if (state === 'next' && this.pagination.current_page < this.pagination.total_pages) {
+        const len = this.pagination.pageGroup.length;
+        if (this.pagination.current_page === this.pagination.pageGroup[len - 1]) {
+          this.pagination.current_group += 1;
+        }
+        this.pagination.current_page += 1;
+      }
+      this.computedPageGroup();
+      this.initPageList();
     },
     setOrderPaid(item) {
       this.$store.dispatch('loadingChange', true);
@@ -185,6 +234,33 @@ export default {
         }).catch(() => {
           this.$store.dispatch('loadingChange', false);
         });
+    },
+    computedPageGroup() {
+      this.pagination.pageGroup = [];
+      this.pagination.totalPageGroup = Math.ceil(this.pagination.total_pages / 5);
+      for (let i = 0; i < this.pagination.totalPageGroup; i += 1) {
+        if (this.pagination.current_group === i) {
+          for (let j = 0; j < this.pagination.total_pages; j += 1) {
+            if (j >= i * 5 && j < (i + 1) * 5) {
+              this.pagination.pageGroup.push(j + 1);
+            }
+          }
+        }
+      }
+    },
+    changePageGroup(state) {
+      if (state === 'prev') {
+        if (this.pagination.current_group > 0) {
+          this.pagination.current_group -= 1;
+        }
+      } else if (state === 'next') {
+        if (this.pagination.current_group < this.pagination.totalPageGroup) {
+          this.pagination.current_group += 1;
+        }
+      }
+      this.computedPageGroup();
+      [this.pagination.current_page] = this.pagination.pageGroup;
+      this.initPageList();
     },
   },
   created() {
