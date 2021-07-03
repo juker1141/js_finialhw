@@ -14,10 +14,10 @@
             <div class="card-body py-2 px-3 p-lg-3">
               <h5 class="card-title mb-0 mx-lg-4">
                 <div class="d-flex justify-content-between align-items-center">
-                  <div class="tooltip_hover w_xl_25 position-relative d-flex
+                  <div class="tooltip_hover w_50 w_lg_25 position-relative d-flex
                   justify-content-start fz_12 fz_md_16">
                     {{ item.created.timestamp | toDate }}
-                    <span class="tooltipText position-absolute w-25 ml-3 ml_xl_6">
+                    <span class="tooltipText position-absolute w_75 w_md_25 w_lg_40 ml-3 ml_xl_6">
                       {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
                     </span>
                   </div>
@@ -327,12 +327,15 @@ export default {
   content: "";/*讓before顯示出來*/
   position: absolute;
   top: -7px; /*調整位置*/
-  right: 70%;/*調整位置*/
+  right: 90%;/*調整位置*/
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 0 7.5px 7px 7.5px;
   border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+  @media (min-width: 768px) {
+    right: 70%;
+  }
 }
 .tooltip_hover:hover .tooltipText {
   opacity: 1;

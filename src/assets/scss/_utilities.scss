@@ -226,6 +226,21 @@ body {
   width: 75%;
 }
 
+.w_md_25 {
+  @include media-breakpoint-up(md) {
+    width: 25% !important;
+  }
+}
+.w_lg_25 {
+  @include media-breakpoint-up(lg) {
+    width: 25% !important;
+  }
+}
+.w_lg_40 {
+  @include media-breakpoint-up(lg) {
+    width: 40% !important;
+  }
+}
 .w_lg_75 {
   @include media-breakpoint-up(lg) {
     width: 75% !important;
@@ -236,6 +251,9 @@ body {
 }
 .w_100_important {
   width: 100% !important;
+}
+.w_120 {
+  width: 120%;
 }
 .w_max_150px {
   max-width: 150px;
