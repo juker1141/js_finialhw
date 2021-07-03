@@ -85,7 +85,7 @@
                   v-if="!tempProduct.description">編輯</button>
                 </div>
                 <div
-                  class="pl-3"
+                  class="pl-4"
                   v-if="editorItem !== 'description'"
                   v-html="tempProduct.description"
                   @dblclick="showEditor('description')"
