@@ -84,8 +84,13 @@
                   @click="showEditor('description')"
                   v-if="!tempProduct.description">編輯</button>
                 </div>
-                <div v-if="editorItem !== 'description'" v-html="tempProduct.description"
-                @dblclick="showEditor('description')"></div>
+                <div
+                  class="pl-3"
+                  v-if="editorItem !== 'description'"
+                  v-html="tempProduct.description"
+                  @dblclick="showEditor('description')"
+                >
+                </div>
                 <Editor v-if="editorItem === 'description'" id="tinymce"
                 v-model="tempProduct.description" :init="editorInit" />
                 <div v-if="editorItem === 'description'"

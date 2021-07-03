@@ -7,94 +7,118 @@
         訂單列表
       </div>
     </div>
-    <table class="table mt-2 rounded" width="400">
-      <thead class="alert-success">
-        <tr>
-          <th class="text-center border-0 table_w_1 table_w_md_5"></th>
-          <th class="text-center border-0 table_w_3 table_w_md_10 fz_12 fz_md_16">下單時間</th>
-          <th class="text-center border-0 table_w_7 table_w_md_15 fz_12 fz_md_16">購買款項</th>
-          <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">單價</th>
-          <th class="text-center border-0 table_w_10 fz_12 fz_md_16">
-          <span class="d-none d-md-inline-block">應付</span>金額
-          </th>
-          <th class="text-center border-0 table_w_10 d-none d-xl-table-cell">付款方式</th>
-          <th class="text-center border-0 table_w_10 table_w_md_10 fz_12 fz_md_16">是否付款</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr :key="item.id" v-for="item in pagination.currentDataList">
-          <th class="text-center p-1 p-md-2 p-lg-3 h-100">
-            <button class="btn p-1 px-2" type="button" @click="openModal(item)">
-              <i class="fas fa-mouse-pointer fz_14 fz_md_20 text-black"></i>
-            </button>
-          </th>
-          <td class="text-center p-1 p-md-2 p-lg-3
-          d-flex justify-content-center align-items-center">
-            <div class="tooltip_hover position-relative d-flex justify-content-center pt-2
-            fz_12 fz_md_16">
-              {{ item.created.timestamp | toDate }}
-              <span class="tooltipText position-absolute ml-7">
-                {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
-              </span>
-            </div>
-          </td>
-          <td class="text-left p-1 p-md-2 p-lg-3">
-            <ul class="listStyle_none m-0 pl-0 pt-2">
-              <li class="mb-1" v-for="( i, index ) in item.products" :key="index">
-                <div class="d-flex justify-content-between fz_12 fz_md_16">{{ i.product.title }}
-                  <span class="d-none d-xl-table-cell">
-                  {{ i.quantity }} {{ i.product.unit }}
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </td>
-          <td class="text-center p-1 p-md-2 p-lg-3 d-none d-xl-table-cell">
-            <ul class="listStyle_none m-0 pl-0 pt-2">
-              <li class="mb-1" v-for="(i, index) in item.products" :key="index">
-                {{ i.product.price | toCurrency | DollarSign }} 元
-              </li>
-            </ul>
-          </td>
-          <td class="text-center py-1 px-0 p-md-2 p-lg-3 fz_12 fz_md_16">
-            <div v-if="item.amount < 2000" class="pt-2">
-            NT {{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元</div>
-            <div v-else
-            class="pt-2">NT {{ Math.round(item.amount) | toCurrency | DollarSign }} 元</div>
-          </td>
-          <td class="text-center p-1 p-md-2 p-lg-3 d-none d-xl-table-cell">
-            <div class="pt-2">{{ item.payment }}</div>
-          </td>
-          <td class="text-center p-1 p-md-2 p-lg-3">
-            <div class="pt-2">
-              <div class="custom-control custom-switch">
-                <input
-                  :id="item.id"
-                  v-model="item.paid"
-                  type="checkbox"
-                  class="custom-control-input"
-                  @change="setOrderPaid(item)"
-                >
-                <label
-                  class="custom-control-label"
-                  :for="item.id">
-                  <div class="d-none d-md-block">
-                    <strong
-                      v-if="item.paid"
-                      class="text-success"
-                      >已付款</strong>
-                    <span
-                      v-else
-                      class="text-muted"
-                      >尚未付款</span>
+    <div>
+      <ul class="listStyle_none mt-2">
+        <li :key="item.id" v-for="item in pagination.currentDataList">
+          <div class="card mt-3">
+            <div class="card-body py-2 px-3 p-lg-3">
+              <h5 class="card-title mb-0 mx-lg-4">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="tooltip_hover w_xl_25 position-relative d-flex
+                  justify-content-start fz_12 fz_md_16">
+                    {{ item.created.timestamp | toDate }}
+                    <span class="tooltipText position-absolute w-25 ml-3 ml_xl_6">
+                      {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
+                    </span>
                   </div>
-                </label>
+                  <button
+                    class="btn p-2 d-flex align-items-center"
+                    type="button" @click="openModal(item)"
+                  >
+                    <span class="material-icons fz_20 fz_md_24 text-black">
+                    edit
+                    </span>
+                  </button>
+                </div>
+              </h5>
+              <div class="card-text mt-0 mt-lg-3">
+                <div class="d-flex flex-column
+                justify-content-between mx-lg-4">
+                  <div class="d-flex fz_12 fz_md_16">
+                    訂單編號:
+                    <span class="pl-3">{{item.created.timestamp}}</span>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <ul class="listStyle_none m-0 pl-0 pt-2 w-100">
+                      <li><hr class="my-2"/></li>
+                      <li
+                        class="d-flex flex-column w-100 fz_14 fz_lg_16"
+                        v-for="( i, index ) in item.products" :key="index"
+                      >
+                        <div class="d-flex align-items-center justify-content-between w-100">
+                          <div class="d-flex align-items-center w-75">
+                            <div
+                              class="card-img-top rounded-0 orderImg"
+                              :style="{ background: `url(${i.product.imageUrl[0]})` }"
+                            />
+                            <div
+                              class="d-flex flex-column justify-content-between
+                              pl-3 pl-lg-4 text-left"
+                            >
+                              <div class="text-truncate">{{ i.product.title }}</div>
+                              <span class="mt-0">x {{ i.quantity }}</span>
+                            </div>
+                          </div>
+                          <div>{{ i.product.price | toCurrency | DollarSign }} 元</div>
+                        </div>
+                        <hr class="my-2"/>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="d-flex flex-column align-items-end justify-content-between
+                    w-100 fz_12 fz_md_16"
+                  >
+                    <div class="d-flex">
+                      <div class="pt-2 pr-3">付款方式： {{ item.payment }}</div>
+                      <div
+                        v-if="item.amount < 2000"
+                        class="pt-2"
+                      >
+                        訂單金額： {{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元
+                      </div>
+                      <div
+                        v-else
+                        class="pt-2"
+                      >
+                        訂單金額： {{ Math.round(item.amount) | toCurrency | DollarSign }} 元
+                      </div>
+                    </div>
+                    <div class="pt-2">
+                      <div class="custom-control custom-switch">
+                        <input
+                          :id="item.id"
+                          v-model="item.paid"
+                          type="checkbox"
+                          class="custom-control-input"
+                          @change="setOrderPaid(item)"
+                        >
+                        <label
+                          class="custom-control-label"
+                          :for="item.id">
+                          <div>
+                            <strong
+                              v-if="item.paid"
+                              class="text-success"
+                              >已付款</strong>
+                            <span
+                              v-else
+                              class="text-muted"
+                            >
+                              尚未付款
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </li>
+      </ul>
+    </div>
     <div class="modal fade" id="orderEditModal" tabindex="-1"
     role="dialog" aria-labelledby="orderEditModal" v-if="tempOrderStatus"
       aria-hidden="true">
@@ -121,7 +145,7 @@ export default {
       orderList: {},
       tempOrder: {},
       pagination: {
-        count: 8,
+        count: 5,
         current_page: 1,
         currentDataList: [],
         totalDataList: [],
@@ -156,6 +180,7 @@ export default {
           this.$store.dispatch('loadingChange', false);
           this.tempOrderStatus = false;
           this.orderList = res.data.data;
+          console.log(this.orderList);
           this.pagination.totalDataList = this.orderList;
           this.pagination.total_pages = Math.ceil(this.pagination.totalDataList.length
           / this.pagination.count);
@@ -270,6 +295,16 @@ export default {
 </script>
 
 <style lang="scss">
+.orderImg {
+  height: 70px;
+  width: 70px;
+  background-position: center !important;
+  background-size: cover !important;
+  @media (min-width: 992px) {
+    height: 100px;
+    width: 100px;
+  }
+}
 .tooltip_hover{
   opacity: 1;
 }

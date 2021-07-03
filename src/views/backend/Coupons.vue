@@ -15,67 +15,66 @@
         新增優惠卷
       </button>
     </div>
-    <table class="table mt-2 rounded">
-      <thead class="alert-success">
-        <tr>
-          <th class="text-center border-0 table_w_20">名稱</th>
-          <th class="text-center border-0 table_w_5 d-none d-lg-table-cell">序號</th>
-          <th class="text-center border-0 table_w_10">折扣</th>
-          <th class="text-center border-0 table_w_5 table_w_md_10">到期日</th>
-          <th class="text-center border-0 table_w_5 table_w_md_10 fz_12 fz_md_16">
-          <span class="d-none d-md-inline-block">是否</span>啟用
-          </th>
-          <th class="text-center border-0 table_w_5"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in coupons" :key="item.id">
-          <td class="text-center p-1 py-2 p-md-2 p-lg-3 fz_12 fz_md_16"
-          scope="row">
-            <span class="h-100">{{ item.title }}</span>
-          </td>
-          <th class="text-center p-1 py-2 p-md-2 p-lg-3 d-none d-lg-table-cell">
-            {{ item.code }}
-          </th>
-          <td class="text-center p-1 py-2 p-md-2 p-lg-3 fz_12 fz_md_16">{{ item.percent }}</td>
-          <td class="text-center p-1 py-2 p-md-2 p-lg-3 fz_12 fz_md_16">
-            {{ item.deadline.timestamp | toDate }}
-          </td>
-          <td class="text-center p-1 py-2 p-md-2 p-lg-3">
-            <span v-if="item.enabled" class="text-success d-flex
-            align-items-center justify-content-center font-weight-bold">
-              <div class="d-none d-xl-block">已啟用</div>
-            <span class="material-icons ml-2">check</span>
-            </span>
-            <span v-else
-            class="text-danger d-flex align-items-center justify-content-center">
-              <div class="d-none d-xl-block">未啟用</div>
-            <span class="material-icons ml-2">cloud_off</span></span>
-          </td>
-          <td class="text-center p-1 py-2 p-md-2 p-lg-3">
-            <div class="d-flex justify-content-center">
-              <button class="btn
-              d-flex align-items-center p-0 mr-2 mr-md-3"
-              type="button" @click="openModal('edit', item)">
-                <span class="material-icons">
-                edit
-                </span>
-              </button>
-              <button class="btn
-              d-flex align-items-center p-0" type="button" @click="openModal('delete', item)">
-                <span class="material-icons">
-                delete
-                </span>
-              </button>
+    <div>
+      <ul class="listStyle_none mt-2">
+        <li v-for="item in coupons" :key="item.id">
+          <div class="card mt-3">
+            <div class="card-body p-3">
+              <h5 class="card-title mb-0 mx-lg-4">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>{{ item.title }}</div>
+                  <div class="d-flex align-items-center">
+                    <button
+                      class="btn d-flex align-items-center p-0 mr-2 mr-md-3"
+                      type="button" @click="openModal('edit', item)"
+                    >
+                      <span class="material-icons">
+                      edit
+                      </span>
+                    </button>
+                    <button
+                      class="btn d-flex align-items-center p-0"
+                      type="button" @click="openModal('delete', item)"
+                    >
+                      <span class="material-icons">
+                      delete
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </h5>
+              <div class="card-text mt-0 mt-lg-3 mx-lg-4">
+                <div class="d-flex justify-content-between align-items-end">
+                  <div class="d-flex flex-column align-items-start">
+                    <div class="pt-2">序號： {{ item.code }}</div>
+                    <div class="pt-2">折扣 % 數：{{ item.percent }} %</div>
+                    <div class="pt-2">到期日： {{ item.deadline.timestamp | toDate }}</div>
+                  </div>
+                  <div>
+                    <span v-if="item.enabled" class="text-success d-flex
+                      align-items-center justify-content-center font-weight-bold">
+                      已啟用
+                      <span class="material-icons ml-2">check</span>
+                    </span>
+                    <span
+                      v-else
+                      class="text-danger d-flex align-items-center justify-content-center"
+                    >
+                      未啟用
+                      <span class="material-icons ml-2">cloud_off</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </li>
+      </ul>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="couponModal" tabindex="-1" role="dialog"
     aria-labelledby="couponModal" aria-hidden="true">
-      <div class="modal-dialog w_max_100 w_max_md_50" role="document">
+      <div class="modal-dialog modal-dialog-centered w_max_100 w_max_md_50" role="document">
         <div class="modal-content">
           <div class="modal-header text-black border-bottom-0">
             <h5 class="modal-title">新增優惠卷</h5>
@@ -140,7 +139,7 @@
     <!-- Modal -->
     <div class="modal fade" id="delCouponModal" tabindex="-1" role="dialog"
     aria-labelledby="delCouponModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header bg-danger d-flex align-items-center">
             <h5 class="modal-title text-white">刪除優惠卷</h5>

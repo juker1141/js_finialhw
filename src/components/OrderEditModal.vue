@@ -59,7 +59,7 @@
                 </validation-provider>
               </div>
               <div class="col-12 col-lg-6 mt-lg-5">
-                <div class="p-4 bg-adminSecondary rounded-lg">
+                <div class="p-3 p-lg-4 bg-adminSecondary rounded-lg">
                   <div @click="showDetail" class="d-flex d-lg-none
                   font-weight-bold justify-content-between fz_20">
                     <div>總計</div>

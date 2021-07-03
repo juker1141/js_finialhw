@@ -17,7 +17,7 @@
             <div class="card-body py-2 px-3 p-lg-3">
               <h5 class="card-title mb-1 mb-lg-2">
                 <div class="tooltip_hover w_xl_25 position-relative d-flex
-                justify-content-start pt-2 fz_12 fz_md_16">
+                justify-content-start fz_12 fz_md_16">
                   {{ item.created.timestamp | toDate }}
                   <span class="tooltipText position-absolute w-25 ml-3 ml_xl_6">
                     {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
