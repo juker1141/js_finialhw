@@ -14,7 +14,7 @@
       <div class="col-12 col-lg-10 offset-lg-1">
         <div v-show="item.paid === paid" :key="item.id" v-for="item in orderList">
           <div class="card mt-3">
-            <div class="card-body py-2 px-3 p-lg-3">
+            <div class="card-body p-3">
               <h5 class="card-title mb-1 mb-lg-2">
                 <div class="tooltip_hover w_xl_25 position-relative d-flex
                 justify-content-start fz_12 fz_md_16">
@@ -162,10 +162,6 @@ export default {
   color: #121212;
   &.navItem_active {
     background: #121212;
-    color: #fff;
-  }
-  &:hover {
-    background: gray;
     color: #fff;
   }
 }
