@@ -52,7 +52,7 @@ body {
 }
 .fz_lg_16 {
   @include media-breakpoint-up(lg) {
-    font-size: 16px;
+    font-size: 16px !important;
   }
 }
 .fz_20 {
@@ -220,6 +220,7 @@ body {
 .w_75 {
   width: 75%;
 }
+
 .w_lg_75 {
   @include media-breakpoint-up(lg) {
     width: 75% !important;
@@ -276,6 +277,11 @@ body {
 .w_max_md_80 {
   @include media-breakpoint-up(md) {
     max-width: 80% !important;
+  }
+}
+.w_xl_25 {
+  @include media-breakpoint-up(xl) {
+    width: 25% !important;
   }
 }
 .w_xl_1440 {
@@ -340,9 +346,6 @@ body {
   @media (min-width: 1650px) {
     margin-left: 106px !important;
   }
-}
-.pt_6 {
-  padding-top: 6px;
 }
 
 .px_0 {

@@ -16,7 +16,7 @@
           {{ Math.round(order.amount) + 60 | toCurrency | DollarSign}}</span>
         ，確認付款嗎？</div>
         <button type="button" class="btn fz_24_important
-        bg-white text-black rounded-0 p-1 px-5 btn_white_hover" @click="payMoney">確認付款</button>
+        bg-primary text-white rounded-0 p-1 px-5" @click="payMoney">確認付款</button>
       </div>
       <router-link v-else to="/payment" class="text-decoration-none text-white
       fz_24_important">
@@ -67,9 +67,6 @@ export default {
   background: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/WKEKFrARE3wM25Vu09weWZnn2Kln3u7BXhG6WRJBxLu5Us8PpQ92BtxOsAzkbLGtwNWP46C1Y9GIDluURSqnOxNYcTsip0WJoexybmMxNN33B18DSUbljnMph0tqD5hv.jpg) no-repeat;
   background-position: center;
   background-size: cover;
-}
-.btn_white_hover:hover{
-  background: #fecf2f !important;
 }
 
 </style>

@@ -8,7 +8,7 @@
         >Hardware Store</router-link>
       </div>
       <div class="bg-blackOP bg_xl_transparent
-      p-5 p-xl-0 text-center text-xl-left payDone_mt_auto">
+      px-2 py-5 p-lg-5 p-xl-0 text-center text-xl-left payDone_mt_auto">
         <div class="fz_48 mb-5 font-weight-bold">付款成功！！</div>
         <div class="fz_24 mb-5">我們將馬上為您出貨
         <span class="d-none d-xl-inline-block">，</span>

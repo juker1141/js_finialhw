@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-10 offset-1">
+      <div class="col-12 col-lg-10 offset-lg-1">
         <div class="row my-3">
           <div class="col-12 col-lg-10 offset-lg-1 d-flex justify-content-start">
             <router-link
@@ -96,17 +96,17 @@
                 <label for="message" class="text-left w-100">留言</label>
                 <textarea class="form-control form-control-lg mb-3" v-model="form.message"
                 rows="5" id="message"></textarea>
-                <div class="d-flex flex-column-reverse flex-lg-row
+                <div class="d-flex flex-column flex-lg-row
                 align-items-center justify-content-between">
                   <router-link class="d-flex align-items-center
-                  text-decoration-none"
+                  text-decoration-none mb-3 mb-lg-0"
                   to="/products">
                     <span class="material-icons">
                     keyboard_arrow_left
                     </span>返回購物車
                   </router-link>
                   <button type="submit" class="btn btn-black
-                  fz_24 rounded-0 px-6 mb-3 mb-lg-0" :disabled="invalid">
+                  fz_24 rounded-0 px-6 mb-5 mb-lg-0" :disabled="invalid">
                   前往付款</button>
                 </div>
               </form>
@@ -114,7 +114,7 @@
           </div>
           <div class="col-12 col-lg-5 mt-3 mt-lg-1">
             <div class="bg-gray">
-              <div class="p-3 w-100 d_block d-lg-none
+              <div class="p-2 p-lg-3 w-100 d_block d-lg-none
                 font-weight-bold fz_20">
                 <div @click="showCartDetail"
                 class="p-2 w-100 d-flex justify-content-between align-items-center">

@@ -23,8 +23,8 @@
           <th class="text-center border-0 table_w_5 table_w_md_15
           d-none d-md-table-cell">原價</th>
           <th class="text-center border-0 table_w_10 table_w_md_15">售價</th>
-          <th class="text-center border-0 table_w_5 table_w_md_10">上架</th>
-          <th class="text-center border-0 table_w_5 table_w_md_10"></th>
+          <th class="text-center border-0 table_w_1 table_w_md_10 px-0">上架</th>
+          <th class="text-center border-0 table_w_3 table_w_md_10 px-1"></th>
         </tr>
       </thead>
       <tbody>
@@ -42,12 +42,13 @@
           <td class="text-center p-1 py-2 p-md-2 p-lg-3 fz_14">
             <span v-if="item.enabled" class="text-success d-flex
             align-items-center justify-content-center font-weight-bold">
-              <div class="d-none d-xl-block">已上架</div><span class="material-icons ml-2">check</span>
+              <div class="d-none d-xl-block">已上架</div>
+              <span class="material-icons ml-0 ml-xl-2">check</span>
             </span>
             <span v-else
             class="text-danger d-flex align-items-center justify-content-center">
               <div class="d-none d-xl-block">未上架</div>
-            <span class="material-icons ml-2">cloud_off</span></span>
+            <span class="material-icons ml-0 ml-xl-2">cloud_off</span></span>
           </td>
           <td class="text-center p-1 py-2 p-md-2 p-lg-3">
             <div class="d-flex justify-content-center">

@@ -1,7 +1,7 @@
 <template>
   <div class="container text-black">
     <div class="row">
-      <div class="col-10 offset-1">
+      <div class="col-12 col-lg-10 offset-lg-1">
         <div class="row my-3">
           <div class="col-12 col-lg-10 offset-lg-1 d-flex justify-content-start">
             <router-link
@@ -22,7 +22,7 @@
         <div class="row flex-column-reverse flex-lg-row">
           <div class="col-12 col-lg-6 offset-lg-1 mt-3 mt-lg-0">
             <div class="text-left fz_24 mb-2">訂單資訊</div>
-            <div v-if="orderLoading" class="border border-black mb-5">
+            <div v-if="orderLoading" class="border border-black mb-3 mb-lg-5">
               <div class="d-flex flex-column">
                 <div @click="showOrderInfo" class="d-flex justify-content-between
                 align-items-center border-bottom border-black p-3">
@@ -96,7 +96,7 @@
           </div>
           <div class="col-12 col-lg-5 mt-3 mt-lg-1">
             <div class="bg-gray">
-              <div class="p-3 w-100 d_block d-lg-none
+              <div class="p-2 p-lg-3 w-100 d_block d-lg-none
               font-weight-bold fz_20">
                 <div @click="showOrderDetail"
                 class="p-2 w-100 d-flex justify-content-between align-items-center">
@@ -230,7 +230,7 @@ export default {
       }, 500);
     },
     showOrderInfo() {
-      $('#orderInfo').slideToggle(300);
+      $('#orderInfo').slideToggle(0);
       $('.showOrderInfo_down').toggleClass('d-none');
       $('.showOrderInfo_up').toggleClass('d-block');
     },

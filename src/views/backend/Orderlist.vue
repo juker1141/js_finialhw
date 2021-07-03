@@ -30,7 +30,7 @@
           </th>
           <td class="text-center p-1 p-md-2 p-lg-3
           d-flex justify-content-center align-items-center">
-            <div class="tooltip_hover position-relative d-flex justify-content-center pt_6
+            <div class="tooltip_hover position-relative d-flex justify-content-center pt-2
             fz_12 fz_md_16">
               {{ item.created.timestamp | toDate }}
               <span class="tooltipText position-absolute ml-7">
@@ -39,7 +39,7 @@
             </div>
           </td>
           <td class="text-left p-1 p-md-2 p-lg-3">
-            <ul class="listStyle_none m-0 pl-0 pt_6">
+            <ul class="listStyle_none m-0 pl-0 pt-2">
               <li class="mb-1" v-for="( i, index ) in item.products" :key="index">
                 <div class="d-flex justify-content-between fz_12 fz_md_16">{{ i.product.title }}
                   <span class="d-none d-xl-table-cell">
@@ -50,23 +50,23 @@
             </ul>
           </td>
           <td class="text-center p-1 p-md-2 p-lg-3 d-none d-xl-table-cell">
-            <ul class="listStyle_none m-0 pl-0 pt_6">
+            <ul class="listStyle_none m-0 pl-0 pt-2">
               <li class="mb-1" v-for="(i, index) in item.products" :key="index">
                 {{ i.product.price | toCurrency | DollarSign }} 元
               </li>
             </ul>
           </td>
           <td class="text-center py-1 px-0 p-md-2 p-lg-3 fz_12 fz_md_16">
-            <div v-if="item.amount < 2000" class="pt_6">
+            <div v-if="item.amount < 2000" class="pt-2">
             NT {{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元</div>
             <div v-else
-            class="pt_6">NT {{ Math.round(item.amount) | toCurrency | DollarSign }} 元</div>
+            class="pt-2">NT {{ Math.round(item.amount) | toCurrency | DollarSign }} 元</div>
           </td>
           <td class="text-center p-1 p-md-2 p-lg-3 d-none d-xl-table-cell">
-            <div class="pt_6">{{ item.payment }}</div>
+            <div class="pt-2">{{ item.payment }}</div>
           </td>
           <td class="text-center p-1 p-md-2 p-lg-3">
-            <div class="pt_6">
+            <div class="pt-2">
               <div class="custom-control custom-switch">
                 <input
                   :id="item.id"

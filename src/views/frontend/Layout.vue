@@ -5,14 +5,14 @@
     class="w-100 position-fixed
     navbarPosition zIndex_30 bg-white">
       <button v-if="windowY >= 500" @click="goToTop" class="position-fixed btn d-flex
-      goToTopBtn_position p-1 border-yellow border_5px bg-dark"
+      goToTopBtn_position p-1 border-warning border_5px bg-dark shadow-lg"
       type="button" id="goToTopBtn">
         <span class="material-icons text-yellow font-weight-bold fz_24">
         keyboard_arrow_up
         </span>
       </button>
       <div class="container d-flex justify-content-between
-      align-items-center my-2 my-lg-3 px-5 position-relative">
+      align-items-center my-2 my-lg-3 px-2 px-lg-5 position-relative">
         <button class="btn p-1 justify-content-between align-items-center d-flex d-lg-none"
         type="button" @click="navbarShow">
           <span class="material-icons">menu</span>
@@ -67,7 +67,7 @@
     <div
       id="cartBlock" :class="{ 'active' : cartBlockShow }"
       class="container h-100 bg-white text-black position-fixed
-      zIndex_40 py-4 cartBlockPosition"
+      zIndex_40 py-3 py-lg-4 cartBlockPosition"
     >
       <div class="d-flex justify-content-between mb-5">
         <div class="fz_30_important fz_md_36 font-weight-bold text-black">購物車</div>
@@ -219,7 +219,7 @@
     <!-- ... 這裡是購物車側欄結束 ... -->
     <router-view class="navbar_mt flex_1" id="main" @updateCart="getCart"/>
     <div id="subscribe"
-    class="footerBannerImg p-5 p-lg-9 text-white">
+    class="footerBannerImg p-2 py-5 p-lg-5 p-lg-9 text-white">
       <div class="container">
         <div class="row">
           <div class="col-8 col-lg-7 text-left">
@@ -404,9 +404,9 @@
                 <h2 class="text-center mb-5">
                   <span class="fontOrbitron">Hardware Store
                     </span><br class="d-xl-none"> 隱私權聲明</h2>
-                <ol class="fz_24">
+                <ul class="fz_24 listStyle_none">
                   <li class="fz_16 mb-5">
-                    <div class="fz_20 mb-3">隱私權政策簡介</div>
+                    <div class="fz_20 mb-3">1. 隱私權政策簡介</div>
                     <div class="mb-3">本隱私權政策說明<span class="text-yellow">
                     職人手工具股份有限公司</span>（「本公司」、「我們」）如何處理、
                     保護您於使用本公司之服務（「本服務」，見以下「涵蓋服務」之列表）時所提供之資訊，
@@ -425,7 +425,7 @@
                     </ol>
                   </li>
                   <li class="fz_16 mb-5">
-                    <div class="fz_20 mb-3">本公司蒐集何種資訊？如何蒐集資訊？</div>
+                    <div class="fz_20 mb-3">2. 本公司蒐集何種資訊？如何蒐集資訊？</div>
                     <div class="mb-5">為提供您使用本服務，我們將於必要範圍內取得您的資訊。我們所蒐集的資訊基本上有兩種：</div>
                     <ul class="mx-3" style="list-style-type:lower-alpha;">
                       <li class="mb-5">
@@ -471,28 +471,28 @@
                     </ul>
                   </li>
                   <li class="fz_16 mb-5">
-                    <div class="fz_20 mb-3">本公司是否分享蒐集到的資訊？</div>
+                    <div class="fz_20 mb-3">3. 本公司是否分享蒐集到的資訊？</div>
                     除本隱私權政策（必要時亦包括其他相關隱私權政策與附錄）另有規定者外，
                     未經您的同意，我們不會向第三人提供您的資訊。但若是我們本於善意認為係依據相關法律之要求或許可，
                     或為保護本公司權利及財產而進行抗辯，則不在此限。
                   </li>
                   <li class="fz_16 mb-5">
-                    <div class="fz_20 mb-3">本公司是否與其他服務供應商合作？</div>
+                    <div class="fz_20 mb-3">4. 本公司是否與其他服務供應商合作？</div>
                     本公司可能不定期與服務供應商合作，協助我們為您提供最佳服務。
                     在與其他服務供應商建立合作關係前，我們會確保服務供應商將依此隱私權政策與相關法律處理您的資訊。
                   </li>
                   <li class="fz_16 mb-5">
-                    <div class="fz_20 mb-3">如何存取我的資訊或更正我的資訊？</div>
+                    <div class="fz_20 mb-3">5. 如何存取我的資訊或更正我的資訊？</div>
                     本公司盡力協助您以最輕鬆的方式控管您的資訊。
                     您可以隨時確認或修改您的註冊資訊。若無法直接於應用程式上確認，
                     您可以隨時寄送書面意見要求本公司確認、更正、刪除其他本公司持有的個人資料。
                     認證您的身分後，本公司將依相關法律於合理期限內回應您的要求。
                   </li>
                   <li class="fz_16">
-                    <div class="fz_20 mb-3">本公司如何確保本服務的安全性？</div>
+                    <div class="fz_20 mb-3">6. 本公司如何確保本服務的安全性？</div>
                     我們會持續努力盡可能確保本服務的安全性。為前述工作進行，若本公司發現服務條款受到侵害、有受侵害之虞，或用戶間發生紛爭，我們的員工將可能會存取您提供的資訊。
                   </li>
-                </ol>
+                </ul>
               </div>
             </div>
           </div>

@@ -86,30 +86,36 @@
           <h3 class="text-left m-0 pl-3">活動訊息</h3>
           <div class="text-left pt-5">
             <ul class="listStyle_none m-0 p-3">
-              <li>
+              <li class="d-flex">
                 <span class="mr-3">9/25</span>免運活動開跑，現在就開始逛逛吧
               </li>
               <hr />
-              <li>
+              <li class="d-flex">
                 <span class="mr-3">9/15</span>
-                <span class="fontOrbitron">Hardware Store </span>
-                邀您一起做公益，消費滿2000元，就會捐贈其 5% 作為公益
+                <div>
+                  <span class="fontOrbitron">Hardware Store </span>
+                  邀您一起做公益，消費滿2000元，就會捐贈其 5% 作為公益
+                </div>
               </li>
               <hr />
-              <li>
+              <li class="d-flex">
                 <span class="mr-3">9/10</span>新品發布，更多好玩有趣的就在今天
               </li>
               <hr />
-              <li>
-                <span class="mr-4">9/6</span
-                ><span class="fontOrbitron">Hardware Store </span>
-                線上商城開幕慶，全館 77 折，搶好康就趁現在！！
+              <li class="d-flex">
+                <span class="mr-4">9/6</span>
+                <div>
+                  <span class="fontOrbitron">Hardware Store </span>
+                  線上商城開幕慶，全館 77 折，搶好康就趁現在！！
+                </div>
               </li>
               <hr />
-              <li>
-                <span class="mr-3">8/25</span
-                ><span class="fontOrbitron">Hardware Store </span>
-                線上商城準備中，現在加入，馬上抽好禮
+              <li class="d-flex">
+                <span class="mr-3">8/25</span>
+                <div>
+                  <span class="fontOrbitron">Hardware Store </span>
+                  線上商城準備中，現在加入，馬上抽好禮
+                </div>
               </li>
               <hr />
             </ul>
@@ -372,7 +378,7 @@ export default {
 
 <style lang="scss" scoped>
 .footerNews_mt {
-  margin-top: 62.25px;
+  margin-top: 50px;
   @media (min-width: 992px) {
     margin-top: 113px;
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="container mb-9">
     <div class="row pt-7">
-      <div class="col-12">
+      <div class="col-12 col-lg-10 offset-lg-1">
         <div class="d-flex">
           <a :class="{ navItem_active : paid === false}" class="navItem text-decoration-none
           rounded-0 fz_lg_24 py-2 py-lg-3 w-50" @click="paid = false" href="#">未付款</a>
@@ -11,55 +11,81 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-lg-10 offset-lg-1">
         <div v-show="item.paid === paid" :key="item.id" v-for="item in orderList">
           <div class="card mt-3">
-            <div class="card-body">
-              <h5 class="card-title">
-                <div class="tooltip_hover w-25 position-relative d-flex justify-content-start pt_6
-                fz_12 fz_md_16">
+            <div class="card-body py-2 px-3 p-lg-3">
+              <h5 class="card-title mb-1 mb-lg-2">
+                <div class="tooltip_hover w_xl_25 position-relative d-flex
+                justify-content-start pt-2 fz_12 fz_md_16">
                   {{ item.created.timestamp | toDate }}
-                  <span class="tooltipText position-absolute w-25 ml-7">
+                  <span class="tooltipText position-absolute w-25 ml-3 ml_xl_6">
                     {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
                   </span>
                 </div>
               </h5>
-              <div class="card-text">
-                <div class="d-flex align-items-center justify-content-between">
-                  <ul class="listStyle_none m-0 pl-0 pt_6">
-                    <li :class="{ mblg1 : index < 2 }"
-                    v-for="( i, index ) in item.products" :key="index">
-                      <div class="d-flex justify-content-between fz_12 fz_md_16">
-                      {{ i.product.title }}<span class="d-xl-none">x{{ i.quantity }}</span>
-                        <span class="d-none d-xl-table-cell pl-5">
-                        {{ i.quantity }} {{ i.product.unit }}
-                        </span>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul class="listStyle_none m-0 pl-0 pt_6">
-                    <li class="mb-1" v-for="(i, index) in item.products" :key="index">
-                      {{ i.product.price | toCurrency | DollarSign }} 元
-                    </li>
-                  </ul>
-                  <div class="pt_6">{{ item.payment }}</div>
-                  <div>
-                    <div v-if="item.amount < 2000"
-                    class="pt_6">{{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元
-                    </div>
-                    <div v-else
-                    class="pt_6">{{ Math.round(item.amount) | toCurrency | DollarSign }} 元</div>
+              <div class="card-text mt-0 mt-lg-3">
+                <div class="d-flex flex-column
+                justify-content-between mx-lg-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <ul class="listStyle_none m-0 pl-0 pt-2 w-100">
+                      <li><hr class="my-2"/></li>
+                      <li
+                        class="d-flex flex-column w-100 fz_14 fz_lg_16"
+                        v-for="( i, index ) in item.products" :key="index"
+                      >
+                        <div class="d-flex align-items-center justify-content-between w-100">
+                          <div class="d-flex align-items-center w-75">
+                            <div
+                              class="card-img-top rounded-0 orderImg"
+                              :style="{ background: `url(${i.product.imageUrl[0]})` }"
+                            />
+                            <div
+                              class="d-flex flex-column justify-content-between
+                              pl-3 pl-lg-4 text-left"
+                            >
+                              <div class="text-truncate">{{ i.product.title }}</div>
+                              <span class="mt-0">x {{ i.quantity }}</span>
+                            </div>
+                          </div>
+                          <div>{{ i.product.price | toCurrency | DollarSign }} 元</div>
+                        </div>
+                        <hr class="my-2"/>
+                      </li>
+                    </ul>
                   </div>
-                  <div class="pt_6">
-                    <div v-if="item.paid" class="text-success font-weight-bold">
-                      已付款
+                  <div
+                    class="d-flex flex-column align-items-end justify-content-between
+                    w-100 fz_14 fz_lg_16"
+                  >
+                    <div>
+                      <div
+                        v-if="item.amount < 2000"
+                        class="pt-2"
+                      >
+                        訂單金額： {{ Math.round(item.amount) + 60 | toCurrency | DollarSign }} 元
+                      </div>
+                      <div
+                        v-else
+                        class="pt-2"
+                      >
+                        訂單金額： {{ Math.round(item.amount) | toCurrency | DollarSign }} 元
+                      </div>
                     </div>
-                    <div v-else class="text-danger d-flex flex-column align-items-center">
-                      未付款
-                      <a href="#" @click="goToPay(item.id)" class="btn btn-black
-                      text-decoration-none rounded-0 p-1 px-3 my-2 mt-lg-3">
-                        前往付款
-                      </a>
+                    <div class="pt-2">{{ item.payment }}</div>
+                    <div class="pt-2">
+                      <div v-if="item.paid" class="text-success font-weight-bold py-2">
+                        付款完成
+                      </div>
+                      <div v-else class="text-danger d-flex align-items-center">
+                        尚未付款
+                        <div v-if="!item.paid" class="d-flex justify-content-end mt-1">
+                          <a href="#" @click="goToPay(item.id)" class="btn btn-black
+                          text-decoration-none rounded-0 p-1 px-3 ml-5">
+                            前往付款
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -98,6 +124,7 @@ export default {
       this.$http.get(url)
         .then((res) => {
           this.orderList = res.data.data;
+          console.log(this.orderList);
           this.$store.dispatch('loadingChange', false);
         }).catch(() => {
           this.$store.dispatch('loadingChange', false);
@@ -121,9 +148,14 @@ export default {
 </script>
 
 <style lang="scss">
-.mblg1{
+.orderImg {
+  height: 70px;
+  width: 70px;
+  background-position: center !important;
+  background-size: cover !important;
   @media (min-width: 992px) {
-    margin-bottom: 4px;
+    height: 100px;
+    width: 100px;
   }
 }
 .navItem{
@@ -140,6 +172,11 @@ export default {
 .orderListImg{
   height: 90px;
   width: 90px;
+}
+.ml_xl_6{
+  @media (min-width: 1200px) {
+    margin-left: 48px !important;
+  }
 }
 .tooltip_hover{
   opacity: 1;

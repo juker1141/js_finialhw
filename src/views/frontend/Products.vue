@@ -96,7 +96,7 @@
                     class="position-absolute salePosition p-3">
                     <div class="text-dark font-weight-bold
                     fz_14 bg-yellow p-1 rounded">On Sale</div></div>
-                    <div class="card-body pt-3 pb-1 py-md-3 px-2
+                    <div class="card-body pt-2 pt-lg-3 pb-1 py-md-3 px-2
                     d-flex justify-content-between align-items-center">
                       <div
                         class="w-100 d-flex flex-column flex-md-row

@@ -13,7 +13,7 @@
       <div class="col-12 col-lg-6 offset-lg-3 col-xl-3 offset-xl-7
       d-flex align-items-center justify-content-end text-white text_xl_black">
         <form @submit.prevent="signin" class="form-signin bg-blackOP
-        bg_xl_transparent w-100 w-xl-75 p-3 m-5 m-lg-0">
+        bg_xl_transparent w-100 w-xl-75 p-3 mx-2 my-5 m-lg-5 m-lg-0">
           <div class="fz_36 text-left mb-3">登入</div>
           <div class="form-group text-left">
             <label class="mb-1 text-gray text_xl_secondary"
