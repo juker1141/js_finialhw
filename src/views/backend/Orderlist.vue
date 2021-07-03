@@ -337,4 +337,18 @@ export default {
 .tooltip_hover:hover .tooltipText {
   opacity: 1;
 }
+.custom-control-label{
+  &::before{
+    top: 2px;
+    @media (min-width: 768px) {
+      top: 5px;
+    }
+  }
+  &::after{
+    top: 0.25rem !important;
+    @media (min-width: 768px) {
+      top: 0.45rem !important;
+    }
+  }
+}
 </style>

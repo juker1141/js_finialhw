@@ -45,6 +45,11 @@ body {
     font-size: 14px;
   }
 }
+.fz_lg_14 {
+  @include media-breakpoint-up(lg) {
+    font-size: 14px !important;
+  }
+}
 .fz_md_16 {
   @include media-breakpoint-up(md) {
     font-size: 16px;

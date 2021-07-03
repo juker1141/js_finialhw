@@ -93,9 +93,9 @@
                       :style="{ background: `url(${item.imageUrl[0]})` }"></div>
                     </div>
                     <div v-if="!item.price || item.price != item.origin_price"
-                    class="position-absolute salePosition p-3">
+                    class="position-absolute salePosition p-2 p-lg-3">
                     <div class="text-dark font-weight-bold
-                    fz_14 bg-yellow p-1 rounded">On Sale</div></div>
+                    fz_12 fz_lg_14 bg-yellow p-1 rounded">On Sale</div></div>
                     <div class="card-body pt-2 pt-lg-3 pb-1 py-md-3 px-2
                     d-flex justify-content-between align-items-center">
                       <div
