@@ -16,12 +16,16 @@
           <div class="card mt-3">
             <div class="card-body p-3">
               <h5 class="card-title mb-1 mb-lg-2">
-                <div class="tooltip_hover w_xl_25 position-relative d-flex
-                justify-content-start fz_14 fz_md_16">
-                  {{ item.created.timestamp | toDate }}
-                  <span class="tooltipText position-absolute w-25 ml-3 ml_xl_6">
-                    {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
-                  </span>
+                <div class="d-flex justify-content-between
+                  align-items-center fz_14 fz_md_16">
+                  <div class="tooltip_hover w_50 w_lg_25 position-relative d-flex
+                  justify-content-start">
+                    {{ item.created.timestamp | toDate }}
+                    <span class="tooltipText position-absolute w_75 w_md_25 w_lg_40 ml-3 ml_xl_6">
+                      {{ item.created.timestamp | toTime }}<br/>{{ item.created.diff }}
+                    </span>
+                  </div>
+                  <div>訂單編號： {{item.created.timestamp}}</div>
                 </div>
               </h5>
               <div class="card-text mt-0 mt-lg-3">
@@ -73,15 +77,15 @@
                       </div>
                     </div>
                     <div class="pt-2">{{ item.payment }}</div>
-                    <div class="pt-2">
+                    <div class="pt-2 fz_12 fz_lg_14">
                       <div v-if="item.paid" class="text-success font-weight-bold py-2">
                         付款完成
                       </div>
-                      <div v-else class="text-danger d-flex align-items-center">
+                      <div v-else class="text-danger d-flex align-items-center mt-1">
                         尚未付款
-                        <div v-if="!item.paid" class="d-flex justify-content-end mt-1">
+                        <div v-if="!item.paid" class="d-flex justify-content-end">
                           <a href="#" @click="goToPay(item.id)" class="btn btn-black
-                          text-decoration-none rounded-0 p-1 px-3 ml-3">
+                          text-decoration-none border-0 rounded-0 p-1 px-3 ml-3 fz_14 fz_lg_16">
                             前往付款
                           </a>
                         </div>
@@ -124,7 +128,6 @@ export default {
       this.$http.get(url)
         .then((res) => {
           this.orderList = res.data.data;
-          console.log(this.orderList);
           this.$store.dispatch('loadingChange', false);
         }).catch(() => {
           this.$store.dispatch('loadingChange', false);

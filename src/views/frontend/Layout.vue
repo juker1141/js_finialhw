@@ -271,12 +271,14 @@
             <ul class="listStyle_none justify-content-end
             p-0 m-0 mb-3 d-flex align-items-center fz_14">
               <li class="mr-3">
-                <a href="#" class="text-decoration-none text-yellow">
+                <a href="https://github.com/juker1141" target="_blank"
+                  class="text-decoration-none text-yellow">
                   <i class="fab fa-github-square fz_30_important"></i>
                 </a>
               </li>
               <li class="mr-3">
-                <a href="#" class="text-decoration-none text-yellow">
+                <a href="https://www.facebook.com/chihlung.tu/" target="_blank"
+                  class="text-decoration-none text-yellow">
                   <i class="fab fa-facebook-square fz_30_important"></i>
                 </a>
               </li>
@@ -297,12 +299,14 @@
           <ul class="listStyle_none justify-content-end
           text-left p-0 m-0 mb-3 d-none d-lg-flex align-items-center fz_14">
             <li class="mr-3">
-              <a href="#" class="text-decoration-none text-yellow">
+              <a href="https://github.com/juker1141" target="_blank"
+                class="text-decoration-none text-yellow">
                 <i class="fab fa-github-square fz_30_important"></i>
               </a>
             </li>
             <li class="mr-3">
-              <a href="#" class="text-decoration-none text-yellow">
+              <a href="https://www.facebook.com/chihlung.tu/" target="_blank"
+              class="text-decoration-none text-yellow">
                 <i class="fab fa-facebook-square fz_30_important"></i>
               </a>
             </li>
@@ -716,11 +720,12 @@ export default {
         }
       }
     },
-    toInformationPage() {
-      if (!localStorage.getItem('coupon')) {
-        localStorage.setItem('coupon', JSON.stringify(this.coupon));
+    async toInformationPage() {
+      if (await !localStorage.getItem('coupon')) {
+        await localStorage.setItem('coupon', JSON.stringify(this.coupon));
       } else {
-        localStorage.removeItem('coupon');
+        await localStorage.removeItem('coupon');
+        await localStorage.setItem('coupon', JSON.stringify(this.coupon));
       }
       setTimeout(() => {
         this.$router.push('/information').catch(() => {});

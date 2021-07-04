@@ -121,7 +121,7 @@ export default {
     },
     goToPage(link) {
       $('.navbarAdminPosition').removeClass('move');
-      this.$router.push(link);
+      this.$router.push(link).catch(() => {});
     },
   },
 };

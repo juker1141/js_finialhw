@@ -129,7 +129,6 @@ export default {
         .get(url)
         .then((res) => {
           this.products = res.data.data;
-          console.log(res.data.data);
           this.pagination.totalDataList = this.products;
           this.pagination.total_pages = Math.ceil(this.pagination.totalDataList.length
           / this.pagination.count);

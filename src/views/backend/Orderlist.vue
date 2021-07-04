@@ -180,7 +180,6 @@ export default {
           this.$store.dispatch('loadingChange', false);
           this.tempOrderStatus = false;
           this.orderList = res.data.data;
-          console.log(this.orderList);
           this.pagination.totalDataList = this.orderList;
           this.pagination.total_pages = Math.ceil(this.pagination.totalDataList.length
           / this.pagination.count);
