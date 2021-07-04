@@ -252,7 +252,7 @@ export default {
   width: 100%;
   height: 150px;
   transform:scale(1);
-  transition: all .8s ease-out;
+  transition: transform .8s ease-out;
   background-position: center !important;
   background-size: cover !important;
   @media (min-width: 500px) {
@@ -268,7 +268,7 @@ export default {
     height: 270px;
   }
   &:hover {
-    filter:opacity(.7);
+    filter:saturate(1.5);
     transform:scale(1.05);
   }
 }
