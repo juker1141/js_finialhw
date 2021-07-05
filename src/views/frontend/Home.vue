@@ -405,12 +405,12 @@ export default {
 }
 .cardSize {
   @media (min-width: 992px) {
-    height: 400px;
+    height: 450px;
   }
 }
 .cardImg {
   @media (min-width: 992px) {
-    height: 200px;
+    height: 250px;
   }
 }
 .moreProductsTitle {
