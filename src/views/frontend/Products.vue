@@ -3,11 +3,11 @@
     <section id="carouselBanner_sm" class="carousel slide mb-5 mb-lg-7"
     data-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item">
+        <div class="carousel-item active">
           <div class="bg-yellow py-3 text-dark font-weight-bold fz_14 fz_lg_24">
             開幕限時特價，全品項77折，快輸入 ' HAPPY777 ' 吧！</div>
         </div>
-        <div class="carousel-item active">
+        <div class="carousel-item">
           <div class="bg-dark py-3 text-yellow font-weight-bold fz_14 fz_lg_24">
             想要獲得更多活動訊息及優惠資訊嗎？<br class="d-lg-none"/>快訂閱我們的會員電子報吧！</div>
         </div>
